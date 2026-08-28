@@ -1,0 +1,11 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>纸张燃烧</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter','Noto Sans SC',system-ui,sans-serif}
+#stage{position:fixed;inset:0;background:#2b1d12;display:grid;place-items:center;overflow:hidden}
+.pp{position:absolute;inset:0;background:#f5ecd7;clip-path:polygon(0 0,100% 0,100% 100%,0 100%);animation:bn 4.5s steps(1) infinite}
+.edge{position:absolute;left:0;right:0;height:14vh;background:linear-gradient(#ff9800,#e65100 40%,#3e2723);filter:blur(.4vh);animation:ed 4.5s steps(30) infinite;top:100%}
+.em{position:absolute;width:1vh;height:1vh;border-radius:50%;background:#ffb74d;animation:em 4.5s linear infinite;opacity:0;left:calc(var(--x)*1%)}
+@keyframes bn{0%,10%{clip-path:polygon(0 0,100% 0,100% 100%,0 100%)}75%,88%{clip-path:polygon(0 100%,100% 100%,100% 100%,0 100%)}89%,100%{opacity:0}}
+@keyframes ed{0%,10%{top:100%}75%{top:-4%}88%,100%{top:-20%}}
+@keyframes em{0%,30%{opacity:0;top:60%}45%{opacity:1}90%,100%{top:-10%;opacity:0}}
+</style></head>
+<body><div id="stage"><div class="pp"></div><div class="edge"></div><div class="em" style="--x:0;animation-delay:0.0s"></div><div class="em" style="--x:17;animation-delay:0.3s"></div><div class="em" style="--x:34;animation-delay:0.6s"></div><div class="em" style="--x:51;animation-delay:0.8999999999999999s"></div><div class="em" style="--x:68;animation-delay:1.2s"></div><div class="em" style="--x:85;animation-delay:1.5s"></div><div class="em" style="--x:2;animation-delay:1.7999999999999998s"></div><div class="em" style="--x:19;animation-delay:2.1s"></div><div class="em" style="--x:36;animation-delay:2.4s"></div><div class="em" style="--x:53;animation-delay:2.6999999999999997s"></div><div class="em" style="--x:70;animation-delay:3.0s"></div><div class="em" style="--x:87;animation-delay:3.3s"></div></div></body></html>

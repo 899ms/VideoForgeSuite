@@ -1,0 +1,9 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>点击涟漪</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter','Noto Sans SC',system-ui,sans-serif}
+#stage{position:fixed;inset:0;display:grid;place-items:center;background:#0d1117}
+.bt{position:relative;width:34vh;height:34vh;border-radius:50%%;background:radial-gradient(circle at 35%% 30%%,#4f46e5,#312e81);display:grid;place-items:center;color:#fff;font-size:3.6vh;font-weight:800;box-shadow:0 2vh 6vh #4f46e544;animation:pr 3.4s steps(1) infinite}
+.ri{position:absolute;border-radius:50%%;border:.5vh solid #a5b4fc;opacity:0;animation:rp 3.4s ease-out infinite}
+@keyframes pr{0%%,6%%{transform:scale(1)}10%%{transform:scale(.94)}16%%{transform:scale(1)}}
+@keyframes rp{0%%,12%%{width:8vh;height:8vh;left:calc(50%% - 4vh);top:calc(50%% - 4vh);opacity:.9}55%%,100%%{width:56vh;height:56vh;left:calc(50%% - 28vh);top:calc(50%% - 28vh);opacity:0}}
+</style></head>
+<body><div id="stage"><div class="bt">点我<span class="ri"></span><span class="ri" style="animation-delay:.18s"></span></div></div></body></html>

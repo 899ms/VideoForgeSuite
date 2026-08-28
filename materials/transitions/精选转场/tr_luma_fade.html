@@ -1,0 +1,11 @@
+<!doctype html><html lang=zh><head><meta charset=utf-8>
+<style>html,body{margin:0;height:100%;overflow:hidden;background:#000;font-family:'Segoe UI',system-ui,sans-serif}
+.sc{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:54px;font-weight:900;letter-spacing:6px;gap:18px}
+.a{background:linear-gradient(150deg,#0c4a6e,#164e63);color:#a5f3fc;z-index:1}
+.b{background:linear-gradient(150deg,#4c1d95,#831843);color:#fbcfe8;z-index:2;opacity:0;animation:lf 2s ease-in-out .5s forwards}
+@keyframes lf{45%{opacity:.55;filter:brightness(1.5)}100%{opacity:1;filter:none}}
+.pz{position:absolute;z-index:5;font-size:15px;color:#fff;letter-spacing:5px;bottom:11%;left:50%;transform:translateX(-50%);opacity:0;animation:lt .5s ease 2.4s forwards}
+@keyframes lt{to{opacity:1}}</style></head><body>
+<div class="sc a">LUMA FADE</div><div class="sc b">亮度融合</div>
+<div class=pz>LUMA FADE 亮度转场</div>
+<script>setTimeout(function(){try{document.getAnimations().forEach(function(x){x.pause()})}catch(e){}},2450);</script></body></html>

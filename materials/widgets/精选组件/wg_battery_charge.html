@@ -1,0 +1,13 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>充电动画</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter','Noto Sans SC',system-ui,sans-serif}
+#stage{position:fixed;inset:0;background:#0b0d10;display:grid;place-items:center;gap:2.6vh}
+.bt{width:26vh;height:12vh;border:.8vh solid #3f4753;border-radius:2vh;position:relative;padding:.9vh}
+.bt:after{content:"";position:absolute;right:-2.6vh;top:50%;transform:translateY(-50%);width:1.8vh;height:5vh;background:#3f4753;border-radius:0 1vh 1vh 0}
+.fl{height:100%;border-radius:1vh;background:linear-gradient(90deg,#22c55e,#4ade80);width:0;animation:fl 4s steps(24) infinite}
+.bl{position:absolute;color:#fff;font-size:4vh;font-weight:800;left:50%;top:50%;transform:translate(-50%,-50%);opacity:0;animation:pc 4s steps(1) infinite}
+.zp{font-size:6vh;color:#4ade80;animation:bl 1.4s ease-in-out infinite}
+@keyframes fl{to{width:100%}}
+@keyframes pc{0%,10%{opacity:0}20%,80%{opacity:1}90%,100%{opacity:0}}
+@keyframes bl{50%{transform:scale(1.2);opacity:.6}}
+</style></head>
+<body><div id="stage"><div class="zp">⚡</div><div class="bt"><div class="fl"></div><div class="bl">86%</div></div></div></body></html>

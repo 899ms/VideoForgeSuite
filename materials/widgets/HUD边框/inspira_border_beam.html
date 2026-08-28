@@ -1,0 +1,24 @@
+<!doctype html><html lang=zh><head><meta charset=utf-8>
+<style>html,body{margin:0;height:100%;overflow:hidden;background:radial-gradient(circle at 50% 35%,#312e81,#1e1b4b 60%,#14123a);display:flex;align-items:center;justify-content:center;font-family:'Segoe UI',system-ui,sans-serif}
+.w{text-align:center}
+.s{font-size:15px;color:#c7d2fe;letter-spacing:6px;margin-bottom:34px;opacity:.9}
+.stage{position:relative;width:300px;height:170px;margin:auto}
+.card{position:absolute;inset:0;border-radius:20px;background:rgba(255,255,255,.06);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;color:#eef2ff;font-weight:800;font-size:19px;letter-spacing:3px;border:1px solid rgba(255,255,255,.08)}
+.beam{position:absolute;inset:-2px;padding:2px;border-radius:22px;overflow:hidden;pointer-events:none}
+.beam::before{content:'';position:absolute;left:-40%;top:0;width:45%;height:100%;background:linear-gradient(100deg,transparent,#38bdf8,#a78bfa,#f472b6,transparent);animation:sweep 1.5s linear infinite;filter:drop-shadow(0 0 10px #818cf8)}
+@keyframes sweep{to{left:110%}}
+.spark{position:absolute;width:9px;height:9px;border-radius:50%;animation:pop .8s ease-out both}
+@keyframes pop{from{transform:scale(0);opacity:1}to{transform:scale(2.4) translateY(-30px);opacity:0}}
+.done{margin-top:26px;font-size:12px;color:#a5b4fc;letter-spacing:4px;opacity:0}
+</style></head><body><div class=w>
+<div class=s>INSPIRA UI · BORDER BEAM</div>
+<div class=stage>
+<div class=card>AUTHENTIC FLOW</div>
+<div class=beam id=b></div>
+</div>
+<div class=done id=d>SPOTLIGHT + BEAM COMBINED</div></div>
+<script>
+var b=document.getElementById('b'),cols=['#f472b6','#fbbf24','#34d399'];
+for(var i=0;i<14;i++){(function(i){setTimeout(function(){var s=document.createElement('div');s.className='spark';s.style.background=cols[i%3];s.style.left=(Math.random()*280)+'px';s.style.top=(Math.random()*160)+'px';b.appendChild(s);},i*90)})(i)}
+var d=document.getElementById('d');d.animate([{opacity:0},{opacity:1}],{duration:500,delay:1500,fill:'both'});
+setTimeout(function(){var a=document.querySelectorAll('*');for(var i=0;i<a.length;i++){try{a[i].style.animationPlayState='paused'}catch(e){}}try{document.getAnimations().forEach(function(x){x.pause()})}catch(e){}},1900);</script></body></html>

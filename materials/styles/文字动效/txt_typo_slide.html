@@ -1,0 +1,11 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>滑动换词</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter','Noto Sans SC',system-ui,sans-serif}
+#stage{position:fixed;inset:0;display:grid;place-items:center;background:#0b0f1c}
+.w{position:relative;overflow:hidden;height:16vh;width:max-content}
+.w span{display:block;font-size:12vh;font-weight:900;line-height:16vh;letter-spacing:.06em}
+.a{color:#7ef0ff;animation:sa 5s cubic-bezier(.8,0,.2,1) infinite}
+.b{position:absolute;top:100%;left:0;color:#fb7185;animation:sb 5s cubic-bezier(.8,0,.2,1) infinite}
+@keyframes sa{0%,38%{transform:translateY(0)}50%,88%{transform:translateY(-100%)}100%{transform:translateY(-200%)}}
+@keyframes sb{0%,38%{transform:translateY(0)}50%,88%{transform:translateY(-100%)}100%{transform:translateY(-200%)}}
+</style></head>
+<body><div id="stage"><div class="w"><span class="a">高效剪辑</span><span class="b">爆款文案</span></div></div></body></html>

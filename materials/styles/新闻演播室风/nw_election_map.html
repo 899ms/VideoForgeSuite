@@ -1,0 +1,13 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>选举填色地图</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter','Noto Sans SC',system-ui,sans-serif}
+#stage{position:fixed;inset:0;background:#e8eaed;display:grid;place-items:center;overflow:hidden}
+.map{position:relative;width:60vw;height:56vh}
+.rg{position:absolute;background:#cfd8dc;animation:fl 5s steps(1) infinite;opacity:0}
+.rg.r1{left:6%;top:10%;width:30%;height:44%;clip-path:polygon(0 30%,20% 0,70% 8%,100% 34%,86% 78%,40% 100%,6% 76%)}
+.rg.r2{left:42%;top:6%;width:34%;height:52%;clip-path:polygon(0 22%,34% 0,78% 10%,100% 44%,72% 92%,22% 78%,8% 40%)}
+.rg.r3{left:14%;top:56%;width:44%;height:38%;clip-path:polygon(0 34%,30% 0,74% 14%,100% 58%,64% 100%,12% 88%)}
+.rg.dem{background:#42a5f5}.rg.rep{background:#ef5350}
+.pct{position:absolute;right:4%;top:6%;font-size:5vh;font-weight:900;color:#263238;font-family:monospace}
+@keyframes fl{0%,20%{opacity:0}26%,86%{opacity:1}100%{opacity:0}}
+</style></head>
+<body><div id="stage"><div class="map"><span class="rg dem r1"></span><span class="rg rep r2" style="animation-delay:.5s"></span><span class="rg dem r3" style="animation-delay:1s"></span><span class="pct">52% : 48%</span></div></div></body></html>

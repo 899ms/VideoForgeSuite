@@ -1,0 +1,11 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>连击计数</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter','Noto Sans SC',system-ui,sans-serif}
+#stage{position:fixed;inset:0;display:grid;place-items:center;background:radial-gradient(60% 60% at 50% 40%,#450a0a,#0c0202);overflow:hidden}
+.cb{text-align:center;animation:pp 3.6s cubic-bezier(.2,1.4,.4,1) infinite}
+.cb .n{font-size:16vh;font-weight:900;font-style:italic;background:linear-gradient(180deg,#fef08a,#f97316 70%,#dc2626);-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:0 1vh 0 #7c2d1233;filter:drop-shadow(0 0 2.4vh #f9731666)}
+.cb .l{color:#fca5a5;font-size:3.6vh;font-weight:900;letter-spacing:.5em;text-indent:.5em}
+@keyframes pp{0%,8%{transform:scale(.5);opacity:0}16%,80%{transform:scale(1);opacity:1}22%{transform:scale(1.14)}28%{transform:scale(1)}92%,100%{opacity:0;transform:scale(.7)}}
+.sh{position:absolute;font-size:4vh;color:#fde68a;opacity:0;animation:sw 3.6s ease-out infinite}
+@keyframes sw{0%,16%{opacity:0;transform:translate(0,0) rotate(0)}30%,70%{opacity:1}100%{opacity:0;transform:translate(var(--dx),8vh) rotate(var(--r))}}
+</style></head>
+<body><div id="stage"><div class="cb"><div class="n">48</div><div class="l">COMBO</div></div><span class="sh" style="--dx:8vh;--r:30deg;left:calc(50% + -6vh);top:-8vh;animation-delay:0.2s">✦</span><span class="sh" style="--dx:-9vh;--r:-40deg;left:calc(50% + -11vh);top:2vh;animation-delay:0.3s">✦</span><span class="sh" style="--dx:7vh;--r:-25deg;left:calc(50% + 9vh);top:4vh;animation-delay:0.25s">✦</span><span class="sh" style="--dx:-7vh;--r:35deg;left:calc(50% + 10vh);top:-6vh;animation-delay:0.35s">✦</span></div></body></html>

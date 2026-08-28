@@ -1,0 +1,11 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>斜角擦除</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter','Noto Sans SC',system-ui,sans-serif}
+#stage{position:fixed;inset:0;overflow:hidden}
+.ly{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:8vh;font-weight:900;color:#fff;letter-spacing:.14em}
+.b{background:#0b1626}
+.a{background:linear-gradient(135deg,#f43f5e,#fbbf24);clip-path:polygon(-30% 130%,130% -30%,130% -30%);animation:wp 3.4s cubic-bezier(.8,0,.2,1) infinite}
+.ed{position:absolute;inset:0;background:linear-gradient(135deg,transparent 48.6%,#fff 49%,#fff 51%,transparent 51.4%);transform:translate(120vw,-120vw);animation:ed 3.4s cubic-bezier(.8,0,.2,1) infinite;mix-blend-mode:screen}
+@keyframes wp{0%{clip-path:polygon(-30% 130%,130% -30%,130% -30%)}42%,62%{clip-path:polygon(-30% 130%,130% -30%,130% 130%)}100%{clip-path:polygon(-30% 130%,130% -30%,130% 130%)}}
+@keyframes ed{0%{transform:translate(120vw,-120vw)}42%,62%{transform:translate(0,0)}100%{transform:translate(-120vw,120vw)}}
+</style></head>
+<body><div id="stage"><div class="ly b">OLD</div><div class="ly a">NEW</div><div class="ed"></div></div></body></html>

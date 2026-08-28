@@ -1,0 +1,22 @@
+<!doctype html><html lang=zh><head><meta charset=utf-8>
+<style>html,body{margin:0;height:100%;overflow:hidden;background:linear-gradient(180deg,#09090b,#18181b)}
+.t{position:absolute;left:50%;top:11%;transform:translateX(-50%);font-size:26px;font-weight:800;color:#c4b5fd;letter-spacing:8px;z-index:2}</style></head><body>
+<div class=t>WIREFRAME TORUS</div>
+<canvas id=c style="position:absolute;inset:0"></canvas>
+<script>
+var c=document.getElementById('c'),x=c.getContext('2d');c.width=innerWidth;c.height=innerHeight;
+var R=170,r=70,ax=0.5,ay=0;
+function rot(px,py,pz,ax,ay){var y=py*Math.cos(ax)-pz*Math.sin(ax),z=py*Math.sin(ax)+pz*Math.cos(ax);
+var x2=px*Math.cos(ay)+z*Math.sin(ay),z2=-px*Math.sin(ay)+z*Math.cos(ay);return[x2,y,z2];}
+function f(){x.fillStyle='rgba(9,9,11,.3)';x.fillRect(0,0,c.width,c.height);ay+=0.014;ax=0.5+0.22*Math.sin(ay*0.7);
+var t0=performance.now()*0.0004;
+for(var i=0;i<28;i++){var u=i/28*Math.PI*2;x.beginPath();
+for(var j=0;j<=40;j++){var v=j/40*Math.PI*2;
+var px=(R+r*Math.cos(v+t0))*Math.cos(u),py=r*Math.sin(v+t0),pz=(R+r*Math.cos(v+t0))*Math.sin(u);
+var q=rot(px,py,pz,ax,ay);var sc=520/(520+q[2]);
+var X=c.width/2+q[0]*sc,Y=c.height/2+q[1]*sc;
+j?x.lineTo(X,Y):x.moveTo(X,Y);}
+var hue=(i*9+ay*40)%360;x.strokeStyle='hsla('+hue+',90%,66%,.5)';x.lineWidth=1.4;x.stroke();}
+requestAnimationFrame(f);}
+f();
+setTimeout(function(){try{document.getAnimations().forEach(function(a){a.pause()})}catch(e){}},2600);</script></body></html>

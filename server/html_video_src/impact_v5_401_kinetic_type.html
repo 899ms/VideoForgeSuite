@@ -1,0 +1,32 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><style>*{margin:0;padding:0}body{background:#08080f;overflow:hidden}canvas{display:block;width:100vw;height:100vh}</style></head>
+<body><canvas id="c" width="1280" height="720"></canvas><script>
+const cv=document.getElementById('c'),ctx=cv.getContext('2d'),W=1280,H=720,T=5;
+let start=null;
+const text="KINETIC TYPE MOTION DESIGN";
+function draw(t){
+  ctx.fillStyle='#08080f';ctx.fillRect(0,0,W,H);
+  const a=Math.min(t,1),b=Math.max(0,Math.min((t-1)/2,1));
+  const cx=W/2,cy=H/2;
+  for(let i=0;i<text.length;i++){
+    const ch=text[i];
+    const d=i*0.05;
+    const phase=t-d*2;
+    const x=cx+(i-text.length/2)*44+Math.sin(phase*3)*30*b;
+    const y=cy+Math.cos(phase*2+i*0.3)*40*b;
+    const r=80+Math.abs(Math.sin(phase*4+i))*40*b;
+    const col=`hsl(${(phase*80+i*10)%360},80%,65%)`;
+    ctx.fillStyle=col;
+    ctx.font='bold 56px monospace';
+    ctx.globalAlpha=a*0.9;
+    ctx.fillText(ch,x,y);
+    if(b>0.3){
+      ctx.globalAlpha=b*0.4;
+      ctx.shadowColor=col;ctx.shadowBlur=30;
+      ctx.fillText(ch,x,y);ctx.shadowBlur=0;
+    }
+  }
+  ctx.globalAlpha=1;
+}
+function loop(ts){if(!start)start=ts;const t=(ts-start)/1000;draw(t);if(t<T+0.3)requestAnimationFrame(loop);}
+requestAnimationFrame(loop);
+</script></body></html>

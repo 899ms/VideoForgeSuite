@@ -1,0 +1,11 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>合成波透视网格</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter','Noto Sans SC',system-ui,sans-serif}
+.bg{position:fixed;inset:0;background:radial-gradient(70% 70% at 50% 45%,#FF2E97cc 0%,transparent 72%),radial-gradient(55% 55% at 18% 82%,#00E5FFaa 0%,transparent 70%),radial-gradient(55% 55% at 82% 18%,#7C4DFFaa 0%,transparent 70%),linear-gradient(135deg,#2b2542,#171428);animation:hue 22s linear infinite}
+@keyframes hue{to{filter:hue-rotate(360deg)}}
+#stage{position:fixed;inset:0;display:flex;align-items:center;justify-content:center}canvas{width:100%;height:100%;display:block}
+.txt{color:#fff;font-weight:900;text-align:center}
+</style></head>
+<body><div class="bg"></div><div id="stage"><canvas id="cv"></canvas></div>
+<script>var cv=document.getElementById('cv'),x=cv.getContext('2d');
+function rs(){cv.width=innerWidth;cv.height=innerHeight;}rs();addEventListener('resize',rs);var t=0;(function loop(){requestAnimationFrame(loop);t+=0.04;x.fillStyle='#0a0a1f';x.fillRect(0,0,cv.width,cv.height);var hz=cv.height*0.5;x.strokeStyle='#FF2E97';x.lineWidth=1.5;
+        for(var i=0;i<22;i++){var p=i/22;var y=hz+Math.pow(p,2.2)*(cv.height);x.beginPath();for(var xx=0;xx<=cv.width;xx+=12){var yy=y+Math.sin(xx*0.02+t+p*4)*8*p;if(xx===0)x.moveTo(xx,yy);else x.lineTo(xx,yy);}x.globalAlpha=0.8-p*0.3;x.stroke();}x.globalAlpha=1;x.strokeStyle='#00E5FF';for(var j=0;j<24;j++){var xp=j/24;var X=xp*cv.width;x.beginPath();for(var yy2=hz;yy2<=cv.height;yy2+=10){var persp=(yy2-hz)/(cv.height-hz);var X2=cv.width/2+(X-cv.width/2)*(1+persp*1.6);if(yy2===hz)x.moveTo(X2,yy2);else x.lineTo(X2,yy2);}x.globalAlpha=0.7;x.stroke();}x.globalAlpha=1;})();</script></body></html>

@@ -1,0 +1,18 @@
+<!doctype html><html lang=zh><head><meta charset=utf-8>
+<style>html,body{margin:0;height:100%;overflow:hidden;background:#111827;display:flex;align-items:center;justify-content:center;font-family:'Segoe UI',system-ui,sans-serif}
+.w{position:relative;text-align:center}
+.line{font-size:64px;font-weight:900;line-height:1.25;letter-spacing:2px}
+.l1 span{color:#f9fafb}.l2 span{color:#fbbf24}
+.ch{display:inline-block;opacity:0;clip-path:inset(0 0 100% 0);transform:translateY(40px)}
+.tag{display:inline-block;margin-top:26px;padding:8px 22px;border-radius:999px;border:1px solid #374151;color:#9ca3af;font-size:15px;letter-spacing:5px;opacity:0}
+@keyframes wipeIn{60%{opacity:1;clip-path:inset(0 0 -10% 0);transform:translateY(-6px)}100%{opacity:1;clip-path:inset(0 0 -10% 0);transform:none}}
+</style></head><body><div class=w>
+<div class=line l1 id=a></div>
+<div class=line l2 id=b></div>
+<div class=tag id=t>SPLITTEXT · WIPE REVEAL</div></div>
+<script>
+function fill(el,text,base){for(var i=0;i<text.length;i++){if(text[i]===' '){el.appendChild(document.createTextNode(' '));continue;}var sp=document.createElement('span');sp.className='ch';sp.textContent=text[i];sp.style.animation='wipeIn .55s cubic-bezier(.2,.8,.2,1) '+(base+i*0.05)+'s forwards';el.appendChild(sp);}}
+fill(document.getElementById('a'),'动效即生产力',0);
+fill(document.getElementById('b'),'CODE AS MOTION',0.9);
+var t=document.getElementById('t');t.animate([{opacity:0,transform:'translateY(14px)'},{opacity:1,transform:'none'}],{duration:600,delay:1600,easing:'ease-out',fill:'both'});
+setTimeout(function(){var a=document.querySelectorAll('*');for(var i=0;i<a.length;i++){try{a[i].style.animationPlayState='paused'}catch(e){}}try{document.getAnimations().forEach(function(x){x.pause()})}catch(e){}},2900);</script></body></html>

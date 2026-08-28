@@ -1,0 +1,45 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><style>*{margin:0;padding:0}body{background:#08050a;overflow:hidden}canvas{display:block;width:100vw;height:100vh}</style></head>
+<body><canvas id="c" width="1280" height="720"></canvas><script>
+const cv=document.getElementById('c'),ctx=cv.getContext('2d'),W=1280,H=720,T=5;
+let start=null;
+function draw(t){
+  // dark warm radial bg
+  const g=ctx.createRadialGradient(W*0.3,H*0.3,0,W*0.3,H*0.3,Math.max(W,H));
+  g.addColorStop(0,'#5a4030');g.addColorStop(0.35,'#1e1812');g.addColorStop(1,'#08050a');
+  ctx.fillStyle=g;ctx.fillRect(0,0,W,H);
+  ctx.globalCompositeOperation='screen';
+  const cx=W*0.3+Math.sin(t*0.35)*100,cy=H*0.3;
+  // volumetric rays
+  for(let i=0;i<72;i++){
+    const a=i*Math.PI*2/72+t*0.2;
+    const len=900+Math.sin(i*1.1+t)*200;
+    const baseW=0.045+Math.sin(i*1.4+t*0.8)*0.028;
+    const grad=ctx.createLinearGradient(cx,cy,cx+Math.cos(a)*len,cy+Math.sin(a)*len);
+    grad.addColorStop(0,'rgba(255,245,210,0.98)');
+    grad.addColorStop(0.08,'rgba(255,200,80,0.55)');
+    grad.addColorStop(0.3,'rgba(255,140,40,0.18)');
+    grad.addColorStop(1,'transparent');
+    ctx.fillStyle=grad;
+    ctx.beginPath();
+    ctx.moveTo(cx,cy);
+    ctx.lineTo(cx+Math.cos(a-baseW)*len,cy+Math.sin(a-baseW)*len);
+    ctx.lineTo(cx+Math.cos(a+baseW)*len,cy+Math.sin(a+baseW)*len);
+    ctx.closePath();ctx.fill();
+  }
+  // sun core
+  const rg=ctx.createRadialGradient(cx,cy,0,cx,cy,120);
+  rg.addColorStop(0,'rgba(255,255,240,1)');
+  rg.addColorStop(0.45,'rgba(255,220,100,0.6)');
+  rg.addColorStop(1,'transparent');
+  ctx.fillStyle=rg;ctx.beginPath();ctx.arc(cx,cy,120,0,Math.PI*2);ctx.fill();
+  // dust particles
+  for(let i=0;i<60;i++){
+    const dx=Math.random()*W,dy=Math.random()*H;
+    ctx.fillStyle=`rgba(255,230,180,${0.1+Math.random()*0.4})`;
+    ctx.beginPath();ctx.arc(dx,dy,1+Math.random()*2.5,0,Math.PI*2);ctx.fill();
+  }
+  ctx.globalCompositeOperation='source-over';
+}
+function loop(ts){if(!start)start=ts;const t=(ts-start)/1000;draw(t);if(t<T+0.3)requestAnimationFrame(loop);}
+requestAnimationFrame(loop);
+</script></body></html>

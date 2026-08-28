@@ -1,0 +1,15 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>卫星连线</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter','Noto Sans SC',system-ui,sans-serif}
+#stage{position:fixed;inset:0;background:#1a1f26;display:grid;place-items:center}
+.win{width:52vw;aspect-ratio:16/9;background:linear-gradient(140deg,#26313d,#151c24);border:.5vh solid #37424e;border-radius:1vh;position:relative;overflow:hidden;box-shadow:0 2vh 6vh #0008}
+.gl{position:absolute;right:8%;bottom:-30%;width:26vh;height:26vh;border-radius:50%;background:radial-gradient(circle at 32% 30%,#4fc3f7,#0d47a1 70%);opacity:.85;animation:gr 9s linear infinite}
+.gl:after{content:"";position:absolute;inset:0;border-radius:50%;background:repeating-linear-gradient(0deg,#0004 0 1px,#0000 1px 3.2vh)}
+.live{position:absolute;left:3%;top:5%;display:flex;align-items:center;gap:1.2vh;background:#c62828;color:#fff;font-weight:900;font-size:2.6vh;padding:1vh 2vh;border-radius:.4vh;letter-spacing:.1em}
+.live i{width:1.6vh;height:1.6vh;border-radius:50%;background:#fff;animation:bl 1s steps(1) infinite}
+.nm{position:absolute;left:3%;bottom:6%;font-size:3vh;color:#e8eaed;font-weight:700;background:#0009;padding:1vh 2vh;border-radius:.4vh}
+.dl{position:absolute;right:3%;top:5%;font-size:2.2vh;color:#90a4ae;font-family:monospace;background:#0009;padding:.8vh 1.6vh;border-radius:.4vh;animation:dlb 1.6s steps(1) infinite}
+@keyframes gr{to{transform:rotate(360deg)}}
+@keyframes bl{50%{opacity:.2}}
+@keyframes dlb{50%{opacity:.4}}
+</style></head>
+<body><div id="stage"><div class="win"><div class="gl"></div><span class="live"><i></i>直播 LIVE</span><span class="dl">SIGNAL · SAT-7 · 延迟 0.8s</span><span class="nm">前方记者 · 现场连线</span></div></div></body></html>

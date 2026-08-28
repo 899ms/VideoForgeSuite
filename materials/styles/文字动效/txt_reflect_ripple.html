@@ -1,0 +1,12 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>倒影波纹字</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter','Noto Sans SC',system-ui,sans-serif}
+#stage{position:fixed;inset:0;display:grid;place-items:center;background:radial-gradient(70% 60% at 50% 30%,#101c33,#05070d)}
+.wrap{text-align:center}
+.t{font-size:12vh;font-weight:900;letter-spacing:.12em;background:linear-gradient(120deg,#7ef0ff,#c4b5fd 60%,#fb7185);-webkit-background-clip:text;background-clip:text;color:transparent;animation:hu 6s linear infinite}
+@keyframes hu{to{filter:hue-rotate(360deg)}}
+.rf{position:relative;margin-top:1vh}
+.rf .t{display:block;transform:scaleY(-1);opacity:.35;mask-image:linear-gradient(#0000 30%,#000 90%)}
+.rf:after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(180deg,#05070d00 0 1vh,#05070dcc 1vh 1.8vh);animation:wv 2.4s linear infinite}
+@keyframes wv{to{background-position:0 3.6vh}}
+</style></head>
+<body><div id="stage"><div class="wrap"><div class="t">REFLECT</div><div class="rf"><div class="t">REFLECT</div></div></div></div></body></html>

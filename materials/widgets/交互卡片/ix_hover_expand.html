@@ -1,0 +1,12 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>悬停展开</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter','Noto Sans SC',system-ui,sans-serif}
+#stage{position:fixed;inset:0;display:grid;place-items:center;background:#0a0d14}
+.cd{width:30vh;border-radius:2vh;background:linear-gradient(165deg,#1c2333,#10141f);border:.3vh solid #2b3648;overflow:hidden;box-shadow:0 2vh 5vh #0007;animation:ex 4.6s ease-in-out infinite}
+.im{height:20vh;background:linear-gradient(120deg,#f59e0b,#ef4444);display:grid;place-items:center;font-size:6vh}
+.bd{padding:2vh 2.4vh}
+.tt{color:#f1f5f9;font-weight:800;font-size:2.8vh}
+.ds{color:#7c8aa0;font-size:2.1vh;line-height:1.7;max-height:0;overflow:hidden;transition:.5s cubic-bezier(.2,.8,.3,1)}
+@keyframes ex{0%%,25%%{transform:none}45%%,75%%{transform:translateY(-1.6vh)}95%%,100%%{transform:none}}
+.ex .ds{max-height:0}
+</style></head>
+<body><div id="stage"><div class="cd" id="c"><div class="im">🌋</div><div class="bd"><div class="tt">活火山徒步指南</div><p class="ds">含装备清单、最佳季节、安全路线三条，附实时地震监测链接。</p></div></div><style>@keyframes ex2{0%%,25%%{max-height:0;opacity:0}45%%,75%%{max-height:12vh;opacity:1}95%%,100%%{max-height:0;opacity:0}}#c .ds{animation:ex2 4.6s ease-in-out infinite}</style></div></body></html>

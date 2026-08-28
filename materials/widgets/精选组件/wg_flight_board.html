@@ -1,0 +1,11 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>航班信息板</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter','Noto Sans SC',system-ui,sans-serif}
+#stage{position:fixed;inset:0;background:#0a0a0a;display:grid;place-items:center}
+.fb{width:64vw;color:#ffb300;font-family:'Courier New',monospace}
+.fb .hd{display:flex;justify-content:space-between;font-size:2.4vh;opacity:.7;border-bottom:.2vh solid #ffb30044;padding-bottom:1vh;letter-spacing:.2em}
+.fr{display:flex;justify-content:space-between;font-size:3.4vh;padding:1.8vh 0;border-bottom:.1vh solid #ffb30022;opacity:0;transform:translateY(-1vh);animation:fr 5s steps(1) infinite;letter-spacing:.1em}
+.fr:nth-of-type(2){animation-delay:.5s}.fr:nth-of-type(3){animation-delay:1s}.fr:nth-of-type(4){animation-delay:1.5s}
+.fr .st{color:#4ade80}
+@keyframes fr{0%{opacity:0;transform:translateY(-1vh)}10%,90%{opacity:1;transform:none}100%{opacity:0}}
+</style></head>
+<body><div id="stage"><div class="fb"><div class="hd"><span>FLIGHT</span><span>DEST</span><span>TIME</span><span>STATUS</span></div><div class="fr"><span>CA1882</span><span>上海虹桥</span><span>08:25</span><span class="st">登机中</span></div><div class="fr"><span>MU5137</span><span>广州白云</span><span>09:10</span><span class="st">准点</span></div><div class="fr"><span>CZ3415</span><span>成都天府</span><span>10:05</span><span style="color:#f87171">延误</span></div></div></div></body></html>

@@ -1,0 +1,12 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>突发新闻</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter','Noto Sans SC',system-ui,sans-serif}
+#stage{position:fixed;inset:0;background:#14181d;display:grid;place-items:center;overflow:hidden}
+.bk{position:absolute;left:0;right:0;top:26%;background:#c62828;color:#fff;display:flex;align-items:center;overflow:hidden}
+.bk .tag{background:#fff;color:#c62828;font-weight:900;font-size:4.2vh;padding:2vh 3vh;letter-spacing:.1em;animation:bi 4.5s ease-out infinite;white-space:nowrap}
+.bk .txt{font-size:4vh;font-weight:700;padding:0 3vh;white-space:nowrap;animation:tx 4.5s steps(20) infinite;opacity:0}
+.bk:after{content:"";position:absolute;left:0;right:0;bottom:0;height:.8vh;background:#fff;animation:wv 1.2s linear infinite;transform-origin:left}
+@keyframes bi{0%{transform:translateX(-100%)}16%{transform:translateX(0)}88%{transform:translateX(0)}100%{transform:translateX(-100%)}}
+@keyframes tx{0%,16%{opacity:0;transform:translateX(6vh)}26%,84%{opacity:1;transform:none}100%{opacity:0}}
+@keyframes wv{to{transform:scaleX(-1)}}
+</style></head>
+<body><div id="stage"><div class="bk"><span class="tag">BREAKING</span><span class="txt">突发：新一代 AI 智能体正式发布</span></div></div></body></html>

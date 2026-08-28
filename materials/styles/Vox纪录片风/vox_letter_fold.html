@@ -1,0 +1,9 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>信纸展开</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter','Noto Sans SC',system-ui,sans-serif}
+#stage{position:fixed;inset:0;background:#87796a;display:grid;place-items:center;perspective:100vh}
+.lt{width:52vw;height:34vh;background:#faf4e4;box-shadow:0 2vh 5vh #0005;position:relative;transform-origin:top;animation:fo 6s ease-in-out infinite;font-size:2.9vh;color:#4a4234;padding:4vh 5vh;line-height:2}
+.lt:before{content:"";position:absolute;inset:0;background:linear-gradient(#0002,#0000 18%);transform-origin:top;animation:fl 6s ease-in-out infinite}
+@keyframes fo{0%,10%{transform:rotateX(-92deg)}45%,80%{transform:rotateX(0)}100%{transform:rotateX(-92deg)}}
+@keyframes fl{0%,10%{transform:rotateX(0)}45%,80%{transform:rotateX(-100deg)}100%{transform:rotateX(0)}}
+</style></head>
+<body><div id="stage"><div class="lt">亲爱的收看者：<br>这封信将在你点开时展开。<br>—— 编辑部</div></div></body></html>

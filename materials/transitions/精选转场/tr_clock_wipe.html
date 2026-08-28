@@ -1,0 +1,11 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>时钟扫掠</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter','Noto Sans SC',system-ui,sans-serif}
+#stage{position:fixed;inset:0;background:#101418;display:grid;place-items:center;overflow:hidden}
+.cl{position:absolute;left:50%;top:50%;width:300vh;height:300vh;border-radius:50%;background:conic-gradient(#00e5ff 0 var(--a,0turn),#00e5ff00 0);transform:translate(-50%,-50%);animation:ck 4s steps(48) infinite}
+.cl2{position:absolute;left:50%;top:50%;width:300vh;height:300vh;border-radius:50%;background:conic-gradient(#ff4081 0 var(--a,0turn),#ff408100 0);transform:translate(-50%,-50%);animation:ck 4s steps(48) 2s infinite;mix-blend-mode:screen}
+.nb{position:absolute;color:#fff;font-size:10vh;font-weight:900;z-index:3;opacity:0;animation:nb 4s steps(1) infinite}
+@keyframes ck{0%{--a:0turn}45%,100%{--a:.5turn}}
+@property --a{syntax:'<angle>';initial-value:0deg;inherits:false}
+@keyframes nb{0%,36%{opacity:0}46%,74%{opacity:1}80%,100%{opacity:0}}
+</style></head>
+<body><div id="stage"><div class="cl"></div><div class="cl2"></div><div class="nb">12:00</div></div></body></html>

@@ -1,0 +1,23 @@
+<!doctype html><html lang=zh><head><meta charset=utf-8>
+<style>html,body{margin:0;height:100%;overflow:hidden;background:#000}
+.t{position:absolute;left:50%;top:12%;transform:translateX(-50%);font-size:26px;font-weight:800;color:#f9a8d4;letter-spacing:8px;z-index:2}</style></head><body>
+<div class=t>NEBULA CLOUD</div>
+<canvas id=c style="position:absolute;inset:0"></canvas>
+<script>
+var c=document.getElementById('c'),x=c.getContext('2d');c.width=innerWidth;c.height=innerHeight;
+var clouds=[];
+for(var i=0;i<26;i++){clouds.push({x:Math.random(),y:Math.random(),r:90+Math.random()*200,
+h:[285,320,200,170][i%4],dx:(Math.random()-0.5)*0.0009,dy:(Math.random()-0.5)*0.0007});}
+function f(){x.fillStyle='rgba(2,0,10,.16)';x.fillRect(0,0,c.width,c.height);
+x.globalCompositeOperation='lighter';
+clouds.forEach(function(cl){cl.x+=cl.dx;cl.y+=cl.dy;
+if(cl.x<-0.2||cl.x>1.2)cl.dx*=-1;if(cl.y<-0.2||cl.y>1.2)cl.dy*=-1;
+var g=x.createRadialGradient(cl.x*c.width,cl.y*c.height,0,cl.x*c.width,cl.y*c.height,cl.r);
+g.addColorStop(0,'hsla('+cl.h+',90%,62%,.10)');g.addColorStop(1,'transparent');
+x.fillStyle=g;x.beginPath();x.arc(cl.x*c.width,cl.y*c.height,cl.r,0,7);x.fill();});
+x.globalCompositeOperation='source-over';
+for(var j=0;j<40;j++){x.fillStyle='rgba(255,255,255,'+(0.1+Math.random()*0.3)+')';
+x.fillRect(Math.random()*c.width,Math.random()*c.height,1.6,1.6);}
+requestAnimationFrame(f);}
+f();
+setTimeout(function(){try{document.getAnimations().forEach(function(a){a.pause()})}catch(e){}},2600);</script></body></html>

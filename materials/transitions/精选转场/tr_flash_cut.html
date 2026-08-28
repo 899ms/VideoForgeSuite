@@ -1,0 +1,11 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>闪白快切</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter','Noto Sans SC',system-ui,sans-serif}
+#stage{position:fixed;inset:0;background:#020617;display:flex;align-items:center;justify-content:center}
+.sc{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:8vh;font-weight:900;color:#fff;letter-spacing:.15em}
+.s1{background:linear-gradient(135deg,#0f172a,#1e3a8a);animation:sh 2.4s steps(1) infinite}
+.s2{background:linear-gradient(135deg,#4c1d95,#be185d);animation:sh 2.4s steps(1) infinite;animation-delay:1.2s}
+.fl{position:absolute;inset:0;background:#fff;opacity:0;animation:fl 1.2s steps(1) infinite}
+@keyframes sh{0%,49%{opacity:1}50%,100%{opacity:0}}
+@keyframes fl{0%{opacity:0}50%{opacity:.95}52%{opacity:.2}54%{opacity:.85}56%,100%{opacity:0}}
+</style></head>
+<body><div id="stage"><div class="sc s1">CUT A</div><div class="sc s2">CUT B</div><div class="fl"></div></div></body></html>

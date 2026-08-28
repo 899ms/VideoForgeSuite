@@ -1,0 +1,13 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>投票对比</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter','Noto Sans SC',system-ui,sans-serif}
+#stage{position:fixed;inset:0;background:#f8fafc;display:grid;place-items:center}
+.pl{width:52vw;display:flex;flex-direction:column;gap:2.6vh}
+.op{display:flex;flex-direction:column;gap:1vh}
+.op .lb{display:flex;justify-content:space-between;font-size:3vh;color:#334155}
+.op .lb b{color:#0f172a}
+.op .bg2{height:3.4vh;background:#e2e8f0;border-radius:2vh;overflow:hidden}
+.op .bg2 i{display:block;height:100%;border-radius:inherit;transform:scaleX(0);transform-origin:left;animation:gr 4s steps(20) infinite}
+.a1{background:linear-gradient(90deg,#38bdf8,#0ea5e9)}.a2{background:linear-gradient(90deg,#fbbf24,#f59e0b)}
+@keyframes gr{0%{transform:scaleX(0)}40%,86%{transform:scaleX(1)}100%{opacity:0}}
+</style></head>
+<body><div id="stage"><div class="pl"><div class="op"><div class="lb"><span>用 AI 剪视频</span><b>63%</b></div><div class="bg2"><i class="a1" style="width:63%"></i></div></div><div class="op"><div class="lb"><span>纯手工剪辑</span><b>37%</b></div><div class="bg2"><i class="a2" style="width:37%;animation-delay:.15s"></i></div></div></div></div></body></html>

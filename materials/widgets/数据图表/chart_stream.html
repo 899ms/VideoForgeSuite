@@ -1,0 +1,9 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>河流流图</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter','Noto Sans SC',system-ui,sans-serif}
+#stage{position:fixed;inset:0;background:#10151c}
+.sv{position:absolute;inset:0}
+.sv path{animation:wv 7s ease-in-out infinite}
+.s1{fill:#29b6f6aa}.s2{fill:#ab47bcaa;animation-delay:.4s}.s3{fill:#ffca28aa;animation-delay:.8s}
+@keyframes wv{0%,100%{d:path('M0 60 Q50 40 100 60 T200 60 T300 60 T400 60 L400 200 L0 200 Z')}50%{d:path('M0 60 Q50 84 100 60 T200 44 T300 76 T400 60 L400 200 L0 200 Z')}}
+</style></head>
+<body><div id="stage"><svg class="sv" viewBox="0 0 400 200" preserveAspectRatio="none"><path class="s1" d="M0 60 Q50 40 100 60 T200 60 T300 60 T400 60 L400 200 L0 200 Z"/><path class="s2" d="M0 90 Q50 70 100 90 T200 90 T300 90 T400 90 L400 200 L0 200 Z" style="animation:wv 7s ease-in-out .4s infinite"/><path class="s3" d="M0 120 Q50 100 100 120 T200 120 T300 120 T400 120 L400 200 L0 200 Z" style="animation:wv 7s ease-in-out .8s infinite"/></svg></div></body></html>

@@ -1,0 +1,10 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>堆叠柱状图</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter','Noto Sans SC',system-ui,sans-serif}
+#stage{position:fixed;inset:0;background:#fafafa;display:grid;place-items:center}
+.wrp{display:flex;gap:5vh;align-items:flex-end;height:46vh}
+.col{width:8vh;height:100%;display:flex;flex-direction:column-reverse;transform-origin:bottom;animation:gu 4s steps(20) infinite}
+.col i{display:block;width:100%}
+.s1{height:30%;background:#ef5350}.s2{height:45%;background:#ffca28}.s3{height:25%;background:#66bb6a}
+@keyframes gu{0%{transform:scaleY(0)}40%,84%{transform:scaleY(1)}100%{opacity:0}}
+</style></head>
+<body><div id="stage"><div class="wrp"><div class="col"><i class="s1"></i><i class="s2"></i><i class="s3"></i></div><div class="col" style="animation-delay:.2s"><i class="s1" style="height:50%"></i><i class="s2" style="height:20%"></i><i class="s3" style="height:30%"></i></div><div class="col" style="animation-delay:.4s"><i class="s1" style="height:20%"></i><i class="s2" style="height:55%"></i><i class="s3" style="height:25%"></i></div></div></div></body></html>

@@ -1,0 +1,13 @@
+<!doctype html><html lang=zh><head><meta charset=utf-8>
+<style>html,body{margin:0;height:100%;overflow:hidden;background:#000;font-family:'Segoe UI',system-ui,sans-serif}
+.sc{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:58px;font-weight:900;letter-spacing:6px}
+.a{background:linear-gradient(150deg,#312e81,#1e1b4b);color:#c7d2fe;z-index:1}
+.b{background:linear-gradient(150deg,#06b6d4,#3b82f6);color:#fff;z-index:2;clip-path:polygon(50% 50%,50% 50%,50% 50%,50% 50%,50% 50%,50% 50%,50% 50%,50% 50%,50% 50%,50% 50%);animation:star 1.7s cubic-bezier(.7,0,.3,1) .5s forwards}
+@keyframes star{
+0%{clip-path:polygon(50% 50%,50% 50%,50% 50%,50% 50%,50% 50%,50% 50%,50% 50%,50% 50%,50% 50%,50% 50%)}
+100%{clip-path:polygon(50% -60%,110% 8%,160% 68%,80% 110%,-15% 62%,-60% -8%,8% -30%,28% -55%,50% -60%,50% -60%)}}
+.lt{position:absolute;z-index:4;font-size:15px;color:#fff;letter-spacing:5px;bottom:11%;left:50%;transform:translateX(-50%);opacity:0;animation:lt .5s ease 2.2s forwards}
+@keyframes lt{to{opacity:1}}</style></head><body>
+<div class="sc a">STAR WIPE</div><div class="sc b">星形划像 →</div>
+<div class=lt>STAR WIPE 星形转场</div>
+<script>setTimeout(function(){try{document.getAnimations().forEach(function(x){x.pause()})}catch(e){}},2300);</script></body></html>

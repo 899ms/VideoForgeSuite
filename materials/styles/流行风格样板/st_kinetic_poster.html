@@ -1,0 +1,8 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>动态字体海报</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter','Noto Sans SC',system-ui,sans-serif}
+#stage{position:fixed;inset:0;background:#ff4d2e;display:grid;place-items:center;overflow:hidden}
+.big{font-size:20vh;font-weight:900;color:#fff5e6;letter-spacing:-.03em;animation:jp 1.6s cubic-bezier(.3,1.6,.4,1) infinite alternate}
+.big:after{content:"MOVE";position:absolute;left:50%;top:60%;transform:translateX(-50%);font-size:7vh;color:#111;background:#ffd23f;padding:.4vh 2vh;rotate:-4deg;box-shadow:.8vh .8vh 0 #111}
+@keyframes jp{to{transform:scale(1.06) translateY(-1.5vh)}}
+</style></head>
+<body><div id="stage"><div class="big">TYPE</div></div></body></html>

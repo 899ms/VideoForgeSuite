@@ -1,0 +1,13 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>VS能量对撞</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter','Noto Sans SC',system-ui,sans-serif}
+#stage{position:fixed;inset:0;display:grid;place-items:center;background:#0d0f1a;overflow:hidden}
+.bd{position:relative;width:70vw;height:16vh;display:flex;align-items:center;justify-content:space-between}
+.bars{position:absolute;inset:0;display:flex;justify-content:space-between;align-items:center}
+.bl{height:100%;width:44%;background:linear-gradient(90deg,#1e88e5,#64b5f6);border-radius:1vh 0 0 1vh;animation:gl 3.6s cubic-bezier(.7,0,.3,1) infinite;transform-origin:left}
+.br{height:100%;width:44%;background:linear-gradient(-90deg,#e53935,#ef9a9a);border-radius:0 1vh 1vh 0;animation:gr 3.6s cubic-bezier(.7,0,.3,1) infinite;transform-origin:right}
+.vs{position:relative;z-index:2;font-size:9vh;font-weight:900;font-style:italic;color:#fff;text-shadow:0 .6vh 0 #000,0 0 4vh #ffd54f;animation:sm 3.6s cubic-bezier(.7,0,.3,1) infinite;opacity:0}
+@keyframes gl{0%{transform:scaleX(.05)}42%{transform:scaleX(1)}88%{transform:scaleX(1)}100%{transform:scaleX(.05)}}
+@keyframes gr{0%{transform:scaleX(.05)}42%{transform:scaleX(1)}88%{transform:scaleX(1)}100%{transform:scaleX(.05)}}
+@keyframes sm{0%,30%{opacity:0;transform:scale(3)}42%{opacity:1;transform:scale(1)}86%{opacity:1}100%{opacity:0}}
+</style></head>
+<body><div id="stage"><div class="bd"><div class="bars"><div class="bl"></div><div class="br"></div></div><span class="vs">VS</span></div></div></body></html>

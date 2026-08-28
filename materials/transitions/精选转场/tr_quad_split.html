@@ -1,0 +1,13 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>四分屏</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter','Noto Sans SC',system-ui,sans-serif}
+#stage{position:fixed;inset:0;overflow:hidden;background:#05070d}
+.q{position:absolute;width:50.5%;height:50.5%;display:flex;align-items:center;justify-content:center;font-size:7vh;font-weight:900;color:#fff;background:linear-gradient(135deg,#0ea5e9,#6366f1);animation:sp 3.6s cubic-bezier(.8,0,.2,1) infinite}
+.q:nth-child(1){left:0;top:0;--tx:-104%;--ty:-104%}
+.q:nth-child(2){right:0;top:0;--tx:104%;--ty:-104%;background:linear-gradient(135deg,#8b5cf6,#d946ef)}
+.q:nth-child(3){left:0;bottom:0;--tx:-104%;--ty:104%;background:linear-gradient(135deg,#10b981,#0ea5e9)}
+.q:nth-child(4){right:0;bottom:0;--tx:104%;--ty:104%;background:linear-gradient(135deg,#f59e0b,#f43f5e)}
+@keyframes sp{0%,26%{transform:translate(0,0)}44%,70%{transform:translate(var(--tx),var(--ty));opacity:.9}88%,100%{transform:translate(0,0);opacity:1}}
+.q span{animation:tb 3.6s ease infinite}
+@keyframes tb{0%,30%{opacity:1}46%,68%{opacity:0}86%,100%{opacity:1}}
+</style></head>
+<body><div id="stage"><div class="q"><span>Q1</span></div><div class="q"><span>Q2</span></div><div class="q"><span>Q3</span></div><div class="q"><span>Q4</span></div></div></body></html>

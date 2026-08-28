@@ -1,0 +1,10 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>液体填充</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter','Noto Sans SC',system-ui,sans-serif}
+.bg{position:fixed;inset:0;background:radial-gradient(70% 70% at 50% 45%,#29D3E6cc 0%,transparent 72%),radial-gradient(55% 55% at 18% 82%,#7C6CF5aa 0%,transparent 70%),radial-gradient(55% 55% at 82% 18%,#FF5C8Aaa 0%,transparent 70%),linear-gradient(135deg,#2b2542,#171428);animation:hue 22s linear infinite}
+@keyframes hue{to{filter:hue-rotate(360deg)}}
+#stage{position:fixed;inset:0;display:flex;align-items:center;justify-content:center}canvas{width:100%;height:100%;display:block}
+.txt{color:#fff;font-weight:900;text-align:center}
+</style></head>
+<body><div class="bg"></div><div id="stage"><canvas id="cv"></canvas></div>
+<script>var cv=document.getElementById('cv'),x=cv.getContext('2d');
+function rs(){cv.width=innerWidth;cv.height=innerHeight;}rs();addEventListener('resize',rs);var t=0;(function loop(){requestAnimationFrame(loop);t+=0.06;x.clearRect(0,0,cv.width,cv.height);var cx=cv.width/2,cy=cv.height/2,R=Math.min(cv.width,cv.height)*0.32;x.save();x.beginPath();x.arc(cx,cy,R,0,7);x.clip();var lvl=cy+R*0.4+Math.sin(t)*R*0.2;x.beginPath();x.moveTo(cx-R,lvl);for(var xx=cx-R;xx<=cx+R;xx+=8){x.lineTo(xx,lvl+Math.sin(xx*0.04+t*2)*8);}x.lineTo(cx+R,cy+R);x.lineTo(cx-R,cy+R);x.closePath();var g=x.createLinearGradient(0,lvl,0,cy+R);g.addColorStop(0,'#29D3E6');g.addColorStop(1,'#7C6CF5');x.fillStyle=g;x.fill();x.restore();x.beginPath();x.arc(cx,cy,R,0,7);x.strokeStyle='#fff';x.lineWidth=3;x.stroke();})();</script></body></html>

@@ -1,0 +1,14 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>环形文字</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter','Noto Sans SC',system-ui,sans-serif}
+#stage{position:fixed;inset:0;display:grid;place-items:center;background:#101018}
+.wheel{position:relative;width:64vh;height:64vh}
+.wheel svg{position:absolute;inset:0}
+.r1{animation:r1 12s linear infinite}
+.r2{animation:r2 12s linear infinite}
+text{font-size:4.6vh;font-weight:800;letter-spacing:.5vh}
+.t1 text{fill:#ffd166}.t2 text{fill:#7ef0ff}
+@keyframes r1{to{transform:rotate(360deg)}}
+@keyframes r2{to{transform:rotate(-360deg)}}
+.core{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-size:5vh;font-weight:900;color:#fff;background:#fb7185;width:16vh;height:16vh;border-radius:50%;display:grid;place-items:center;box-shadow:0 0 6vh #fb718588}
+</style></head>
+<body><div id="stage"><div class="wheel"><svg class="r1" viewBox="0 0 400 400"><defs><path id="o1" d="M200,200 m-160,0 a160,160 0 1,1 320,0 a160,160 0 1,1 -320,0"/></defs><text><textPath href="#o1">· 关注 · 点赞 · 收藏 · 关注 · 点赞 · 收藏 ·</textPath></text></svg><svg class="r2" viewBox="0 0 400 400"><defs><path id="o2" d="M200,200 m-110,0 a110,110 0 1,0 220,0 a110,110 0 1,0 -220,0"/></defs><text class="t2"><textPath href="#o2">SUBSCRIBE NOW · SUBSCRIBE NOW ·</textPath></text></svg><div class="core">GO!</div></div></div></body></html>

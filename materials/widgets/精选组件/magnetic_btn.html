@@ -1,0 +1,9 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>磁吸按钮</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter','Noto Sans SC',system-ui,sans-serif}
+.bg{position:fixed;inset:0;background:radial-gradient(70% 70% at 50% 45%,#F72585cc 0%,transparent 72%),radial-gradient(55% 55% at 18% 82%,#B5179Eaa 0%,transparent 70%),radial-gradient(55% 55% at 82% 18%,#7209B7aa 0%,transparent 70%),linear-gradient(135deg,#2b2542,#171428);animation:hue 22s linear infinite}
+@keyframes hue{to{filter:hue-rotate(360deg)}}
+#stage{position:fixed;inset:0;display:flex;align-items:center;justify-content:center}canvas{width:100%;height:100%;display:block}
+.txt{color:#fff;font-weight:900;text-align:center}
+#b{transition:transform .12s, box-shadow .2s}</style></head>
+<body><div class="bg"></div><div id="stage"><button id="b" style="padding:26px 60px;font-size:26px;font-weight:800;color:#fff;border:none;border-radius:20px;background:linear-gradient(135deg,#F72585,#7209B7);box-shadow:0 0 40px #F7258588;cursor:pointer">HOVER ME</button></div>
+<script>var b=document.getElementById('b');document.addEventListener('mousemove',function(e){var r=b.getBoundingClientRect(),cx=r.left+r.width/2,cy=r.top+r.height/2;var dx=(e.clientX-cx)/18,dy=(e.clientY-cy)/18;var d=Math.hypot(e.clientX-cx,e.clientY-cy);if(d<240){b.style.transform='translate('+dx+'px,'+dy+'px) scale(1.08)';b.style.boxShadow='0 0 60px #F72585';}else{b.style.transform='translate(0,0)';b.style.boxShadow='0 0 40px #F7258588';}});</script></body></html>

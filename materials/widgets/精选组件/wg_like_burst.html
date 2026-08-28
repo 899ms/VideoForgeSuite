@@ -1,0 +1,11 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>点赞爆裂</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter','Noto Sans SC',system-ui,sans-serif}
+#stage{position:fixed;inset:0;display:grid;place-items:center;background:radial-gradient(60% 60% at 50% 45%,#241028,#0b0710)}
+.like{position:relative;font-size:14vh;animation:lk 3.2s cubic-bezier(.34,1.56,.64,1) infinite;filter:drop-shadow(0 0 3vh #f43f5e88)}
+.like:after{content:"";position:absolute;left:50%;top:50%;width:9vh;height:9vh;margin:-4.5vh;border-radius:50%;border:.6vh solid #f43f5e;opacity:0;animation:rg 3.2s ease-out infinite}
+.pt{position:absolute;left:50%;top:50%;width:1.4vh;height:1.4vh;border-radius:50%;background:var(--c);opacity:0;animation:pt 3.2s ease-out infinite;animation-delay:calc(var(--d)*1s)}
+@keyframes lk{0%,100%{transform:scale(.6)}10%{transform:scale(1.35)}22%,70%{transform:scale(1)}90%{transform:scale(.6);opacity:.3}}
+@keyframes rg{0%,12%{opacity:.9;transform:scale(.4)}45%{opacity:0;transform:scale(2.4)}100%{opacity:0}}
+@keyframes pt{0%,14%{opacity:0;transform:translate(0,0) scale(1)}22%{opacity:1}60%{opacity:0;transform:translate(var(--tx),var(--ty)) scale(.2)}100%{opacity:0}}
+</style></head>
+<body><div id="stage"><div class="like">❤</div><span class="pt" style="--d:0;--c:#ffd166;--tx:-8vh;--ty:-9vh"></span><span class="pt" style="--d:1;--c:#4cc9f0;--tx:8vh;--ty:-8vh"></span><span class="pt" style="--d:2;--c:#80ed99;--tx:-9vh;--ty:6vh"></span><span class="pt" style="--d:3;--c:#f43f5e;--tx:9vh;--ty:7vh"></span><span class="pt" style="--d:0;--c:#b5179e;--tx:0vh;--ty:-11vh"></span><span class="pt" style="--d:1;--c:#ffd166;--tx:6vh;--ty:10vh"></span><span class="pt" style="--d:2;--c:#4cc9f0;--tx:-6vh;--ty:10vh"></span></div></body></html>

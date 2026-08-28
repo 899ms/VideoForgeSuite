@@ -1,0 +1,12 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>极光光斑</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter','Noto Sans SC',system-ui,sans-serif}
+.bg{position:fixed;inset:0;background:radial-gradient(70% 70% at 50% 45%,#43E97Bcc 0%,transparent 72%),radial-gradient(55% 55% at 18% 82%,#38F9D7aa 0%,transparent 70%),radial-gradient(55% 55% at 82% 18%,#5B86E5aa 0%,transparent 70%),linear-gradient(135deg,#2b2542,#171428);animation:hue 22s linear infinite}
+@keyframes hue{to{filter:hue-rotate(360deg)}}
+#stage{position:fixed;inset:0;display:flex;align-items:center;justify-content:center}canvas{width:100%;height:100%;display:block}
+.txt{color:#fff;font-weight:900;text-align:center}
+</style></head>
+<body><div class="bg"></div><div id="stage"><canvas id="cv"></canvas></div>
+<script>var cv=document.getElementById('cv'),x=cv.getContext('2d');
+function rs(){cv.width=innerWidth;cv.height=innerHeight;}rs();addEventListener('resize',rs);var t=0,c=['#43E97B','#38F9D7','#5B86E5'];
+        (function loop(){requestAnimationFrame(loop);t+=0.01;x.clearRect(0,0,cv.width,cv.height);
+        for(var k=0;k<3;k++){var cx=cv.width*(0.5+0.4*Math.sin(t+k*2.1)),cy=cv.height*(0.5+0.4*Math.cos(t*0.8+k*1.7));var g=x.createRadialGradient(cx,cy,0,cx,cy,Math.max(cv.width,cv.height)*0.4);g.addColorStop(0,c[k]+'aa');g.addColorStop(1,'transparent');x.fillStyle=g;x.beginPath();x.arc(cx,cy,Math.max(cv.width,cv.height)*0.4,0,7);x.fill();}x.globalCompositeOperation='lighter';})();</script></body></html>

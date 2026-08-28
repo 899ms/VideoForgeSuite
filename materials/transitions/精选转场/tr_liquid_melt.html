@@ -1,0 +1,10 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>液态熔化</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter','Noto Sans SC',system-ui,sans-serif}
+#stage{position:fixed;inset:0;background:linear-gradient(140deg,#ff9a8b,#f6d365);overflow:hidden}
+.tp{position:absolute;inset:0;background:#5c2b8d;animation:ml 3.8s cubic-bezier(.6,0,.4,1) infinite}
+.tp:before,.tp:after{content:"";position:absolute;left:-20%;right:-20%;height:16vh;background:radial-gradient(circle at 50% 0,#5c2b8d 60%,transparent 62%);background-size:14vh 100%}
+.tp:before{bottom:-14vh;animation:dp 3.8s ease-in infinite}
+@keyframes ml{0%,20%{transform:translateY(0)}55%,82%{transform:translateY(130%)}100%{transform:translateY(130%)}}
+@keyframes dp{0%,20%{transform:translateY(0)}55%,100%{transform:translateY(16vh)}}
+</style></head>
+<body><div id="stage"><div class="tp"></div></div></body></html>

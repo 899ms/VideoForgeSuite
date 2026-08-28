@@ -1,0 +1,6 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>海浪</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter','Noto Sans SC',system-ui,sans-serif}
+#stage{position:fixed;inset:0;background:linear-gradient(#071730,#03294a 60%,#014a6e)}
+canvas{position:absolute;inset:0;width:100%;height:100%}
+</style></head>
+<body><div id="stage"><canvas id="cv" width="960" height="540"></canvas><script>const c=document.getElementById("cv"),x=c.getContext("2d");let t=0;const L=6;(function loop(){t+=.014;x.clearRect(0,0,960,540);for(let l=0;l<L;l++){x.beginPath();const base=300+l*46;const col=`hsla(${195+l*8},80%,${45+l*7}%,${.55})`;x.moveTo(0,540);for(let px=0;px<=960;px+=8){x.lineTo(px,base+Math.sin(px*.012+t*(1+l*.25)+l*1.7)*22+Math.sin(px*.004-t*.8)*14)}x.lineTo(960,540);x.closePath();x.fillStyle=col;x.fill()}requestAnimationFrame(loop)})();</script></div></body></html>

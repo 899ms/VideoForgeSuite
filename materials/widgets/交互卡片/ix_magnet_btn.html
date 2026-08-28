@@ -1,0 +1,9 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>磁吸按钮</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter','Noto Sans SC',system-ui,sans-serif}
+#stage{position:fixed;inset:0;display:grid;place-items:center;background:#09090f}
+.bt{width:24vh;height:9vh;border-radius:99vh;background:linear-gradient(135deg,#6366f1,#a855f7);display:grid;place-items:center;color:#fff;font-size:3.2vh;font-weight:800;box-shadow:0 1.4vh 4vh #7c3aed55;animation:mg 4.2s cubic-bezier(.3,1.3,.4,1) infinite}
+.cr{position:absolute;font-size:5vh;animation:cr 4.2s cubic-bezier(.3,1,.4,1) infinite}
+@keyframes mg{0%%,25%%{transform:translateX(0)}48%%,74%%{transform:translateX(9vh) scale(1.06);box-shadow:0 2.4vh 6vh #a855f766}96%%,100%%{transform:translateX(0)}}
+@keyframes cr{0%%,25%%{left:calc(50%% - 22vh);top:calc(50%% - 8vh);opacity:1}50%%,90%%{left:calc(50%% + 9vh);top:calc(50%% - 8vh);opacity:1}96%%,100%%{opacity:0}}
+</style></head>
+<body><div id="stage"><div class="cr">🖱️</div><div class="bt">立即开始</div></div></body></html>

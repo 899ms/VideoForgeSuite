@@ -1,0 +1,11 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>成就解锁</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter','Noto Sans SC',system-ui,sans-serif}
+#stage{position:fixed;inset:0;background:linear-gradient(#1a1030,#0d0818);display:grid;place-items:center;perspective:100vh}
+.md{display:flex;align-items:center;gap:3vh;background:#ffffff14;border:.1vh solid #ffd16644;backdrop-filter:blur(2vh);border-radius:2.4vh;padding:3.4vh 4.6vh;color:#fff;transform:translateY(10vh) rotateX(30deg);opacity:0;animation:un 5s cubic-bezier(.2,1.4,.4,1) infinite}
+.md .md-ic{width:11vh;height:11vh;border-radius:50%;background:radial-gradient(circle at 34% 30%,#ffe082,#ffb300);display:grid;place-items:center;font-size:5.4vh;box-shadow:0 0 5vh #ffb30066;animation:sp 5s linear infinite}
+.md h4{font-size:2.6vh;color:#ffd166;margin-bottom:1vh}
+.md b{font-size:4vh}
+@keyframes un{0%{opacity:0;transform:translateY(10vh) rotateX(30deg)}18%,86%{opacity:1;transform:none}100%{opacity:0}}
+@keyframes sp{to{transform:rotateY(1turn)}}
+</style></head>
+<body><div id="stage"><div class="md"><div class="md-ic">🏆</div><div><h4>成就解锁</h4><b>百集连更 · 第一名</b></div></div></div></body></html>

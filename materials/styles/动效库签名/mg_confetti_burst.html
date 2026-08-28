@@ -1,0 +1,28 @@
+<!doctype html><html lang=zh><head><meta charset=utf-8>
+<style>html,body{margin:0;height:100%;overflow:hidden;background:#fffbeb;display:flex;align-items:center;justify-content:center;font-family:'Segoe UI',system-ui,sans-serif}
+.w{text-align:center}
+.s{font-size:15px;color:#b45309;letter-spacing:6px;margin-bottom:26px;font-weight:700}
+.stage{position:relative;height:210px}
+.piece{position:absolute;left:50%;top:50%;width:16px;border-radius:3px;animation:burst 1.5s cubic-bezier(.15,.6,.4,1) both}
+@keyframes burst{0%{transform:translate(0,0) rotate(0);opacity:1}70%{opacity:1}100%{transform:var(--dst) rotate(var(--rot));opacity:0}}
+.done{font-size:64px;font-weight:900;color:#1c1917;opacity:0;transform:scale(.7)}
+.confetti-done .done{animation:settle .55s cubic-bezier(.34,1.56,.64,1) forwards}
+@keyframes settle{to{opacity:1;transform:none}}
+.cap{margin-top:20px;font-size:13px;color:#92400e;letter-spacing:3px;opacity:0}
+</style></head><body><div class=w id=w>
+<div class=s>LOTTIE MG · CONFETTI BURST</div>
+<div class=stage id=stage></div>
+<div class=done>+100 积分</div>
+<div class=cap>MASKED SHAPE LAYERS · EASE OUT BACK</div></div>
+<script>
+var cols=['#f59e0b','#ef4444','#10b981','#3b82f6','#a855f7','#f43f5e'];
+var st=document.getElementById('stage');
+for(var i=0;i<26;i++){var p=document.createElement('div');p.className='piece';p.style.background=cols[i%6];
+var ang=(i/26)*Math.PI*2,dist=90+Math.random()*60;
+p.style.setProperty('--dst','translate('+(Math.cos(ang)*dist)+'px,'+(Math.sin(ang)*dist-40)+'px)');
+p.style.setProperty('--rot',(Math.random()*720-360)+'deg');
+if(i%2)p.style.height='22px';else{p.style.height='12px';p.style.borderRadius='50%';}
+p.style.animationDelay=(Math.random()*0.15)+'s';st.appendChild(p);}
+setTimeout(function(){document.getElementById('w').classList.add('confetti-done')},700);
+setTimeout(function(){try{document.getAnimations().forEach(function(x){x.pause()})}catch(e){}},2000);
+var c=document.querySelector('.cap');c.animate([{opacity:0},{opacity:1}],{duration:400,delay:1300,fill:'both'});</script></body></html>

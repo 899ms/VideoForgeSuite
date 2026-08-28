@@ -1,0 +1,10 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>图钉落点</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter','Noto Sans SC',system-ui,sans-serif}
+#stage{position:fixed;inset:0;background:#ded3ba}
+.pin{position:absolute;left:50%;top:40%;width:4vh;height:4vh;background:#c0392b;border-radius:50% 50% 50% 0;transform:rotate(-45deg);transform-origin:0 0;animation:dp 3.5s steps(10) infinite}
+.pin:after{content:"";position:absolute;left:1.1vh;top:1.1vh;width:1.6vh;height:1.6vh;background:#fff8;border-radius:50%}
+.shadow{position:absolute;left:49%;top:44.5%;width:5vh;height:1.6vh;background:#0003;border-radius:50%;animation:sh 3.5s steps(10) infinite}
+@keyframes dp{0%{transform:rotate(-45deg) translate(14vh,-30vh) scale(.8)}70%{transform:rotate(-45deg) scale(1)}80%{transform:rotate(-45deg) scale(1.18)}85%,100%{transform:rotate(-45deg) scale(1);opacity:1}}
+@keyframes sh{0%,60%{transform:scale(0)}75%{transform:scale(1.3)}85%,100%{transform:scale(1)}}
+</style></head>
+<body><div id="stage"><div class="shadow"></div><div class="pin"></div></div></body></html>

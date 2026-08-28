@@ -1,0 +1,15 @@
+<!doctype html><html lang=zh><head><meta charset=utf-8>
+<style>html,body{margin:0;height:100%;overflow:hidden;background:linear-gradient(135deg,#f0f9ff,#e0f2fe);display:flex;align-items:center;justify-content:center;font-family:'Segoe UI',system-ui,sans-serif}
+.w{text-align:center}
+.s{font-size:15px;color:#0369a1;letter-spacing:6px;margin-bottom:24px;font-weight:700}
+.row{width:520px;margin:10px auto;padding:18px 26px;border-radius:16px;background:#fff;box-shadow:0 8px 22px rgba(2,132,199,.12);display:flex;align-items:center;gap:16px;font-size:19px;font-weight:700;color:#0c4a6e;text-align:left}
+.av{width:44px;height:44px;border-radius:50%;flex:none;display:flex;align-items:center;justify-content:center;color:#fff;font-size:17px}
+.badge{margin-left:auto;font-size:11px;padding:5px 12px;border-radius:999px;background:#f1f5f9;color:#64748b;font-weight:400;letter-spacing:1px}
+@keyframes springIn{0%{opacity:0;transform:translateX(-90px) scale(.85)}55%{opacity:1;transform:translateX(14px) scale(1.02)}75%{transform:translateX(-6px)}100%{opacity:1;transform:none}}
+</style></head><body><div class=w>
+<div class=s>MOTION · SPRING STAGGER LIST</div>
+<div class=row style="animation:springIn .7s cubic-bezier(.34,1.56,.64,1) .15s both"><div class="av" style="background:linear-gradient(145deg,#38bdf8,#2563eb)">M</div>Motion One<div class="badge">原生手势驱动</div></div>
+<div class=row style="animation:springIn .7s cubic-bezier(.34,1.56,.64,1) .4s both"><div class="av" style="background:linear-gradient(145deg,#a78bfa,#7c3aed)">S</div>Spring Physics<div class="badge">弹簧参数可调</div></div>
+<div class=row style="animation:springIn .7s cubic-bezier(.34,1.56,.64,1) .65s both"><div class="av" style="background:linear-gradient(145deg,#34d399,#059669)">L</div>Layout Transition<div class="badge">FLIP 动画</div></div>
+</div>
+<script>setTimeout(function(){var a=document.querySelectorAll('*');for(var i=0;i<a.length;i++){try{a[i].style.animationPlayState='paused'}catch(e){}}try{document.getAnimations().forEach(function(x){x.pause()})}catch(e){}},2100);</script></body></html>

@@ -1,0 +1,21 @@
+<!doctype html><html lang=zh><head><meta charset=utf-8>
+<style>html,body{margin:0;height:100%;overflow:hidden;background:linear-gradient(135deg,#faf5ff,#e0e7ff);display:flex;align-items:center;justify-content:center;font-family:'Segoe UI',system-ui,sans-serif}
+.w{text-align:center}
+.s{font-size:16px;color:#7c3aed;letter-spacing:6px;margin-bottom:18px;font-weight:700}
+.g{display:flex;gap:14px}
+.c{width:150px;height:190px;border-radius:18px;padding:16px;box-sizing:border-box;color:#fff;text-align:left;display:flex;flex-direction:column;justify-content:flex-end;font-size:15px;font-weight:700;box-shadow:0 12px 30px rgba(79,70,229,.25)}
+.c small{font-weight:400;font-size:11px;opacity:.85;margin-top:4px}
+.c1{background:linear-gradient(145deg,#6366f1,#8b5cf6)}.c2{background:linear-gradient(145deg,#ec4899,#f43f5e)}.c3{background:linear-gradient(145deg,#06b6d4,#3b82f6)}
+@keyframes flip1{0%{transform:none}45%{transform:translate(-170px) scale(.92)}100%{transform:none}}
+@keyframes swap{0%{margin-left:0}100%{margin-left:164px}}
+.play .c1{animation:swap 1s cubic-bezier(.68,-0.35,.27,1.35) both}
+.play .c2{animation:swap 1s cubic-bezier(.68,-0.35,.27,1.35) -0.08s both reverse}
+</style></head><body><div class=w id=w>
+<div class=s>GSAP · FLIP PLUGIN</div>
+<div class=g id=g>
+<div class=c c1>A<small>布局状态互换</small></div>
+<div class=c c2>B<small>位置平滑过渡</small></div>
+<div class=c c3>C<small>零闪烁重排</small></div>
+</div></div>
+<script>setTimeout(function(){document.getElementById('g').classList.add('play')},500);
+setTimeout(function(){var a=document.querySelectorAll('*');for(var i=0;i<a.length;i++){try{a[i].style.animationPlayState='paused'}catch(e){}}try{document.getAnimations().forEach(function(x){x.pause()})}catch(e){}},2300);</script></body></html>

@@ -1,0 +1,10 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>有机自然</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter','Noto Sans SC',system-ui,sans-serif}
+#stage{position:fixed;inset:0;background:linear-gradient(#e7f0e3,#cfe3c8);overflow:hidden;display:grid;place-items:center}
+.leaf{position:absolute;width:18vh;height:18vh;background:radial-gradient(circle at 30% 30%,#9ccc65,#558b2f);border-radius:0 60% 0 60%;animation:fl 8s ease-in-out infinite;opacity:.85}
+.leaf.l2{left:60%;top:14%;animation-delay:2s;transform:scale(1.4) rotate(30deg);border-radius:60% 0 60% 0;background:radial-gradient(circle at 30% 30%,#80cbc4,#00695c)}
+.leaf.l3{left:20%;top:46%;animation-delay:4s;transform:scale(.8) rotate(-20deg)}
+.ttl{position:relative;font-size:6vh;color:#2e4a2f;font-weight:800;letter-spacing:.12em}
+@keyframes fl{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(3vh) rotate(8deg)}}
+</style></head>
+<body><div id="stage"><div class="leaf" style="left:14%;top:12%"></div><div class="leaf l2"></div><div class="leaf l3"></div><div class="ttl">自然生长</div></div></body></html>

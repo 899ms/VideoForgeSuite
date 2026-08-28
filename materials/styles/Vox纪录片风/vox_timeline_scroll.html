@@ -1,0 +1,9 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>年代时间轴</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter','Noto Sans SC',system-ui,sans-serif}
+#stage{position:fixed;inset:0;background:#1c2430;display:grid;place-items:center;overflow:hidden}
+.tl{font-size:16vh;font-weight:900;color:#f0e6d2;letter-spacing:.05em;animation:rl 6s steps(12) infinite}
+@keyframes rl{0%{transform:translateY(0)}100%{transform:translateY(-5em)}}
+.tl span{display:block;height:1em;line-height:1}
+.mark{position:absolute;left:0;right:0;top:50%;height:.5vh;background:#c9a227;z-index:2;box-shadow:0 0 2vh #c9a227}
+</style></head>
+<body><div id="stage"><div class="mark"></div><div class="tl"><span>1969</span><span>1978</span><span>1987</span><span>1996</span><span>2008</span><span>2019</span></div></div></body></html>

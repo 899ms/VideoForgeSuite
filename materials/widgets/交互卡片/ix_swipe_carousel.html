@@ -1,0 +1,14 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>滑动轮播</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter','Noto Sans SC',system-ui,sans-serif}
+#stage{position:fixed;inset:0;display:grid;place-items:center;background:#0b0f14;overflow:hidden}
+.vp{width:40vh;height:52vh;position:relative}
+.tr{position:absolute;inset:0;display:flex;gap:2vh;transition:.6s cubic-bezier(.2,.8,.3,1);animation:sl 5.4s cubic-bezier(.4,0,.3,1) infinite}
+.sl2{animation:sl2 5.4s cubic-bezier(.4,0,.3,1) infinite}
+.cd2{flex:0 0 40vh;height:52vh;border-radius:2vh;display:grid;place-items:center;color:#fff;font-size:5vh;font-weight:900;box-shadow:0 2vh 6vh #0008}
+.dt{position:absolute;bottom:-5vh;left:50%%;transform:translateX(-50%%);display:flex;gap:1.2vh}
+.dt i{width:1.6vh;height:1.6vh;border-radius:50%%;background:#334155}
+.dt i.on{background:#38bdf8;width:4vh;border-radius:99vh}
+@keyframes sl{0%%,30%%{transform:translateX(0)}42%%,80%%{transform:translateX(-42vh)}92%%,100%%{transform:translateX(0)}}
+@keyframes sl2{0%%,30%%{transform:translateX(0)}42%%,80%%{transform:translateX(42vh)}92%%,100%%{transform:translateX(0)}}
+</style></head>
+<body><div id="stage"><div class="vp"><div class="tr"><div class="cd2" style="background:linear-gradient(150deg,#0ea5e9,#0369a1)">01</div><div class="cd2" style="background:linear-gradient(150deg,#8b5cf6,#5b21b6)">02</div><div class="cd2" style="background:linear-gradient(150deg,#f43f5e,#9f1239)">03</div></div><div class="dt"><i class="on"></i><i></i><i></i></div></div></div></body></html>

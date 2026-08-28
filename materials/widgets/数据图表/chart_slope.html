@@ -1,0 +1,12 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>斜率图</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter','Noto Sans SC',system-ui,sans-serif}
+#stage{position:fixed;inset:0;background:#fafafa;display:grid;place-items:center;font-family:'Inter',sans-serif}
+.sg{position:relative;width:56vw;height:50vh}
+.sg svg{width:100%;height:100%;overflow:visible}
+.sg line{stroke-width:.5vh;stroke-linecap:round;stroke-dasharray:400;stroke-dashoffset:400;animation:sl 4s steps(24) infinite}
+.l1{stroke:#e53935}.l2{stroke:#1e88e5}
+.lb{position:absolute;font-size:2.8vh;font-weight:700}
+.lb.u{color:#e53935}.lb.d{color:#1e88e5}
+@keyframes sl{0%{stroke-dashoffset:400}50%,86%{stroke-dashoffset:0}100%{opacity:0}}
+</style></head>
+<body><div id="stage"><div class="sg"><svg viewBox="0 0 400 300"><line class="l1" x1="40" y1="240" x2="360" y2="70"/><line class="l2" x1="40" y1="90" x2="360" y2="200"/></svg><div class="lb u" style="left:76%;top:12%">上升 +64%</div><div class="lb d" style="left:76%;top:62%">下降 -32%</div></div></div></body></html>

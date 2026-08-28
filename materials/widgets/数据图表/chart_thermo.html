@@ -1,0 +1,12 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>温度计</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter','Noto Sans SC',system-ui,sans-serif}
+#stage{position:fixed;inset:0;background:#121417;display:grid;place-items:center;gap:3vh}
+.th{position:relative;width:7vh;height:52vh;background:#1f2328;border-radius:3.5vh;padding:1vh}
+.tb{position:absolute;left:2vh;right:2vh;bottom:2vh;border-radius:50%;aspect-ratio:1;background:#ef5350}
+.mc{position:absolute;left:2.6vh;right:2.6vh;bottom:9vh;height:0;background:linear-gradient(#ff8a80,#ef5350);border-radius:1.4vh;animation:mr 4s steps(20) infinite}
+.tk{position:absolute;right:-3vh;width:2vh;height:.3vh;background:#666;top:calc(var(--t)*1%)}
+@keyframes mr{0%{height:0}46%,84%{height:62%}100%{opacity:0}}
+.val{font-size:5vh;font-weight:900;color:#ff8a80;opacity:0;animation:vv 4s steps(1) infinite}
+@keyframes vv{0%,36%{opacity:0}48%,82%{opacity:1}100%{opacity:0}}
+</style></head>
+<body><div id="stage"><div class="th"><div class="tk" style="--t:8;left:auto;right:-2.6vh"></div><div class="tk" style="--t:20;left:auto;right:-2.6vh"></div><div class="tk" style="--t:32;left:auto;right:-2.6vh"></div><div class="tk" style="--t:44;left:auto;right:-2.6vh"></div><div class="tk" style="--t:56;left:auto;right:-2.6vh"></div><div class="tk" style="--t:68;left:auto;right:-2.6vh"></div><div class="tk" style="--t:80;left:auto;right:-2.6vh"></div><div class="mc"></div><div class="tb"></div></div><div class="val">72.4°</div></div></body></html>

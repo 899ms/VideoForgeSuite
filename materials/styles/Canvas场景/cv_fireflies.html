@@ -1,0 +1,6 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>萤火虫</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter','Noto Sans SC',system-ui,sans-serif}
+#stage{position:fixed;inset:0;background:radial-gradient(80% 80% at 50% 100%,#0a1a12,#02060a)}
+canvas{position:absolute;inset:0;width:100%;height:100%}
+</style></head>
+<body><div id="stage"><canvas id="cv" width="960" height="540"></canvas><script>const c=document.getElementById("cv"),x=c.getContext("2d");const F=[];for(let i=0;i<70;i++)F.push({x:Math.random()*960,y:Math.random()*540,vx:(Math.random()-.5)*.6,vy:(Math.random()-.5)*.6,p:Math.random()*6.28,s:Math.random()*2+1});let t=0;(function loop(){x.fillStyle="#02060a";x.fillRect(0,0,960,540);t+=.03;for(const f of F){f.x+=f.vx;f.y+=f.vy;f.vx+=(Math.random()-.5)*.04;f.vy+=(Math.random()-.5)*.04;f.vx=Math.max(-.8,Math.min(.8,f.vx));f.vy=Math.max(-.8,Math.min(.8,f.vy));if(f.x<0)f.x=960;if(f.x>960)f.x=0;if(f.y<0)f.y=540;if(f.y>540)f.y=0;const a=.35+.65*Math.abs(Math.sin(t*2+f.p));const g=x.createRadialGradient(f.x,f.y,0,f.x,f.y,f.s*6);g.addColorStop(0,`rgba(190,255,120,${a})`);g.addColorStop(1,"rgba(190,255,120,0)");x.fillStyle=g;x.beginPath();x.arc(f.x,f.y,f.s*6,0,6.28);x.fill()}requestAnimationFrame(loop)})();</script></div></body></html>

@@ -1,0 +1,12 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>象形柱图</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter','Noto Sans SC',system-ui,sans-serif}
+#stage{position:fixed;inset:0;background:#f5f7fa;display:grid;place-items:center}
+.pk{display:flex;flex-direction:column;gap:2.6vh}
+.rw{display:flex;align-items:center;gap:1.4vh}
+.rw .lb{width:12vh;font-size:2.8vh;color:#455a64;font-weight:700;text-align:right}
+.ps{display:flex;gap:.7vh}
+.p{width:2.6vh;height:2.6vh;border-radius:50% 50% 40% 40%;background:#b0bec5;opacity:.35}
+.p.on{background:#1e88e5;opacity:1;animation:pi 3.8s steps(1) infinite}
+@keyframes pi{0%{opacity:0}8%,88%{opacity:1}100%{opacity:0}}
+</style></head>
+<body><div id="stage"><div class="pk"><div class="rw"><span class="lb">使用量</span><span class="ps"><i class="p on" style="animation-delay:0.2s"></i><i class="p on" style="animation-delay:0.32s"></i><i class="p on" style="animation-delay:0.44s"></i><i class="p on" style="animation-delay:0.56s"></i><i class="p on" style="animation-delay:0.6799999999999999s"></i><i class="p on" style="animation-delay:0.8s"></i><i class="p on" style="animation-delay:0.9199999999999999s"></i><i class="p on" style="animation-delay:1.04s"></i></span></div><div class="rw"><span class="lb">收藏率</span><span class="ps"><i class="p on" style="animation-delay:0.2s"></i><i class="p on" style="animation-delay:0.32s"></i><i class="p on" style="animation-delay:0.44s"></i><i class="p on" style="animation-delay:0.56s"></i><i class="p on" style="animation-delay:0.6799999999999999s"></i><i class="p" style="animation-delay:0.8s"></i><i class="p" style="animation-delay:0.9199999999999999s"></i><i class="p" style="animation-delay:1.04s"></i></span></div><div class="rw"><span class="lb">完播率</span><span class="ps"><i class="p on" style="animation-delay:0.2s"></i><i class="p on" style="animation-delay:0.32s"></i><i class="p on" style="animation-delay:0.44s"></i><i class="p on" style="animation-delay:0.56s"></i><i class="p on" style="animation-delay:0.6799999999999999s"></i><i class="p on" style="animation-delay:0.8s"></i><i class="p" style="animation-delay:0.9199999999999999s"></i><i class="p" style="animation-delay:1.04s"></i></span></div></div></div></body></html>

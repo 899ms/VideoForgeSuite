@@ -1,0 +1,10 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>擦除转场</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter','Noto Sans SC',system-ui,sans-serif}
+.bg{position:fixed;inset:0;background:radial-gradient(70% 70% at 50% 45%,#7C6CF5cc 0%,transparent 72%),radial-gradient(55% 55% at 18% 82%,#29D3E6aa 0%,transparent 70%),radial-gradient(55% 55% at 82% 18%,#FF5C8Aaa 0%,transparent 70%),linear-gradient(135deg,#2b2542,#171428);animation:hue 22s linear infinite}
+@keyframes hue{to{filter:hue-rotate(360deg)}}
+#stage{position:fixed;inset:0;display:flex;align-items:center;justify-content:center}canvas{width:100%;height:100%;display:block}
+.txt{color:#fff;font-weight:900;text-align:center}
+</style></head>
+<body><div class="bg"></div><div id="stage"><canvas id="cv"></canvas></div>
+<script>var cv=document.getElementById('cv'),x=cv.getContext('2d');
+function rs(){cv.width=innerWidth;cv.height=innerHeight;}rs();addEventListener('resize',rs);var t=0;(function loop(){requestAnimationFrame(loop);t=(t+0.012)%2;x.clearRect(0,0,cv.width,cv.height);var g=x.createLinearGradient(0,0,cv.width,0);g.addColorStop(0,'#7C6CF5');g.addColorStop(1,'#29D3E6');x.fillStyle=g;x.fillRect(0,0,cv.width,cv.height);var p=t<1?t:2-t;x.fillStyle='#0e0c16';x.fillRect(0,0,cv.width*(1-p),cv.height);x.fillStyle='#FF5C8A';for(var i=0;i<6;i++)x.fillRect(cv.width*(1-p)-3,cv.height*i/6,6,cv.height/6*0.7);})();</script></body></html>

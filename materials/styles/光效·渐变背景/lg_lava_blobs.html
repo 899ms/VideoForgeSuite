@@ -1,0 +1,10 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>熔岩灯</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter','Noto Sans SC',system-ui,sans-serif}
+#stage{position:fixed;inset:0;background:linear-gradient(#1a0505,#3d0a0a);overflow:hidden}
+.goo{position:absolute;filter:blur(3vh);mix-blend-mode:screen;border-radius:50%;animation:fv 8s ease-in-out infinite alternate}
+.g1{width:26vh;height:30vh;background:radial-gradient(circle,#ff6d3b,#e6290e 65%,transparent 76%);left:20%;bottom:8%}
+.g2{width:20vh;height:24vh;background:radial-gradient(circle,#ffca28,#ff6f00 60%,transparent 74%);left:48%;bottom:20%;animation-delay:1.4s;animation-duration:10s}
+.g3{width:15vh;height:17vh;background:radial-gradient(circle,#ff8a65,#d84315 62%,transparent 75%);left:34%;bottom:2%;animation-delay:2.6s;animation-duration:12s}
+@keyframes fv{to{transform:translateY(-38vh) translateX(6vh) scale(1.15) rotate(30deg)}}
+</style></head>
+<body><div id="stage"><div class="goo g1"></div><div class="goo g2"></div><div class="goo g3"></div></div></body></html>

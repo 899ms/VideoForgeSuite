@@ -1,0 +1,6 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>城市散景</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter','Noto Sans SC',system-ui,sans-serif}
+#stage{position:fixed;inset:0;background:#050510}
+canvas{position:absolute;inset:0;width:100%;height:100%}
+</style></head>
+<body><div id="stage"><canvas id="cv" width="960" height="540"></canvas><script>const c=document.getElementById("cv"),x=c.getContext("2d");const B=[];const cols=["#ffd166","#ff5d8f","#4cc9f0","#b5179e","#80ffdb"];for(let i=0;i<46;i++)B.push({x:Math.random()*960,y:Math.random()*540,r:Math.random()*26+8,c:cols[i%5],vx:(Math.random()-.5)*.4,vy:(Math.random()-.5)*.4,a:Math.random()*.5+.2,p:Math.random()*6.28});(function loop(){x.fillStyle="#050510";x.fillRect(0,0,960,540);for(const b of B){b.x+=b.vx;b.y+=b.vy;if(b.x<-40)b.x=1000;if(b.x>1000)b.x=-40;if(b.y<-40)b.y=580;if(b.y>580)b.y=-40;const a=b.a*(.6+.4*Math.sin(Date.now()*.001+b.p));x.globalAlpha=a;x.fillStyle=b.c;x.beginPath();x.arc(b.x,b.y,b.r,0,6.28);x.fill();x.globalAlpha=1}requestAnimationFrame(loop)})();</script></div></body></html>

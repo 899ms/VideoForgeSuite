@@ -1,0 +1,13 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>血条蓝条</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter','Noto Sans SC',system-ui,sans-serif}
+#stage{position:fixed;inset:0;display:grid;place-items:center;background:#0a0a12}
+.wr{display:grid;gap:2.2vh;width:46vh}
+.ba{height:4.2vh;border-radius:.8vh;background:#1a1a2e;border:.3vh solid #333;position:relative;overflow:hidden}
+.hp{height:100%;border-radius:.8vh;background:linear-gradient(90deg,#ef4444,#f87171);box-shadow:0 0 1.8vh #ef444488;animation:hp 4.6s cubic-bezier(.4,0,.3,1) infinite}
+.mp{height:100%;border-radius:.8vh;background:linear-gradient(90deg,#3b82f6,#60a5fa);box-shadow:0 0 1.8vh #3b82f688;animation:mp 4.6s cubic-bezier(.4,0,.3,1) infinite}
+@keyframes hp{0%,15%{width:100%}55%,80%{width:34%}95%,100%{width:100%}}
+@keyframes mp{0%,15%{width:100%}55%,80%{width:12%}95%,100%{width:100%}}
+.lb{display:flex;justify-content:space-between;color:#94a3b8;font-size:2.2vh;font-weight:700;letter-spacing:.15em}
+.lb b{color:#fca5a5}.lb i{color:#93c5fd;font-style:normal}
+</style></head>
+<body><div id="stage"><div class="wr"><div class="lb"><span>HP <b>生命</b></span><span>4720 / 6800</span></div><div class="ba"><div class="hp"></div></div><div class="lb"><span>MP <i>法力</i></span><span>180 / 1200</span></div><div class="ba"><div class="mp"></div></div></div></div></body></html>

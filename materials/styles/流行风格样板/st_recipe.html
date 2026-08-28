@@ -1,0 +1,12 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>食谱卡片</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter','Noto Sans SC',system-ui,sans-serif}
+#stage{position:fixed;inset:0;background:#fff8ec;display:grid;place-items:center;font-family:'Comic Sans MS','Noto Sans SC',cursive}
+.rc{width:52vw;background:#fff;border:.4vh solid #e8b04b;border-radius:2.4vh;padding:4vh 5vh;box-shadow:.8vh 1.2vh 0 #e8b04b55;position:relative}
+.rc h2{font-size:4.6vh;color:#c05621;margin-bottom:2vh}
+.rc li{font-size:3vh;color:#5a4632;line-height:2.1;opacity:0;animation:st 7s steps(1) infinite;list-style:none}
+.rc li:nth-child(2){animation-delay:1.6s}.rc li:nth-child(3){animation-delay:3.2s}
+.rc li:before{content:"✓";color:#7cb342;margin-right:1.4vh}
+.doodle{position:absolute;right:-4vh;top:-5vh;font-size:8vh;transform:rotate(12deg)}
+@keyframes st{0%{opacity:0;transform:translateX(-2vh)}8%,88%{opacity:1;transform:none}100%{opacity:0}}
+</style></head>
+<body><div id="stage"><div class="rc"><div class="doodle">🍳</div><h2>三分钟早餐</h2><li>两颗鸡蛋打散</li><li>平底锅小火慢煎</li><li>出锅撒一把葱花</li></div></div></body></html>

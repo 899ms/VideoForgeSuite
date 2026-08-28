@@ -1,0 +1,11 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>半调网点照片</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter','Noto Sans SC',system-ui,sans-serif}
+#stage{position:fixed;inset:0;display:grid;place-items:center;background:#d8cdb4}
+.ph{width:38vw;aspect-ratio:4/3;position:relative;box-shadow:0 2vh 5vh #0006;transform:rotate(-2deg);animation:pv 8s ease-in-out infinite}
+.ph .base{position:absolute;inset:0;background:linear-gradient(150deg,#5d6d7e,#34495e 55%,#7f8c9b)}
+.ph .dots{position:absolute;inset:0;background-image:radial-gradient(circle,#f4ecd8 32%,transparent 34%);background-size:1.1vh 1.1vh;animation:dt 6s steps(12) infinite;mix-blend-mode:overlay}
+.ph .cap{position:absolute;bottom:1.2vh;left:1.6vh;font-size:2.2vh;color:#f4ecd8;letter-spacing:.1em;font-family:monospace}
+@keyframes dt{50%{background-position:1.1vh .55vh}100%{background-position:0 0}}
+@keyframes pv{0%,100%{transform:rotate(-2deg) scale(1)}50%{transform:rotate(-1deg) scale(1.08)}}
+</style></head>
+<body><div id="stage"><div class="ph"><div class="base"></div><div class="dots"></div><div class="cap">ARCHIVE 1962 · HALFTONE</div></div></div></body></html>

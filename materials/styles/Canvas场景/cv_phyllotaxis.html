@@ -1,0 +1,5 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>向日葵螺旋</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter','Noto Sans SC',system-ui,sans-serif}
+#stage{position:fixed;inset:0;background:#141008;display:grid;place-items:center}canvas{position:absolute;inset:0;width:100%;height:100%}
+</style></head>
+<body><div id="stage"><canvas id="cv"></canvas><script>const c=document.getElementById("cv"),x=c.getContext("2d");c.width=innerWidth;c.height=innerHeight;const GA=2.39996;let n=0,rot=0;(function lp(){x.fillStyle="#141008";x.fillRect(0,0,c.width,c.height);rot+=.004;x.save();x.translate(c.width/2,c.height/2);x.rotate(rot);for(let i=0;i<n;i++){const a=i*GA,r=Math.sqrt(i)*c.height*.022;const hue=(i*3.2)%60+30;x.fillStyle=`hsl(${hue},85%,${38+(i%7)*4}%)`;x.beginPath();x.arc(r*Math.cos(a),r*Math.sin(a),Math.min(7,1+i*.06),0,6.28);x.fill()}n=Math.min(n+4,620);x.restore();requestAnimationFrame(lp)})();</script></div></body></html>

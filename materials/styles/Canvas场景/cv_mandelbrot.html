@@ -1,0 +1,5 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>曼德博</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter','Noto Sans SC',system-ui,sans-serif}
+#stage{position:fixed;inset:0;background:#000}canvas{position:absolute;inset:0;width:100%;height:100%}
+</style></head>
+<body><div id="stage"><canvas id="cv"></canvas><script>const c=document.getElementById("cv"),x=c.getContext("2d");c.width=Math.floor(innerWidth/2);c.height=Math.floor(innerHeight/2);const W=c.width,H=c.height;let f=0;const px=x.createImageData(W,H);(function lp(){const zoom=1.4/(1+f*.04),cx=-.74305+.0001*Math.sin(f*.05),cy=.1269;f++;const d=px.data;for(let j=0;j<H;j++)for(let i=0;i<W;i++){const cr=(i-W/2)*3/W/zoom+cx,ci=(j-H/2)*2.6/H/zoom+cy;let zr=0,zi=0,n=0;while(n<48&&zr*zr+zi*zi<4){const t=zr*zr-zi*zi+cr;zi=2*zr*zi+ci;zr=t;n++}const o=(j*W+i)*4,cl=n<48?[(n*6)%256,(n*11)%256,(n*17)%256]:[0,0,0];d[o]=cl[0];d[o+1]=cl[1];d[o+2]=cl[2];d[o+3]=255}x.putImageData(px,0,0);requestAnimationFrame(lp)})();</script></div></body></html>

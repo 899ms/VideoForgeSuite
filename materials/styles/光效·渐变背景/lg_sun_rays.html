@@ -1,0 +1,9 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>太阳神光</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter','Noto Sans SC',system-ui,sans-serif}
+#stage{position:fixed;inset:0;background:linear-gradient(#0a1622,#122a3a);overflow:hidden}
+.sn{position:absolute;right:-10vh;top:-10vh;width:44vh;height:44vh;border-radius:50%;background:radial-gradient(circle,#fff8e1,#ffcc80 35%,transparent 70%);filter:blur(1vh);animation:gl 6s ease-in-out infinite alternate}
+.ry{position:absolute;right:-14vh;top:-14vh;width:120vh;height:120vh;background:repeating-conic-gradient(from 180deg at 78% 10%,#ffe0b21f 0 4deg,#ffe0b200 4deg 9deg);animation:rt 24s linear infinite;mix-blend-mode:screen}
+@keyframes rt{to{transform:rotate(1turn)}}
+@keyframes gl{to{transform:scale(1.08)}}
+</style></head>
+<body><div id="stage"><div class="ry"></div><div class="sn"></div></div></body></html>

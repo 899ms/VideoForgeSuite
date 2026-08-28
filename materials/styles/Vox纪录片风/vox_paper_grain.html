@@ -1,0 +1,9 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>纸纹噪点</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter','Noto Sans SC',system-ui,sans-serif}
+#stage{position:fixed;inset:0;background:#efe6d0;overflow:hidden}
+#stage:before{content:"";position:absolute;inset:0;background-image:repeating-conic-gradient(#00000006 0 .09turn,#0000 0 .18turn);background-size:5px 5px;mix-blend-mode:multiply;animation:sh 3s steps(3) infinite}
+@keyframes sh{50%{transform:translate(2px,-1px)}}
+.ttl{position:absolute;left:8vw;top:16vh;font-size:6.5vh;font-weight:800;color:#3a3226;max-width:60vw;line-height:1.35}
+.ttl em{font-style:normal;border-bottom:1vh solid #b3412f}
+</style></head>
+<body><div id="stage"><div class="ttl">没有一张纸是<em>纯白</em>的</div></div></body></html>

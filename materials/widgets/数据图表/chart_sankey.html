@@ -1,0 +1,12 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>桑基图</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter','Noto Sans SC',system-ui,sans-serif}
+#stage{position:fixed;inset:0;background:#0f1419;display:grid;place-items:center}
+.sk{width:70vw;height:56vh}
+.sk path{fill:none;stroke-width:5vh;stroke-linecap:round;animation:fw 5s ease-in-out infinite;opacity:.55}
+.p1{stroke:#42a5f5;stroke-dasharray:300;stroke-dashoffset:0}
+.p2{stroke:#ef5350;animation-delay:.6s}
+.p3{stroke:#66bb6a;animation-delay:1.2s}
+.node{position:absolute;width:2vh;height:16vh;background:#e0e0e0;border-radius:.6vh}
+@keyframes fw{0%{stroke-dashoffset:300}60%,90%{stroke-dashoffset:0}100%{opacity:0}}
+</style></head>
+<body><div id="stage"><svg class="sk" viewBox="0 0 400 260"><path class="p1" d="M20 60 C160 60 240 130 380 130"/><path class="p2" d="M20 130 C160 130 240 160 380 160"/><path class="p3" d="M20 200 C160 200 240 190 380 190"/></svg></div></body></html>

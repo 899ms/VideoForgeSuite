@@ -1,0 +1,13 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>拖拽滑块</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter','Noto Sans SC',system-ui,sans-serif}
+#stage{position:fixed;inset:0;display:grid;place-items:center;background:#0b0d12}
+.sl{position:relative;width:48vh;display:grid;gap:2vh;justify-items:start}
+.tk{width:100%;height:2.4vh;border-radius:99vh;background:#1f2937;overflow:hidden}
+.fl3{height:100%;border-radius:99vh;background:linear-gradient(90deg,#22d3ee,#818cf8);box-shadow:0 0 2vh #22d3ee66;animation:dl 4.4s cubic-bezier(.3,.8,.3,1) infinite}
+@keyframes dl{0%,14%{width:6%}60%,84%{width:82%}100%{width:6%}}
+.kn{position:absolute;top:-1.4vh;width:5.2vh;height:5.2vh;border-radius:50%;background:radial-gradient(circle at 34% 30%,#e0f2fe,#0ea5e9);border:.4vh solid #fff;box-shadow:0 1vh 2.6vh #0007,0 0 2vh #0ea5e966;animation:kn 4.4s cubic-bezier(.3,.8,.3,1) infinite}
+@keyframes kn{0%,14%{left:-1vh}60%,84%{left:calc(82% - 3.6vh)}100%{left:-1vh}}
+.vl{color:#7dd3fc;font-family:monospace;font-size:3vh;font-weight:800;animation:vv 4.4s steps(12) infinite}
+@keyframes vv{0%,14%{opacity:0}30%,80%{opacity:1}100%{opacity:0}}
+</style></head>
+<body><div id="stage"><div class="sl"><div class="tk"><div class="fl3"></div></div><span class="kn"></span><span class="vl">82% · 松手生效</span></div></div></body></html>

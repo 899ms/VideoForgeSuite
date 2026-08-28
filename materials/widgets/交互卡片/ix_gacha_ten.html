@@ -1,0 +1,9 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>十连抽</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter','Noto Sans SC',system-ui,sans-serif}
+#stage{position:fixed;inset:0;display:grid;place-items:center;background:#0b0918;overflow:hidden}
+.gr{display:grid;grid-template-columns:repeat(5,1fr);gap:1.6vh}
+.cd{width:11vh;height:15.4vh;border-radius:1.2vh;background:repeating-linear-gradient(45deg,#312e81 0 2.2vh,#4338ca 2.2vh 4.4vh);border:.4vh solid #6366f1;box-shadow:0 1vh 3vh #0008;display:grid;place-items:center;color:#c7d2fe;font-size:4vh;opacity:0;animation:in 4.6s steps(1) infinite}
+.cd.gold{background:linear-gradient(150deg,#fde68a,#d97706);border-color:#fbbf24;color:#78350f;font-size:2.4vh;font-weight:900;text-align:center}
+@keyframes in{0%,86%{opacity:1;transform:translateY(0)}100%{opacity:0;transform:translateY(-4vh)}}
+</style></head>
+<body><div id="stage"><div class="gr"><div class="cd" style="animation-delay:0.0s">✦</div><div class="cd" style="animation-delay:0.13s">✦</div><div class="cd" style="animation-delay:0.26s">✦</div><div class="cd" style="animation-delay:0.39s">✦</div><div class="cd" style="animation-delay:0.52s">✦</div><div class="cd" style="animation-delay:0.65s">✦</div><div class="cd" style="animation-delay:0.78s">✦</div><div class="cd" style="animation-delay:0.91s">✦</div><div class="cd" style="animation-delay:1.04s">✦</div><div class="cd gold" style="animation-delay:1.17s">SSR</div></div></div></body></html>

@@ -1,0 +1,10 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>瀑布图</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter','Noto Sans SC',system-ui,sans-serif}
+#stage{position:fixed;inset:0;background:#112;display:grid;place-items:center}
+.wf{display:flex;align-items:flex-end;gap:2.4vw;height:44vh}
+.cw{width:6vh;position:relative;height:100%}
+.cw i{position:absolute;left:0;right:0;border-radius:.4vh;transform-origin:bottom;animation:gw 4.4s steps(1) infinite}
+.p{background:#66bb6a}.n{background:#ef5350}.t{background:#42a5f5}
+@keyframes gw{0%{transform:scaleY(0)}26%,84%{transform:scaleY(1)}100%{opacity:0}}
+</style></head>
+<body><div id="stage"><div class="wf"><div class="cw"><i class="p" style="bottom:0;height:30%"></i></div><div class="cw"><i class="p" style="bottom:30%;height:18%"></i></div><div class="cw"><i class="n" style="bottom:38%;height:12%"></i></div><div class="cw"><i class="p" style="bottom:48%;height:14%"></i></div><div class="cw"><i class="t" style="bottom:0;height:62%"></i></div></div></div></body></html>

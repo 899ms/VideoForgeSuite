@@ -1,0 +1,10 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>翻页本</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter','Noto Sans SC',system-ui,sans-serif}
+#stage{position:fixed;inset:0;display:grid;place-items:center;background:#f2ede1;perspective:120vh}
+.bk{position:relative;width:34vw;height:56vh;transform-style:preserve-3d}
+.pg{position:absolute;inset:0;background:#fff;border:.3vh solid #ddd;box-shadow:0 1vh 3vh #0002;display:grid;place-items:center;font-size:4vh;color:#555;backface-visibility:hidden}
+.pg.f{transform-origin:left;animation:fl 5s steps(30) infinite;transform-style:preserve-3d;z-index:2;background:linear-gradient(90deg,#fff 96%,#eee)}
+.pg.f:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#0000 80%,#0002)}
+@keyframes fl{0%,15%{transform:rotateY(0)}55%,80%{transform:rotateY(-165deg)}100%{transform:rotateY(-165deg)}}
+</style></head>
+<body><div id="stage"><div class="bk"><div class="pg">第 2 页 →</div><div class="pg f">铅笔草稿</div></div></div></body></html>

@@ -1,0 +1,11 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>像素艺术</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter','Noto Sans SC',system-ui,sans-serif}
+#stage{position:fixed;inset:0;overflow:hidden;background:#3a2a6e}
+#px{position:absolute;inset:0;width:100%;height:100%;image-rendering:pixelated}
+.cloud{position:absolute;width:12vh;height:5vh;background:#fff;image-rendering:pixelated;box-shadow:2vh 0 0 #fff,-2vh 0 0 #fff,0 -2vh 0 #fff;opacity:.85;animation:dr 9s linear infinite}
+.cloud.c1{top:12%;left:100%}.cloud.c2{top:26%;left:130%;animation-delay:3s;transform:scale(.7)}
+.gr{position:absolute;left:0;right:0;bottom:0;height:26%;background:repeating-linear-gradient(90deg,#1d7a3e 0 2vh,#175f31 2vh 4vh);box-shadow:0 -1vh 0 #12501f}
+.tre{position:absolute;bottom:26%;left:18%;width:4vh;height:9vh;background:#6b3f1d;box-shadow:0 -4vh 0 0 #1d7a3e,-2vh -2vh 0 0 #1d7a3e,2vh -2vh 0 0 #1d7a3e,0 -6vh 0 -0.4vh #23924a}
+@keyframes dr{to{transform:translateX(-140vw)}}
+</style></head>
+<body><div id="stage"><canvas id="px" width="96" height="54"></canvas><div class="cloud c1"></div><div class="cloud c2"></div><div class="gr"></div><div class="tre"></div><script>const c=document.getElementById("px"),x=c.getContext("2d");let t=0;const sky=["#2a1a5e","#4b2a8e","#8a4ec7","#e06a9a"];(function loop(){x.fillStyle="#3a2a6e";x.fillRect(0,0,96,30);for(let y=0;y<30;y++){x.fillStyle=sky[Math.min(3,Math.floor(y/8))] ;x.fillRect(0,y,96,1)}for(let i=0;i<40;i++){const sx=(i*13+t*.3)%96,sy=4+(i*7)%18;x.fillStyle=i%3?"#ffffff":"#ffe25a";x.fillRect(sx|0,sy,1,1)}t+=.3;requestAnimationFrame(loop)})();</script></div></body></html>

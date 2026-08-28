@@ -1,0 +1,14 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>抢购进度</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter','Noto Sans SC',system-ui,sans-serif}
+#stage{position:fixed;inset:0;display:grid;place-items:center;background:#212121}
+.wrp{width:56vw}
+.lab{display:flex;justify-content:space-between;color:#eee;font-size:3vh;font-weight:700;margin-bottom:1.6vh}
+.lab .hot{color:#ff5252}
+.bar{height:6vh;background:#3a3a3a;border-radius:99vh;overflow:hidden;position:relative}
+.fil{height:100%;width:0;background:linear-gradient(90deg,#ff9800,#ff5252);border-radius:99vh;animation:fu 4s steps(40) infinite;position:relative}
+.fil:after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(-45deg,#fff3 0 2vh,#0000 2vh 4vh);animation:mv 1s linear infinite}
+.pct{color:#ff5252;font-size:4.6vh;font-weight:900;margin-top:1.6vh;text-align:right}
+@keyframes fu{0%{width:6%}70%,88%{width:92%}100%{width:92%}}
+@keyframes mv{to{background-position:8vh 0}}
+</style></head>
+<body><div id="stage"><div class="wrp"><div class="lab"><span class="hot">🔥 秒杀进行中</span><span>仅剩 200 件</span></div><div class="bar"><div class="fil"></div></div><div class="pct">已抢 92%</div></div></div></body></html>

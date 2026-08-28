@@ -1,0 +1,12 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>旭日图</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter','Noto Sans SC',system-ui,sans-serif}
+#stage{position:fixed;inset:0;background:#fafafa;display:grid;place-items:center}
+.sb{position:relative;width:52vh;height:52vh;display:grid;place-items:center}
+.ring{position:absolute;border-radius:50%;animation:ri 3.6s cubic-bezier(.2,.8,.3,1) infinite}
+.r1{width:100%;height:100%;background:conic-gradient(#ef5350 0 40%,#ffca28 40% 75%,#66bb6a 75% 100%);mask:radial-gradient(circle,transparent 62%,#000 63%);-webkit-mask:radial-gradient(circle,transparent 62%,#000 63%)}
+.r2{width:72%;height:72%;background:conic-gradient(#ef9a9a 0 24%,#fff59d 24% 46%,#a5d6a7 46% 78%,#90caf9 78% 100%);mask:radial-gradient(circle,transparent 30%,#000 31%);-webkit-mask:radial-gradient(circle,transparent 30%,#000 31%);animation-delay:.15s}
+.core{width:30%;height:30%;border-radius:50%;background:#263238;color:#fff;display:grid;place-items:center;font-size:2.6vh;font-weight:900;z-index:2;animation:co 3.6s ease-out infinite}
+@keyframes ri{0%{transform:scale(.4);opacity:0}40%{transform:scale(1);opacity:1}88%,100%{opacity:1}}
+@keyframes co{0%{transform:scale(0)}40%{transform:scale(1)}88%,100%{transform:scale(1)}}
+</style></head>
+<body><div id="stage"><div class="sb"><div class="ring r1"></div><div class="ring r2"></div><div class="core">总计</div></div></div></body></html>

@@ -1,0 +1,13 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>表情反应</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter','Noto Sans SC',system-ui,sans-serif}
+#stage{position:fixed;inset:0;background:#111827;display:grid;place-items:center}
+.rb{display:flex;gap:2.4vh}
+.rp{width:9vh;height:9vh;border-radius:50%;background:#1f2937;display:grid;place-items:center;font-size:4.6vh;position:relative;cursor:pointer;animation:bn 3s ease-in-out infinite}
+.rp:nth-child(2){animation-delay:.2s}.rp:nth-child(3){animation-delay:.4s}.rp:nth-child(4){animation-delay:.6s}
+.rp .ct{position:absolute;bottom:-3.4vh;font-size:2.2vh;color:#9ca3af}
+.rp.on{background:#312e81;box-shadow:0 0 2vh #6366f166}
+.fly{position:absolute;left:50%;top:0;font-size:3vh;opacity:0;animation:fy 2s ease-out infinite;animation-delay:1s}
+@keyframes bn{0%,100%{transform:translateY(0)}40%{transform:translateY(-1.2vh)}}
+@keyframes fy{0%{opacity:0;transform:translateY(0)}20%{opacity:1}100%{opacity:0;transform:translateY(-8vh)}}
+</style></head>
+<body><div id="stage"><div class="rb"><div class="rp on">👍<span class="ct">2.4w</span></div><div class="rp">🔥<span class="ct">1.1w</span></div><div class="rp">😮<span class="ct">8362</span></div><div class="rp">🚀<span class="ct">5120</span></div><div class="fly">👍</div></div></div></body></html>

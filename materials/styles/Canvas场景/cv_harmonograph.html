@@ -1,0 +1,5 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>谐振图形</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter','Noto Sans SC',system-ui,sans-serif}
+#stage{position:fixed;inset:0;background:#05070c;display:grid;place-items:center}canvas{position:absolute;inset:0;width:100%;height:100%}
+</style></head>
+<body><div id="stage"><canvas id="cv"></canvas><script>const c=document.getElementById("cv"),x=c.getContext("2d");c.width=innerWidth;c.height=innerHeight;x.fillStyle="#05070c";x.fillRect(0,0,c.width,c.height);let t=0;const f1=2.01,f2=1.6,f3=3.0,f4=2.4,d=.0018;(function lp(){x.strokeStyle="rgba(103,232,249,.8)";x.beginPath();for(let i=0;i<40;i++){const px=c.width/2+Math.sin(t*f1)*Math.cos(t*f3)*c.height*.36,py=c.height/2+Math.sin(t*f2)*Math.cos(t*f4)*c.height*.36;t+=.004;i?x.lineTo(px,py):x.moveTo(px,py)}x.stroke();x.fillStyle="rgba(5,7,12,.012)";x.fillRect(0,0,c.width,c.height);requestAnimationFrame(lp)})();</script></div></body></html>

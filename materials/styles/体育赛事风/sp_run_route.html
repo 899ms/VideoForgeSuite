@@ -1,0 +1,14 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>跑位路线</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter','Noto Sans SC',system-ui,sans-serif}
+#stage{position:fixed;inset:0;background:#14724a;display:grid;place-items:center}
+.fd{position:relative;width:56vw;height:62vh;border:.7vh solid #ffffffcc;border-radius:1vh;background:
+ radial-gradient(circle at 50% 50%,transparent 8vh,#ffffffcc 8vh,#ffffffcc 8.6vh,transparent 8.6vh),
+ linear-gradient(#1a8a5b,#1a8a5b)}
+.fd:before{content:"";position:absolute;left:50%;top:0;bottom:0;width:.5vh;background:#ffffffcc}
+.fd svg{position:absolute;inset:0;width:100%;height:100%}
+.fd path{fill:none;stroke:#fff;stroke-width:.55vh;stroke-dasharray:1.4 1.6;stroke-dashoffset:340;animation:rr 4.6s ease-in-out infinite}
+.py{position:absolute;width:2.8vh;height:2.8vh;border-radius:50%;background:#ffd54f;border:.4vh solid #b8860b;animation:py 4.6s ease-in-out infinite}
+@keyframes rr{0%{stroke-dashoffset:340}58%,84%{stroke-dashoffset:0}100%{stroke-dashoffset:0;opacity:0}}
+@keyframes py{0%{left:18%;top:76%}58%,84%{left:66%;top:30%}100%{left:18%;top:76%;opacity:0}}
+</style></head>
+<body><div id="stage"><div class="fd"><svg viewBox="0 0 500 320" preserveAspectRatio="none"><path d="M90,250 C160,300 260,240 300,170 C330,120 380,110 400,90"/></svg><span class="py"></span></div></div></body></html>

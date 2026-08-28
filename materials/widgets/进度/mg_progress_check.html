@@ -1,0 +1,27 @@
+<!doctype html><html lang=zh><head><meta charset=utf-8>
+<style>html,body{margin:0;height:100%;overflow:hidden;background:linear-gradient(160deg,#ecfeff,#cffafe);display:flex;align-items:center;justify-content:center;font-family:'Segoe UI',system-ui,sans-serif}
+.w{text-align:center}
+.s{font-size:15px;color:#0e7490;letter-spacing:6px;margin-bottom:30px;font-weight:700}
+.ring-box{position:relative;width:190px;height:190px;margin:auto}
+svg{transform:rotate(-90deg)}
+.bg{fill:none;stroke:#e2e8f0;stroke-width:14}
+.fg{fill:none;stroke:url(#g1);stroke-width:14;stroke-linecap:round;stroke-dasharray:471.2;stroke-dashoffset:471.2;transition:stroke-dashoffset 1.7s cubic-bezier(.25,.8,.35,1)}
+.pct{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:42px;font-weight:900;color:#155e75}
+.tickmark{position:absolute;left:50%;top:54%;width:34px;height:18px;border-left:6px solid #059669;border-bottom:6px solid #059669;transform:translate(-60%,-50%) rotate(-45deg) scale(0);border-radius:2px;transition:transform .45s cubic-bezier(.34,1.56,.64,1)}
+.ok .fg{stroke:url(#g2)}
+.ok .tickmark{transform:translate(-60%,-50%) rotate(-45deg) scale(1)}
+.lbl{margin-top:26px;font-size:13px;color:#0369a1;letter-spacing:4px}
+</style></head><body><div class=w>
+<div class=s>LOTTIE MG · PROGRESS CHECK</div>
+<div class=ring-box id=b>
+<svg width=190 height=190><defs><linearGradient id=g1 x1=0 y1=0 x2=1 y2=1><stop offset=0 stop-color=#22d3ee/><stop offset=1 stop-color=#6366f1/></linearGradient><linearGradient id=g2 x1=0 y1=0 x2=1 y2=1><stop offset=0 stop-color=#34d399/><stop offset=1 stop-color=#059669/></linearGradient></defs><circle class=bg cx=95 cy=95 r=75/><circle class=fg id=f cx=95 cy=95 r=75/></svg>
+<div class=pct id=p>0%</div>
+<div class=tickmark></div>
+</div>
+<div class=lbl>STROKE MORPH + OVERSHOOT TICK</div></div>
+<script>
+var f=document.getElementById('f'),p=document.getElementById('p'),C=471.2;
+setTimeout(function(){f.style.strokeDashoffset=C*(1-0.87);
+var t0=null,D=1700;(function anim(ts){if(!t0)t0=performance.now();var e=Math.min((performance.now()-t0)/D,1);p.textContent=Math.round(e*87)+'%';if(e<1)requestAnimationFrame(anim);})();},300);
+setTimeout(function(){document.getElementById('b').classList.add('ok');p.textContent='✓';p.style.color='#047857'},2150);
+setTimeout(function(){try{document.getAnimations().forEach(function(x){x.pause()})}catch(e){}},2700);</script></body></html>

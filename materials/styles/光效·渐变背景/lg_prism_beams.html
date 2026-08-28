@@ -1,0 +1,12 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>三棱镜光束</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter','Noto Sans SC',system-ui,sans-serif}
+#stage{position:fixed;inset:0;background:#050508;overflow:hidden}
+.bm{position:absolute;top:-20%;left:50%;width:8vh;height:140vh;transform-origin:top center;filter:blur(2vh);mix-blend-mode:screen;animation:sw 7s ease-in-out infinite alternate}
+.b1{background:linear-gradient(#ff004d00,#ff004d66,#ff004d00);transform:translateX(-50%) rotate(24deg)}
+.b2{background:linear-gradient(#00ff9d00,#00ff9d55,#00ff9d00);transform:translateX(-50%) rotate(12deg);animation-delay:.6s}
+.b3{background:linear-gradient(#00c3ff00,#00c3ff66,#00c3ff00);transform:translateX(-50%) rotate(0deg);animation-delay:1.2s}
+.b4{background:linear-gradient(#ffe60000,#ffe60044,#ffe60000);transform:translateX(-50%) rotate(-14deg);animation-delay:.9s}
+.b5{background:linear-gradient(#bd00ff00,#bd00ff55,#bd00ff00);transform:translateX(-50%) rotate(-26deg);animation-delay:.3s}
+@keyframes sw{to{opacity:.5;transform:translateX(-50%) rotate(var(--rr,6deg))}}
+</style></head>
+<body><div id="stage"><div class="bm b1" style="--rr:30deg"></div><div class="bm b2" style="--rr:18deg"></div><div class="bm b3" style="--rr:6deg"></div><div class="bm b4" style="--rr:-8deg"></div><div class="bm b5" style="--rr:-20deg"></div></div></body></html>

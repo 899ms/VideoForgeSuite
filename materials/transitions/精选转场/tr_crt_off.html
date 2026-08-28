@@ -1,0 +1,9 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>CRT关机</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter','Noto Sans SC',system-ui,sans-serif}
+#stage{position:fixed;inset:0;background:#000;display:grid;place-items:center;overflow:hidden}
+.sx{position:absolute;inset:6%;background:linear-gradient(135deg,#283593,#0d1442);display:grid;place-items:center;color:#9fa8da;font-size:6vh;font-weight:800;animation:off 3s steps(10) infinite}
+@keyframes off{0%,20%{transform:scaleY(1);opacity:1}52%{transform:scaleY(.006);opacity:1}70%{transform:scaleX(0) scaleY(.006);opacity:1}72%,88%{opacity:0}100%{opacity:0;transform:scaleY(1)}}
+.ln{position:absolute;left:6%;right:6%;height:.6vh;background:#e8eaf6;box-shadow:0 0 3vh #e8eaf6;opacity:0;animation:ln 3s steps(1) infinite}
+@keyframes ln{0%,50%{opacity:0}54%,64%{opacity:1}66%,100%{opacity:0}}
+</style></head>
+<body><div id="stage"><div class="sx">GOODBYE</div><div class="ln"></div></div></body></html>

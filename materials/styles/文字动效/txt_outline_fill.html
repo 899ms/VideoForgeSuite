@@ -1,0 +1,8 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>描边填充</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter','Noto Sans SC',system-ui,sans-serif}
+#stage{position:fixed;inset:0;display:grid;place-items:center;background:#0d0d12}
+#stage b{position:relative;font-size:14vh;font-weight:900;letter-spacing:.06em;color:#0000;-webkit-text-stroke:.25vh #7ef0ff}
+#stage b:after{content:attr(data-t);position:absolute;inset:0;color:#7ef0ff;-webkit-text-stroke:0;clip-path:inset(0 100% 0 0);animation:fl 4s ease-in-out infinite;text-shadow:0 0 4vh #7ef0ff88}
+@keyframes fl{0%{clip-path:inset(0 100% 0 0)}45%,62%{clip-path:inset(0 0 0 0)}100%{clip-path:inset(0 0 0 100%)}}
+</style></head>
+<body><div id="stage"><b data-t="UNLOCK">UNLOCK</b></div></body></html>

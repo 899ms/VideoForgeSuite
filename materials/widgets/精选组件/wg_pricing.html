@@ -1,0 +1,14 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>定价三栏</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter','Noto Sans SC',system-ui,sans-serif}
+#stage{position:fixed;inset:0;background:#f2f4f8;display:grid;place-items:center}
+.pr{display:flex;gap:2.6vh;align-items:stretch}
+.pc{width:24vw;background:#fff;border-radius:2.4vh;padding:4vh 3vh;box-shadow:0 1.6vh 4vh #00000010;transform:translateY(6vh);animation:pu 5s steps(1) infinite;display:flex;flex-direction:column;gap:1.2vh}
+.pc.mid{background:#111827;color:#fff;transform:translateY(0) scale(1.06);animation-name:pm;box-shadow:0 3vh 6vh #0006}
+.pc h3{font-size:3.4vh}.pc .pr2{font-size:5.4vh;font-weight:900}
+.pc li{list-style:none;font-size:2.6vh;opacity:.8}
+.pc button{margin-top:1.6vh;padding:1.6vh;border-radius:1.4vh;border:none;font-size:2.8vh;background:#eef2ff;color:#4338ca}
+.pc.mid button{background:#6366f1;color:#fff}
+@keyframes pu{0%{transform:translateY(6vh);opacity:0}10%,88%{transform:none;opacity:1}100%{opacity:0}}
+@keyframes pm{0%{transform:translateY(6vh) scale(1.06);opacity:0}10%,88%{transform:scale(1.06);opacity:1}100%{opacity:0}}
+</style></head>
+<body><div id="stage"><div class="pr"><div class="pc"><h3>免费</h3><div class="pr2">¥0</div><li>720P 导出</li><li>带水印</li><button>开始使用</button></div><div class="pc mid"><h3>专业版</h3><div class="pr2">¥39/月</div><li>4K 无水印</li><li>全部特效</li><button>立即开通</button></div><div class="pc"><h3>团队</h3><div class="pr2">¥199</div><li>5 席位</li><li>素材共享</li><button>联系我们</button></div></div></div></body></html>

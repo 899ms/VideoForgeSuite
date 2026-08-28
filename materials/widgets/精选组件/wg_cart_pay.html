@@ -1,0 +1,14 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>购物结算</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter','Noto Sans SC',system-ui,sans-serif}
+#stage{position:fixed;inset:0;background:#f6f7f9;display:grid;place-items:center}
+.ct{width:40vw;background:#fff;border-radius:2.4vh;padding:3.6vh;box-shadow:0 1.6vh 4vh #00000012;display:flex;flex-direction:column;gap:2vh}
+.it{display:flex;align-items:center;gap:2vh;font-size:2.9vh;opacity:0;animation:ii 5s steps(1) infinite}
+.it .ic{width:6vh;height:6vh;border-radius:1.4vh;background:#eef2ff;display:grid;place-items:center;font-size:3vh}
+.it .nm{flex:1}
+.it:nth-of-type(2){animation-delay:.4s}.it:nth-of-type(3){animation-delay:.8s}
+.pay{margin-top:1vh;display:flex;justify-content:space-between;align-items:center;background:#111827;color:#fff;border-radius:1.6vh;padding:2vh 3vh;font-size:3.2vh;opacity:0;animation:pi 5s steps(1) 1.4s infinite}
+.pay b{font-size:4vh}
+@keyframes ii{0%{opacity:0;transform:translateX(-3vh)}10%,90%{opacity:1;transform:none}100%{opacity:0}}
+@keyframes pi{0%{opacity:0;transform:translateY(2vh)}22%,90%{opacity:1;transform:none}100%{opacity:0}}
+</style></head>
+<body><div id="stage"><div class="ct"><div class="it"><div class="ic">🎬</div><span class="nm">转场特效包 · 全部</span><b>¥39</b></div><div class="it"><div class="ic">🎵</div><span class="nm">BGM 商用授权</span><b>¥19</b></div><div class="pay"><span>合计</span><b>¥58</b></div></div></div></body></html>

@@ -1,0 +1,10 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>撕页转场</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter','Noto Sans SC',system-ui,sans-serif}
+#stage{position:fixed;inset:0;background:linear-gradient(140deg,#0d47a1,#42a5f5);overflow:hidden;display:grid;place-items:center}
+.pg{position:absolute;inset:0;background:linear-gradient(140deg,#fafafa,#e0e0e0);display:grid;place-items:center;font-size:8vh;color:#9e9e9e;font-weight:900}
+.pg.a{clip-path:polygon(0 0,100% 0,52% 20%,60% 46%,48% 72%,58% 100%,0 100%);animation:tl 3.6s cubic-bezier(.6,0,.8,.4) infinite}
+.pg.b{clip-path:polygon(66% 0,100% 0,100% 100%,52% 100%,62% 72%,52% 44%,62% 18%);animation:trr 3.6s cubic-bezier(.6,0,.8,.4) infinite}
+@keyframes tl{0%,25%{transform:translateX(0)}55%,88%{transform:translateX(-110%) rotate(-6deg)}100%{transform:translateX(-110%) rotate(-6deg);opacity:0}}
+@keyframes trr{0%,25%{transform:translateX(0)}55%,88%{transform:translateX(110%) rotate(6deg)}100%{transform:translateX(110%) rotate(6deg);opacity:0}}
+</style></head>
+<body><div id="stage"><div class="pg a">PAGE</div><div class="pg b">PAGE</div></div></body></html>

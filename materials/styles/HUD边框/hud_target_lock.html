@@ -1,0 +1,15 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>目标锁定</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter','Noto Sans SC',system-ui,sans-serif}
+#stage{position:fixed;inset:0;background:#0a1017;display:grid;place-items:center;overflow:hidden}
+.tg{position:absolute;width:26vh;height:26vh;left:38%;top:34%;animation:mv 5s ease-in-out infinite}
+.tg i{position:absolute;width:6vh;height:6vh;border:.6vh solid #ff5252}
+.tg i:nth-child(1){left:0;top:0;border-right:none;border-bottom:none}
+.tg i:nth-child(2){right:0;top:0;border-left:none;border-bottom:none}
+.tg i:nth-child(3){left:0;bottom:0;border-right:none;border-top:none}
+.tg i:nth-child(4){right:0;bottom:0;border-left:none;border-top:none}
+.cd{position:absolute;inset:0;border:.1vh dashed #ff525288;border-radius:50%;animation:sp 4s linear infinite}
+.lb{position:absolute;bottom:-5vh;left:0;color:#ff8a80;font-size:2.6vh;font-family:monospace;letter-spacing:.2em}
+@keyframes mv{0%,100%{transform:translate(0,0)}30%{transform:translate(10vh,-4vh)}70%{transform:translate(-6vh,5vh)}}
+@keyframes sp{to{transform:rotate(1turn)}}
+</style></head>
+<body><div id="stage"><div class="tg"><i></i><i></i><i></i><i></i><div class="cd"></div><div class="lb">TARGET-07 · LOCK 98%</div></div></div></body></html>

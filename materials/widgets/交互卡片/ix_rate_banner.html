@@ -1,0 +1,11 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>概率横幅</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter','Noto Sans SC',system-ui,sans-serif}
+#stage{position:fixed;inset:0;display:grid;place-items:center;background:linear-gradient(140deg,#170f2b,#0a0714)}
+.bn{display:flex;align-items:center;gap:2.4vh;padding:2.2vh 4vh;border-radius:99vh;background:#ffffff14;border:.3vh solid #fbbf2455;backdrop-filter:blur(1vh);animation:in 4.6s cubic-bezier(.2,1.2,.4,1) infinite}
+.bn .p{font-size:4.4vh;font-weight:900;background:linear-gradient(90deg,#fde68a,#f59e0b);-webkit-background-clip:text;background-clip:text;color:transparent}
+.bn .t{color:#cbd5e1;font-size:2.6vh;font-weight:600}
+.st{color:#fbbf24;font-size:2.6vh;animation:bk 1s steps(1) infinite}
+@keyframes in{0%%{opacity:0;transform:translateY(5vh) scale(.8)}12%%{opacity:1;transform:scale(1.05)}18%%,84%%{opacity:1;transform:none}100%%{opacity:0}}
+@keyframes bk{50%%{opacity:.3}}
+</style></head>
+<body><div id="stage"><div class="bn"><span class="p">SSR 1.2%%</span><span class="t">限时卡池 UP</span><span class="st">★</span></div></div></body></html>

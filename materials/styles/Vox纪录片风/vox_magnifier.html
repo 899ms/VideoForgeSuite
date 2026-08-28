@@ -1,0 +1,12 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>放大镜检视</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter','Noto Sans SC',system-ui,sans-serif}
+#stage{position:fixed;inset:0;display:grid;place-items:center;background:#efe8d8;overflow:hidden}
+.doc{position:relative;width:56vw;padding:6vh;background:#fbf6ea;box-shadow:0 1.5vh 4vh #0004;font-size:2.8vh;line-height:2.1;color:#444}
+.lens{position:absolute;width:22vh;height:22vh;border-radius:50%;border:1vh solid #8a6d3b;background:#fbf6ea;box-shadow:0 2vh 5vh #0007,inset 0 0 2vh #0002;overflow:hidden;animation:lm 7s ease-in-out infinite}
+.lens .in{position:absolute;font-size:6.5vh;line-height:1.35;color:#222;white-space:nowrap;animation:zc 7s ease-in-out infinite}
+.handle{position:absolute;width:3vh;height:14vh;background:linear-gradient(90deg,#6d4c2f,#a0784a);border-radius:2vh;transform:rotate(-45deg);animation:hd 7s ease-in-out infinite}
+@keyframes lm{0%,100%{left:6%;top:10%}45%,60%{left:44%;top:38%}}
+@keyframes zc{0%,100%{left:-6%;top:-20%}45%,60%{left:-56%;top:-92%}}
+@keyframes hd{0%,100%{left:calc(6% + 19vh);top:calc(10% + 19vh)}45%,60%{left:calc(44% + 19vh);top:calc(38% + 19vh)}}
+</style></head>
+<body><div id="stage"><div class="doc">第 7 条：签约方应在三十日内完成全部款项的结算与交割，逾期按日计息。<div class="lens"><div class="in">第 7 条：签约方应在三十日内完成全部款项的结算与交割，逾期按日计息。</div></div><div class="handle"></div></div></div></body></html>

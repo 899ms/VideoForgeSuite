@@ -1,0 +1,5 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>生命游戏</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter','Noto Sans SC',system-ui,sans-serif}
+#stage{position:fixed;inset:0;background:#04060a}canvas{position:absolute;inset:0;width:100%;height:100%}
+</style></head>
+<body><div id="stage"><canvas id="cv"></canvas><script>const c=document.getElementById("cv"),x=c.getContext("2d");c.width=innerWidth;c.height=innerHeight;const S=10,C=Math.ceil(c.width/S),R=Math.ceil(c.height/S);let g=Array.from({length:R},()=>Array.from({length:C},()=>Math.random()<.24?1:0));let f=0;(function lp(){if(f++%3==0){const n=Array.from({length:R},()=>Array(C).fill(0));for(let r=0;r<R;r++)for(let cc=0;cc<C;cc++){let s=0;for(let dy=-1;dy<2;dy++)for(let dx=-1;dx<2;dx++){if(!dy&&!dx)continue;s+=g[(r+dy+R)%R][(cc+dx+C)%C]}n[r][cc]=g[r][cc]?(s==2||s==3?1:0):(s==3?1:0)}g=n}x.fillStyle="#04060a";x.fillRect(0,0,c.width,c.height);for(let r=0;r<R;r++)for(let cc=0;cc<C;cc++)if(g[r][cc]){x.fillStyle="#4ade80";x.fillRect(cc*S,r*S,S-1,S-1)}requestAnimationFrame(lp)})();</script></div></body></html>

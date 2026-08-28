@@ -1,0 +1,14 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>指标胶囊组</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter','Noto Sans SC',system-ui,sans-serif}
+#stage{position:fixed;inset:0;background:#f5f6fa;display:grid;place-items:center;gap:2vh}
+.pils{display:grid;grid-template-columns:repeat(3,auto);gap:2.4vh}
+.pl{padding:2.4vh 3.4vh;border-radius:3vh;background:#fff;box-shadow:0 1vh 3vh #00000014;display:flex;flex-direction:column;align-items:center;gap:.8vh;transform:translateY(6vh);animation:pu 4s steps(1) infinite}
+.pl b{font-size:5vh;font-weight:900;color:#1a237e}
+.pl span{font-size:2.4vh;color:#8a93a6}
+.pl i{font-size:2.2vh;font-style:normal;color:#2e7d32;background:#e8f5e9;border-radius:2vh;padding:.4vh 1.4vh}
+.pl:nth-child(2) i{color:#c62828;background:#ffebee}
+.pl:nth-child(3) i{color:#2e7d32;background:#e8f5e9}
+.pl:nth-child(2){animation-delay:.25s}.pl:nth-child(3){animation-delay:.5s}
+@keyframes pu{0%{transform:translateY(6vh);opacity:0}18%,84%{transform:none;opacity:1}100%{opacity:0}}
+</style></head>
+<body><div id="stage"><div class="pils"><div class="pl"><b>328w</b><span>播放</span><i>▲ 12%</i></div><div class="pl"><b>4.2s</b><span>跳出</span><i>▼ 8%</i></div><div class="pl"><b>9.6%</b><span>转化</span><i>▲ 3%</i></div></div></div></body></html>

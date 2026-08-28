@@ -1,0 +1,16 @@
+<!doctype html><html lang=zh><head><meta charset=utf-8>
+<style>html,body{margin:0;height:100%;overflow:hidden;background:#050816;display:flex;align-items:center;justify-content:center;font-family:'Segoe UI',system-ui,sans-serif}
+.w{position:relative;width:520px;height:340px;border-radius:26px;overflow:hidden;background:#0b1226;box-shadow:inset 0 0 40px #000a, 0 30px 70px #000c}
+.w::after{content:"";position:absolute;left:-140%;top:-60%;width:120%;height:220%;
+background:linear-gradient(100deg,transparent 20%,rgba(255,255,255,.55) 48%,transparent 76%);
+animation:sweep 1.6s .3s cubic-bezier(.4,0,.2,1) forwards}
+@keyframes sweep{to{left:130%}}
+.c{position:absolute;left:34px;top:110px;width:120px;height:120px;border-radius:18px;
+background:radial-gradient(circle at 35% 30%,#7dd3fc,#2563eb 60%,#1e3a8a);box-shadow:0 14px 34px -8px #3b82f6aa;opacity:0;transform:scale(.4);animation:pin .5s .2s cubic-bezier(.34,1.56,.64,1) forwards}
+.r{position:absolute;left:180px;top:104px;color:#f1f5f9;font-size:44px;font-weight:900;letter-spacing:1px;opacity:0;transform:translateX(-24px);animation:sl .5s .5s forwards}
+.s{position:absolute;left:182px;top:164px;color:#94a3b8;font-size:19px;opacity:0;animation:fd .5s .75s forwards}
+@keyframes pin{to{opacity:1;transform:none}}@keyframes sl{to{opacity:1;transform:none}}@keyframes fd{to{opacity:1}}
+.badge{position:absolute;right:22px;top:22px;padding:6px 12px;border-radius:999px;background:#38bdf822;color:#7dd3fc;font-size:13px;font-weight:800;letter-spacing:2px;opacity:0;animation:fd .4s 1.2s forwards}
+</style></head><body><div class=w>
+<div class=c></div><div class=r>CITY VIEW</div><div class=s>Motion 风格 · 弹性入场卡片</div><div class=badge>PREMIUM</div>
+</div></body></html>

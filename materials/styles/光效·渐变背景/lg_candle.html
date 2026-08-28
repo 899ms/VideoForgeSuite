@@ -1,0 +1,10 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>烛光</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter','Noto Sans SC',system-ui,sans-serif}
+#stage{position:fixed;inset:0;background:radial-gradient(60% 50% at 50% 62%,#3e2723,#0d0705 78%);display:grid;place-items:center;overflow:hidden}
+.cd{position:relative;width:6vh;height:14vh;background:linear-gradient(90deg,#e8d5b0,#f7ecd7 45%,#c9b28a);border-radius:.6vh .6vh .9vh .9vh;margin-top:10vh}
+.fl2{position:absolute;left:50%;bottom:100%;transform:translateX(-50%);width:3.6vh;height:7vh;background:radial-gradient(circle at 50% 78%,#fff8e1,#ffb300 42%,#e65100 72%,transparent 85%);border-radius:50% 50% 50% 50%/62% 62% 38% 38%;filter:blur(.2vh);animation:ff .8s ease-in-out infinite alternate;transform-origin:bottom center}
+.gl2{position:absolute;left:50%;top:36%;transform:translate(-50%,-50%);width:60vh;height:60vh;border-radius:50%;background:radial-gradient(circle,#ff980033,transparent 65%);animation:gl 2.2s ease-in-out infinite alternate;mix-blend-mode:screen}
+@keyframes ff{from{transform:translateX(-50%) scale(1) rotate(-3deg)}to{transform:translateX(-50%) scale(.94,1.1) rotate(4deg)}}
+@keyframes gl{from{opacity:.7;transform:translate(-50%,-50%) scale(1)}to{opacity:1;transform:translate(-50%,-52%) scale(1.06)}}
+</style></head>
+<body><div id="stage"><div class="gl2"></div><div class="cd"><div class="fl2"></div></div></div></body></html>

@@ -1,0 +1,13 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>报纸版面</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter','Noto Sans SC',system-ui,sans-serif}
+#stage{position:fixed;inset:0;background:#f2ecd9;color:#1d1a14;font-family:Georgia,'Noto Serif SC',serif;padding:5vh 6vw}
+.hd{display:flex;justify-content:space-between;align-items:baseline;border-bottom:.5vh double #1d1a14;padding-bottom:1vh}
+.hd b{font-size:6vh;letter-spacing:.1em}
+.dt{font-size:2.2vh;letter-spacing:.2em}
+.cols{columns:3;column-gap:3vw;margin-top:3vh;font-size:2.5vh;line-height:1.95;text-align:justify}
+.cols h3{font-size:3.6vh;line-height:1.4;column-span:all;margin-bottom:1.6vh}
+.cols p{animation:fu 6s steps(1) infinite;opacity:0}
+.cols p:nth-of-type(2){animation-delay:2s}.cols p:nth-of-type(3){animation-delay:4s}
+@keyframes fu{0%{opacity:0;transform:translateY(1.4vh)}12%,88%{opacity:1;transform:none}100%{opacity:0}}
+</style></head>
+<body><div id="stage"><div class="hd"><b>晨间要闻</b><span class="dt">2026 · 08 · 28 星期五</span></div><div class="cols"><h3> AI 重构内容生产流水线</h3><p>从选题到发布，一条流水线正在被重新定义。</p><p>过去需要一周的工序，现在压缩进一个下午。</p><p>而人类的角色，从执行者变成了审美守门人。</p></div></div></body></html>

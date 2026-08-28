@@ -1,0 +1,10 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>环比飞入</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter','Noto Sans SC',system-ui,sans-serif}
+#stage{position:fixed;inset:0;background:#0f1722;display:grid;place-items:center}
+.big{font-size:14vh;font-weight:900;color:#e8f0ff}
+.up{position:absolute;left:58%;top:30%;font-size:7vh;font-weight:900;color:#00e676;background:#00e6761a;border:.3vh solid #00e676;border-radius:2vh;padding:1vh 2.4vh;transform:translate(18vh,-8vh) rotate(-30deg);opacity:0;animation:fy 3.6s steps(1) infinite}
+.dn{position:absolute;right:20%;bottom:26%;font-size:5.4vh;font-weight:900;color:#ff5252;background:#ff52521a;border:.3vh solid #ff5252;border-radius:2vh;padding:1vh 2vh;transform:translate(10vh,8vh) rotate(24deg);opacity:0;animation:fy2 3.6s steps(1) .4s infinite}
+@keyframes fy{0%,20%{opacity:0;transform:translate(18vh,-8vh) rotate(-30deg)}40%,84%{opacity:1;transform:none}100%{opacity:0}}
+@keyframes fy2{0%,26%{opacity:0;transform:translate(10vh,8vh) rotate(24deg)}46%,84%{opacity:1;transform:none}100%{opacity:0}}
+</style></head>
+<body><div id="stage"><div class="big">GMV 1.2亿</div><div class="up">▲ 28%</div><div class="dn">成本 ▼ 9%</div></div></body></html>

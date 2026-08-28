@@ -1,0 +1,11 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>灰度复苏</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter','Noto Sans SC',system-ui,sans-serif}
+#stage{position:fixed;inset:0;display:grid;place-items:center;background:#0c0c14;gap:0}
+.im{width:40vh;height:28vh;border-radius:2vh;position:relative;overflow:hidden;box-shadow:0 2vh 5vh #0008;animation:dm 4.4s ease-in-out infinite}
+.im .bg{position:absolute;inset:0;background:conic-gradient(from 210deg at 40% 30%,#f59e0b,#ef4444,#8b5cf6,#0ea5e9,#f59e0b);filter:grayscale(1);transition:filter .8s,transform .8s}
+.im:after{content:"HOVER 复苏";position:absolute;left:2vh;bottom:1.6vh;color:#fff;font-size:2.2vh;font-weight:800;letter-spacing:.2em;text-shadow:0 .3vh 1vh #000}
+@keyframes dm{0%,22%{transform:none}48%,78%{transform:translateY(-1.4vh) scale(1.02)}100%{transform:none}}
+.im .bg{animation:co 4.4s steps(1) infinite}
+@keyframes co{0%,30%{filter:grayscale(1)}48%,78%{filter:grayscale(0) saturate(1.3)}96%,100%{filter:grayscale(1)}}
+</style></head>
+<body><div id="stage"><div class="im"><div class="bg"></div></div></div></body></html>

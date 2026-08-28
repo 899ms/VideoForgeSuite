@@ -1,0 +1,8 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>示波器</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter','Noto Sans SC',system-ui,sans-serif}
+#stage{position:fixed;inset:0;background:#04120a;display:grid;place-items:center}
+.os{width:64vw;height:40vh;border:.3vh solid #22ff8855;border-radius:1vh;position:relative;overflow:hidden;background:repeating-linear-gradient(90deg,#22ff8806 0 8%,transparent 8% 16%),repeating-linear-gradient(0deg,#22ff8806 0 20%,transparent 20% 40%)}
+.os canvas{position:absolute;inset:0;width:100%;height:100%}
+.lb{position:absolute;left:2vh;top:1.4vh;color:#22ff88aa;font-family:monospace;font-size:2.4vh}
+</style></head>
+<body><div id="stage"><div class="os"><canvas id="cv"></canvas><div class="lb">CH1 · 2.4kHz · TRIG ✓</div></div><script>const c=document.getElementById("cv"),x=c.getContext("2d");let t=0;function rs(){c.width=c.clientWidth;c.height=c.clientHeight}rs();(function lp(){x.fillStyle="#04120a";x.fillRect(0,0,c.width,c.height);x.strokeStyle="#22ff88";x.lineWidth=2;x.beginPath();for(let i=0;i<c.width;i+=3){const y=c.height/2+Math.sin(i*.02+t)*c.height*.22*Math.sin(i*.005+t*.7);i?x.lineTo(i,y):x.moveTo(i,y)}x.stroke();t+=.08;requestAnimationFrame(lp)})();</script></div></body></html>

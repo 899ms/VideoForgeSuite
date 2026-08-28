@@ -1,0 +1,8 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>报错矩阵</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter','Noto Sans SC',system-ui,sans-serif}
+#stage{position:fixed;inset:0;background:#0a0a0f;display:grid;place-items:center;overflow:hidden}
+.er{position:absolute;background:#1a0f12;border:.2vh solid #ff5252;color:#ff8a80;font-family:monospace;padding:1.6vh 2.4vh;border-radius:.8vh;font-size:2.4vh;animation:pu 2.8s steps(1) infinite;left:calc(var(--x)*1%);top:calc(var(--y)*1%)}
+.er b{color:#ffd166}
+@keyframes pu{0%{opacity:0;transform:scale(.8)}8%,80%{opacity:1;transform:scale(1)}88%,100%{opacity:0}}
+</style></head>
+<body><div id="stage"><div class="er" style="--x:4;--y:6;animation-delay:0.0s">⚠ <b>ERROR-400</b> 关键进程无响应</div><div class="er" style="--x:27;--y:37;animation-delay:0.28s">⚠ <b>ERROR-407</b> 关键进程无响应</div><div class="er" style="--x:50;--y:68;animation-delay:0.56s">⚠ <b>ERROR-414</b> 关键进程无响应</div><div class="er" style="--x:73;--y:35;animation-delay:0.8400000000000001s">⚠ <b>ERROR-421</b> 关键进程无响应</div><div class="er" style="--x:26;--y:66;animation-delay:1.12s">⚠ <b>ERROR-428</b> 关键进程无响应</div><div class="er" style="--x:49;--y:33;animation-delay:1.4000000000000001s">⚠ <b>ERROR-435</b> 关键进程无响应</div></div></body></html>

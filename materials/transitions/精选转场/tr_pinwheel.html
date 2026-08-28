@@ -1,0 +1,13 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>风车转场</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter','Noto Sans SC',system-ui,sans-serif}
+#stage{position:fixed;inset:0;background:#111;overflow:hidden}
+.pw{position:absolute;inset:0}
+.pw i{position:absolute;left:50%;top:50%;width:160vh;height:160vh;transform-origin:0 0;clip-path:polygon(0 0,100% 0,100% 16%);animation:clr 3.6s steps(1) infinite}
+.pw i:nth-child(1){background:#ef5350;transform:rotate(0deg)}
+.pw i:nth-child(2){background:#ffee58;transform:rotate(90deg)}
+.pw i:nth-child(3){background:#42a5f5;transform:rotate(180deg)}
+.pw i:nth-child(4){background:#66bb6a;transform:rotate(270deg)}
+@keyframes pw{0%{transform:rotate(0)}40%,100%{transform:rotate(540deg);opacity:0}}
+@keyframes clr{30%{opacity:1}100%{opacity:0}}
+</style></head>
+<body><div id="stage"><div class="pw"><i></i><i></i><i></i><i></i></div></div></body></html>

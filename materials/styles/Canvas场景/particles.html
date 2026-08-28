@@ -1,0 +1,10 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>粒子连线场</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter','Noto Sans SC',system-ui,sans-serif}
+.bg{position:fixed;inset:0;background:radial-gradient(70% 70% at 50% 45%,#29D3E6cc 0%,transparent 72%),radial-gradient(55% 55% at 18% 82%,#7C6CF5aa 0%,transparent 70%),radial-gradient(55% 55% at 82% 18%,#FF5C8Aaa 0%,transparent 70%),linear-gradient(135deg,#2b2542,#171428);animation:hue 22s linear infinite}
+@keyframes hue{to{filter:hue-rotate(360deg)}}
+#stage{position:fixed;inset:0;display:flex;align-items:center;justify-content:center}canvas{width:100%;height:100%;display:block}
+.txt{color:#fff;font-weight:900;text-align:center}
+</style></head>
+<body><div class="bg"></div><div id="stage"><canvas id="cv"></canvas></div>
+<script>var cv=document.getElementById('cv'),x=cv.getContext('2d');
+function rs(){cv.width=innerWidth;cv.height=innerHeight;}rs();addEventListener('resize',rs);var P=[];for(var i=0;i<90;i++)P.push({x:Math.random()*cv.width,y:Math.random()*cv.height,vx:(Math.random()-.5)*0.6,vy:(Math.random()-.5)*0.6});(function loop(){requestAnimationFrame(loop);x.clearRect(0,0,cv.width,cv.height);for(var i=0;i<P.length;i++){var a=P[i];a.x+=a.vx;a.y+=a.vy;if(a.x<0||a.x>cv.width)a.vx*=-1;if(a.y<0||a.y>cv.height)a.vy*=-1;x.beginPath();x.arc(a.x,a.y,2.2,0,7);x.fillStyle='#29D3E6';x.fill();for(var j=i+1;j<P.length;j++){var b=P[j],d=Math.hypot(a.x-b.x,a.y-b.y);if(d<120){x.beginPath();x.moveTo(a.x,a.y);x.lineTo(b.x,b.y);x.strokeStyle='#7C6CF5';x.globalAlpha=1-d/120;x.lineWidth=1;x.stroke();x.globalAlpha=1;}}}})();</script></body></html>

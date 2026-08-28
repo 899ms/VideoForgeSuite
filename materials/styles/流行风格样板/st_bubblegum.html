@@ -1,0 +1,11 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>泡泡糖糖果</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter','Noto Sans SC',system-ui,sans-serif}
+#stage{position:fixed;inset:0;background:linear-gradient(#ffd6f5,#c7f0ff);overflow:hidden;display:grid;place-items:center}
+.bub{position:absolute;border-radius:50%;background:radial-gradient(circle at 32% 30%,#ffffffcc,#ff8ad4 40%,#b366ff);mix-blend-mode:normal;animation:fl 6s ease-in-out infinite}
+.bub.b2{left:62%;top:16%;transform:scale(.7);background:radial-gradient(circle at 32% 30%,#ffffffcc,#8ad4ff 40%,#4467ff);animation-delay:1.4s}
+.bub.b3{left:18%;top:56%;transform:scale(1.2);background:radial-gradient(circle at 32% 30%,#ffffffcc,#ffe38a 40%,#ff8a5c);animation-delay:2.8s}
+.ttl{position:relative;font-size:9vh;font-weight:900;color:#fff;-webkit-text-stroke:.5vh #ff5ec4;text-shadow:.6vh .8vh 0 #b366ff;animation:jq 2.2s ease-in-out infinite}
+@keyframes fl{50%{transform:translateY(-4vh)}}
+@keyframes jq{50%{transform:scale(1.05) rotate(-2deg)}}
+</style></head>
+<body><div id="stage"><div class="bub" style="left:12%;top:12%;transform:scale(.9)"></div><div class="bub b2"></div><div class="bub b3"></div><div class="ttl">SWEET!</div></div></body></html>

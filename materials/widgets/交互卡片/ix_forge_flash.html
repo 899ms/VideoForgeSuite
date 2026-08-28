@@ -1,0 +1,9 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>锻造合成</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter','Noto Sans SC',system-ui,sans-serif}
+#stage{position:fixed;inset:0;display:grid;place-items:center;background:radial-gradient(60% 55% at 50% 50%,#451a03,#0c0400);overflow:hidden}
+.an{position:relative;font-size:10vh;animation:fg 4.6s cubic-bezier(.3,1,.4,1) infinite;filter:drop-shadow(0 0 2vh #f59e0b66)}
+@keyframes fg{0%,30%{transform:scale(.8) rotate(-8deg);filter:grayscale(.6) brightness(.7)}40%,58%{transform:scale(.86) rotate(8deg)}66%,88%{transform:scale(1.15);filter:none}96%,100%{transform:scale(.5);opacity:0}}
+.sp{position:absolute;width:3vh;height:.6vh;border-radius:99vh;background:#fbbf24;opacity:0;animation:sp 4.6s ease-out infinite;box-shadow:0 0 1.4vh #fbbf24}
+@keyframes sp{0%,62%{opacity:0;transform:rotate(var(--r)) translateX(6vh) scaleX(.3)}72%{opacity:1}82%,100%{opacity:0;transform:rotate(var(--r)) translateX(16vh) scaleX(1.6)}}
+</style></head>
+<body><div id="stage"><div class="an">⚔️</div><i class="sp" style="--r:0deg;left:calc(50% - 1.5vh);top:calc(50% - .3vh);animation-delay:0.1s"></i><i class="sp" style="--r:45deg;left:calc(50% - 1.5vh);top:calc(50% - .3vh);animation-delay:0.14s"></i><i class="sp" style="--r:90deg;left:calc(50% - 1.5vh);top:calc(50% - .3vh);animation-delay:0.18s"></i><i class="sp" style="--r:135deg;left:calc(50% - 1.5vh);top:calc(50% - .3vh);animation-delay:0.12s"></i><i class="sp" style="--r:180deg;left:calc(50% - 1.5vh);top:calc(50% - .3vh);animation-delay:0.16s"></i><i class="sp" style="--r:225deg;left:calc(50% - 1.5vh);top:calc(50% - .3vh);animation-delay:0.2s"></i><i class="sp" style="--r:270deg;left:calc(50% - 1.5vh);top:calc(50% - .3vh);animation-delay:0.13s"></i><i class="sp" style="--r:315deg;left:calc(50% - 1.5vh);top:calc(50% - .3vh);animation-delay:0.17s"></i></div></body></html>

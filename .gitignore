@@ -1,0 +1,32 @@
+# ── 模型权重 / 大体积运行环境（GitHub 传不了，用网盘/HuggingFace 分发）──
+h3/
+DiffSynth-Studio/
+*.safetensors
+*.ckpt
+*.pth
+
+# ── 隐私数据：浏览器 profile（含书签/历史/同步日志，绝不入库）──
+server/frames/
+
+# ── 日志与临时产物 ──
+server/logs/
+logs/
+*.log
+*.err
+*.out
+__pycache__/
+*.pyc
+ffmpeg_err.txt
+
+# ── 依赖 ──
+node_modules/
+.venv/
+venv/
+
+# ── 归档 ──
+_archive/
+_spam_archive/
+
+# ── 系统文件 ──
+Thumbs.db
+desktop.ini

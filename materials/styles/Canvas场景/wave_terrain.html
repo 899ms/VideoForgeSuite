@@ -1,0 +1,10 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>波浪地形</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter','Noto Sans SC',system-ui,sans-serif}
+.bg{position:fixed;inset:0;background:radial-gradient(70% 70% at 50% 45%,#29D3E6cc 0%,transparent 72%),radial-gradient(55% 55% at 18% 82%,#7C6CF5aa 0%,transparent 70%),radial-gradient(55% 55% at 82% 18%,#FF5C8Aaa 0%,transparent 70%),linear-gradient(135deg,#2b2542,#171428);animation:hue 22s linear infinite}
+@keyframes hue{to{filter:hue-rotate(360deg)}}
+#stage{position:fixed;inset:0;display:flex;align-items:center;justify-content:center}canvas{width:100%;height:100%;display:block}
+.txt{color:#fff;font-weight:900;text-align:center}
+</style></head>
+<body><div class="bg"></div><div id="stage"><canvas id="cv"></canvas></div>
+<script>var cv=document.getElementById('cv'),x=cv.getContext('2d');
+function rs(){cv.width=innerWidth;cv.height=innerHeight;}rs();addEventListener('resize',rs);var t=0;(function loop(){requestAnimationFrame(loop);t+=0.03;x.fillStyle='#0a0a1f';x.fillRect(0,0,cv.width,cv.height);for(var row=0;row<16;row++){x.beginPath();for(var xx=0;xx<=cv.width;xx+=8){var yy=cv.height*0.4+row*14+Math.sin(xx*0.02+t+row*0.3)*18*Math.sin(t*0.5+row*0.2);if(xx===0)x.moveTo(xx,yy);else x.lineTo(xx,yy);}x.strokeStyle='rgba('+Math.floor(120+row*8)+','+Math.floor(80+row*6)+',255,'+(0.3+row*0.04)+')';x.lineWidth=1.5;x.stroke();}})();</script></body></html>

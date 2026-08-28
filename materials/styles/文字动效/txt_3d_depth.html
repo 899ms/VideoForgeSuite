@@ -1,0 +1,13 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>3D景深字</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter','Noto Sans SC',system-ui,sans-serif}
+#stage{position:fixed;inset:0;display:grid;place-items:center;background:radial-gradient(70% 70% at 50% 40%,#131c33,#05070d);perspective:80vh;overflow:hidden}
+.stack{position:relative;transform-style:preserve-3d;animation:sw 7s ease-in-out infinite}
+.stack b{position:absolute;left:0;top:0;font-size:14vh;font-weight:900;letter-spacing:.08em;white-space:nowrap}
+.stack b:nth-child(1){color:#7ef0ff;transform:translateZ(-9vh);opacity:.25}
+.stack b:nth-child(2){color:#5ea8ff;transform:translateZ(-6vh);opacity:.45}
+.stack b:nth-child(3){color:#8fa6ff;transform:translateZ(-3vh);opacity:.7}
+.stack b:nth-child(4){color:#fff;text-shadow:0 0 4vh #7ef0ff88}
+.stack b:nth-child(5){color:#0000;-webkit-text-stroke:.2vh #7ef0ff;transform:translateZ(3vh)}
+@keyframes sw{0%,100%{transform:rotateY(-16deg) rotateX(4deg)}50%{transform:rotateY(16deg) rotateX(-4deg)}}
+</style></head>
+<body><div id="stage"><div class="stack"><b>DEPTH</b><b>DEPTH</b><b>DEPTH</b><b>DEPTH</b><b>DEPTH</b></div></div></body></html>

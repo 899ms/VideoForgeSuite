@@ -1,0 +1,17 @@
+<!doctype html><html lang=zh><head><meta charset=utf-8>
+<style>html,body{margin:0;height:100%;overflow:hidden;background:#fafaf9;display:flex;align-items:center;justify-content:center;font-family:'Segoe UI',system-ui,sans-serif}
+.w{text-align:center}
+.s{font-size:15px;color:#e11d48;letter-spacing:6px;margin-bottom:36px;font-weight:700}
+.btn{position:relative;display:inline-flex;align-items:center;gap:14px;padding:20px 52px;border-radius:999px;border:none;cursor:pointer;font-size:21px;font-weight:800;color:#fff;background:linear-gradient(120deg,#fb7185,#f43f5e,#ec4899,#a855f7);background-size:280% 100%;box-shadow:0 14px 34px rgba(244,63,94,.35);overflow:hidden}
+.btn::before{content:'';position:absolute;top:0;left:-70%;width:50%;height:100%;background:linear-gradient(100deg,transparent,#ffffffaa,transparent);transform:skewX(-18deg);animation:shim 1.6s ease infinite}
+@keyframes shim{to{left:130%}}
+.arw{font-size:24px;animation:nudge .8s ease-in-out infinite}
+@keyframes nudge{50%{transform:translateX(7px)}}
+.pulse{position:absolute;inset:0;border-radius:999px;border:2px solid #f43f5e66;animation:ring 1.3s ease-out infinite}
+@keyframes ring{from{transform:scale(1);opacity:.9}to{transform:scale(1.28);opacity:0}}
+.cap{margin-top:30px;font-size:13px;color:#78716c;letter-spacing:3px}
+</style></head><body><div class=w>
+<div class=s>INSPIRA · SHIMMER BUTTON</div>
+<button class=btn><span class=pulse></span>立即体验<span class="arw">→</span></button>
+<div class=cap>SHIMMER + MAGNETIC PULSE</div></div>
+<script>setTimeout(function(){var a=document.querySelectorAll('*');for(var i=0;i<a.length;i++){try{a[i].style.animationPlayState='paused'}catch(e){}}try{document.getAnimations().forEach(function(x){x.pause()})}catch(e){}},1650);</script></body></html>

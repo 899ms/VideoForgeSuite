@@ -1,0 +1,6 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>抖动波浪</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter','Noto Sans SC',system-ui,sans-serif}
+#stage{position:fixed;inset:0;background:#000}
+canvas{width:100vw;height:100vh;display:block}
+</style></head>
+<body><div id="stage"><canvas id="cv"></canvas><script>const cv=document.getElementById("cv"),x=cv.getContext("2d");function rs(){cv.width=innerWidth;cv.height=innerHeight}rs();addEventListener("resize",rs);let t=0;(function loop(){requestAnimationFrame(loop);t+=.05;x.fillStyle="#000";x.fillRect(0,0,cv.width,cv.height);const cw=10;for(let j=0;j<cv.height/cw;j++)for(let i=0;i<cv.width/cw;i++){const v=Math.sin(i*.35+t)+Math.cos(j*.3+t*.7)+Math.sin((i+j)*.15+t*.4);const on=v>((j%2)?-.2:-.55);if(on){x.fillStyle=j%2?"#4fc3f7":"#fff";x.fillRect(i*cw,j*cw,cw-1.2,cw-1.2)}}})()</script></div></body></html>

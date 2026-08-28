@@ -1,0 +1,9 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>素描排线</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter','Noto Sans SC',system-ui,sans-serif}
+#stage{position:fixed;inset:0;background:#f8f6f0;display:grid;place-items:center}
+.hatch{width:40vw;height:40vh;position:relative}
+.hatch i{position:absolute;left:0;right:0;height:.5vh;background:#555;border-radius:1vh;transform:scaleX(0);transform-origin:left;animation:hl 4s steps(1) infinite}
+.hatch i{top:calc(var(--r)*1%);transform:rotate(-8deg) scaleX(0);animation-name:hr}
+@keyframes hr{0%{transform:rotate(-8deg) scaleX(0)}55%,85%{transform:rotate(-8deg) scaleX(1)}100%{opacity:0}}
+</style></head>
+<body><div id="stage"><div class="hatch"><i style="--r:5;animation-delay:200ms"></i><i style="--r:11;animation-delay:440ms"></i><i style="--r:17;animation-delay:680ms"></i><i style="--r:23;animation-delay:920ms"></i><i style="--r:29;animation-delay:1160ms"></i><i style="--r:35;animation-delay:1400ms"></i><i style="--r:41;animation-delay:1640ms"></i><i style="--r:47;animation-delay:1880ms"></i><i style="--r:53;animation-delay:2120ms"></i><i style="--r:59;animation-delay:2360ms"></i><i style="--r:65;animation-delay:2600ms"></i><i style="--r:71;animation-delay:2840ms"></i><i style="--r:77;animation-delay:3080ms"></i><i style="--r:83;animation-delay:3320ms"></i><i style="--r:89;animation-delay:3560ms"></i><i style="--r:95;animation-delay:3800ms"></i></div></div></body></html>

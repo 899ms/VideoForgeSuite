@@ -1,0 +1,9 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>现场手绘标注</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter','Noto Sans SC',system-ui,sans-serif}
+#stage{position:fixed;inset:0;display:grid;place-items:center;background:#f7f2e7;padding:8vh}
+.doc{position:relative;background:#fdfaf2;padding:5vh 6vh;box-shadow:0 1vh 3vh #0003;font-size:3.2vh;line-height:2;color:#333;max-width:66vw}
+.doc svg{position:absolute;left:8%;top:14%;width:84%;height:72%;overflow:visible}
+.doc path{fill:none;stroke:#d0342c;stroke-width:.7vh;stroke-linecap:round;stroke-dasharray:520;stroke-dashoffset:520;animation:dw 4.5s ease-in-out infinite}
+@keyframes dw{0%{stroke-dashoffset:520}45%,80%{stroke-dashoffset:0}100%{stroke-dashoffset:0;opacity:0}}
+</style></head>
+<body><div id="stage"><div class="doc">委员会已审议通过该项预算<svg viewBox="0 0 300 120" preserveAspectRatio="none"><path d="M8,70 C60,10 120,8 150,38 C180,68 240,60 292,18 M150,38 C160,52 175,58 190,54"/></svg></div></div></body></html>

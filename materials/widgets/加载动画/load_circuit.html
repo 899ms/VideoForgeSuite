@@ -1,0 +1,12 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>电路走线</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter','Noto Sans SC',system-ui,sans-serif}
+#stage{position:fixed;inset:0;background:#0a1210;display:grid;place-items:center}
+.cb{position:relative;width:44vh;height:30vh}
+.chip{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:10vh;height:10vh;background:#10241c;border:.4vh solid #1f4d38;border-radius:1vh;display:grid;place-items:center;color:#4ade80;font-size:2.2vh;font-family:monospace;animation:ck 2s ease-in-out infinite}
+.cb svg{position:absolute;inset:0;width:100%;height:100%}
+.cb path{fill:none;stroke:#1f4d38;stroke-width:.6vh}
+.cb path.fl{stroke:#4ade80;stroke-dasharray:12 90;stroke-dashoffset:102;animation:fw 2.2s linear infinite}
+@keyframes fw{to{stroke-dashoffset:0}}
+@keyframes ck{50%{box-shadow:0 0 3vh #4ade8066}}
+</style></head>
+<body><div id="stage"><div class="cb"><svg viewBox="0 0 220 150" preserveAspectRatio="none"><path d="M0,30 H60 V60 H88"/><path class="fl" d="M0,30 H60 V60 H88"/><path d="M220,40 H160 V62 H132"/><path class="fl" style="animation-delay:.4s" d="M220,40 H160 V62 H132"/><path d="M0,120 H70 V92 H88"/><path class="fl" style="animation-delay:.8s" d="M0,120 H70 V92 H88"/><path d="M220,110 H150 V88 H132"/><path class="fl" style="animation-delay:1.2s" d="M220,110 H150 V88 H132"/></svg><div class="chip">CPU 87%</div></div></div></body></html>

@@ -1,0 +1,15 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>手风琴</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter','Noto Sans SC',system-ui,sans-serif}
+#stage{position:fixed;inset:0;background:#eef1f6;display:grid;place-items:center}
+.ac{width:52vw;display:flex;flex-direction:column;gap:1.4vh}
+.it{background:#fff;border-radius:1.6vh;overflow:hidden;box-shadow:0 .8vh 2.4vh #00000012}
+.it .hd{padding:2.2vh 3vh;font-size:3.2vh;font-weight:700;color:#222b3a;display:flex;justify-content:space-between;align-items:center}
+.it .hd:after{content:"＋"}
+.it .bd{max-height:0;overflow:hidden;transition:max-height .6s;padding:0 3vh;color:#66708a;font-size:2.8vh}
+.it.op .bd{max-height:16vh;padding-bottom:2.4vh}
+.it.op .hd:after{content:"－"}
+.it{animation:acc 7s steps(1) infinite}
+.it:nth-child(2){animation-delay:2.3s}.it:nth-child(3){animation-delay:4.6s}
+@keyframes acc{0%{max-height:9vh}10%,28%{max-height:9vh}30%,95%{max-height:22vh}100%{max-height:9vh}}
+</style></head>
+<body><div id="stage"><div class="ac"><div class="it op"><div class="hd">什么是转场？</div><div class="bd">两个画面之间的过渡效果，决定节奏感。</div></div><div class="it"><div class="hd">转场怎么选？</div><div class="bd">跟内容情绪匹配：硬切显利落，光幕显梦幻。</div></div><div class="it"><div class="hd">用多了会怎样？</div><div class="bd">每 3-4 个画面用一次即可，太多会腻。</div></div></div></div></body></html>

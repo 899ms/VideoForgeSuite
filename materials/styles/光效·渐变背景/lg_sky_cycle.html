@@ -1,0 +1,12 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>昼夜天色</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter','Noto Sans SC',system-ui,sans-serif}
+#stage{position:fixed;inset:0;animation:sky 12s ease-in-out infinite;background:linear-gradient(#7ec8f7,#fbe8b0)}
+#stage:after{content:"";position:absolute;inset:0;background:radial-gradient(40% 30% at 78% 22%,#fff,transparent 70%);animation:sun 12s ease-in-out infinite}
+@keyframes sky{0%,100%{background:linear-gradient(#7ec8f7,#fbe8b0)}30%{background:linear-gradient(#4a9df0,#9fd8ff)}50%{background:linear-gradient(#2b2e6e,#e07a5f 80%,#f2cc8f)}70%{background:linear-gradient(#10142e,#1d2554)}}
+@keyframes sun{0%,100%{opacity:1}50%{opacity:0}70%,85%{opacity:0}}
+.cl{position:absolute;background:#ffffffd9;border-radius:99vh;filter:blur(2px);animation:dr 16s linear infinite}
+.cl.c1{width:22vh;height:6vh;top:24%;left:100%}
+.cl.c2{width:16vh;height:5vh;top:48%;left:130%;animation-delay:5s}
+@keyframes dr{to{transform:translateX(-160vw)}}
+</style></head>
+<body><div id="stage"><div class="cl c1"></div><div class="cl c2"></div></div></body></html>

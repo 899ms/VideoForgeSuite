@@ -1,0 +1,13 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>复古终端</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter','Noto Sans SC',system-ui,sans-serif}
+#stage{position:fixed;inset:0;background:#020a02;padding:7vh;font-family:Consolas,'Courier New',monospace;font-size:3.2vh;line-height:1.85;color:#33ff66;text-shadow:0 0 1.2vh #33ff6688;overflow:hidden}
+.tl{opacity:0;animation:ty .35s steps(24) forwards;animation-delay:calc(var(--i)*.65s);white-space:pre-wrap}
+.tl:nth-child(2){color:#ffd166;text-shadow:0 0 1.2vh #ffd16655}
+.tl:nth-child(4){color:#66e0ff;text-shadow:0 0 1.2vh #66e0ff55}
+.tl:nth-child(6){color:#ff66a3;text-shadow:0 0 1.2vh #ff66a355}
+.cur{display:inline-block;width:1.8vh;height:3.4vh;background:#33ff66;animation:bl 1s steps(1) infinite}
+#stage:after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent 0 3px,#00000055 3px 4px);pointer-events:none}
+@keyframes ty{from{opacity:0;clip-path:inset(0 100% 0 0)}to{opacity:1;clip-path:inset(0 0 0 0)}}
+@keyframes bl{50%{opacity:0}}
+</style></head>
+<body><div id="stage"><div class="tl" style="--i:0">> boot forge.os --safe</div><div class="tl" style="--i:1">[ OK ] mount /materials ... 400 items</div><div class="tl" style="--i:2">[ OK ] gpu: h3-nf4 ready</div><div class="tl" style="--i:3">> run render --scene ep09</div><div class="tl" style="--i:4">rendering frames ██████ 100%</div><div class="tl" style="--i:5">> status: AWESOME</div><div class="tl" style="--i:6">> _</div><div class="tl"><span class="cur"></span></div></div></body></html>

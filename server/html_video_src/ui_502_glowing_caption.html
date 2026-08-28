@@ -1,0 +1,28 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><style>*{margin:0;padding:0}body{background:#08080f;overflow:hidden}canvas{display:block;width:100vw;height:100vh}</style></head>
+<body><canvas id="c" width="1280" height="720"></canvas><script>
+const cv=document.getElementById('c'),ctx=cv.getContext('2d'),W=1280,H=720,T=5;
+let start=null;
+const texts=["CREATIVE","CAPTION","GLOW EFFECT"];
+function draw(t){
+  ctx.fillStyle='#08080f';ctx.fillRect(0,0,W,H);
+  const idx=Math.floor(t)%texts.length;
+  const txt=texts[idx];
+  const a=Math.max(0,Math.min((t%1)*2,1));
+  // glow bg
+  ctx.font='bold 76px monospace';
+  ctx.textAlign='center';ctx.textBaseline='middle';
+  ctx.fillStyle=`rgba(0,229,255,${0.4*a})`;
+  ctx.shadowColor='#00e5ff';ctx.shadowBlur=40;
+  ctx.fillText(txt,W/2,H/2);
+  ctx.shadowBlur=0;
+  ctx.fillStyle=`rgba(255,255,255,${0.9*a})`;
+  ctx.fillText(txt,W/2,H/2);
+  // side bars
+  const barW=4+(t%1)*200;
+  ctx.fillStyle=`rgba(0,229,255,${a})`;
+  ctx.fillRect(W/2-barW/2-200,H/2+60,barW,3);
+  ctx.fillRect(W/2+200-barW/2,H/2+60,barW,3);
+}
+function loop(ts){if(!start)start=ts;const t=(ts-start)/1000;draw(t);if(t<T+0.3)requestAnimationFrame(loop);}
+requestAnimationFrame(loop);
+</script></body></html>

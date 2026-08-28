@@ -1,0 +1,11 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>波浪文字</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter','Noto Sans SC',system-ui,sans-serif}
+.bg{position:fixed;inset:0;background:radial-gradient(70% 70% at 50% 45%,#FF6A00cc 0%,transparent 72%),radial-gradient(55% 55% at 18% 82%,#FF2D95aa 0%,transparent 70%),radial-gradient(55% 55% at 82% 18%,#FFD200aa 0%,transparent 70%),linear-gradient(135deg,#2b2542,#171428);animation:hue 22s linear infinite}
+@keyframes hue{to{filter:hue-rotate(360deg)}}
+#stage{position:fixed;inset:0;display:flex;align-items:center;justify-content:center}canvas{width:100%;height:100%;display:block}
+.txt{color:#fff;font-weight:900;text-align:center}
+.txt span{display:inline-block}</style></head>
+<body><div class="bg"></div><div id="stage"><div class="txt" id="t" style="font-size:56px;letter-spacing:3px">WAVE TEXT</div></div>
+<script>var el=document.getElementById('t'),s=el.textContent;el.textContent='';
+        [].forEach.call(s,function(c){var sp=document.createElement('span');sp.textContent=c===' '?'\u00A0':c;el.appendChild(sp);});
+        var sp=el.querySelectorAll('span'),t=0;(function loop(){requestAnimationFrame(loop);t+=0.08;sp.forEach(function(e,i){e.style.transform='translateY('+Math.sin(t+i*0.4)*16+'px)';});})();</script></body></html>

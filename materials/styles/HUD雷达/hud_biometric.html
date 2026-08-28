@@ -1,0 +1,11 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>生物识别</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter','Noto Sans SC',system-ui,sans-serif}
+#stage{position:fixed;inset:0;background:#03110b;display:grid;place-items:center}
+.fc{position:relative;width:30vh;height:38vh;border:.3vh solid #22ff8855;border-radius:2vh;overflow:hidden}
+.fc:before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(0deg,#22ff8808 0 .4vh,transparent .4vh 2vh)}
+.sc2{position:absolute;left:0;right:0;height:1vh;background:#22ff88;box-shadow:0 0 3vh #22ff88;animation:sc 2.4s ease-in-out infinite;opacity:.85}
+.rs{position:absolute;bottom:-7vh;width:max-content;color:#22ff88;font-family:monospace;font-size:2.6vh;letter-spacing:.2em;opacity:0;animation:rs 4.8s steps(1) infinite}
+@keyframes sc{0%,100%{top:4%}50%{top:92%}}
+@keyframes rs{0%,55%{opacity:0}64%,88%{opacity:1}100%{opacity:0}}
+</style></head>
+<body><div id="stage"><div class="fc"><div class="sc2"></div></div><div class="rs">ID MATCH · 瞳膜 99.7%</div></div></body></html>

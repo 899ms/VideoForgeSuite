@@ -1,0 +1,15 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>多层景深</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter','Noto Sans SC',system-ui,sans-serif}
+#stage{position:fixed;inset:0;background:#141a26;display:grid;place-items:center;perspective:100vh;overflow:hidden}
+.ly{position:absolute;width:34vw;height:34vh;border-radius:2.6vh;animation:fl 7s ease-in-out infinite;transform-style:preserve-3d}
+.l1{background:#26304a;transform:translateZ(-10vh) rotateY(-14deg)}
+.l2{background:#31405f;transform:translateZ(0) rotateY(-8deg)}
+.l3{background:#3f527a;transform:translateZ(10vh) rotateY(0);display:grid;place-items:center;color:#cfe0ff;font-size:4vh;font-weight:800}
+.l3:after{content:"";position:absolute;inset:0;border-radius:inherit;border:.1vh solid #6f86b866}
+@keyframes fl{50%{transform:translateY(-2.4vh)}}
+.l1{animation-name:f1}.l2{animation-name:f2}.l3{animation-name:f3}
+@keyframes f1{50%{transform:translateZ(-10vh) rotateY(-14deg) translateY(-2vh)}}
+@keyframes f2{50%{transform:translateZ(0) rotateY(-8deg) translateY(-3.4vh)}}
+@keyframes f3{50%{transform:translateZ(10vh) translateY(-4.6vh)}}
+</style></head>
+<body><div id="stage"><div class="ly l1"></div><div class="ly l2"></div><div class="ly l3">LAYER 03</div></div></body></html>

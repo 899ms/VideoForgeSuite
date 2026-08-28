@@ -1,0 +1,13 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>蒸汽波</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter','Noto Sans SC',system-ui,sans-serif}
+#stage{position:fixed;inset:0;overflow:hidden;background:linear-gradient(#2a1a5e 0%,#7b2ff7 38%,#f64f8a 55%,#0b0221 55.2%)}
+.sun{position:absolute;left:50%;top:14%;width:34vh;height:34vh;margin:-17vh;border-radius:50%;background:linear-gradient(#ffe25a,#ff5e8a);box-shadow:0 0 10vh #ff5e8aa0}
+.sun:after{content:"";position:absolute;inset:0;border-radius:50%;background:repeating-linear-gradient(180deg,transparent 0 4vh,#0b0221 4vh 5vh);mask:linear-gradient(transparent 40%,#000 40%)}
+.grid{position:absolute;left:-30%;right:-30%;bottom:-4%;height:46%;background-image:linear-gradient(#00f0ff88 2px,transparent 2px),linear-gradient(90deg,#00f0ff88 2px,transparent 2px);background-size:10vh 10vh;transform:perspective(30vh) rotateX(58deg);animation:mz 2.2s linear infinite}
+@keyframes mz{to{background-position:0 10vh,0 0}}
+.tt{position:absolute;left:0;right:0;top:6%;text-align:center;font-size:11vh;font-weight:900;letter-spacing:.3em;color:#fff;text-shadow:0 0 2vh #f64f8a,0 0 6vh #00f0ff,-0.4vh 0.4vh 0 #ff2fb3;animation:hu 6s linear infinite}
+@keyframes hu{to{filter:hue-rotate(360deg)}}
+.pal{position:absolute;bottom:6%;left:0;right:0;display:flex;justify-content:center;gap:30vh;opacity:.85}
+.pal i{width:2vh;height:16vh;background:linear-gradient(#0b0221,#3b1a6e);clip-path:polygon(0 100%,50% 0,100% 100%)}
+</style></head>
+<body><div id="stage"><div class="tt">VAPORWAVE</div><div class="sun"></div><div class="grid"></div><div class="pal"><i></i><i></i><i></i></div></div></body></html>

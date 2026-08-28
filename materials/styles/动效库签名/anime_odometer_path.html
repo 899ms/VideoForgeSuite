@@ -1,0 +1,29 @@
+<!doctype html><html lang=zh><head><meta charset=utf-8>
+<style>html,body{margin:0;height:100%;overflow:hidden;background:#fefce8;display:flex;align-items:center;justify-content:center;font-family:'Segoe UI',system-ui,sans-serif}
+.w{text-align:center}
+.s{font-size:15px;color:#ca8a04;letter-spacing:6px;margin-bottom:22px;font-weight:700}
+svg{overflow:visible}
+path{fill:none;stroke-linecap:round}
+.val{font-size:70px;font-weight:900;color:#1c1917}
+.ticks{display:flex;gap:10px;justify-content:center;margin-top:16px}
+.tick{height:8px;width:64px;border-radius:4px;background:#e7e5e4;position:relative;overflow:hidden}
+.tick i{position:absolute;inset:0;background:linear-gradient(90deg,#fbbf24,#f97316);transform:scaleX(0);transform-origin:left;display:block}
+</style></head><body><div class=w>
+<div class=s>ANIME.JS · VALUE + PATH</div>
+<div style="display:flex;align-items:center;gap:26px;justify-content:center">
+<div class=val id=v>0</div>
+<svg width="170" height="96"><path id=p d="M8,84 C40,-24 90,120 128,32 L162,56" stroke="#f59e0b" stroke-width="5"/><circle id=c r="9" fill="#ea580c"/></svg>
+</div>
+<div class=ticks id=t></div></div>
+<script>
+var D=1600,procs=[65,88,42],t=document.getElementById('t');
+for(var k=0;k<3;k++){var d=document.createElement('div');d.className='tick';d.innerHTML='<i></i>';t.appendChild(d);}
+var path=document.getElementById('p'),len=path.getTotalLength(),c=document.getElementById('c'),v=document.getElementById('v');
+var t0=null;
+function frame(ts){if(!t0)t0=ts;var p=Math.min((ts-t0)/D,1),e=1-Math.pow(1-p,3);
+v.textContent=Math.round(e*100);
+var pt=path.getPointAtLength(e*len);c.setAttribute('cx',pt.x);c.setAttribute('cy',pt.y);
+var ticks=document.querySelectorAll('.tick i');for(var j=0;j<ticks.length;j++){ticks[j].style.transform='scaleX('+Math.min(Math.max(e*3-j+1,0),1)+')';}
+if(p<1)requestAnimationFrame(frame);}
+requestAnimationFrame(frame);
+setTimeout(function(){try{document.getAnimations().forEach(function(x){x.pause()})}catch(e){}},2000);</script></body></html>

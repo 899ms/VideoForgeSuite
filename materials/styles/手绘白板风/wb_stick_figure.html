@@ -1,0 +1,12 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>简笔小人</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter','Noto Sans SC',system-ui,sans-serif}
+#stage{position:fixed;inset:0;background:#fff;display:grid;place-items:center}
+.st{width:30vw;overflow:visible}
+.st *{fill:none;stroke:#2c3e50;stroke-width:.8vh;stroke-linecap:round;stroke-dasharray:400;stroke-dashoffset:400;animation:dr 4.5s ease-in-out infinite}
+.st .h{stroke-dasharray:180;animation-delay:0s}
+.st .b{animation-delay:.4s}.st .l{animation-delay:.8s}.st .a{animation-delay:1.2s;stroke-dasharray:220}
+@keyframes dr{0%{stroke-dashoffset:var(--o,400)}50%,86%{stroke-dashoffset:0}100%{opacity:0}}
+.sp{position:absolute;left:63%;top:30%;font-size:3.6vh;color:#e74c3c;border:.4vh solid #e74c3c;border-radius:1.6vh 1.6vh 1.6vh 0;padding:1vh 1.8vh;opacity:0;animation:sy 4.5s steps(1) 1.6s infinite}
+@keyframes sy{0%,60%{opacity:0}66%,86%{opacity:1}100%{opacity:0}}
+</style></head>
+<body><div id="stage"><svg class="st" viewBox="0 0 120 160"><circle class="h" cx="60" cy="30" r="18" style="--o:180"/><path class="b" d="M60 48 L60 100"/><path class="l" d="M60 100 L38 140 M60 100 L82 140"/><path class="a" d="M60 62 L30 84 M60 62 L92 46"/></svg><div class="sp">嘿！</div></div></body></html>

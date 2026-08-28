@@ -1,0 +1,11 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>线框城市</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter','Noto Sans SC',system-ui,sans-serif}
+#stage{position:fixed;inset:0;background:#04070d;overflow:hidden;display:grid;place-items:center;perspective:120vh}
+.ct{position:relative;width:70vw;height:50vh;transform:rotateX(18deg);transform-style:preserve-3d;animation:dr 14s ease-in-out infinite alternate}
+.bd{position:absolute;bottom:0;border:.2vh solid #22d3ee66;transform-style:preserve-3d;background:#22d3ee0d}
+.bd:after{content:"";position:absolute;inset:0;background:linear-gradient(#22d3ee22,#22d3ee00);animation:tw 2.6s steps(2) infinite}
+.gd{position:absolute;left:-10%;right:-10%;bottom:0;height:1vh;background:linear-gradient(90deg,#22d3ee44 1px,transparent 1px) 0 0/6% 100%}
+@keyframes dr{to{transform:rotateX(18deg) rotateY(-24deg)}}
+@keyframes tw{50%{opacity:.5}}
+</style></head>
+<body><div id="stage"><div class="ct"><div class="gd"></div><div class="bd" style="left:6%;width:5%;height:14%;background-position:0 0%"></div><div class="bd" style="left:15%;width:12%;height:31%;background-position:0 29%"></div><div class="bd" style="left:24%;width:11%;height:48%;background-position:0 58%"></div><div class="bd" style="left:33%;width:10%;height:25%;background-position:0 87%"></div><div class="bd" style="left:42%;width:9%;height:42%;background-position:0 16%"></div><div class="bd" style="left:51%;width:8%;height:19%;background-position:0 45%"></div><div class="bd" style="left:60%;width:7%;height:36%;background-position:0 74%"></div><div class="bd" style="left:69%;width:6%;height:53%;background-position:0 3%"></div><div class="bd" style="left:8%;width:5%;height:30%;background-position:0 32%"></div><div class="bd" style="left:17%;width:12%;height:47%;background-position:0 61%"></div><div class="bd" style="left:26%;width:11%;height:24%;background-position:0 90%"></div><div class="bd" style="left:35%;width:10%;height:41%;background-position:0 19%"></div></div></div></body></html>

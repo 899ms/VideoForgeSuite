@@ -1,0 +1,14 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>记分牌翻牌</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter','Noto Sans SC',system-ui,sans-serif}
+#stage{position:fixed;inset:0;display:grid;place-items:center;background:#101418}
+.sb{display:flex;align-items:center;gap:3vh;background:#1c232b;border:1vh solid #0a0d10;border-radius:1.6vh;padding:3vh 5vh;box-shadow:0 2vh 5vh #0008}
+.tm{font-size:3.6vh;font-weight:900;color:#e8eaed;letter-spacing:.1em}
+.dg{position:relative;width:9vh;height:12vh;perspective:60vh}
+.dg .cd{position:absolute;inset:0;background:#0d1117;border-radius:1vh;display:grid;place-items:center;font-size:8vh;font-weight:900;color:#ffd54f;backface-visibility:hidden;box-shadow:inset 0 0 0 .3vh #2a333d}
+.dg .top{animation:tp 4s steps(1) infinite;transform-origin:bottom}
+.dg .btm{animation:bm 4s steps(1) infinite;transform-origin:top}
+@keyframes tp{0%,40%{transform:rotateX(0)}48%,100%{transform:rotateX(-90deg)}}
+@keyframes bm{0%,36%{transform:rotateX(90deg)}44%,100%{transform:rotateX(0)}}
+.vs{font-size:3.4vh;color:#5c6a78;font-weight:900}
+</style></head>
+<body><div id="stage"><div class="sb"><span class="tm">主队</span><span class="dg"><span class="cd btm">2</span><span class="cd top">2</span></span><span class="vs">VS</span><span class="tm">客队</span><span class="dg"><span class="cd btm">1</span><span class="cd top">1</span></span></div></div></body></html>

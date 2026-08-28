@@ -1,0 +1,8 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>喷漆扫过</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter','Noto Sans SC',system-ui,sans-serif}
+#stage{position:fixed;inset:0;background:#1a1a1a;display:grid;place-items:center;overflow:hidden}
+.sp{position:absolute;inset:0;width:200%;background:linear-gradient(90deg,transparent,#ff5722 20%,#ff8a50 50%,#ff5722 80%,transparent);clip-path:circle(6vh at 50% 50%);animation:sw 3.6s steps(22) infinite;transform:translateX(-50%);opacity:0}
+.sp b{position:absolute;left:44%;top:50%;transform:translateY(-50%);font-size:12vh;font-weight:900;color:#1a1a1a;letter-spacing:.3em}
+@keyframes sw{0%{transform:translateX(-60%);opacity:0}8%{opacity:1}50%{transform:translateX(0)}92%{opacity:1}100%{transform:translateX(60%);opacity:0}}
+</style></head>
+<body><div id="stage"><div class="sp"><b>NEXT</b></div></div></body></html>

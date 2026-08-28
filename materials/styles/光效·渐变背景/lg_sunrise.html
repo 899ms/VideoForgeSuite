@@ -1,0 +1,10 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>日出光晕</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter','Noto Sans SC',system-ui,sans-serif}
+#stage{position:fixed;inset:0;background:linear-gradient(#1a1a3e,#4a2a6e 45%,#b8457e 70%,#ff8c5a);overflow:hidden}
+.sun{position:absolute;left:50%;bottom:18%;width:26vh;height:26vh;margin-left:-13vh;border-radius:50%;background:radial-gradient(circle,#fff6d6,#ffb45e 60%,#ff7e5e);box-shadow:0 0 12vh #ffb45e99,0 0 30vh #ff8c5a66;animation:rs 8s ease-in-out infinite alternate}
+@keyframes rs{from{transform:translateY(6vh) scale(.9)}to{transform:translateY(-2vh) scale(1.05)}}
+.hz{position:absolute;left:0;right:0;bottom:0;height:18%;background:#12081f}
+.rays{position:absolute;inset:0;background:repeating-conic-gradient(from -90deg at 50% 82%,#ffb45e11 0 6deg,transparent 6deg 14deg);animation:sp 24s linear infinite}
+@keyframes sp{to{transform:rotate(360deg)}}
+</style></head>
+<body><div id="stage"><div class="rays"></div><div class="sun"></div><div class="hz"></div></div></body></html>

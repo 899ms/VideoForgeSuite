@@ -1,0 +1,14 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>排行榜插入</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter','Noto Sans SC',system-ui,sans-serif}
+#stage{position:fixed;inset:0;background:#151a24;display:grid;place-items:center}
+.lb{width:56vw;display:flex;flex-direction:column;gap:1.4vh}
+.ro{display:flex;align-items:center;gap:2vh;background:#1e2532;border-radius:1.2vh;padding:1.6vh 2.4vh;transform:translateX(-110%);animation:ri 5s steps(1) infinite}
+.ro .no{font-size:3.4vh;font-weight:900;color:#ffb300;width:5vh}
+.ro .nm{font-size:3vh;color:#e8eaf6;flex:1}
+.ro .vl{font-size:3vh;font-weight:800;color:#4dd0e4}
+.ro:nth-child(2){animation-delay:.5s;transform:translateX(110%)}
+.ro:nth-child(3){animation-delay:1s}
+.ro:nth-child(4){animation-delay:1.5s;transform:translateX(110%)}
+@keyframes ri{0%{transform:translateX(var(--fx,-110%))}14%,88%{transform:translateX(0)}100%{opacity:0}}
+</style></head>
+<body><div id="stage"><div class="lb"><div class="ro"><span class="no">1</span><span class="nm">阿星说AI</span><span class="vl">98.2w</span></div><div class="ro" style="--fx:110%"><span class="no">2</span><span class="nm">剪辑老王</span><span class="vl">87.5w</span></div><div class="ro"><span class="no">3</span><span class="nm">数码酱</span><span class="vl">76.1w</span></div><div class="ro" style="--fx:110%"><span class="no">4</span><span class="nm">讲效率的猫</span><span class="vl">65.9w</span></div></div></div></body></html>

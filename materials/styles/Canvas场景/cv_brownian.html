@@ -1,0 +1,5 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>布朗运动</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter','Noto Sans SC',system-ui,sans-serif}
+#stage{position:fixed;inset:0;background:#05080d;display:grid;place-items:center}canvas{position:absolute;inset:0;width:100%;height:100%}
+</style></head>
+<body><div id="stage"><canvas id="cv"></canvas><script>const c=document.getElementById("cv"),x=c.getContext("2d");c.width=innerWidth;c.height=innerHeight;x.fillStyle="#05080d";x.fillRect(0,0,c.width,c.height);const P=Array.from({length:5},()=>({x:c.width/2,y:c.height/2,h:Math.random()*360}));(function lp(){for(const p of P){const ox=p.x,oy=p.y;p.x+=(Math.random()-.5)*14;p.y+=(Math.random()-.5)*14;p.x=Math.max(4,Math.min(c.width-4,p.x));p.y=Math.max(4,Math.min(c.height-4,p.y));x.strokeStyle=`hsla(${p.h},90%,65%,.55)`;x.lineWidth=1.4;x.beginPath();x.moveTo(ox,oy);x.lineTo(p.x,p.y);x.stroke()}x.fillStyle="rgba(5,8,13,.02)";x.fillRect(0,0,c.width,c.height);requestAnimationFrame(lp)})();</script></div></body></html>

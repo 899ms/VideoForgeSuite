@@ -1,0 +1,12 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>双语字幕</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter','Noto Sans SC',system-ui,sans-serif}
+#stage{position:fixed;inset:0;background:linear-gradient(160deg,#263238,#101418);display:grid;place-items:end center;padding-bottom:9vh}
+.bi{position:relative;text-align:center;width:80vw}
+.cn{font-size:4.2vh;font-weight:900;color:#fff;text-shadow:0 .4vh 1vh #000;opacity:0;animation:cn 5s steps(1) infinite}
+.en{font-size:2.6vh;color:#b0bec5;font-family:'Inter',sans-serif;margin-top:1.2vh;letter-spacing:.04em;opacity:0;animation:en 5s steps(1) infinite}
+.bar{width:0;height:.5vh;background:#4fc3f7;margin:1.6vh auto 0;border-radius:99vh;animation:br 5s ease-out infinite}
+@keyframes cn{0%{opacity:0;transform:translateY(2vh)}8%,86%{opacity:1;transform:none}100%{opacity:0}}
+@keyframes en{0%,14%{opacity:0;transform:translateY(1.4vh)}22%,86%{opacity:1;transform:none}100%{opacity:0}}
+@keyframes br{0%,10%{width:0}85%,100%{width:60%}}
+</style></head>
+<body><div id="stage"><div class="bi"><div class="cn">真正的差距，不在工具，而在用法</div><div class="en">The real gap is not the tool, but how you use it.</div><div class="bar"></div></div></div></body></html>

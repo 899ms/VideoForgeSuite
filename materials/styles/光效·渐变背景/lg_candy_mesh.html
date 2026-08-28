@@ -1,0 +1,12 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>糖果渐变</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter','Noto Sans SC',system-ui,sans-serif}
+#stage{position:fixed;inset:0;background:#fff;display:grid;place-items:center;overflow:hidden}
+.blob{position:absolute;width:60vh;height:60vh;border-radius:50%;filter:blur(10vh);opacity:.75;animation:mv 14s ease-in-out infinite alternate}
+.b1{background:#ff9ad5;top:-10vh;left:-8vh}
+.b2{background:#8ce0ff;bottom:-12vh;right:-6vh;animation-delay:-4s}
+.b3{background:#ffe29a;top:30%;left:38%;animation-delay:-8s}
+.b4{background:#b8ffa8;bottom:10%;left:8%;animation-delay:-11s}
+.t{position:relative;z-index:2;font-size:9vh;font-weight:900;color:#fff;text-shadow:0 .4vh 2vh #00000030,0 0 4vh #ffffff88;letter-spacing:.1em}
+@keyframes mv{from{transform:translate(0,0) scale(1)}to{transform:translate(12vh,-8vh) scale(1.25)}}
+</style></head>
+<body><div id="stage"><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div><div class="blob b4"></div><div class="t">CANDY</div></div></body></html>

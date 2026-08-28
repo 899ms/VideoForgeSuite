@@ -1,0 +1,13 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>贴纸拼贴</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter','Noto Sans SC',system-ui,sans-serif}
+#stage{position:fixed;inset:0;background:#f3ead8;display:grid;place-items:center;perspective:100vh}
+.jd{width:48vw;height:56vh;background:#fff;box-shadow:1vh 1.6vh 3vh #0003;position:relative;overflow:hidden}
+.sk{position:absolute;font-size:6.5vh;background:#fff;border-radius:1.4vh;padding:1vh;box-shadow:.5vh .7vh 1.2vh #0003;opacity:0;animation:sk 8s steps(1) infinite}
+.sk.s1{left:8%;top:10%;transform:rotate(-8deg);animation-delay:.2s}
+.sk.s2{left:52%;top:8%;transform:rotate(6deg);animation-delay:1.4s}
+.sk.s3{left:16%;top:44%;transform:rotate(4deg);animation-delay:2.6s}
+.sk.s4{left:58%;top:48%;transform:rotate(-5deg);animation-delay:3.8s}
+.wa{position:absolute;left:10%;top:74%;font-family:'Segoe Print',cursive;font-size:4vh;color:#37474f;border-bottom:.5vh dashed #f06292;padding-bottom:.6vh;opacity:0;animation:sk 8s steps(1) 5s infinite}
+@keyframes sk{0%{opacity:0;transform:var(--tr,none) scale(1.6) rotate(12deg)}10%{opacity:1}86%,100%{opacity:0}}
+</style></head>
+<body><div id="stage"><div class="jd"><div class="sk s1">🌟</div><div class="sk s2">📷</div><div class="sk s3">✈️</div><div class="sk s4">🏷️</div><div class="wa">今天也要加油鸭 ~</div></div></div></body></html>

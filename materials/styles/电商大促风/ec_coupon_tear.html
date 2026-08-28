@@ -1,0 +1,12 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>优惠券撕开</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter','Noto Sans SC',system-ui,sans-serif}
+#stage{position:fixed;inset:0;display:grid;place-items:center;background:#fce4ec}
+.cp{position:relative;width:52vw;height:22vh;display:grid;grid-template-columns:1fr 0 1fr}
+.half{background:linear-gradient(135deg,#e91e63,#ad1457);color:#fff;display:grid;place-items:center;font-weight:900}
+.half.l{border-radius:1.6vh 0 0 1.6vh;font-size:5vh;animation:tl 4.2s steps(14) infinite}
+.half.r{border-radius:0 1.6vh 1.6vh 0;font-size:3vh;animation:trr 4.2s steps(14) infinite}
+.tear{width:0;border-left:.6vh dashed #fff;position:relative;z-index:2}
+@keyframes tl{0%,30%{transform:translateX(0) rotate(0)}45%,85%{transform:translateX(-46vw) rotate(-8deg)}100%{transform:translateX(-46vw) rotate(-8deg);opacity:0}}
+@keyframes trr{0%,30%{transform:translateX(0) rotate(0)}45%,85%{transform:translateX(46vw) rotate(8deg)}100%{transform:translateX(46vw) rotate(8deg);opacity:0}}
+</style></head>
+<body><div id="stage"><div class="cp"><div class="half l">¥50</div><div class="tear"></div><div class="half r">满299可用</div></div></div></body></html>

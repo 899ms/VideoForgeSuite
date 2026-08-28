@@ -1,0 +1,13 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>胶带贴照片</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter','Noto Sans SC',system-ui,sans-serif}
+#stage{position:fixed;inset:0;display:grid;place-items:center;background:#fdfaf3}
+.pol{position:relative;width:30vw;aspect-ratio:4/3;background:#fff;box-shadow:0 1vh 3vh #0003;display:grid;place-items:center;animation:wb 5s ease-in-out infinite}
+.pol .img{width:86%;height:74%;background:linear-gradient(135deg,#9ec5ab,#5f8d7a)}
+.tp{position:absolute;width:12vh;height:4vh;background:#ffe9a8cc;box-shadow:0 .3vh .8vh #0002}
+.t1{left:-4vh;top:-1.6vh;transform:rotate(-38deg);animation:t1 5s ease-out infinite;opacity:0}
+.t2{right:-4vh;bottom:-1.6vh;transform:rotate(-38deg);animation:t2 5s ease-out infinite;opacity:0}
+@keyframes t1{8%{opacity:1}12%{transform:rotate(-38deg) scale(1.05)}16%{transform:rotate(-38deg)}}
+@keyframes t2{22%{opacity:1}26%{transform:rotate(-38deg) scale(1.05)}30%{transform:rotate(-38deg)}}
+@keyframes wb{0%,30%{transform:rotate(0)}70%,100%{transform:rotate(-1.4deg)}}
+</style></head>
+<body><div id="stage"><div class="pol"><div class="img"></div><span class="tp t1"></span><span class="tp t2"></span></div></div></body></html>

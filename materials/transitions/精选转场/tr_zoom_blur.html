@@ -1,0 +1,11 @@
+<!doctype html><html lang=zh><head><meta charset=utf-8>
+<style>html,body{margin:0;height:100%;overflow:hidden;background:#000;font-family:'Segoe UI',system-ui,sans-serif}
+.sc{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:58px;font-weight:900;letter-spacing:6px}
+.a{background:radial-gradient(circle at 50% 45%,#155e75,#082f49);color:#a5f3fc;z-index:1}
+.b{background:linear-gradient(150deg,#f59e0b,#ef4444);color:#fff;z-index:2;transform:scale(4);opacity:0;filter:blur(24px);animation:zb 1.5s cubic-bezier(.65,0,.35,1) .5s forwards}
+@keyframes zb{55%{opacity:1}100%{transform:scale(1);opacity:1;filter:blur(0)}}
+.lt{position:absolute;z-index:4;font-size:15px;color:#fff;letter-spacing:5px;bottom:12%;left:50%;transform:translateX(-50%);opacity:0;animation:lt .5s ease 2.1s forwards}
+@keyframes lt{to{opacity:1}}</style></head><body>
+<div class="sc a">ZOOM OUT</div><div class="sc b">ZOOM BLUR</div>
+<div class=lt>ZOOM BLUR 转场</div>
+<script>setTimeout(function(){try{document.getAnimations().forEach(function(x){x.pause()})}catch(e){}},2600);</script></body></html>

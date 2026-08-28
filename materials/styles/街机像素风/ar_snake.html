@@ -1,0 +1,9 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>像素贪吃蛇</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter','Noto Sans SC',system-ui,sans-serif}
+#stage{position:fixed;inset:0;display:grid;place-items:center;background:#0f380f}
+.gd{position:relative;width:40vh;height:40vh;background:#306230;border:.8vh solid #8bac0f;box-shadow:0 0 0 .8vh #0f380f}
+.sn{position:absolute;width:2.5vh;height:2.5vh;background:#8bac0f}
+.fd2{position:absolute;width:2.5vh;height:2.5vh;background:#9bbc0f;animation:bk .6s steps(1) infinite}
+@keyframes bk{50%{opacity:.4}}
+</style></head>
+<body><div id="stage"><div class="gd" id="gd"></div><script>const gd=document.getElementById("gd");let body=[{x:6,y:5},{x:5,y:5},{x:4,y:5}],dir={x:1,y:0},t=0;const fruit={x:9,y:5};function draw(){gd.innerHTML="";body.forEach(s=>{const d=document.createElement("i");d.className="sn";d.style.left=s.x*2.5+"vh";d.style.top=s.y*2.5+"vh";gd.appendChild(d)});const f=document.createElement("i");f.className="fd2";f.style.left=fruit.x*2.5+"vh";f.style.top=fruit.y*2.5+"vh";gd.appendChild(f)}setInterval(()=>{t++;if(t%12<6)dir={x:1,y:0};else if(t%12<8)dir={x:0,y:-1};else if(t%12<10)dir={x:1,y:0};else dir={x:0,y:1};const h=body[0];let nx=h.x+dir.x,ny=h.y+dir.y;if(nx<0||nx>15||ny<0||ny>15){nx=4;ny=5;body=[{x:nx,y:ny},{x:3,y:5},{x:2,y:5}]}else{body.pop();body.unshift({x:nx,y:ny});if(nx===fruit.x&&ny===fruit.y)body.push({...body[body.length-1]})}draw()},160);draw()</script></div></body></html>

@@ -1,0 +1,15 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>VHS录像带</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter','Noto Sans SC',system-ui,sans-serif}
+#stage{position:fixed;inset:0;background:#0a0a12;display:grid;place-items:center;overflow:hidden}
+.vid{position:relative;width:100%;height:100%;background:linear-gradient(160deg,#12224a,#3a1a5e 60%,#6e2a4e);display:grid;place-items:center}
+.vid h1{font-size:10vh;font-weight:900;letter-spacing:.2em;color:#fff;text-shadow:0.5vh 0 #f0f, -0.5vh 0 #0ff;animation:jit 2.4s steps(2) infinite}
+.scan{position:absolute;inset:0;background:repeating-linear-gradient(0deg,#0003 0 2px,transparent 2px 4px);pointer-events:none}
+.noise{position:absolute;inset:0;opacity:.14;background-image:repeating-conic-gradient(#fff 0 .001%,#0000 0 .002%);animation:nz .4s steps(3) infinite}
+.trk{position:absolute;left:0;right:0;height:8vh;background:linear-gradient(transparent,#ffffff18 45%,#0006 55%,transparent);animation:tk 5s linear infinite}
+.osd{position:absolute;top:4%;left:5%;color:#eee;font-family:Consolas,monospace;font-size:3.4vh;text-shadow:0 0 1vh #0008;letter-spacing:.1em}
+.osd.b{top:auto;bottom:5%;left:auto;right:6%;color:#ff4d4d}
+@keyframes jit{0%,92%{transform:translate(0,0)}94%{transform:translate(-1vh,0)}96%{transform:translate(1vh,.4vh)}98%{transform:translate(-.4vh,-.4vh)}}
+@keyframes nz{to{background-position:8vh 8vh}}
+@keyframes tk{from{top:-10%}to{top:110%}}
+</style></head>
+<body><div id="stage"><div class="vid"><h1>VHS</h1><div class="trk"></div><div class="osd">PLAY ▶ SP 0:00:12</div><div class="osd b">AUG 2026</div></div><div class="noise"></div><div class="scan"></div></div></body></html>

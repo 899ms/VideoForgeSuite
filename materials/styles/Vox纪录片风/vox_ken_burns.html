@@ -1,0 +1,9 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>Ken Burns 推拉</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter','Noto Sans SC',system-ui,sans-serif}
+#stage{position:fixed;inset:0;background:#1a1712;overflow:hidden}
+.p{position:absolute;inset:8%;background:linear-gradient(160deg,#7a6a4f,#4a4032 45%,#8c7a58);box-shadow:0 2vh 6vh #000a;animation:kb 12s ease-in-out infinite alternate}
+.p:after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(0deg,#0000 0 3vh,#00000010 3vh 3.3vh)}
+@keyframes kb{from{transform:scale(1) translate(0,0)}to{transform:scale(1.28) translate(-4%,-3%)}}
+.vig{position:absolute;inset:0;background:radial-gradient(80% 70% at 50% 45%,#0000 55%,#00000088)}
+</style></head>
+<body><div id="stage"><div class="p"></div><div class="vig"></div></div></body></html>

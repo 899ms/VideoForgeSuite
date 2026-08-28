@@ -1,0 +1,12 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>双向视差画廊</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter','Noto Sans SC',system-ui,sans-serif}
+#stage{position:fixed;inset:0;background:#0b0d12;overflow:hidden}
+.cl{position:absolute;top:0;bottom:0;width:24vh;display:flex;flex-direction:column;gap:3vh}
+.cl span{flex:0 0 26vh;border-radius:1.4vh;box-shadow:0 1vh 3vh #0006}
+.cl.l{left:8%;animation:up 9s linear infinite}
+.cl.r{right:8%;animation:dn 9s linear infinite}
+.cl.c{left:calc(50% - 12vh);animation:up 13s linear infinite}
+@keyframes up{to{transform:translateY(-50%)}}
+@keyframes dn{from{transform:translateY(-50%)}to{transform:translateY(0)}}
+</style></head>
+<body><div id="stage"><div class="cl l"><span style="background:linear-gradient(0deg,hsl(0,48%,44%),hsl(40,42%,30%))"></span><span style="background:linear-gradient(29deg,hsl(47,48%,44%),hsl(87,42%,30%))"></span><span style="background:linear-gradient(58deg,hsl(94,48%,44%),hsl(134,42%,30%))"></span><span style="background:linear-gradient(87deg,hsl(141,48%,44%),hsl(181,42%,30%))"></span><span style="background:linear-gradient(116deg,hsl(188,48%,44%),hsl(228,42%,30%))"></span></div><div class="cl c"><span style="background:linear-gradient(73deg,hsl(110,48%,44%),hsl(150,42%,30%))"></span><span style="background:linear-gradient(102deg,hsl(157,48%,44%),hsl(197,42%,30%))"></span><span style="background:linear-gradient(131deg,hsl(204,48%,44%),hsl(244,42%,30%))"></span><span style="background:linear-gradient(160deg,hsl(251,48%,44%),hsl(291,42%,30%))"></span><span style="background:linear-gradient(189deg,hsl(298,48%,44%),hsl(338,42%,30%))"></span></div><div class="cl r"><span style="background:linear-gradient(146deg,hsl(220,48%,44%),hsl(260,42%,30%))"></span><span style="background:linear-gradient(175deg,hsl(267,48%,44%),hsl(307,42%,30%))"></span><span style="background:linear-gradient(204deg,hsl(314,48%,44%),hsl(354,42%,30%))"></span><span style="background:linear-gradient(233deg,hsl(1,48%,44%),hsl(41,42%,30%))"></span><span style="background:linear-gradient(262deg,hsl(48,48%,44%),hsl(88,42%,30%))"></span></div></div></body></html>

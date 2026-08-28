@@ -1,0 +1,10 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>极光帘幕</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter','Noto Sans SC',system-ui,sans-serif}
+#stage{position:fixed;inset:0;background:linear-gradient(#020617,#0f172a 60%,#020617);overflow:hidden}
+.vl{position:absolute;top:-10%;bottom:30%;width:12vw;filter:blur(2.4vh);mix-blend-mode:screen;transform-origin:top;animation:sw 7s ease-in-out infinite alternate;border-radius:50%/60%;background:linear-gradient(#4ade8000,#4ade8099 40%,#22d3ee55 70%,transparent)}
+.v1{left:6%}.v2{left:22%;animation-delay:1s;background:linear-gradient(#c084fc00,#c084fc88 45%,#4ade8044 75%,transparent)}
+.v3{left:44%;animation-delay:2.2s}.v4{left:66%;animation-delay:1.6s;background:linear-gradient(#22d3ee00,#22d3ee88 42%,#c084fc44 72%,transparent)}
+.v5{left:84%;animation-delay:.5s}
+@keyframes sw{to{transform:skewX(8deg) scaleY(1.15);opacity:.75}}
+</style></head>
+<body><div id="stage"><div class="vl v1"></div><div class="vl v2"></div><div class="vl v3"></div><div class="vl v4"></div><div class="vl v5"></div></div></body></html>

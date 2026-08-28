@@ -1,0 +1,11 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>手账本</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter','Noto Sans SC',system-ui,sans-serif}
+#stage{position:fixed;inset:0;background:#efe9dc;display:grid;place-items:center}
+.nb{width:52vw;height:64vh;background:#fff linear-gradient(#bbdefb .3vh,transparent .3vh) 0 .6vh/100% 6vh;background-size:100% 6vh;position:relative;box-shadow:1vh 1.4vh 3vh #0003;padding:5vh 5vh;font-size:3.2vh;color:#37474f;line-height:6vh}
+.nb:before{content:"";position:absolute;top:0;bottom:0;left:8vh;width:.3vh;background:#ef9a9a}
+.nb u{text-decoration:none;background:linear-gradient(#fff59d,#fff59d) 0 60%/100% 2.4vh no-repeat}
+.nb li{animation:li 4s steps(1) infinite;opacity:0}
+.nb li:nth-child(2){animation-delay:1.3s}.nb li:nth-child(3){animation-delay:2.6s}
+@keyframes li{0%{opacity:0;transform:translateX(-2vh)}12%,90%{opacity:1;transform:none}100%{opacity:0}}
+</style></head>
+<body><div id="stage"><ul class="nb"><li>抄写 <u>关键句</u></li><li>画一个 <u>箭头</u></li><li>盖上 <u>日期章</u></li></ul></div></body></html>

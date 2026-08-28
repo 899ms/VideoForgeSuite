@@ -1,0 +1,19 @@
+<!doctype html><html lang=zh><head><meta charset=utf-8>
+<style>html,body{margin:0;height:100%;overflow:hidden;background:#ecfdf5;display:flex;align-items:center;justify-content:center;font-family:'Segoe UI',system-ui,sans-serif}
+.w{display:flex;flex-direction:column;gap:22px}
+.row{display:flex;align-items:center;gap:16px;background:#fff;border-radius:14px;padding:16px 22px;box-shadow:0 6px 18px rgba(5,150,105,.12);font-size:18px;color:#064e3b;font-weight:700;opacity:0;transform:translateX(-24px);animation:slide .5s ease forwards}
+@keyframes slide{to{opacity:1;transform:none}}
+.bx{width:30px;height:30px;border-radius:9px;border:2.5px solid #10b981;position:relative;flex:none}
+.bx.ok::after{content:'';position:absolute;left:8px;top:3px;width:9px;height:16px;border-right:3.5px solid #10b981;border-bottom:3.5px solid #10b981;transform:rotate(42deg)}
+.row:nth-child(1){animation-delay:.2s}.row:nth-child(2){animation-delay:.9s}.row:nth-child(3){animation-delay:1.6s}
+.row:nth-child(1) .bx{animation:ok .01s linear 1s forwards}.row:nth-child(2) .bx{animation:ok .01s linear 1.7s forwards}.row:nth-child(3) .bx{animation:ok .01s linear 2.4s forwards}
+@keyframes ok{to{}}
+.done .bx{background:#d1fae5}</style></head><body><div class=w id=w>
+<div class=row><div class=bx></div>学习五大动画库</div>
+<div class=row><div class=bx></div>复刻签名特效</div>
+<div class=row><div class=bx></div>扩充素材军火库</div>
+</div>
+<script>
+setTimeout(function(){document.querySelectorAll('.bx').forEach(function(b){b.classList.add('ok');b.style.background='#d1fae5'})},1000);
+document.querySelectorAll('.bx').forEach(function(b,i){setTimeout(function(){b.style.transition='background .3s';},1000+i*700)});
+setTimeout(function(){var a=document.querySelectorAll('*');for(var i=0;i<a.length;i++){try{a[i].style.animationPlayState='paused'}catch(e){}}},2600);</script></body></html>

@@ -1,0 +1,6 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>心电图</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter','Noto Sans SC',system-ui,sans-serif}
+#stage{position:fixed;inset:0;background:#030a06;display:grid;place-items:center}
+canvas{width:86vw;height:40vh}
+</style></head>
+<body><div id="stage"><canvas id="cv" width="960" height="300"></canvas><script>const c=document.getElementById("cv"),x=c.getContext("2d");const W=960,H=300;let t=0;const pts=[];for(let i=0;i<W;i++)pts.push(ecg(i-W));function ecg(px){const u=((px/60)+t)%4;if(u<.4)return Math.sin(u*15.7)*6;if(u<.55)return (u-.4)*-380;if(u<.68)return -57+(u-.55)*640;if(u<.8)return 27-(u-.68)*330;if(u<1.1)return -12+(u-.8)*13;return 0}setInterval(()=>{t+=.02},20);(function loop(){t+=.004;pts.push(ecg(W-2));if(pts.length>W)pts.shift();x.fillStyle="#030a06";x.fillRect(0,0,W,H);x.strokeStyle="rgba(0,255,140,.08)";for(let gy=0;gy<H;gy+=30){x.beginPath();x.moveTo(0,gy);x.lineTo(W,gy);x.stroke()}x.beginPath();for(let i=0;i<pts.length;i++){i?x.lineTo(i,H/2+pts[i]):x.moveTo(i,H/2+pts[i])}x.strokeStyle="#00ff8c";x.lineWidth=2.4;x.shadowColor="#00ff8c";x.shadowBlur=12;x.stroke();x.shadowBlur=0;requestAnimationFrame(loop)})();</script></div></body></html>

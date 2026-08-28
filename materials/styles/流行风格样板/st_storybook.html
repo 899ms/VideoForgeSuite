@@ -1,0 +1,11 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>童话绘本</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter','Noto Sans SC',system-ui,sans-serif}
+#stage{position:fixed;inset:0;background:linear-gradient(#fdf0d5,#f9dcc4);display:grid;place-items:center;overflow:hidden}
+.hill{position:absolute;left:-10%;right:-10%;bottom:-6%;height:34%;background:#8fb573;border-radius:50% 50% 0 0}
+.hill.h2{left:30%;right:-24%;bottom:-10%;height:28%;background:#7aa565}
+.sun{position:absolute;right:12%;top:12%;width:12vh;height:12vh;border-radius:50%;background:#ffd166;box-shadow:0 0 6vh #ffd16688;animation:su 8s ease-in-out infinite}
+.st{position:relative;font-size:5vh;color:#5a4632;font-family:'Noto Serif SC',serif;background:#fffdf4cc;padding:2vh 4vh;border-radius:2vh;box-shadow:0 1vh 2vh #0002;animation:ty 5s steps(1) infinite;opacity:0}
+@keyframes su{50%{transform:translateY(-2vh)}}
+@keyframes ty{0%,8%{opacity:0;transform:translateY(2vh)}16%,84%{opacity:1;transform:none}100%{opacity:0}}
+</style></head>
+<body><div id="stage"><div class="sun"></div><div class="hill"></div><div class="hill h2"></div><div class="st">从前有一座会讲故事的森林…</div></div></body></html>

@@ -1,0 +1,14 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>磁吸拼接</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter','Noto Sans SC',system-ui,sans-serif}
+#stage{position:fixed;inset:0;background:#0d0d12;display:grid;grid-template:1fr 1fr/1fr 1fr;gap:0;overflow:hidden}
+.qd{position:relative;display:grid;place-items:center;font-size:6vh;font-weight:900;color:#fff;opacity:0;animation:si 3.6s cubic-bezier(.2,1.2,.4,1) infinite}
+.qd:nth-child(1){background:linear-gradient(135deg,#1e88e5,#0d47a1);animation-name:f1}
+.qd:nth-child(2){background:linear-gradient(135deg,#43a047,#1b5e20);animation-name:f2}
+.qd:nth-child(3){background:linear-gradient(135deg,#fb8c00,#e65100);animation-name:f3}
+.qd:nth-child(4){background:linear-gradient(135deg,#8e24aa,#4a148c);animation-name:f4}
+@keyframes f1{0%,20%{transform:translate(-120%,-120%)}42%{transform:translate(0,0);opacity:1}48%{transform:scale(.96)}54%,88%{transform:scale(1);opacity:1}100%{opacity:0}}
+@keyframes f2{0%,20%{transform:translate(120%,-120%)}42%{transform:translate(0,0);opacity:1}48%{transform:scale(.96)}54%,88%{transform:scale(1);opacity:1}100%{opacity:0}}
+@keyframes f3{0%,20%{transform:translate(-120%,120%)}42%{transform:translate(0,0);opacity:1}48%{transform:scale(.96)}54%,88%{transform:scale(1);opacity:1}100%{opacity:0}}
+@keyframes f4{0%,20%{transform:translate(120%,120%)}42%{transform:translate(0,0);opacity:1}48%{transform:scale(.96)}54%,88%{transform:scale(1);opacity:1}100%{opacity:0}}
+</style></head>
+<body><div id="stage"><div class="qd">1</div><div class="qd">2</div><div class="qd">3</div><div class="qd">4</div></div></body></html>

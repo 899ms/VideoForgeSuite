@@ -1,0 +1,11 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>气泡图</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter','Noto Sans SC',system-ui,sans-serif}
+#stage{position:fixed;inset:0;background:#0b1320;display:grid;place-items:center;overflow:hidden}
+.bb{position:absolute;border-radius:50%;display:grid;place-items:center;color:#fff;font-size:2.4vh;transform:scale(0);animation:bz 4s steps(1) infinite}
+.b1{width:24vh;height:24vh;background:#1e88e5cc;left:18%;top:22%}
+.b2{width:16vh;height:16vh;background:#43a047cc;left:56%;top:40%;animation-delay:.3s}
+.b3{width:11vh;height:11vh;background:#fb8c00cc;left:40%;top:14%;animation-delay:.6s}
+.b4{width:9vh;height:9vh;background:#e53935cc;left:66%;top:18%;animation-delay:.9s}
+@keyframes bz{0%{transform:scale(0)}18%,84%{transform:scale(1)}94%,100%{opacity:0}}
+</style></head>
+<body><div id="stage"><div class="bb b1">短视频 45%</div><div class="bb b2">直播 30%</div><div class="bb b3">图文 18%</div><div class="bb b4">其他 7%</div></div></body></html>

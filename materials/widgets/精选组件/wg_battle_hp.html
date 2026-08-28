@@ -1,0 +1,13 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>战斗血条</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter','Noto Sans SC',system-ui,sans-serif}
+#stage{position:fixed;inset:0;background:#12080a;display:grid;place-items:center}
+.vs{display:grid;grid-template-columns:1fr auto 1fr;gap:3vh;align-items:center;width:66vw}
+.hp{height:3vh;border-radius:.6vh;background:#2a1114;overflow:hidden;border:.2vh solid #00000066}
+.hp i{display:block;height:100%;background:linear-gradient(90deg,#22c55e,#a3e635);transform-origin:left;animation:hp 4s steps(20) infinite}
+.hp.r i{background:linear-gradient(90deg,#ef4444,#f97316);transform-origin:right}
+.nm{font-size:2.8vh;color:#e5e7eb;margin-bottom:1vh;letter-spacing:.1em}
+.vs .x{font-size:6vh;font-weight:900;color:#f43f5e;text-shadow:0 0 3vh #f43f5e88;animation:xx 2s ease-in-out infinite}
+@keyframes hp{0%{transform:scaleX(1)}38%{transform:scaleX(1)}56%{transform:scaleX(.42)}82%{transform:scaleX(.42)}100%{opacity:0}}
+@keyframes xx{0%,100%{transform:scale(1)}50%{transform:scale(1.2)}}
+</style></head>
+<body><div id="stage"><div class="vs"><div><div class="nm">HERMES Lv.42</div><div class="hp"><i></i></div></div><div class="x">VS</div><div style="text-align:right"><div class="nm">BUG Lv.42</div><div class="hp r"><i></i></div></div></div></div></body></html>

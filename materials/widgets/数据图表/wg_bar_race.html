@@ -1,0 +1,12 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>条形竞速</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter','Noto Sans SC',system-ui,sans-serif}
+#stage{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:linear-gradient(160deg,#0e1526,#111827)}
+.bd{width:78vh;display:flex;flex-direction:column;gap:2.2vh}
+.row{display:flex;align-items:center;gap:1.6vh;font-size:2.6vh;color:#cbd5e1;font-weight:700}
+.nm{width:16vh;text-align:right}
+.trk{flex:1;height:4.6vh;background:#1e293b;border-radius:.9vh;overflow:hidden}
+.bar{height:100%;width:0;border-radius:.9vh;background:linear-gradient(90deg,var(--c),#fff4);animation:gw 6s cubic-bezier(.22,1,.36,1) infinite alternate}
+.vl{width:6vh;font-variant-numeric:tabular-nums;color:#7ef0ff}
+@keyframes gw{0%{width:0;opacity:.4}45%,70%{width:var(--w);opacity:1}100%{width:calc(var(--w) - 26%);opacity:1}}
+</style></head>
+<body><div id="stage"><div class="bd"><div class="row" style="--i:0"><span class="nm">Remotion</span><div class="trk"><div class="bar" style="--w:92%;--c:#22d3ee;animation-delay:calc(var(--i)*.55s)"></div></div><span class="vl">92</span></div><div class="row" style="--i:1"><span class="nm">Hermes</span><div class="trk"><div class="bar" style="--w:84%;--c:#8b5cf6;animation-delay:calc(var(--i)*.55s)"></div></div><span class="vl">84</span></div><div class="row" style="--i:2"><span class="nm">GSAP</span><div class="trk"><div class="bar" style="--w:71%;--c:#f59e0b;animation-delay:calc(var(--i)*.55s)"></div></div><span class="vl">71</span></div><div class="row" style="--i:3"><span class="nm">Lottie</span><div class="trk"><div class="bar" style="--w:58%;--c:#34d399;animation-delay:calc(var(--i)*.55s)"></div></div><span class="vl">58</span></div><div class="row" style="--i:4"><span class="nm">Anime.js</span><div class="trk"><div class="bar" style="--w:44%;--c:#fb7185;animation-delay:calc(var(--i)*.55s)"></div></div><span class="vl">44</span></div></div></div></body></html>

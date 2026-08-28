@@ -1,0 +1,16 @@
+<!doctype html><html lang=zh><head><meta charset=utf-8>
+<style>html,body{margin:0;height:100%;overflow:hidden;background:#000;font-family:'Segoe UI',system-ui,sans-serif}
+.sc{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:54px;font-weight:900;letter-spacing:6px}
+.a{background:linear-gradient(135deg,#134e4a,#0f172a);color:#5eead4;z-index:1}
+.b{background:linear-gradient(135deg,#a21caf,#e11d48);color:#fff;z-index:2;clip-path:circle(0% at 50% 50%);animation:sp 1.8s cubic-bezier(.65,0,.35,1) .4s forwards}
+@keyframes sp{0%{clip-path:circle(0% at 50% 50%)}100%{clip-path:circle(75% at 50% 50%)}}
+.rt{position:absolute;left:50%;top:50%;width:0;height:0;z-index:3;animation:rt 1.8s cubic-bezier(.65,0,.35,1) .4s}
+@keyframes rt{to{transform:rotate(360deg)}}
+.arm{position:absolute;left:0;top:-4px;height:8px;width:12vw;background:linear-gradient(90deg,#fff,transparent);border-radius:4px;transform-origin:left center}
+.a2{transform:rotate(120deg)}.a3{transform:rotate(240deg)}
+.lt{position:absolute;z-index:4;font-size:15px;color:#fff;letter-spacing:5px;bottom:11%;left:50%;transform:translateX(-50%);opacity:0;animation:lt .5s ease 2.2s forwards}
+@keyframes lt{to{opacity:1}}</style></head><body>
+<div class="sc a">SPIRAL</div><div class="sc b">螺旋划像</div>
+<div class=rt><div class=arm></div><div class="arm a2"></div><div class="arm a3"></div></div>
+<div class=lt>SPIRAL WIPE 螺旋转场</div>
+<script>setTimeout(function(){try{document.getAnimations().forEach(function(x){x.pause()})}catch(e){}},2250);</script></body></html>

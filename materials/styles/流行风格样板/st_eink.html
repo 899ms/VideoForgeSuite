@@ -1,0 +1,10 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>电子墨水</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter','Noto Sans SC',system-ui,sans-serif}
+#stage{position:fixed;inset:0;background:#e6e4df;display:grid;place-items:center}
+.card{width:60vw;background:#dedbd2;border:1vh solid #8d8a80;padding:5vh 6vh;font-family:Georgia,'Noto Serif SC',serif;color:#1f1e1a;box-shadow:inset 0 0 4vh #0002}
+.card h2{font-size:5vh;margin-bottom:2vh;font-weight:500}
+.card p{font-size:2.8vh;line-height:1.9}
+.pix{position:absolute;inset:0;background-image:repeating-conic-gradient(#00000005 0 .05turn,#0000 0 .1turn);background-size:3px 3px;animation:px 2.4s steps(4) infinite}
+@keyframes px{50%{transform:translateY(1px)}}
+</style></head>
+<body><div id="stage"><div class="card"><div class="pix"></div><h2>低功耗 · 高可读</h2><p>墨水屏只在变化时刷新。30 天续航，阳光下清晰可见。</p></div></div></body></html>

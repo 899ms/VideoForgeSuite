@@ -1,0 +1,9 @@
+<!doctype html><html lang=zh><head><meta charset=utf-8>
+<style>html,body{margin:0;height:100%;overflow:hidden;background:#09090b;display:flex;align-items:center;justify-content:center;font-family:'Segoe UI',system-ui,sans-serif}
+.g{display:grid;grid-template-columns:repeat(6,74px);grid-auto-rows:74px;gap:10px}
+.c{border-radius:12px;background:#18181b;border:1px solid #27272a;opacity:0;transform:scale(.4) rotate(45deg);animation:st .55s var(--d) cubic-bezier(.34,1.56,.64,1) forwards}
+@keyframes st{70%{transform:scale(1.06) rotate(0)}100%{opacity:1;transform:none}}
+.hl{background:linear-gradient(140deg,#a78bfa,#22d3ee)!important;border:none!important;box-shadow:0 0 26px #8b5cf666}
+</style></head><body><div class=g id=g></div>
+<script>var g=document.getElementById('g'),idx=0;for(var r=0;r<3;r++)for(var c=0;c<6;c++){var d=document.createElement('div');d.className='c'+((r*7+c*13)%11===5?' hl':'');d.style.setProperty('--d',(Math.abs(c-2.5)+r)*.09+'s');g.appendChild(d);idx++}</script>
+<script>setTimeout(function(){try{document.getAnimations().forEach(function(a){a.pause()})}catch(e){}var a=document.querySelectorAll('*');for(var i=0;i<a.length;i++){try{a[i].style.animationPlayState='paused'}catch(e){}}},1900);</script></body></html>

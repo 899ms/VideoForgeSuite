@@ -1,0 +1,26 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><style>*{margin:0;padding:0}body{background:#08080f;overflow:hidden}canvas{display:block;width:100vw;height:100vh}</style></head>
+<body><canvas id="c" width="1280" height="720"></canvas><script>
+const cv=document.getElementById('c'),ctx=cv.getContext('2d'),W=1280,H=720,T=5;
+let start=null;
+const full="Hello World Subtitle Demo";
+function draw(t){
+  ctx.fillStyle='#08080f';ctx.fillRect(0,0,W,H);
+  const barH=120,y=H-barH-60;
+  const g=ctx.createLinearGradient(0,y,0,y+barH);
+  g.addColorStop(0,'rgba(0,0,0,0.65)');g.addColorStop(0.5,'rgba(20,30,60,0.85)');g.addColorStop(1,'rgba(0,0,0,0.65)');
+  ctx.fillStyle=g;ctx.fillRect(0,y,W,barH);
+  ctx.strokeStyle='rgba(0,255,208,0.8)';ctx.lineWidth=3;ctx.shadowBlur=20;ctx.shadowColor='#00ffd0';
+  ctx.strokeRect(50,y+8,W-100,barH-16);ctx.shadowBlur=0;
+  const n=Math.min(full.length,Math.floor(t*3.5));
+  const txt=full.slice(0,n);
+  ctx.textAlign='left';ctx.textBaseline='middle';
+  ctx.font='52px monospace';ctx.fillStyle='rgba(255,255,255,0.95)';
+  ctx.fillText(txt,100,y+barH/2);
+  if(n<full.length&&Math.floor(t*4)%2===0){
+    const tw=ctx.measureText(txt).width;
+    ctx.fillStyle='#00ffd0';ctx.fillRect(100+tw+8,y+barH/2-26,5,52);
+  }
+}
+function loop(ts){if(!start)start=ts;const t=(ts-start)/1000;draw(t);if(t<T+0.3)requestAnimationFrame(loop);}
+requestAnimationFrame(loop);
+</script></body></html>

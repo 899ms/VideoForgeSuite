@@ -1,0 +1,14 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>万花筒</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter','Noto Sans SC',system-ui,sans-serif}
+#stage{position:fixed;inset:0;background:#05030c;display:grid;place-items:center;overflow:hidden}
+.k{position:relative;width:70vh;height:70vh;filter:saturate(1.5)}
+.w{position:absolute;inset:0;clip-path:polygon(50% 0,100% 50%,50% 50%);transform-origin:50% 50%;mix-blend-mode:screen}
+.w:after{content:"";position:absolute;inset:12% 40%;border-radius:50%;background:conic-gradient(from 0deg,#ff2fb3,#22d3ee,#fbbf24,#8b5cf6,#ff2fb3);animation:sp 7s linear infinite}
+.w:nth-child(2){transform:rotate(60deg)} .w:nth-child(3){transform:rotate(120deg)}
+.w:nth-child(4){transform:rotate(180deg)} .w:nth-child(5){transform:rotate(240deg)} .w:nth-child(6){transform:rotate(300deg)}
+.w:nth-child(even):after{animation-direction:reverse;animation-duration:5s}
+@keyframes sp{to{transform:rotate(360deg) scale(1.2)}}
+.core{position:absolute;left:50%;top:50%;width:10vh;height:10vh;margin:-5vh;border-radius:50%;background:#fff;box-shadow:0 0 6vh #fff,0 0 14vh #ff2fb3aa;animation:pulse 3s ease-in-out infinite}
+@keyframes pulse{50%{transform:scale(1.35)}}
+</style></head>
+<body><div id="stage"><div class="k"><div class="w"></div><div class="w"></div><div class="w"></div><div class="w"></div><div class="w"></div><div class="w"></div><div class="core"></div></div></div></body></html>

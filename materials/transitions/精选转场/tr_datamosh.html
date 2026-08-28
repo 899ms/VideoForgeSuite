@@ -1,0 +1,12 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>数据损坏</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter','Noto Sans SC',system-ui,sans-serif}
+#stage{position:fixed;inset:0;background:#000;display:grid;place-items:center;overflow:hidden}
+.im{position:absolute;inset:0;background:linear-gradient(120deg,#5c6bc0,#ec407a 60%,#ffca28)}
+.bl{position:absolute;height:7vh;width:60vw;background:linear-gradient(90deg,#ffffff22,#ffffff55);mix-blend-mode:overlay;animation:bs 2.6s steps(8) infinite;left:-10%}
+.b2{top:30%;animation-delay:.2s;width:80vw;background:#00e5ff33;mix-blend-mode:screen}
+.b3{top:58%;animation-delay:.4s;width:40vw;background:#ff408133}
+.sh{position:absolute;inset:0;animation:sh 2.6s steps(2) infinite}
+@keyframes bs{0%{transform:translateX(-30%)}25%{transform:translateX(20%)}50%{transform:translateX(-15%)}75%{transform:translateX(30%)}100%{opacity:0}}
+@keyframes sh{0%,30%{transform:none;filter:none}40%{transform:translateX(3%) skewX(3deg);filter:saturate(3)}55%{transform:translateX(-2%)}70%{transform:none;filter:none}100%{opacity:0}}
+</style></head>
+<body><div id="stage"><div class="im sh"></div><div class="bl"></div><div class="bl b2"></div><div class="bl b3"></div></div></body></html>

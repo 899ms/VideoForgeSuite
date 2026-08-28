@@ -1,0 +1,13 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>悬停发光</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter','Noto Sans SC',system-ui,sans-serif}
+#stage{position:fixed;inset:0;display:grid;place-items:center;background:#0d1117;gap:0}
+.demo{position:relative;display:grid;place-items:center}
+.cd{width:26vh;height:34vh;border-radius:2vh;background:linear-gradient(165deg,#1e293b,#0f172a);border:.3vh solid #334155;display:grid;place-items:center;color:#64748b;font-size:3vh;font-weight:700;transition:.5s cubic-bezier(.2,.8,.3,1);animation:demo 4.2s ease-in-out infinite}
+.cd:before{content:"";position:absolute;inset:-.3vh;border-radius:2vh;background:conic-gradient(from var(--a,0deg),transparent 0 60%%,#38bdf8 75%%,transparent 90%%);animation:spin 3s linear infinite;-webkit-mask:linear-gradient(#000 0 0) content-box,-webkit-mask;mask-composite:exclude;padding:.3vh;opacity:0;transition:.4s}
+@keyframes demo{0%%,20%%{transform:none;box-shadow:0 1vh 3vh #0005}45%%,70%%{transform:translateY(-2.6vh) scale(1.04);box-shadow:0 3.4vh 7vh #38bdf844;border-color:#38bdf8}95%%,100%%{transform:none}}
+@keyframes spin{to{--a:360deg}}
+@property --a{syntax:'<angle>';initial-value:0deg;inherits:false}
+.lb{position:absolute;bottom:-5.5vh;color:#38bdf8;font-size:2.2vh;letter-spacing:.2em;opacity:0;animation:lb 4.2s steps(1) infinite}
+@keyframes lb{0%%,30%%{opacity:0}45%%,70%%{opacity:1}85%%,100%%{opacity:0}}
+</style></head>
+<body><div id="stage"><div class="demo"><div class="cd">✦ 稀有卡面</div><span class="lb">HOVER · 悬停态</span></div></div></body></html>

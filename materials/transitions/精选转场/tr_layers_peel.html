@@ -1,0 +1,10 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>分层剥离</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter','Noto Sans SC',system-ui,sans-serif}
+#stage{position:fixed;inset:0;background:linear-gradient(140deg,#0d47a1,#42a5f5);overflow:hidden;display:grid;place-items:center}
+.ly{position:absolute;inset:0;display:grid;place-items:center;color:#fff;font-weight:900}
+.l1{background:linear-gradient(115deg,#37474f 0 100%);clip-path:polygon(0 0,100% 0,100% 34%,0 66%);animation:l1 4.2s cubic-bezier(.6,0,.4,1) infinite;font-size:5vh}
+.l2{background:linear-gradient(115deg,#546e7a,#78909c);clip-path:polygon(0 70%,100% 38%,100% 68%,0 100%);animation:l2 4.2s cubic-bezier(.6,0,.4,1) infinite}
+@keyframes l1{0%,24%{transform:translateX(0)}50%,86%{transform:translateX(-110%)}100%{transform:translateX(-110%);opacity:0}}
+@keyframes l2{0%,24%{transform:translateX(0)}54%,86%{transform:translateX(110%)}100%{transform:translateX(110%);opacity:0}}
+</style></head>
+<body><div id="stage"><div class="ly l1">上层剥离</div><div class="ly l2">LAYERED PEEL</div></div></body></html>

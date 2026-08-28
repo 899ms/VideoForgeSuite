@@ -1,0 +1,14 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>装饰艺术</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter','Noto Sans SC',system-ui,sans-serif}
+#stage{position:fixed;inset:0;background:radial-gradient(circle at 50% 40%,#1a2c4e,#0a1226);display:grid;place-items:center;overflow:hidden}
+.fr{position:absolute;inset:4vh;border:1vh double #d4af37;pointer-events:none}
+.fr:after{content:"";position:absolute;inset:1.4vh;border:.4vh solid #d4af3788}
+.sun{position:absolute;left:50%;top:38%;transform:translate(-50%,-50%);width:44vh;height:44vh;background:repeating-conic-gradient(#d4af3722 0 4deg,transparent 4deg 12deg);border-radius:50%;animation:sp 30s linear infinite}
+.ray{position:absolute;left:50%;top:38%;transform:translate(-50%,-50%);width:56vh;height:3vh;background:linear-gradient(90deg,transparent,#d4af3788,transparent);animation:shr 5s ease-in-out infinite alternate}
+.ray.r2{width:38vh;animation-delay:-2s}
+h1{position:relative;font-size:9vh;font-weight:900;letter-spacing:.35em;color:#d4af37;text-align:center;text-shadow:0 0 4vh #d4af3755;margin-top:16vh}
+.sub{position:relative;text-align:center;color:#d4af3799;letter-spacing:.8em;font-size:2.2vh;margin-top:2vh}
+@keyframes sp{to{transform:translate(-50%,-50%) rotate(360deg)}}
+@keyframes shr{from{transform:translate(-50%,-50%) scaleX(.6)}to{transform:translate(-50%,-50%) scaleX(1.1)}}
+</style></head>
+<body><div id="stage"><div class="fr"></div><div class="sun"></div><div class="ray"></div><div class="ray r2"></div><div><h1>DECO</h1><div class="sub">EST · 1925</div></div></div></body></html>

@@ -1,0 +1,11 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>饼图爆炸</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter','Noto Sans SC',system-ui,sans-serif}
+#stage{position:fixed;inset:0;background:#121212;display:grid;place-items:center}
+.pie{width:44vh;height:44vh;border-radius:50%;background:conic-gradient(#42a5f5 0 40%,#ab47bc 40% 70%,#ef5350 70% 88%,#66bb6a 88%);position:relative;animation:rt 6s ease-in-out infinite}
+.piece{position:absolute;inset:0;border-radius:50%;clip-path:polygon(50% 50%,100% 0,100% 100%);animation:ex 6s ease-in-out infinite}
+.piece:nth-child(2){background:#ffcdd2;transform-origin:0 0;animation-name:ex2}
+@keyframes rt{50%{transform:rotate(12deg)}}
+@keyframes ex{0%,30%{transform:translate(0,0)}55%,80%{transform:translate(3vh,-2vh)}100%{opacity:0}}
+@keyframes ex2{0%,30%{opacity:0;transform:translate(0,0) scale(0)}50%,80%{opacity:.9;transform:translate(2vh,3vh) scale(1)}100%{opacity:0}}
+</style></head>
+<body><div id="stage"><div class="pie"><div class="piece"></div></div></div></body></html>

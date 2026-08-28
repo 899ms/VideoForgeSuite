@@ -1,0 +1,9 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>立方体转场</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter','Noto Sans SC',system-ui,sans-serif}
+.bg{position:fixed;inset:0;background:radial-gradient(70% 70% at 50% 45%,#7C6CF5cc 0%,transparent 72%),radial-gradient(55% 55% at 18% 82%,#29D3E6aa 0%,transparent 70%),radial-gradient(55% 55% at 82% 18%,#FF5C8Aaa 0%,transparent 70%),linear-gradient(135deg,#2b2542,#171428);animation:hue 22s linear infinite}
+@keyframes hue{to{filter:hue-rotate(360deg)}}
+#stage{position:fixed;inset:0;display:flex;align-items:center;justify-content:center}canvas{width:100%;height:100%;display:block}
+.txt{color:#fff;font-weight:900;text-align:center}
+.scene{perspective:800px}.cube{width:180px;height:180px;position:relative;transform-style:preserve-3d;animation:sp 8s linear infinite}.cube b{position:absolute;width:180px;height:180px;opacity:.85;border:2px solid #fff3}.f1{background:#7C6CF5;transform:rotateY(0) translateZ(90px)}.f2{background:#29D3E6;transform:rotateY(90deg) translateZ(90px)}.f3{background:#FF5C8A;transform:rotateY(180deg) translateZ(90px)}.f4{background:#43E97B;transform:rotateY(-90deg) translateZ(90px)}.f5{background:#FFD200;transform:rotateX(90deg) translateZ(90px)}.f6{background:#F72585;transform:rotateX(-90deg) translateZ(90px)}@keyframes sp{to{transform:rotateX(360deg) rotateY(360deg)}}</style></head>
+<body><div class="bg"></div><div id="stage"><div class="scene"><div class="cube"><b class="f1"></b><b class="f2"></b><b class="f3"></b><b class="f4"></b><b class="f5"></b><b class="f6"></b></div></div></div>
+<script></script></body></html>

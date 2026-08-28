@@ -1,0 +1,20 @@
+<!doctype html><html lang=zh><head><meta charset=utf-8>
+<style>html,body{margin:0;height:100%;overflow:hidden;background:#020617}
+.t{position:absolute;left:50%;top:10%;transform:translateX(-50%);font-size:26px;font-weight:800;color:#5eead4;letter-spacing:8px;z-index:2}</style></head><body>
+<div class=t>CUBE MATRIX WAVE</div>
+<canvas id=c style="position:absolute;inset:0"></canvas>
+<script>
+var c=document.getElementById('c'),x=c.getContext('2d');c.width=innerWidth;c.height=innerHeight;
+var T=0;
+function f(){x.fillStyle='rgba(2,6,23,.22)';x.fillRect(0,0,c.width,c.height);T+=0.045;
+var n=13,cw=Math.min(c.width,c.height*1.4)/(n+4);
+for(var i=0;i<n;i++)for(var j=0;j<n;j++){
+var px=c.width/2+(i-n/2+0.5)*cw*1.35,py=c.height*0.6+(j-n/2+0.5)*cw*0.85;
+var w=Math.sin(T+i*0.55)*Math.cos(T*0.8+j*0.5),h=16+w*26;
+var al=0.25+0.5*(w+1)/2;
+x.fillStyle='hsla('+((160+w*80)%360)+',85%,60%,'+al+')';
+var s=cw*0.42*(0.7+0.3*(w+1)/2);
+x.fillRect(px-s/2,py-h/2,s,h);}
+requestAnimationFrame(f);}
+f();
+setTimeout(function(){try{document.getAnimations().forEach(function(a){a.pause()})}catch(e){}},2500);</script></body></html>

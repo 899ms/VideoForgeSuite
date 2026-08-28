@@ -1,0 +1,30 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><style>*{margin:0;padding:0}body{background:#000;overflow:hidden}canvas{display:block;width:100vw;height:100vh}</style></head>
+<body><canvas id="c" width="1280" height="720"></canvas><script>
+const cv=document.getElementById('c'),ctx=cv.getContext('2d'),W=1280,H=720,T=5;
+let start=null;
+function draw(t){
+  ctx.fillStyle='#000';ctx.fillRect(0,0,W,H);
+  const progress=Math.min(t/3,1);
+  // swirl: spiral points
+  ctx.globalCompositeOperation='screen';
+  for(let i=0;i<3000;i++){
+    const a=(i/3000)*Math.PI*8+t*2;
+    const r=progress*(W*0.6)*Math.pow(i/3000,0.7);
+    const x=W/2+Math.cos(a)*r*(0.5+progress*0.5);
+    const y=H/2+Math.sin(a)*r*(0.5+progress*0.5);
+    const hue=(i/3000*360+t*60)%360;
+    ctx.fillStyle=`hsla(${hue},80%,65%,${0.9*(1-i/3000)})`;
+    ctx.beginPath();ctx.arc(x,y,1.5+Math.random()*1.5,0,Math.PI*2);ctx.fill();
+  }
+  // fade in / out color wipe
+  if(progress>0.4){
+    const f=(progress-0.4)/0.6;
+    ctx.globalCompositeOperation='source-over';
+    ctx.fillStyle=`rgba(0,229,255,${f})`;
+    ctx.fillRect(0,0,W,H);
+  }
+  ctx.globalCompositeOperation='source-over';
+}
+function loop(ts){if(!start)start=ts;const t=(ts-start)/1000;draw(t);if(t<T+0.3)requestAnimationFrame(loop);}
+requestAnimationFrame(loop);
+</script></body></html>

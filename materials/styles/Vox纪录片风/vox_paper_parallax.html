@@ -1,0 +1,8 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>档案照片视差</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter','Noto Sans SC',system-ui,sans-serif}
+#stage{position:fixed;inset:0;background:#b99b6b radial-gradient(120% 100% at 50% 0,#cdb089,#a8865a);display:grid;place-items:center;overflow:hidden;perspective:90vh}
+.ph{width:34vw;aspect-ratio:4/3;background:linear-gradient(135deg,#6d7f8f,#3c4c5c 60%,#8fa3b3);box-shadow:0 2vh 5vh #0006,0 0 0 1.2vh #fff,0 0 0 1.4vh #d8cdb4;transform:rotate(-3deg);animation:pv 9s ease-in-out infinite}
+.ph:after{content:"1986 · 档案 No.42";position:absolute;bottom:-5vh;left:2vh;font-size:2.4vh;color:#3b2f1d;font-family:'Noto Sans SC'}
+@keyframes pv{0%,100%{transform:rotate(-3deg) scale(1) translateY(0)}50%{transform:rotate(-1deg) scale(1.14) translateY(-3vh)}}
+</style></head>
+<body><div id="stage"><div class="ph"></div></div></body></html>

@@ -1,0 +1,12 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>下划线滑入</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter','Noto Sans SC',system-ui,sans-serif}
+#stage{position:fixed;inset:0;display:grid;place-items:center;background:#0a0a0f}
+.nv{display:flex;gap:6vh}
+.it{position:relative;color:#94a3b8;font-size:3.4vh;font-weight:600;letter-spacing:.1em;padding-bottom:1.2vh}
+.it:after{content:"";position:absolute;left:0;bottom:0;width:100%%;height:.5vh;border-radius:99vh;background:linear-gradient(90deg,#38bdf8,#818cf8);transform:scaleX(0);transform-origin:left;transition:.45s cubic-bezier(.2,.8,.3,1)}
+.it.on{color:#fff}
+.it.on:after{transform:scaleX(1)}
+.demo{position:relative;animation:dm 4.8s steps(1) infinite}
+@keyframes dm{0%%,80%%{transform:none}85%%,95%%{transform:translateY(-.6vh)}100%%{transform:none}}
+</style></head>
+<body><div id="stage"><div class="demo"><div class="nv"><span class="it">首页</span><span class="it on">作品集</span><span class="it">关于我</span></div></div></div></body></html>

@@ -1,0 +1,13 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>虚线航线</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter','Noto Sans SC',system-ui,sans-serif}
+#stage{position:fixed;inset:0;background:#eef3ee;display:grid;place-items:center}
+.mp{position:relative;width:60vw;height:60vh;background:#f7faf5;border:.4vh solid #d5e0d2;border-radius:1vh;box-shadow:0 1.5vh 4vh #0002}
+.mp svg{position:absolute;inset:0;width:100%;height:100%}
+.mp path{fill:none;stroke:#b23a48;stroke-width:.5vh;stroke-dasharray:2 2.2;stroke-linecap:round;stroke-dashoffset:220;animation:rt 5s linear infinite}
+.pt{position:absolute;width:1.8vh;height:1.8vh;border-radius:50%;background:#2c3e50}
+.pa{left:14%;top:66%}.pb{right:16%;top:22%}
+.lb{position:absolute;font-size:2.4vh;color:#2c3e50;font-weight:700}
+.la{left:11%;top:74%}.lb2{right:12%;top:10%}
+@keyframes rt{to{stroke-dashoffset:0}}
+</style></head>
+<body><div id="stage"><div class="mp"><svg viewBox="0 0 600 300" preserveAspectRatio="none"><path d="M100,210 C220,240 380,120 480,70"/></svg><span class="pt pa"></span><span class="pt pb"></span><span class="lb la">上海</span><span class="lb lb2">鹿特丹</span></div></div></body></html>

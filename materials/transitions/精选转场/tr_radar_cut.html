@@ -1,0 +1,13 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>雷达切换</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter','Noto Sans SC',system-ui,sans-serif}
+#stage{position:fixed;inset:0;overflow:hidden}
+.sc{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:9vh;font-weight:900;color:#fff;letter-spacing:.15em}
+.s1{background:#0b1e3a;animation:sh 4s steps(1) infinite}
+.s2{background:#3a0b2a;animation:sh 4s steps(1) infinite;animation-delay:2s}
+.sw{position:absolute;inset:0;background:conic-gradient(from 0deg at 50% 50%,#22d3ee66 0deg,#22d3ee00 70deg);animation:sp 2s linear infinite}
+.blip{position:absolute;width:1.6vh;height:1.6vh;border-radius:50%;background:#22d3ee;box-shadow:0 0 2vh #22d3ee;animation:bp 2s linear infinite}
+@keyframes sp{to{transform:rotate(360deg)}}
+@keyframes sh{0%,49%{opacity:1}50%,100%{opacity:0}}
+@keyframes bp{0%,20%{opacity:1}60%,100%{opacity:.1}}
+</style></head>
+<body><div id="stage"><div class="sc s1">IN</div><div class="sc s2">OUT</div><div class="sw"></div><span class="blip" style="left:36%;top:30%"></span><span class="blip" style="left:64%;top:56%;animation-delay:.7s"></span></div></body></html>

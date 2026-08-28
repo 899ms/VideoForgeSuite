@@ -1,0 +1,8 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>逐字波浪</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter','Noto Sans SC',system-ui,sans-serif}
+#stage{position:fixed;inset:0;display:grid;place-items:center;background:#08080e}
+.ws{display:flex;gap:.6vh;font-size:8vh;font-weight:900;color:#334155}
+.ws b{animation:wv 3.2s ease-in-out infinite;animation-delay:calc(var(--i)*.09s)}
+@keyframes wv{0%,18%{transform:translateY(0);color:#334155}26%,60%{transform:translateY(-2.4vh);color:#a78bfa;text-shadow:0 0 2.4vh #8b5cf688}68%,100%{transform:translateY(0);color:#334155}}
+</style></head>
+<body><div id="stage"><div class="ws"><b style="--i:0">H</b><b style="--i:1">O</b><b style="--i:2">V</b><b style="--i:3">E</b><b style="--i:4">R</b><b style="--i:5"> </b><b style="--i:6">M</b><b style="--i:7">E</b></div></div></body></html>

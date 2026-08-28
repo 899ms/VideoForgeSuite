@@ -1,0 +1,12 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>天气卡</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter','Noto Sans SC',system-ui,sans-serif}
+#stage{position:fixed;inset:0;display:grid;place-items:center;background:linear-gradient(#4a9df0,#9fd8ff)}
+.card{width:34vh;border-radius:3vh;padding:4vh;background:#ffffffcc;backdrop-filter:blur(1vh);text-align:center;box-shadow:0 3vh 7vh #00000022;animation:fl 5s ease-in-out infinite alternate}
+.card .ic{font-size:9vh;display:inline-block;animation:fl 3.4s ease-in-out infinite alternate}
+.card .tp{font-size:7vh;font-weight:900;color:#12233f}
+.card .ct{color:#5b7ba6;font-size:2.6vh;letter-spacing:.2em}
+.row{display:flex;justify-content:space-around;margin-top:3vh;color:#5b7ba6;font-size:2vh}
+.row b{display:block;color:#12233f;font-size:2.6vh;margin-top:.6vh}
+@keyframes fl{from{transform:translateY(0)}to{transform:translateY(-1.4vh)}}
+</style></head>
+<body><div id="stage"><div class="card"><span class="ic">⛅</span><div class="tp">26°</div><div class="ct">杭州 · 多云转晴</div><div class="row"><span>湿度<b>62%</b></span><span>风速<b>3级</b></span><span>紫外线<b>中等</b></span></div></div></div></body></html>

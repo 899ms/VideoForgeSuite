@@ -1,0 +1,14 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>指纹验证</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter','Noto Sans SC',system-ui,sans-serif}
+#stage{position:fixed;inset:0;background:#0e1116;display:grid;place-items:center}
+.fp{width:26vh;height:26vh;position:relative;display:grid;place-items:center}
+.arc{position:absolute;border-radius:50%;border:.7vh solid #3b82f6;animation:ap 3.2s ease-out infinite}
+.a1{inset:0;border-color:#1e3a8a55}
+.a2{inset:14%;border-color:#1e40af88;animation-delay:.15s}
+.a3{inset:28%;border-color:#2563ebaa;animation-delay:.3s}
+.a4{inset:42%;border-color:#3b82f6;animation-delay:.45s}
+.ok{position:absolute;font-size:5vh;color:#22c55e;opacity:0;animation:ok 3.2s steps(1) 2s infinite}
+@keyframes ap{0%{transform:scale(.5);opacity:0}30%{opacity:1}80%{transform:scale(1);opacity:1}100%{opacity:0}}
+@keyframes ok{0%{opacity:0;transform:scale(.4)}20%,80%{opacity:1;transform:scale(1)}100%{opacity:0}}
+</style></head>
+<body><div id="stage"><div class="fp"><div class="arc a1"></div><div class="arc a2"></div><div class="arc a3"></div><div class="arc a4"></div><div class="ok">✓ 已验证</div></div></div></body></html>

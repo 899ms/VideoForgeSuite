@@ -1,0 +1,5 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>潮汐气泡</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter','Noto Sans SC',system-ui,sans-serif}
+#stage{position:fixed;inset:0;background:linear-gradient(#0277bd22,#01579b 60%,#01243d);overflow:hidden}canvas{position:absolute;inset:0;width:100%;height:100%}
+</style></head>
+<body><div id="stage"><canvas id="cv"></canvas><script>const c=document.getElementById("cv"),x=c.getContext("2d");c.width=innerWidth;c.height=innerHeight;const B=[];for(let i=0;i<90;i++)B.push({x:Math.random()*c.width,y:Math.random()*c.height,r:1+Math.random()*4,s:.4+Math.random()*1.2,w:Math.random()*6.28});(function lp(){x.clearRect(0,0,c.width,c.height);x.fillStyle="rgba(1,71,123,.0)";x.fillRect(0,0,c.width,c.height);for(const b of B){b.y-=b.s;b.w+=.02;const sx=b.x+Math.sin(b.w)*b.r*3;if(b.y<-8){b.y=c.height+8;b.x=Math.random()*c.width}x.strokeStyle="rgba(224,247,250,.6)";x.beginPath();x.arc(sx,b.y,b.r,0,6.28);x.stroke();x.fillStyle="rgba(224,247,250,.14)";x.fill()}requestAnimationFrame(lp)})();</script></div></body></html>

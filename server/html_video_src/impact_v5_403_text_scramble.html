@@ -1,0 +1,37 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><style>*{margin:0;padding:0}body{background:#0a0a14;overflow:hidden}canvas{display:block;width:100vw;height:100vh}</style></head>
+<body><canvas id="c" width="1280" height="720"></canvas><script>
+const cv=document.getElementById('c'),ctx=cv.getContext('2d'),W=1280,H=720,T=5;
+let start=null;
+const target="MATRIX CODE";
+function draw(t){
+  ctx.fillStyle='#0a0a14';ctx.fillRect(0,0,W,H);
+  const n=Math.min(target.length,Math.floor(t*3));
+  const show=target.slice(0,n);
+  const cy=H/2;
+  ctx.font='bold 110px monospace';
+  ctx.textAlign='center';ctx.textBaseline='middle';
+  // scramble effect: random chars behind revealed
+  for(let i=0;i<target.length;i++){
+    const x=W/2-((target.length-1)*50)/2+i*50;
+    const r=Math.floor(Math.random()*36);
+    const ch=i<n?target[i]:String.fromCharCode(65+Math.floor(Math.random()*26));
+    if(i<n){
+      ctx.fillStyle='#00ffd0';
+      ctx.shadowColor='#00ffd0';ctx.shadowBlur=20;
+      ctx.fillText(ch,x,cy);
+      ctx.shadowBlur=0;
+    } else {
+      ctx.fillStyle=`rgba(0,255,200,${0.2+Math.random()*0.3})`;
+      ctx.fillText(ch,x,cy);
+    }
+  }
+  // cursor
+  if(n<target.length){
+    const cx=W/2-((target.length-1)*50)/2+n*50;
+    ctx.fillStyle='#00ffd0';
+    ctx.fillRect(cx+6,cy-40,5,80);
+  }
+}
+function loop(ts){if(!start)start=ts;const t=(ts-start)/1000;draw(t);if(t<T+0.3)requestAnimationFrame(loop);}
+requestAnimationFrame(loop);
+</script></body></html>

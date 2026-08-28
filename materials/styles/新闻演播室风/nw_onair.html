@@ -1,0 +1,12 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8"><title>ON AIR 倒计时</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}html,body{width:100%;height:100%;overflow:hidden;font-family:'Inter','Noto Sans SC',system-ui,sans-serif}
+#stage{position:fixed;inset:0;background:#101418;display:grid;place-items:center}
+.wr{display:flex;flex-direction:column;align-items:center;gap:4vh}
+.sign{display:flex;gap:3vh}
+.tb{padding:2.4vh 4vh;border:.6vh solid #3c4650;border-radius:1vh;font-size:4.2vh;font-weight:900;letter-spacing:.2em;color:#5c6a78;background:#161b21}
+.tb.on{color:#ff5252;border-color:#ff5252;background:#2a0f12;box-shadow:0 0 4vh #ff525266, inset 0 0 2vh #ff525233;animation:gl 2s steps(1) infinite}
+.cd{font-family:monospace;font-size:12vh;color:#e8eaed;text-shadow:0 .5vh 0 #000}
+.cd small{font-size:4vh;color:#5c6a78}
+@keyframes gl{50%{opacity:.75}}
+</style></head>
+<body><div id="stage"><div class="wr"><div class="sign"><span class="tb on">ON AIR</span><span class="tb">STUDIO B</span></div><div class="cd">00:04<small>.58</small></div></div></div></body></html>

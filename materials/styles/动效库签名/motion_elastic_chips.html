@@ -1,0 +1,15 @@
+<!doctype html><html lang=zh><head><meta charset=utf-8>
+<style>html,body{margin:0;height:100%;overflow:hidden;background:#101014;display:flex;align-items:center;justify-content:center;font-family:'Segoe UI',system-ui,sans-serif}
+.row{display:flex;gap:22px}
+.chip{padding:18px 34px;border-radius:16px;font-weight:800;font-size:26px;color:#e4e4e7;
+background:#1c1c21;border:1px solid #303036;opacity:0;
+transform:translateY(46px) scale(.7);animation:pop .8s var(--d) cubic-bezier(.3,1.7,.35,1) forwards}
+.chip::after{content:"";position:absolute;left:50%;top:-14px;margin-left:-5px;border:5px solid transparent;border-bottom-color:#71717a}
+@keyframes pop{70%{transform:translateY(-7px) scale(1.03)}100%{opacity:1;transform:none}}
+.l{position:relative}
+.l b{display:inline-block}
+</style></head><body><div class=row>
+<div class=chip style="--d:.1s">拖拽拖放</div>
+<div class=chip style="--d:.32s;background:linear-gradient(140deg,#f43f5e,#fb923c);border:none">弹性跟手</div>
+<div class=chip style="--d:.54s">手势动画</div>
+</div></body></html>
