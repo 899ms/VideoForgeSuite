@@ -3,6 +3,11 @@
 > 把「AI 帮我剪视频」从**抽卡赌博**变成**确定性拼装**。
 > 600+ 现成特效素材库 · 三引擎融合 · 消费级显卡本地跑视频生成模型
 
+![License](https://img.shields.io/badge/license-MIT-green.svg)
+![Python](https://img.shields.io/badge/Python-3.10%2B-blue.svg)
+![Deps](https://img.shields.io/badge/%E4%B8%BB%E6%9C%8D%E5%8A%A1-%E9%9B%B6%E4%BE%9D%E8%B5%96-orange.svg)
+![Stars](https://img.shields.io/github/stars/Ding200602/VideoForgeSuite?style=social)
+
 ![VideoForge Suite 界面](docs/ui.jpg)
 
 ## 💡 为什么做这个
@@ -113,3 +118,7 @@ VideoForgeSuite/
 ---
 
 ⭐ 如果这个思路对你有启发，欢迎 Star 关注——素材库持续更新中。
+
+## 📄 License
+
+[MIT](LICENSE) © 2026 Ding200602 —— 素材库中的 HTML 特效可自由用于你的项目，欢迎注明来源。
