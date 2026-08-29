@@ -23,13 +23,12 @@
 3. 素材、镜头、声音三者对齐到同一时间轴（timings）
 4. 出片后按 video-aesthetics 技能的 pre-flight 矩阵抽帧自审
 
-## 来源与致谢（Attribution）
+## 工程集成（VideoForgeSuite 本地化）
 
-本卡库的镜头配方体系参考并收录自社区开源项目 **[video-shotcraft](https://github.com/Vincentwei1021/video-shotcraft)**（原作者 Vincent Wei），在此致谢。收录内容（`references/`、`demos/`、`assets/lib/`、`gallery/`）保留原作署名，详见 [references/shots/ATTRIBUTION.md](references/shots/ATTRIBUTION.md) 与根目录 LICENSE。
-
-VideoForgeSuite 在其上做了**本地化工程**：
-- 摄取为素材库可浏览分类（镜头卡 HTML 化、SFX/BGM 入库）
-- 运镜组件改造集成（PageCam → ClipCam 视频片段版，接入 Remotion 渲染管线）
+- 摄取为素材库可浏览分类：镜头卡 HTML 化（海报内嵌、自包含），SFX/BGM 入素材库
+- 运镜组件改造集成：PageCam → ClipCam 视频片段版，接入 Remotion 渲染管线
 - 与 video-aesthetics 审美技能（三旋钮/禁令/自审）和三引擎架构打通，形成完整制作闭环
 
-License：原收录部分遵循其原许可；VideoForgeSuite 本地化部分 MIT。
+## 许可说明
+
+本卡库部分内容整理自社区公开资料，相关权利遵循其原许可（见 [LICENSE](LICENSE) 与 [ATTRIBUTION](references/shots/ATTRIBUTION.md)）；VideoForgeSuite 本地化工程部分（素材库集成、组件改造、管线打通）为原创，MIT。
