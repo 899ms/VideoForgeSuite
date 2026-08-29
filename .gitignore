@@ -1,5 +1,5 @@
 # ── 模型权重 / 大体积运行环境（GitHub 传不了，用网盘/HuggingFace 分发）──
-h3/
+/h3/
 DiffSynth-Studio/
 *.safetensors
 *.ckpt
