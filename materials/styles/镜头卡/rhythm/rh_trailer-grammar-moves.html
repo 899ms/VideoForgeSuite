@@ -1,0 +1,60 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Microsoft YaHei",sans-serif;background:#FCFAF3;color:#26221C;padding:28px 30px;max-width:900px}
+.banner{height:170px;border-radius:14px;background:linear-gradient(120deg,#F5E663,#F0D93B 55%,#E8C82E);margin-bottom:18px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.banner img{width:100%;height:100%;object-fit:cover}
+.fallback{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;height:100%}
+.fb1{font-size:22px;font-family:KaiTi,serif;color:#7A6A14;letter-spacing:6px}
+.fb2{font-size:40px;font-family:KaiTi,serif;font-weight:bold;color:#26221C}
+.tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.tag{font-size:12px;padding:3px 10px;border-radius:20px;border:1.5px solid #26221C;background:#fff}
+.tag.cat{background:#26221C;color:#FCFAF3}
+.tag.energy{color:#fff;border:none}
+h1{font-size:30px;font-family:KaiTi,serif;margin-bottom:10px}
+.oneliner{font-size:17px;line-height:1.6;padding:10px 14px;background:#FFF9D6;border-left:4px solid #E8C82E;border-radius:0 8px 8px 0;margin-bottom:14px}
+.meta{font-size:13px;color:#6B6357;margin-bottom:18px}
+h2{font-size:17px;margin:20px 0 8px;padding-bottom:4px;border-bottom:2px solid #E8C82E;font-family:KaiTi,serif}
+p,li{font-size:14px;line-height:1.75}
+ul{padding-left:20px}
+code{font-family:Consolas,monospace;background:#F0EDE2;padding:1px 5px;border-radius:4px;font-size:13px}
+table{border-collapse:collapse;width:100%;margin:6px 0}
+th,td{border:1px solid #D8D2C0;padding:6px 10px;font-size:13px;text-align:left}
+th{background:#F0EDE2}
+.demo{margin-top:22px;padding:10px 14px;background:#F0EDE2;border-radius:8px;font-size:12.5px;color:#6B6357;font-family:Consolas,monospace;word-break:break-all}
+.src{margin-top:16px;font-size:11px;color:#A39B8B;text-align:center}
+</style></head><body>
+<div class="banner"><div class="fallback"><div class="fb1">节奏镜头</div><div class="fb2">trailer-grammar-moves</div></div></div>
+<div class="tags"><span class="tag cat">rhythm · 节奏</span><span class="tag energy" style="background:#A16207">能量 A 高 / B 中 / C 高</span><span class="tag">A ~4.7s / B ~5s / C ~4.5s</span></div>
+<h1>trailer-grammar-moves</h1>
+<div class="oneliner">预告片语法三式——trailer-bumper 前置速剪钩子、card-footage-cadence 字卡穿插对话、smash-cut 猛切入定</div>
+<div class="meta"><b>适用：</b>预告片的三个结构性时刻：开场怎么钩（A）、中段怎么对话（B）、高潮怎么收（C）；三式合用即一支预告片的骨架</div>
+<h2>意图</h2>
+<p>库内节奏卡各管一段：beat-cut 管切点排布、montage-rhythm 管段落呼吸、</p>
+<p>rhythm-interrupt 管打断。本卡管<b>预告片的结构性时刻</b>——不是某个</p>
+<p>镜头怎么动，是整片的三个关节怎么接：A 是开场钩——正片前 0.9 秒塞</p>
+<p>三个最抓眼镜头速剪 + 黑场静默一拍再开场，预告片的"预告"；B 是中段</p>
+<p>对话——UI 镜头与黑底短语卡互相接拍交替硬切，画面与文字都踩拍点，</p>
+<p>第三幕结构；C 是高潮句号——满屏动势轰鸣最高潮一帧硬切成整齐静止</p>
+<p>全景死寂，喧闹→死寂。三式合用即一支预告片的骨架。</p>
+<h2>三式选型</h2>
+<table><thead><tr><th>式</th><th>做法</th><th>适用</th></tr></thead><tbody><tr><td>A trailer-bumper</td><td>三镜头各 9f 等长硬切（0/9/18），每镜内部 scale 1→1.04 微推保活；27–33f 纯黑静默，33f 起标题 16f 淡入 + 44px out-cubic 微升</td><td>正片开场前的钩子；cold open</td></tr><tr><td>B card-footage-cadence</td><td>七段条件挂载分段（14/22/34/42/52/62 切点）：UI 段带微动（缓推/裁切横移），字卡段黑底白字 1.05→1 落定微缩</td><td>中段画面与文字对话；卖点三连</td></tr><tr><td>C smash-cut</td><td>轰鸣段全 Easing.in(quad)：背景推近 1→1.55 + rotate 1.8°、5 张飞卡错峰加速冲脸 + 速度门控模糊；42f 一帧硬切无动画属性的静止全景</td><td>全片最高潮的收束句号</td></tr></tbody></table>
+<h2>参数表</h2>
+<table><thead><tr><th>参数</th><th>典型值</th><th>调节手感</th></tr></thead><tbody><tr><td>A 速剪</td><td>三镜等长 9f，零过渡；镜头 3 用 origin 58%/40% 放大 2.2x 怼脸特写</td><td>节拍感靠等长；三镜构图必须明显不同</td></tr><tr><td>A 微推</td><td>每镜内部 scale 1→1.04 线性</td><td>静帧三连读作幻灯片——命门</td></tr><tr><td>A 黑场</td><td>27–33f 纯黑 #000 空 div，6f</td><td>黑场里放任何东西都毁掉"静默一拍"</td></tr><tr><td>B 交替</td><td>UI 段 12f 级 ↔ 字卡 8f 级硬切，条件挂载分段=天然零过渡</td><td>段长可变但要读出"接拍"感</td></tr><tr><td>B 字卡</td><td>黑底白字居中，落定 1.05→1 out-cubic 5f 内完成，其余全静</td><td>字卡的静 ↔ UI 段的动，质感对比即节奏</td></tr><tr><td>C 切点</td><td>42f 一帧完成全部反差；切前 3f 动势仍在加速</td><td>绝不减速迎接切点——命门</td></tr><tr><td>C 模糊</td><td>飞卡 blur = 1+4p（p∝瞬时速度），背景恒 1.5px 衬前景</td><td>速度门控：快才糊，不是全程糊</td></tr><tr><td>收尾</td><td>A 静止 91f / B 45f / C 93f（≥40f）</td><td>C 死寂段直接 return 无动画子树，帧函数级真静止</td></tr></tbody></table>
+<h2>已知坑</h2>
+<ul><li>demo 在灰阶/占位素材上调校通过——参数是调校起点非实战定稿，</li></ul>
+<p>首次实战须以真实素材回验</p>
+<ul><li>A 黑场必须纯黑无物（drop-blackout 判例同族）——黑场是喘息，</li></ul>
+<p>不是又一张字卡</p>
+<ul><li>B 与 cel-flash-stomp/beat-cut 字卡段的分工：那些是字在表演</li></ul>
+<p>（字自己是主角），这是字与画对话（互相接拍）——别混用</p>
+<ul><li>C 死寂段绝对真静止、音乐同帧骤停——声音强依赖，无声版的 smash cut</li></ul>
+<p>只剩一半（sound-design §4.5）；A 三连切每切一声打点、黑场全消音</p>
+<ul><li>C 与 drop-blackout-slam 的区别：那是黑场蓄力再爆（静→爆），</li></ul>
+<p>这是爆完瞬间入定（爆→静）——方向相反，别接错位置</p>
+<h2>参考实现</h2>
+<p>demos/rhythm/trailer-grammar-moves/</p>
+<p>（CardFootageCadence.tsx / SmashCut.tsx / TrailerBumper.tsx）</p>
+<div class="demo">参考实现：demos/rhythm/trailer-grammar-moves/</div>
+<div class="src">VideoForgeSuite · shotcraft 镜头卡库 · 源仓库 d:/hermes/vsc_repo</div>
+</body></html>

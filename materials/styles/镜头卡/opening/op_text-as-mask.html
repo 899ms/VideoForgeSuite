@@ -1,0 +1,66 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Microsoft YaHei",sans-serif;background:#FCFAF3;color:#26221C;padding:28px 30px;max-width:900px}
+.banner{height:170px;border-radius:14px;background:linear-gradient(120deg,#F5E663,#F0D93B 55%,#E8C82E);margin-bottom:18px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.banner img{width:100%;height:100%;object-fit:cover}
+.fallback{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;height:100%}
+.fb1{font-size:22px;font-family:KaiTi,serif;color:#7A6A14;letter-spacing:6px}
+.fb2{font-size:40px;font-family:KaiTi,serif;font-weight:bold;color:#26221C}
+.tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.tag{font-size:12px;padding:3px 10px;border-radius:20px;border:1.5px solid #26221C;background:#fff}
+.tag.cat{background:#26221C;color:#FCFAF3}
+.tag.energy{color:#fff;border:none}
+h1{font-size:30px;font-family:KaiTi,serif;margin-bottom:10px}
+.oneliner{font-size:17px;line-height:1.6;padding:10px 14px;background:#FFF9D6;border-left:4px solid #E8C82E;border-radius:0 8px 8px 0;margin-bottom:14px}
+.meta{font-size:13px;color:#6B6357;margin-bottom:18px}
+h2{font-size:17px;margin:20px 0 8px;padding-bottom:4px;border-bottom:2px solid #E8C82E;font-family:KaiTi,serif}
+p,li{font-size:14px;line-height:1.75}
+ul{padding-left:20px}
+code{font-family:Consolas,monospace;background:#F0EDE2;padding:1px 5px;border-radius:4px;font-size:13px}
+table{border-collapse:collapse;width:100%;margin:6px 0}
+th,td{border:1px solid #D8D2C0;padding:6px 10px;font-size:13px;text-align:left}
+th{background:#F0EDE2}
+.demo{margin-top:22px;padding:10px 14px;background:#F0EDE2;border-radius:8px;font-size:12.5px;color:#6B6357;font-family:Consolas,monospace;word-break:break-all}
+.src{margin-top:16px;font-size:11px;color:#A39B8B;text-align:center}
+</style></head><body>
+<div class="banner"><div class="fallback"><div class="fb1">开场镜头</div><div class="fb2">text-as-mask</div></div></div>
+<div class="tags"><span class="tag cat">opening · 开场</span><span class="tag energy" style="background:#A16207">能量 中高</span><span class="tag">5s（hold 20f + 字内漂移 80f + 放大接管 30f + 静止 20f）</span></div>
+<h1>text-as-mask</h1>
+<div class="oneliner">文字视频遮罩——超粗大标题字内部透出缓慢平移的产品画面，结尾字形放大 26 倍溢出、内部画面接管全屏</div>
+<div class="meta"><b>适用：</b>品牌词/口号与产品画面二合一的开场或章节卡；字是门、产品在门里；漂移段沉稳，接管段一次爆发</div>
+<h2>意图</h2>
+<p>标题和产品画面抢屏幕是老问题——先字后画慢，画上压字挤。这一式让</p>
+<p>两者同体：字形就是遮罩，产品只透过笔画显形，观众同时读到词和画面</p>
+<p>质感；结尾字形胀开溢出画幅，产品自然接管全屏——"从品牌词走进产品"</p>
+<p>一条镜头说完，兼任章节转场（与 transition-travel C 字腔穿越同族：</p>
+<p>那边是镜头钻进字腔，这边是字形自己胀开，前者相机动、后者门动）。</p>
+<h2>动效核心</h2>
+<ul><li>深底 + SVG 白字黑底 data-URI 交给 CSS <code>mask-image</code>，遮罩层套住产品画面</li><li>字内漂移：产品层 scale 1.15 + translateX 匀速漂 ~220px/80f——</li></ul>
+<p>字形静止、内容流动，"窗外有世界"的错觉即手法本体</p>
+<ul><li>放大接管 30f 单段 bezier(0.4,0,0.2,1)：mask wrapper <code>scale(1→26)</code>，</li></ul>
+<p><b>transform-origin 必须钉在实心笔画内</b>（demo 取 L 竖笔 61.5% 处）——</p>
+<p>钉在字腔空洞里则放大后透出的是底色</p>
+<ul><li>内容层反向补偿：套一层 <code>scale(1/maskS)</code> 抵消 mask 放大，产品画面</li></ul>
+<p>不随遮罩几何畸变（与 shot-transitions F 式"窗几何与窗内景同步驱动"同一命门的镜像）</p>
+<ul><li>接管保险：另叠一个共享同一 translateX/scale 变换的无遮罩全屏层在</li></ul>
+<p>放大后段（endT 0.25–0.9）淡入——纯 mask 放大在字缝处会留深底残余</p>
+<h2>参数表</h2>
+<table><thead><tr><th>参数</th><th>典型值</th><th>调节手感</th></tr></thead><tbody><tr><td>字号/字重</td><td>≥360px / 900</td><td>笔画就是视口——细字重等于把产品塞进门缝</td></tr><tr><td>漂移速度</td><td>~2.75px/f 匀速</td><td>快了字内画面读不清；漂移方向选画面信息密的轴</td></tr><tr><td>放大倍率</td><td>26x（按字形/画幅比配，洞撑满即可）</td><td>不足则接管帧还看得到字边残影</td></tr><tr><td>收尾</td><td>接管后真静止 ≥20f</td><td>R1；接管完成帧产品应落在标准构图</td></tr></tbody></table>
+<h2>已知坑</h2>
+<ul><li>demo 在灰阶/占位素材上调校通过——参数是调校起点非实战定稿，</li></ul>
+<p>首次实战须以真实素材回验</p>
+<ul><li>字内透出的产品画面全程被特写盯着看——真实素材先过</li></ul>
+<p>审美准则 Q2 的高分辨率栅格化技法，低倍截图在笔画里糊成一片</p>
+<ul><li>换词/换字体后 origin 手推值必失效——渲后看放大方向，洞不对中就微调</li></ul>
+<p>origin（同 transition-travel C 的腔心漂移坑）</p>
+<ul><li>与 transition-travel C 字腔穿越同片不并用——同为"字里长出世界"，</li></ul>
+<p>观众读作同一招使两次（P4）</p>
+<ul><li>mask 层与内容层的 transform 必须分离驱动（wrapper 放大/内容反向补偿），</li></ul>
+<p>合在一层则产品跟着字形一起胀成 26 倍废片</p>
+<h2>参考实现</h2>
+<p>demos/opening/text-as-mask/</p>
+<p>（TextAsMask.tsx）</p>
+<div class="demo">参考实现：demos/opening/text-as-mask/</div>
+<div class="src">VideoForgeSuite · shotcraft 镜头卡库 · 源仓库 d:/hermes/vsc_repo</div>
+</body></html>

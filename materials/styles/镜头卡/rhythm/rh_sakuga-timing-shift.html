@@ -1,0 +1,65 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Microsoft YaHei",sans-serif;background:#FCFAF3;color:#26221C;padding:28px 30px;max-width:900px}
+.banner{height:170px;border-radius:14px;background:linear-gradient(120deg,#F5E663,#F0D93B 55%,#E8C82E);margin-bottom:18px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.banner img{width:100%;height:100%;object-fit:cover}
+.fallback{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;height:100%}
+.fb1{font-size:22px;font-family:KaiTi,serif;color:#7A6A14;letter-spacing:6px}
+.fb2{font-size:40px;font-family:KaiTi,serif;font-weight:bold;color:#26221C}
+.tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.tag{font-size:12px;padding:3px 10px;border-radius:20px;border:1.5px solid #26221C;background:#fff}
+.tag.cat{background:#26221C;color:#FCFAF3}
+.tag.energy{color:#fff;border:none}
+h1{font-size:30px;font-family:KaiTi,serif;margin-bottom:10px}
+.oneliner{font-size:17px;line-height:1.6;padding:10px 14px;background:#FFF9D6;border-left:4px solid #E8C82E;border-radius:0 8px 8px 0;margin-bottom:14px}
+.meta{font-size:13px;color:#6B6357;margin-bottom:18px}
+h2{font-size:17px;margin:20px 0 8px;padding-bottom:4px;border-bottom:2px solid #E8C82E;font-family:KaiTi,serif}
+p,li{font-size:14px;line-height:1.75}
+ul{padding-left:20px}
+code{font-family:Consolas,monospace;background:#F0EDE2;padding:1px 5px;border-radius:4px;font-size:13px}
+table{border-collapse:collapse;width:100%;margin:6px 0}
+th,td{border:1px solid #D8D2C0;padding:6px 10px;font-size:13px;text-align:left}
+th{background:#F0EDE2}
+.demo{margin-top:22px;padding:10px 14px;background:#F0EDE2;border-radius:8px;font-size:12.5px;color:#6B6357;font-family:Consolas,monospace;word-break:break-all}
+.src{margin-top:16px;font-size:11px;color:#A39B8B;text-align:center}
+</style></head><body>
+<div class="banner"><div class="fallback"><div class="fb1">节奏镜头</div><div class="fb2">sakuga-timing-shift</div></div></div>
+<div class="tags"><span class="tag cat">rhythm · 节奏</span><span class="tag energy" style="background:#A16207">能量 中高</span><span class="tag">~5s</span></div>
+<h1>sakuga-timing-shift</h1>
+<div class="oneliner">一拍三转一拍一——元素先以每 3 帧一步的手翻书顿挫移动，高潮瞬间切成逐帧丝滑冲刺，帧率量化的突变本身就是看点</div>
+<div class="meta"><b>适用：</b>单元素的强调性位移（卡片入场、指标冲线）；需要"手工感→高潮爆发"反差的段落</div>
+<h2>意图</h2>
+<p>库内时间轴操纵已有 speed-ramp 连续变速与 hit-counter 的局部顿帧。</p>
+<p>本卡是另一种——<b>改的不是速度是帧率本身</b>：</p>
+<p>顿挫段驱动帧 q=floor(f/3)*3，元素每 3 帧才动一步（10fps 手翻书），</p>
+<p>切换帧起改用原始 f 逐帧驱动，丝滑冲刺。一拍三的钝与一拍一的滑</p>
+<p>同屏对切，日式作画的拍数演出（shooting on 3s / on 1s）。顿挫段</p>
+<p>不是低级感是手工感，切换点即高潮标记。</p>
+<h2>动效核心</h2>
+<ul><li>顿挫段：q = Math.floor(f/3)*3 当驱动帧，位置线性 X 120→1380，</li></ul>
+<p>每步 ≈79px；姿势 sin(q) rotate ±5°，一步一个样</p>
+<ul><li>f48 切换：改原始 f 连续驱动，Easing.out(poly(4)) 高初速冲刺</li></ul>
+<p>折返中央 + 过冲 36px + 3f scaleX 0.9 回弹急停</p>
+<ul><li>冲刺段运动拉伸由位置差分速度驱动（scaleX 峰值 ≈1.35 /</li></ul>
+<p>scaleY 0.88），残影 2 层<b>条件挂载</b>——速度低即摘除，非 opacity 0</p>
+<ul><li>角标 "on 3s"/"on 1s" 随段切换，切换瞬间 pop 1.35×；角标</li></ul>
+<p>line-boil 用 h() 伪随机、f=108 后冻结</p>
+<ul><li>f108–150 真静止 42f，全画面无任何动画</li></ul>
+<h2>参数表</h2>
+<table><thead><tr><th>参数</th><th>典型值</th><th>调节手感</th></tr></thead><tbody><tr><td>拍数</td><td>顿挫段 floor(f/3)（一拍三）</td><td>/2 顿感不足、/4 以上读作播放器卡死</td></tr><tr><td>每步位移</td><td>≈79px（总程 ÷ 步数倒推）</td><td><30px 读作卡顿掉帧不是顿挫——命门</td></tr><tr><td>步间姿势</td><td>sin(q) rotate ±5°</td><td>无姿势变化的纯位移顿挫像 bug 不像手翻书</td></tr><tr><td>切换帧</td><td>f48（顿挫:冲刺 ≈ 3:2）</td><td>切换必须一帧完成，任何补间都毁掉"换拍"感</td></tr><tr><td>冲刺缓动</td><td>Easing.out(poly(4)) + 过冲 36px + 3f 回弹</td><td>初速要猛，与顿挫段拉满反差</td></tr><tr><td>收尾</td><td>真静止 ≥42f，角标沸腾同步冻结</td><td>沸腾残留毁真静止（feTurbulence 摘罩判例同族）</td></tr></tbody></table>
+<h2>已知坑</h2>
+<ul><li>demo 在灰阶/占位素材上调校通过——参数是调校起点非实战定稿，</li></ul>
+<p>首次实战须以真实素材回验</p>
+<ul><li>同一镜头单一时间操纵者判例：与 speed-ramp / hit-counter 顿帧</li></ul>
+<p>互斥，一个镜头只能有一个人动时间轴</p>
+<ul><li>顿挫段每步位移 ≥30px 才读得出"顿"——微步顿挫读作渲染掉帧，</li></ul>
+<p>这是本卡命门；步幅不够就缩短总时长换大步幅</p>
+<ul><li>切换点必须有标注（角标 "on 3s"→"on 1s" 或一声打点，</li></ul>
+<p>sound-design §4.5）——无标注观众只觉得"变快了"，读不出"换拍"</p>
+<h2>参考实现</h2>
+<p>demos/rhythm/sakuga-timing-shift/</p>
+<p>（SakugaTimingShift.tsx）</p>
+<div class="demo">参考实现：demos/rhythm/sakuga-timing-shift/</div>
+<div class="src">VideoForgeSuite · shotcraft 镜头卡库 · 源仓库 d:/hermes/vsc_repo</div>
+</body></html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Microsoft YaHei",sans-serif;background:#FCFAF3;color:#26221C;padding:28px 30px;max-width:900px}
+.banner{height:170px;border-radius:14px;background:linear-gradient(120deg,#F5E663,#F0D93B 55%,#E8C82E);margin-bottom:18px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.banner img{width:100%;height:100%;object-fit:cover}
+.fallback{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;height:100%}
+.fb1{font-size:22px;font-family:KaiTi,serif;color:#7A6A14;letter-spacing:6px}
+.fb2{font-size:40px;font-family:KaiTi,serif;font-weight:bold;color:#26221C}
+.tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.tag{font-size:12px;padding:3px 10px;border-radius:20px;border:1.5px solid #26221C;background:#fff}
+.tag.cat{background:#26221C;color:#FCFAF3}
+.tag.energy{color:#fff;border:none}
+h1{font-size:30px;font-family:KaiTi,serif;margin-bottom:10px}
+.oneliner{font-size:17px;line-height:1.6;padding:10px 14px;background:#FFF9D6;border-left:4px solid #E8C82E;border-radius:0 8px 8px 0;margin-bottom:14px}
+.meta{font-size:13px;color:#6B6357;margin-bottom:18px}
+h2{font-size:17px;margin:20px 0 8px;padding-bottom:4px;border-bottom:2px solid #E8C82E;font-family:KaiTi,serif}
+p,li{font-size:14px;line-height:1.75}
+ul{padding-left:20px}
+code{font-family:Consolas,monospace;background:#F0EDE2;padding:1px 5px;border-radius:4px;font-size:13px}
+table{border-collapse:collapse;width:100%;margin:6px 0}
+th,td{border:1px solid #D8D2C0;padding:6px 10px;font-size:13px;text-align:left}
+th{background:#F0EDE2}
+.demo{margin-top:22px;padding:10px 14px;background:#F0EDE2;border-radius:8px;font-size:12.5px;color:#6B6357;font-family:Consolas,monospace;word-break:break-all}
+.src{margin-top:16px;font-size:11px;color:#A39B8B;text-align:center}
+</style></head><body>
+<div class="banner"><div class="fallback"><div class="fb1">收尾镜头</div><div class="fb2">edit-hook-moves</div></div></div>
+<div class="tags"><span class="tag cat">outro · 收尾</span><span class="tag energy" style="background:#A16207">能量 低→瞬时中→低</span><span class="tag">~5s</span></div>
+<h1>edit-hook-moves</h1>
+<div class="oneliner">logo-sting-button 片尾钩子——片尾 logo 定住后突插 12f 彩蛋再收，预告片 button ending</div>
+<div class="meta"><b>适用：</b>片尾收束（全片 ≤1 次）</div>
+<h2>意图</h2>
+<p>库内声画卡管的都是"画面上的事"；这一式管<b>时间线本身的修辞</b>——</p>
+<p>终点的反悔：收黑→logo 淡入定住（观众以为结束）→突然 12f UI 特写</p>
+<p>彩蛋硬切插入→切回 logo 收尾，预告片 button ending，留最后一个钩子。</p>
+<p>拿观众的"已经结束了"的预期开玩笑。</p>
+<h2>单式选型</h2>
+<table><thead><tr><th>式</th><th>做法</th><th>适用</th></tr></thead><tbody><tr><td>B logo-sting-button</td><td>收黑 6f→logo 入场 10f（opacity+scale 0.96→1）→定住 30f→彩蛋 12f 硬切插入→切回 logo 真静止 ≥60f</td><td>片尾；正片收束后再给一记</td></tr></tbody></table>
+<h2>参数表</h2>
+<table><thead><tr><th>参数</th><th>典型值</th><th>调节手感</th></tr></thead><tbody><tr><td>彩蛋时长</td><td>12f 级，内含 tick 圆点只亮第 4–5f（2f，条件挂载）</td><td>长于 20f 就不是"眨眼"是一个镜头</td></tr><tr><td>彩蛋构图</td><td>面板 translate+scale(2.4) 特写按钮行，平移量把 sidebar 完全推出画面</td><td>彩蛋里露出旧构图残边读作切错了</td></tr><tr><td>像素级一致</td><td>logo 段 interpolate 全 clamp 到终值，彩蛋前后 logo 共用同一分支渲染</td><td>硬切回来 logo 跳 1px 都读作抖动</td></tr><tr><td>剪辑方式</td><td>全程硬切分支渲染（frame 区间 return 不同子树），无交叉溶解</td><td>节奏靠剪不靠淡；任何溶解都泄劲</td></tr></tbody></table>
+<h2>已知坑</h2>
+<ul><li>demo 在灰阶/占位素材上调校通过——参数是调校起点非实战定稿，</li></ul>
+<p>首次实战须以真实素材回验</p>
+<ul><li>全片 ≤1 次且只在片尾——中段用 button ending 变成故障，</li></ul>
+<p>观众以为片子坏了</p>
+<ul><li>彩蛋内容必须是全片未见的新特写——复用旧镜头读作剪辑失误</li></ul>
+<p>不是钩子，命门</p>
+<h2>参考实现</h2>
+<p>demos/outro/edit-hook-moves/</p>
+<p>（LogoStingButton.tsx）</p>
+<div class="demo">参考实现：demos/outro/edit-hook-moves/</div>
+<div class="src">VideoForgeSuite · shotcraft 镜头卡库 · 源仓库 d:/hermes/vsc_repo</div>
+</body></html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Microsoft YaHei",sans-serif;background:#FCFAF3;color:#26221C;padding:28px 30px;max-width:900px}
+.banner{height:170px;border-radius:14px;background:linear-gradient(120deg,#F5E663,#F0D93B 55%,#E8C82E);margin-bottom:18px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.banner img{width:100%;height:100%;object-fit:cover}
+.fallback{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;height:100%}
+.fb1{font-size:22px;font-family:KaiTi,serif;color:#7A6A14;letter-spacing:6px}
+.fb2{font-size:40px;font-family:KaiTi,serif;font-weight:bold;color:#26221C}
+.tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.tag{font-size:12px;padding:3px 10px;border-radius:20px;border:1.5px solid #26221C;background:#fff}
+.tag.cat{background:#26221C;color:#FCFAF3}
+.tag.energy{color:#fff;border:none}
+h1{font-size:30px;font-family:KaiTi,serif;margin-bottom:10px}
+.oneliner{font-size:17px;line-height:1.6;padding:10px 14px;background:#FFF9D6;border-left:4px solid #E8C82E;border-radius:0 8px 8px 0;margin-bottom:14px}
+.meta{font-size:13px;color:#6B6357;margin-bottom:18px}
+h2{font-size:17px;margin:20px 0 8px;padding-bottom:4px;border-bottom:2px solid #E8C82E;font-family:KaiTi,serif}
+p,li{font-size:14px;line-height:1.75}
+ul{padding-left:20px}
+code{font-family:Consolas,monospace;background:#F0EDE2;padding:1px 5px;border-radius:4px;font-size:13px}
+table{border-collapse:collapse;width:100%;margin:6px 0}
+th,td{border:1px solid #D8D2C0;padding:6px 10px;font-size:13px;text-align:left}
+th{background:#F0EDE2}
+.demo{margin-top:22px;padding:10px 14px;background:#F0EDE2;border-radius:8px;font-size:12.5px;color:#6B6357;font-family:Consolas,monospace;word-break:break-all}
+.src{margin-top:16px;font-size:11px;color:#A39B8B;text-align:center}
+</style></head><body>
+<div class="banner"><div class="fallback"><div class="fb1">数据镜头</div><div class="fb2">gauge-readout-moves</div></div></div>
+<div class="tags"><span class="tag cat">data · 数据</span><span class="tag energy" style="background:#A16207">能量 中高</span><span class="tag">A 4–5s / B 4–5s</span></div>
+<h1>gauge-readout-moves</h1>
+<div class="oneliner">仪表读数两式——needle-sweep-selftest 满弧扫针（点火自检指针甩满全弧再回落真值）与 tape-scroll-fixed-pointer 滚带定针（针不动刻度带滚过+冲刺刹车）</div>
+<div class="meta"><b>适用：</b>dashboard 开场仪式/性能指标揭晓；A 多表盘开机感，B 单指标大跳变；机械仪式型</div>
+<h2>意图</h2>
+<p>把"报数值"做成仪表的身体动作：A 是汽车点火自检——表盘指针先"唰"地</p>
+<p>甩满全弧（270°）再回落定格真实值，多表错峰成波浪，先亮量程再报数，</p>
+<p>开场宣誓感；B 是飞机空速带语法——指针/取景窗钉死画面正中，带刻度的</p>
+<p>标尺整体从底下滚过，大数值跳变时刻度带 45px/f 冲刺、末尾 spring 刹车</p>
+<p>带回摆过冲，"世界动、针不动"，数值大小变成看得见的位移距离。</p>
+<p>与 odometer-digit-roll 分工：那是数字在窗里滚，B 是连刻度格线全在平移。</p>
+<h2>两式选型</h2>
+<table><thead><tr><th>式</th><th>做法</th><th>适用</th></tr></thead><tbody><tr><td>A needle-sweep-selftest</td><td>指针去程 ~12f ease-out 甩满弧，回程 ~20f 带 5–8° 过冲回摆落真值；多表错峰 3–5f；落定同帧盘下数值弹出</td><td>dashboard 开场/系统就绪仪式</td></tr><tr><td>B tape-scroll-fixed-pointer</td><td>长刻度带 translate：慢爬段→45px/f 冲刺 ~25f→spring 刹车过冲回摆停位；窗内读数同步刷新</td><td>单指标大跳变（性能翻倍/配额提升）</td></tr></tbody></table>
+<h2>参数表</h2>
+<table><thead><tr><th>参数</th><th>典型值</th><th>调节手感</th></tr></thead><tbody><tr><td>A 甩弧幅度</td><td>满量程 270°</td><td>只甩到真值=没有自检仪式感；满弧再回落才是"先亮量程"</td></tr><tr><td>A 过冲</td><td>回落带 5–8° 回摆</td><td>无过冲读作电子表；过冲=机械指针的质量</td></tr><tr><td>A 错峰</td><td>3–5f/表</td><td>齐甩读作复制粘贴；错峰成波浪</td></tr><tr><td>B 冲刺速度</td><td>45px/f（大跳变段）</td><td>慢了读作匀速爬升，"世界动"不成立</td></tr><tr><td>B 刹车</td><td>spring 过冲（冲过头再弹回停位）</td><td>词汇原案的回摆是"哐"的来源，直停可惜</td></tr><tr><td>真静止</td><td>停位后 ≥30f 全锁死</td><td>指针类最忌尾漂</td></tr></tbody></table>
+<h2>已知坑</h2>
+<ul><li>demo 在灰阶/占位素材上调校通过——参数是调校起点非实战定稿，</li></ul>
+<p>首次实战须以真实素材回验</p>
+<ul><li>同批 ring-close-overfill（合环过盈）改改再看无附言——环形进度类</li></ul>
+<p>待重做，别急着当第三式并入</p>
+<ul><li>A 的表盘是自绘 SVG（弧刻度+指针），实战贴真 dashboard 时优先找</li></ul>
+<p>页面里现成的 gauge 组件特写，没有再造</p>
+<ul><li>声音：A 甩针一声"唰"+落定"嗒"（多表错峰各一声）；B 冲刺段</li></ul>
+<p>低频滚动声、刹车一声闷"哐"</p>
+<h2>参考实现</h2>
+<p>demos/data/gauge-readout-moves/</p>
+<p>（NeedleSweepSelftest.tsx / TapeScrollFixedPointer.tsx）</p>
+<div class="demo">参考实现：demos/data/gauge-readout-moves/</div>
+<div class="src">VideoForgeSuite · shotcraft 镜头卡库 · 源仓库 d:/hermes/vsc_repo</div>
+</body></html>

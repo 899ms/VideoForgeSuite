@@ -1,0 +1,60 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Microsoft YaHei",sans-serif;background:#FCFAF3;color:#26221C;padding:28px 30px;max-width:900px}
+.banner{height:170px;border-radius:14px;background:linear-gradient(120deg,#F5E663,#F0D93B 55%,#E8C82E);margin-bottom:18px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.banner img{width:100%;height:100%;object-fit:cover}
+.fallback{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;height:100%}
+.fb1{font-size:22px;font-family:KaiTi,serif;color:#7A6A14;letter-spacing:6px}
+.fb2{font-size:40px;font-family:KaiTi,serif;font-weight:bold;color:#26221C}
+.tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.tag{font-size:12px;padding:3px 10px;border-radius:20px;border:1.5px solid #26221C;background:#fff}
+.tag.cat{background:#26221C;color:#FCFAF3}
+.tag.energy{color:#fff;border:none}
+h1{font-size:30px;font-family:KaiTi,serif;margin-bottom:10px}
+.oneliner{font-size:17px;line-height:1.6;padding:10px 14px;background:#FFF9D6;border-left:4px solid #E8C82E;border-radius:0 8px 8px 0;margin-bottom:14px}
+.meta{font-size:13px;color:#6B6357;margin-bottom:18px}
+h2{font-size:17px;margin:20px 0 8px;padding-bottom:4px;border-bottom:2px solid #E8C82E;font-family:KaiTi,serif}
+p,li{font-size:14px;line-height:1.75}
+ul{padding-left:20px}
+code{font-family:Consolas,monospace;background:#F0EDE2;padding:1px 5px;border-radius:4px;font-size:13px}
+table{border-collapse:collapse;width:100%;margin:6px 0}
+th,td{border:1px solid #D8D2C0;padding:6px 10px;font-size:13px;text-align:left}
+th{background:#F0EDE2}
+.demo{margin-top:22px;padding:10px 14px;background:#F0EDE2;border-radius:8px;font-size:12.5px;color:#6B6357;font-family:Consolas,monospace;word-break:break-all}
+.src{margin-top:16px;font-size:11px;color:#A39B8B;text-align:center}
+</style></head><body>
+<div class="banner"><div class="fallback"><div class="fb1">运镜镜头</div><div class="fb2">overhead-camera-moves</div></div></div>
+<div class="tags"><span class="tag cat">camera · 运镜</span><span class="tag energy" style="background:#A16207">能量 A 中 / B 中高</span><span class="tag">A ~4.8s / B ~4.7s</span></div>
+<h1>overhead-camera-moves</h1>
+<div class="oneliner">俯拍揭示两式——tilt-reveal 俯仰抬正揭示、overhead-tabletop-drop 桌面卡阵横滑骤降扎入</div>
+<div class="meta"><b>适用：</b>用"俯仰角"讲故事的开场/转场：单页 establishing 用 A，多页巡视择一扎入用 B</div>
+<h2>意图</h2>
+<p>库内俯拍视角一直空缺——crane-rise 是"平移+缩放"的升起（俯仰角</p>
+<p>不动），space-camera C 式 drone-dive 是俯冲降落一镜到底；这两式让</p>
+<p><b>俯仰角本身讲故事</b>：A 是揭示——整页 rotateX 平躺、开场只见上缘</p>
+<p>一条透视窄带，机位"抬头"回正，内容一排排涌入视野，像掀开桌上的</p>
+<p>图纸；B 是选择——三张页面卡平躺成桌面卡阵，相机俯拍横向滑过依次</p>
+<p>掠过（韦斯·安德森 tabletop），滑到目标页猛地俯冲扎入、抬正成满屏，</p>
+<p>"巡视一圈，就选这张"。选型：单页开场用 A，多页转场/开场用 B。</p>
+<h2>两式选型</h2>
+<table><thead><tr><th>式</th><th>做法</th><th>适用</th></tr></thead><tbody><tr><td>A tilt-reveal</td><td>perspective 容器内整页 rotateX -80° 平躺，~43f 抬正，rotateX/scale/translateY 共用 out-cubic，末端轻过冲</td><td>开场 establishing；单主体</td></tr><tr><td>B overhead-tabletop-drop</td><td>卡阵平躺 rotateX 62°，pan 段只动 translateX 横滑掠过，drop 段角度/缩放/位移三通道同跑扎入落版</td><td>多页巡视后择一；转场/开场两用</td></tr></tbody></table>
+<h2>参数表</h2>
+<table><thead><tr><th>参数</th><th>典型值</th><th>调节手感</th></tr></thead><tbody><tr><td>A 俯角</td><td>rotateX 关键帧 [-80, 2.6, -0.9, 0]（f25→68→72→76），transformOrigin 50% 0%</td><td>首版 -55° 太弱：f0 仍见半页，无"窄带"悬念（实渲判例）</td></tr><tr><td>A 联动</td><td>perspective 600→1200、perspectiveOrigin 5%→40% 随进度插值；scale 3.2→1 + translateY 200→0</td><td>perspective 不联动则俯角初始见不到"只露顶栏"</td></tr><tr><td>A 收尾</td><td>全部动画 f76 结束，145f 留 69f 真静止</td><td>过冲幅度 ≤3°，再大读作弹簧不是机位</td></tr><tr><td>B pan 段</td><td>0–55f 只改 translateX +700→-650（in-out cubic），角度不动</td><td>pan 段动角度 = 两段职责糊掉（判例：pan 巡视、drop 表态）</td></tr><tr><td>B drop 段</td><td>55–85f 三通道同跑：rotateX 62→-1.8→0.6→0（out-cubic 过冲）、scale 1→2.04→2.0、translateX -650→0</td><td>三通道必须同跑；分先后读作两个动作</td></tr><tr><td>B 卡阵</td><td>卡片 996×560（16:9 精确比），落版 scale 2.0 恰满屏正视；transform 顺序 translateX→rotateX→scale</td><td>顺序错了 pan 会带出弧线轨迹</td></tr><tr><td>B 地板</td><td>浅灰网格地板</td><td>无地板参照，横滑段读不出"相机在动"</td></tr><tr><td>B 收尾</td><td>全部动画 f93 结束，140f 留 47f 真静止</td><td>—</td></tr></tbody></table>
+<h2>已知坑</h2>
+<ul><li>demo 在灰阶/占位素材上调校通过——参数是调校起点非实战定稿，</li></ul>
+<p>首次实战须以真实素材回验</p>
+<ul><li>大角度透视下卡片必须 backfaceVisibility hidden + translateZ(4px)</li></ul>
+<p>兜底，否则个别帧背面/深度穿帮</p>
+<ul><li>A 与 crane-rise-reveal 同片二选一——都是开场揭示，两个"揭示开场"</li></ul>
+<p>等于没有揭示</p>
+<ul><li>B pan 段角度锁死是命门（两段职责分离判例）：巡视归巡视、扎入归</li></ul>
+<p>扎入，混着动观众不知道相机想干嘛</p>
+<ul><li>两式都是"相机大动作"，与 space-camera/crane-rise 同屏段落互斥，</li></ul>
+<p>一个段落只能有一个持镜人</p>
+<h2>参考实现</h2>
+<p>demos/camera/overhead-camera-moves/</p>
+<p>（OverheadTabletopDrop.tsx / TiltReveal.tsx）</p>
+<div class="demo">参考实现：demos/camera/overhead-camera-moves/</div>
+<div class="src">VideoForgeSuite · shotcraft 镜头卡库 · 源仓库 d:/hermes/vsc_repo</div>
+</body></html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Microsoft YaHei",sans-serif;background:#FCFAF3;color:#26221C;padding:28px 30px;max-width:900px}
+.banner{height:170px;border-radius:14px;background:linear-gradient(120deg,#F5E663,#F0D93B 55%,#E8C82E);margin-bottom:18px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.banner img{width:100%;height:100%;object-fit:cover}
+.fallback{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;height:100%}
+.fb1{font-size:22px;font-family:KaiTi,serif;color:#7A6A14;letter-spacing:6px}
+.fb2{font-size:40px;font-family:KaiTi,serif;font-weight:bold;color:#26221C}
+.tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.tag{font-size:12px;padding:3px 10px;border-radius:20px;border:1.5px solid #26221C;background:#fff}
+.tag.cat{background:#26221C;color:#FCFAF3}
+.tag.energy{color:#fff;border:none}
+h1{font-size:30px;font-family:KaiTi,serif;margin-bottom:10px}
+.oneliner{font-size:17px;line-height:1.6;padding:10px 14px;background:#FFF9D6;border-left:4px solid #E8C82E;border-radius:0 8px 8px 0;margin-bottom:14px}
+.meta{font-size:13px;color:#6B6357;margin-bottom:18px}
+h2{font-size:17px;margin:20px 0 8px;padding-bottom:4px;border-bottom:2px solid #E8C82E;font-family:KaiTi,serif}
+p,li{font-size:14px;line-height:1.75}
+ul{padding-left:20px}
+code{font-family:Consolas,monospace;background:#F0EDE2;padding:1px 5px;border-radius:4px;font-size:13px}
+table{border-collapse:collapse;width:100%;margin:6px 0}
+th,td{border:1px solid #D8D2C0;padding:6px 10px;font-size:13px;text-align:left}
+th{background:#F0EDE2}
+.demo{margin-top:22px;padding:10px 14px;background:#F0EDE2;border-radius:8px;font-size:12.5px;color:#6B6357;font-family:Consolas,monospace;word-break:break-all}
+.src{margin-top:16px;font-size:11px;color:#A39B8B;text-align:center}
+</style></head><body>
+<div class="banner"><div class="fallback"><div class="fb1">UI入场镜头</div><div class="fb2">cloner-depth-echo</div></div></div>
+<div class="tags"><span class="tag cat">ui-entrance · UI入场</span><span class="tag energy" style="background:#A16207">能量 中</span><span class="tag">4–5s</span></div>
+<h1>cloner-depth-echo</h1>
+<div class="oneliner">克隆纵队——主卡瞬间"复印"出 7 个半透明分身沿斜向纵深排开成队，停一拍后全体加速吸回本体合一+弹跳</div>
+<div class="meta"><b>适用：</b>"多副本/多租户/规模感/批量处理"卖点；一镜讲完"一个=很多"；陈列-收束型</div>
+<h2>意图</h2>
+<p>Spline/C4D Cloner 语汇的 UI 翻译：一张主卡"啪"地复印出 7 个克隆体</p>
+<p>沿 Z 轴向后等距排开（间隔 120px、透明度 100%→20% 递减），错峰弹出</p>
+<p>成纵队；停 ~25f 让观众数得清"有很多个"；然后全体 ease-in 加速吸回</p>
+<p>本体合一，合体瞬间本体弹 1.08x 收束。与 depth-layer-moves 视差</p>
+<p>（不同内容分层）分工：这是<b>同一内容</b>的等距重影阵列，语义是规模</p>
+<p>不是空间。</p>
+<h2>参数表</h2>
+<table><thead><tr><th>参数</th><th>典型值</th><th>调节手感</th></tr></thead><tbody><tr><td>斜向错位</td><td>dx=64·idx / dy=−34·idx</td><td><b>命门</b>：纯 translateZ 排开在正视角下克隆体全被本体挡住（不可感）；斜向错位让纵队肉眼可见</td></tr><tr><td>侧视角</td><td>整队 rotateY 16°</td><td>8° 仍近正视，16° 纵队清晰</td></tr><tr><td>克隆数/间隔</td><td>7 个 / 120px</td><td>少于 5 读不出"队"，多于 9 尾部糊成一团</td></tr><tr><td>透明衰减</td><td>100%→20% 线性</td><td>越远越淡=纵深证据；等透明读作贴纸阵</td></tr><tr><td>排开/吸回</td><td>spring 错峰 1.6f/个；merge ease-in 10f 全体同步</td><td>排开要错峰（复印感），吸回要同步（收束感）——节奏不对称是设计</td></tr><tr><td>合体弹跳</td><td>sin(spring×π) 单脉冲 1.08x</td><td>吸回无弹跳读作淡出；弹跳=质量证据</td></tr></tbody></table>
+<h2>已知坑</h2>
+<ul><li>demo 在灰阶/占位素材上调校通过——参数是调校起点非实战定稿，</li></ul>
+<p>首次实战须以真实素材回验</p>
+<ul><li>克隆体必须从后往前渲染保证遮挡正确；透明度 ≤0.005 条件卸载</li><li>同批 3D 渠道另两条（厚板转台淘汰、走廊改改再看）——纯陈列型</li></ul>
+<p>3D 运镜相性存疑，本卡过墙靠的是"排开-吸回"的叙事动作，</p>
+<p>实战别退化成静态纵队陈列</p>
+<ul><li>声音：排开一串细"啪"错峰，吸回一声上扬 whoosh，合体一声实"咚"</li></ul>
+<h2>参考实现</h2>
+<p>demos/ui-entrance/cloner-depth-echo/</p>
+<p>（ClonerDepthEcho.tsx）</p>
+<div class="demo">参考实现：demos/ui-entrance/cloner-depth-echo/</div>
+<div class="src">VideoForgeSuite · shotcraft 镜头卡库 · 源仓库 d:/hermes/vsc_repo</div>
+</body></html>

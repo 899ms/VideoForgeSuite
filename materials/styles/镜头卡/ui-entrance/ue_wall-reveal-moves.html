@@ -1,0 +1,60 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Microsoft YaHei",sans-serif;background:#FCFAF3;color:#26221C;padding:28px 30px;max-width:900px}
+.banner{height:170px;border-radius:14px;background:linear-gradient(120deg,#F5E663,#F0D93B 55%,#E8C82E);margin-bottom:18px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.banner img{width:100%;height:100%;object-fit:cover}
+.fallback{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;height:100%}
+.fb1{font-size:22px;font-family:KaiTi,serif;color:#7A6A14;letter-spacing:6px}
+.fb2{font-size:40px;font-family:KaiTi,serif;font-weight:bold;color:#26221C}
+.tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.tag{font-size:12px;padding:3px 10px;border-radius:20px;border:1.5px solid #26221C;background:#fff}
+.tag.cat{background:#26221C;color:#FCFAF3}
+.tag.energy{color:#fff;border:none}
+h1{font-size:30px;font-family:KaiTi,serif;margin-bottom:10px}
+.oneliner{font-size:17px;line-height:1.6;padding:10px 14px;background:#FFF9D6;border-left:4px solid #E8C82E;border-radius:0 8px 8px 0;margin-bottom:14px}
+.meta{font-size:13px;color:#6B6357;margin-bottom:18px}
+h2{font-size:17px;margin:20px 0 8px;padding-bottom:4px;border-bottom:2px solid #E8C82E;font-family:KaiTi,serif}
+p,li{font-size:14px;line-height:1.75}
+ul{padding-left:20px}
+code{font-family:Consolas,monospace;background:#F0EDE2;padding:1px 5px;border-radius:4px;font-size:13px}
+table{border-collapse:collapse;width:100%;margin:6px 0}
+th,td{border:1px solid #D8D2C0;padding:6px 10px;font-size:13px;text-align:left}
+th{background:#F0EDE2}
+.demo{margin-top:22px;padding:10px 14px;background:#F0EDE2;border-radius:8px;font-size:12.5px;color:#6B6357;font-family:Consolas,monospace;word-break:break-all}
+.src{margin-top:16px;font-size:11px;color:#A39B8B;text-align:center}
+</style></head><body>
+<div class="banner"><div class="fallback"><div class="fb1">UI入场镜头</div><div class="fb2">wall-reveal-moves</div></div></div>
+<div class="tags"><span class="tag cat">ui-entrance · UI入场</span><span class="tag energy" style="background:#A16207">能量 中</span><span class="tag">单式约 4.3–5s（A 150f / B 130f / C 150f @30fps，含建立 hold 与静止收尾）</span></div>
+<h1>wall-reveal-moves</h1>
+<div class="oneliner">整墙批量入场三式——bento 逐格点亮、网格波浪翻面、蓝图描线成形，全部原位显形不位移，与 deck-deal-flyin 的飞入位移型互补成品类矩阵</div>
+<div class="meta"><b>适用：</b>功能墙/卡片墙/整页界面的整体亮相；内容已在原位、要"显形"而非"涌入"的段落</div>
+<h2>意图</h2>
+<p>"一墙内容怎么出场"库内此前只有 deck-deal-flyin 一个答案——高能量、位移型、</p>
+<p>"东西涌进来"。但不是每面墙都该涌：品牌段要庄重、功能墙要轻快、</p>
+<p>"从设计到实物"要讲工序。这三式共同点是<b>非位移批量入场</b>——元素原地显形，</p>
+<p>版式从第一帧就成立，观众看的是"状态变化的波前扫过一面墙"而不是"物体飞行"。</p>
+<p>选型先问一句：这面墙该"涌进来"还是"亮起来"？前者去 deck-deal-flyin，后者进本卡。</p>
+<h2>三式选型</h2>
+<table><thead><tr><th>式</th><th>做法</th><th>适用</th></tr></thead><tbody><tr><td>A bento-light-up 逐格点亮</td><td>暗场 3×2 bento 墙压暗待命，强调色流光逐格描边一圈、内容随即提亮上浮，全亮后镜头缓推收住</td><td>内容庄重/暗场品牌段；节奏沉稳的功能总览</td></tr><tr><td>B grid-wave-flip 波浪翻面</td><td>3×3 灰背卡墙沿对角线波前依次 rotateX 原位翻转 180°，翻出正面内容，尾张过冲回弹</td><td>轻快功能墙；一秒扫完全屏的快节奏段</td></tr><tr><td>C wireframe-draw-on 蓝图描线成形</td><td>界面先以 SVG 细线蓝图分组描画，再一条强调色发光竖线左→右扫过，扫过处线框实体化成真实界面</td><td>"从设计到实物/从想法到产品"叙事；产品首次整体亮相</td></tr></tbody></table>
+<h2>参数表</h2>
+<table><thead><tr><th>参数</th><th>典型值</th><th>调节手感</th></tr></thead><tbody><tr><td>A 节拍</td><td>hold 20f → 每格间隔 12f 依次激活（六格 ~96f 全亮）→ scale 1→1.04 缓推 25f（bezier 0.33,0,0.2,1）→ 静止收尾</td><td>12f 级联是"逐格可辨"与"整墙拖沓"的平衡点；格数增多可压到 8–10f，但间隔均匀本身就是这一式的庄重感来源，别学发牌加速</td></tr><tr><td>A 单格</td><td>暗态 opacity 0.18 + translateY 20px；SVG rect pathLength=100 + dashoffset 描边 8f（强调色 #e8b45e 4px + drop-shadow 辉光）；描边过半（+6f）内容 back-out(0.3,1.4,0.5,1) 弹出 8f 提亮归位；描完 +12f 流光退火到 0.4 常亮细边</td><td>描边与内容弹出要<b>接力不同步</b>——同帧起读作整格闪现；点亮中段辉光脉冲用 lit·(1−lit)·4 抛物线，峰值幅度按格 seed 微差（正弦哈希，禁真随机）</td></tr><tr><td>B 波前</td><td>hold 20f → delay=(row+col)*6f 对角线步进，每张 rotateX 0→180° 翻 14f bezier(0.35,0,0.25,1)；尾张冲到 190° 再 8f 弹回 180°</td><td>(row+col) 是对角波的灵魂，换 row 或 col 单向扫立刻平庸；只给尾张过冲——张张过冲读作整墙果冻</td></tr><tr><td>B 翻面结构</td><td>共享 perspective 1200px 容器（整墙一个消失点），每张双面卡 preserve-3d：灰背朝外 + 正面预转 rotateX(180°)，两面都 backfaceVisibility hidden</td><td>perspective 加在墙容器不是单卡上，否则九个消失点各翻各的；翻到 90° 最薄处叠一道 4px 白色高光线（不随卡旋转、贴格位随角度 45°→135° 从上缘扫到下缘，opacity=1−</td><td>angle−90</td><td>/45），阴影随 sin(angle) 抬起再收回</td></tr><tr><td>C 描线</td><td>hold 20f → 分组错峰各 30f 描完：侧栏 20f 起/顶栏 30f 起/6 卡 40+i*3f 起/折线图 52f 起；SVG pathLength=1 + dashoffset 1→0，描边 #8f8f8d 2.5px round</td><td>分组错峰是"手在画"的感觉来源，全部同帧起笔读作打印机；卡内占位线再按 +3f 细错峰，长短用 seed 哈希微差</td></tr><tr><td>C 实体化</td><td>88–118f 实体层 clip-path inset(0 right% 0 0) 从左向右展开 30f，bezier(0.55,0,0.25,1)；前沿跟 4px 强调色竖线（#ffc46b + 双层辉光 boxShadow），86–92f 淡入、112–120f 淡出</td><td>竖线位置与 clip 前沿必须同一个 scan 值驱动，异步读作穿帮；描线段与扫描段之间留 ~6f 喘息（82→88f），线框画完立刻扫读作赶工</td></tr><tr><td>静止收尾</td><td>三式动作全部落定后真静止 ≥15f（A 在缓推结束后、B 在尾张回弹后、C 在扫描线淡出后起算）</td><td>R1 呼吸判例：静止期一切属性锁死，包括辉光/阴影/高光残留</td></tr></tbody></table>
+<h2>已知坑</h2>
+<ul><li>**demo 在灰阶/占位素材上调校通过——参数是调校起点非实战定稿，</li></ul>
+<p>首次实战须以真实素材回验**</p>
+<ul><li>A/C 的强调色描边/扫描线属"单点高质量光效"范畴（Q4 三约束内合规），但一支片</li></ul>
+<p>整墙点亮 ≤1 次（P4 手法去重）——A 和 C 同片共用即算两次整墙光效，选一</p>
+<ul><li>B 式翻面后的正面实战要接真实截图：backface 侧预留高清纹理（Q2），翻转中</li></ul>
+<p>正面会以斜角被看，低倍截图先按审美准则 Q2 的高分辨率栅格化技法处理再上</p>
+<ul><li>C 式线框几何必须与实体层布局逐像素对位（demo 里按 FakeDashboard A 手排），</li></ul>
+<p>换素材要重排线框——对不齐则扫描线扫过瞬间元素跳位，一眼穿帮</p>
+<ul><li>三式都是"原位显形"，别混入位移入场（如 B 翻面时再加 translateY 飞入）——</li></ul>
+<p>位移需求去 deck-deal-flyin，杂交会两头不像</p>
+<ul><li>A 式暗态 opacity 0.18 依赖暗底（#2a2a28）成立，亮底下压暗读作褪色故障</li></ul>
+<h2>参考实现</h2>
+<p>demos/ui-entrance/wall-reveal-moves/</p>
+<p>（BentoLightUp.tsx / GridWaveFlip.tsx / WireframeDrawOn.tsx）</p>
+<p>实现状态：三式均有参考实现与 Gallery 动态样片。</p>
+<div class="demo">参考实现：demos/ui-entrance/wall-reveal-moves/</div>
+<div class="src">VideoForgeSuite · shotcraft 镜头卡库 · 源仓库 d:/hermes/vsc_repo</div>
+</body></html>

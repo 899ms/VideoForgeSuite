@@ -1,0 +1,46 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Microsoft YaHei",sans-serif;background:#FCFAF3;color:#26221C;padding:28px 30px;max-width:900px}
+.banner{height:170px;border-radius:14px;background:linear-gradient(120deg,#F5E663,#F0D93B 55%,#E8C82E);margin-bottom:18px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.banner img{width:100%;height:100%;object-fit:cover}
+.fallback{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;height:100%}
+.fb1{font-size:22px;font-family:KaiTi,serif;color:#7A6A14;letter-spacing:6px}
+.fb2{font-size:40px;font-family:KaiTi,serif;font-weight:bold;color:#26221C}
+.tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.tag{font-size:12px;padding:3px 10px;border-radius:20px;border:1.5px solid #26221C;background:#fff}
+.tag.cat{background:#26221C;color:#FCFAF3}
+.tag.energy{color:#fff;border:none}
+h1{font-size:30px;font-family:KaiTi,serif;margin-bottom:10px}
+.oneliner{font-size:17px;line-height:1.6;padding:10px 14px;background:#FFF9D6;border-left:4px solid #E8C82E;border-radius:0 8px 8px 0;margin-bottom:14px}
+.meta{font-size:13px;color:#6B6357;margin-bottom:18px}
+h2{font-size:17px;margin:20px 0 8px;padding-bottom:4px;border-bottom:2px solid #E8C82E;font-family:KaiTi,serif}
+p,li{font-size:14px;line-height:1.75}
+ul{padding-left:20px}
+code{font-family:Consolas,monospace;background:#F0EDE2;padding:1px 5px;border-radius:4px;font-size:13px}
+table{border-collapse:collapse;width:100%;margin:6px 0}
+th,td{border:1px solid #D8D2C0;padding:6px 10px;font-size:13px;text-align:left}
+th{background:#F0EDE2}
+.demo{margin-top:22px;padding:10px 14px;background:#F0EDE2;border-radius:8px;font-size:12.5px;color:#6B6357;font-family:Consolas,monospace;word-break:break-all}
+.src{margin-top:16px;font-size:11px;color:#A39B8B;text-align:center}
+</style></head><body>
+<div class="banner"><div class="fallback"><div class="fb1">文字镜头</div><div class="fb2">document-typewriter-reveal</div></div></div>
+<div class="tags"><span class="tag cat">typography · 文字</span><span class="tag energy" style="background:#A16207">能量 低中</span><span class="tag">约 3.7s（110f，含 history-list-stack 尾段）</span></div>
+<h1>document-typewriter-reveal</h1>
+<div class="oneliner">整页真排版文档在光标后自己"写"出来、侧栏跟进、历史条目逐个落入轨道</div>
+<div class="meta"><b>适用：</b>文档/报告/笔记类功能镜头；信息密度最高的一拍；信息密度最高，节奏放稳让观众读字</div>
+<h2>意图</h2>
+<p>观众会读清屏幕上每个字——这一镜的说服力全在"文档是真的"。打字机式写入把静态页面变成"正在被写出来的文档"，侧栏历史条目落入补上"持续产出"的时间纵深。</p>
+<h2>动效核心</h2>
+<ul><li>内容块两两一对按节拍写入：页面底色遮罩右锚左→右收窄，强调色 caret 骑在揭示前沿</li><li>人名 @-mention 在 wipe 完成后长出强调色底色</li><li>左右双栏靠底色补丁上→下收走入场，内缘强调色细线随揭示生长后淡去</li><li>尾段（history-list-stack）：6 条历史条目从上方逐个落入侧栏轨道，每落一条配一声 pop</li><li>相机从标题特写拉到全页（双栏必须都入画），之后只做微呼吸</li></ul>
+<h2>参数表</h2>
+<table><thead><tr><th>参数</th><th>典型值</th><th>调节手感</th></tr></thead><tbody><tr><td>写入节拍</td><td>20 块两两一对，第 g 对 cue = 6 + g·3.5，每块 wipe 8f，最后一对 ~49f 完成（赶在 64f 全页 settle 前）</td><td>逐块写会超预算——"块数×节拍要先对预算"是这卡的核心算术，先算再写</td></tr><tr><td>写入手法</td><td>底色遮罩 width 100%→0，bezier(0.4,0,0.6,1)；强调色 caret 2px 只跟最新块，写完 2f 淡出</td><td>caret 同时出现多个立刻穿帮；永远只有一个"笔尖"</td></tr><tr><td>li 圆点</td><td>遮罩向左多盖 28px（::marker 在文本左 ~22px）</td><td>不多盖圆点会提前穿帮——截图纹理里烤入的排版细节都要这样排查</td></tr><tr><td>@-mention</td><td>wipe 完成后 4f 起、8f 长出强调色底色 opacity 0.7；跳过非人名标题</td><td>高亮晚于写入才读作"重点被标出"；同帧出现读作贴图</td></tr><tr><td>双栏入场</td><td>左栏 cue 46 / 右栏 cue 54，底色补丁上→下 10f 收走 + 内缘 1.5px 强调色线随揭示生长、24f 淡去</td><td>双栏与正文错开节拍，同时入场会互相抢视线</td></tr><tr><td>历史条目落入</td><td>6 条，cue = 58 + i·5（排在侧栏 wipe 完成 56f 后），每条 8f 落下；起点 −44px，bezier(0.2,1.15,0.3,1) 轻弹跳，空中影 <code>0 10·air px 20·air px</code></td><td>条目几何紧贴烤入纹理已有条目的下方、行高对齐——DOM 重绘条目必须和纹理里的活条目严格对齐</td></tr><tr><td>相机</td><td>标题特写 zoom 1.25 → 64f 全页 zoom 0.997，78/102f 1.003/0.995 微呼吸</td><td>全页时双栏必须都入画——文档镜头砍掉侧栏等于砍掉"完整产品"的说服力（Q10）</td></tr></tbody></table>
+<h2>声音</h2>
+<p>写入段钉 keyboard.mp3 修剪到 44f 盖住书写段（拟音与动作严格等长，S4）；历史条目 6 连 pop 每 5f 一发、音量 0.40→0.25 阶梯递减做距离衰减（S2）。</p>
+<h2>已知坑</h2>
+<ul><li>mock 内容必须出版级：产品原生排版、文字铺满、侧栏完整入镜（Q10）——"贴图+标语"级的敷衍文档会导致整镜头重做</li><li>数据合规：mock 内容里绝不出现客户/成员真名（Q1）</li><li>素材页面是活数据源（协作文档类）时，全量重采会刷掉已定稿纹理——用增量脚本只刷单页单键</li><li>强调色示例（caret/@-mention/内缘线）在模板片中为琥珀色，适配新品牌时统一换成目标品牌强调色</li></ul>
+<h2>参考实现</h2>
+<p>demos/ui-entrance/document-typewriter-reveal/DocumentTypewriterReveal.tsx（原 template/src/aifl/live/SceneWbr.tsx；打字音效见 template/src/aifl/Main.tsx SFX 表；模板片中此镜承载的是周报文档场景）</p>
+<div class="demo">参考实现：demos/typography/document-typewriter-reveal/</div>
+<div class="src">VideoForgeSuite · shotcraft 镜头卡库 · 源仓库 d:/hermes/vsc_repo</div>
+</body></html>

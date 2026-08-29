@@ -1,0 +1,59 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Microsoft YaHei",sans-serif;background:#FCFAF3;color:#26221C;padding:28px 30px;max-width:900px}
+.banner{height:170px;border-radius:14px;background:linear-gradient(120deg,#F5E663,#F0D93B 55%,#E8C82E);margin-bottom:18px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.banner img{width:100%;height:100%;object-fit:cover}
+.fallback{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;height:100%}
+.fb1{font-size:22px;font-family:KaiTi,serif;color:#7A6A14;letter-spacing:6px}
+.fb2{font-size:40px;font-family:KaiTi,serif;font-weight:bold;color:#26221C}
+.tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.tag{font-size:12px;padding:3px 10px;border-radius:20px;border:1.5px solid #26221C;background:#fff}
+.tag.cat{background:#26221C;color:#FCFAF3}
+.tag.energy{color:#fff;border:none}
+h1{font-size:30px;font-family:KaiTi,serif;margin-bottom:10px}
+.oneliner{font-size:17px;line-height:1.6;padding:10px 14px;background:#FFF9D6;border-left:4px solid #E8C82E;border-radius:0 8px 8px 0;margin-bottom:14px}
+.meta{font-size:13px;color:#6B6357;margin-bottom:18px}
+h2{font-size:17px;margin:20px 0 8px;padding-bottom:4px;border-bottom:2px solid #E8C82E;font-family:KaiTi,serif}
+p,li{font-size:14px;line-height:1.75}
+ul{padding-left:20px}
+code{font-family:Consolas,monospace;background:#F0EDE2;padding:1px 5px;border-radius:4px;font-size:13px}
+table{border-collapse:collapse;width:100%;margin:6px 0}
+th,td{border:1px solid #D8D2C0;padding:6px 10px;font-size:13px;text-align:left}
+th{background:#F0EDE2}
+.demo{margin-top:22px;padding:10px 14px;background:#F0EDE2;border-radius:8px;font-size:12.5px;color:#6B6357;font-family:Consolas,monospace;word-break:break-all}
+.src{margin-top:16px;font-size:11px;color:#A39B8B;text-align:center}
+</style></head><body>
+<div class="banner"><div class="fallback"><div class="fb1">节奏镜头</div><div class="fb2">speed-ramp-freeze</div></div></div>
+<div class="tags"><span class="tag cat">rhythm · 节奏</span><span class="tag energy" style="background:#A16207">能量 中高</span><span class="tag">变速全程 4–5s（慢速窗 ≥40f）；定格标注全程 4–5s（定格段 ≥45f）</span></div>
+<h1>speed-ramp-freeze</h1>
+<div class="oneliner">帧号非线性 remap 的两款节奏手法——变速（快→0.2x 凝视→快）与定格标注（流动→定格圈注→解冻）</div>
+<div class="meta"><b>适用：</b>卡片流/长横移中把一个重点"放慢/停下给人看"；教学解说语境用定格标注；速度反差本身即energy beat</div>
+<h2>意图</h2>
+<p>匀速流读作 PPT（R2），全程快流观众抓不住重点（R3）。变速在一条</p>
+<p>运动里制造"冲刺-凝视-冲刺"；定格标注更进一步——干脆停下来，</p>
+<p>马克笔圈出重点再走。两款同一技术根（帧号 remap），语义不同：</p>
+<p>变速是"路过时多看一眼"，定格是"停课划重点"。</p>
+<h2>动效核心</h2>
+<ul><li>源动画匀速，输出帧对源帧做非线性 remap：</li></ul>
+<p><code>src = interpolate(frame, [0,40,85,135], [0,88,97,207])</code>（斜率即速率）</p>
+<ul><li>变速款：快段斜率 ≥2、慢窗斜率 ≈0.2（≥10 倍反差才可感）；</li></ul>
+<p><b>blur 联动速率开关</b>——快段包 CameraMotionBlur、慢窗裸渲，</p>
+<p>"快糊-慢清"反差是手法成立的一半</p>
+<ul><li>定格款：定格段斜率 =0（瞬时切换，无缓入——定格要干脆）；</li></ul>
+<p>定格期强调色马克笔 SVG 椭圆 8f 描边（stroke-dashoffset）圈住目标 +</p>
+<p>箭头 6f 点题，feTurbulence（scale≈7）给手绘抖动；解冻段斜率 >1</p>
+<p>补偿时长，圈注 8f 淡出</p>
+<ul><li>目标卡用高清纹理并对位屏中（凝视/圈注对象必须锐利、居中）</li></ul>
+<h2>参数表</h2>
+<table><thead><tr><th>参数</th><th>典型值</th><th>调节手感</th></tr></thead><tbody><tr><td>慢窗/定格时长</td><td>≥40f / ≥45f</td><td>短了凝视不成立（R3 宁慢勿快）</td></tr><tr><td>快慢斜率反差</td><td>≥10 倍</td><td>反差不足读不出"慢下来了"</td></tr><tr><td>圈注描边</td><td>8f 划完 + 抖动 scale 7</td><td>太慢像加载动画；无抖动像机械标注</td></tr></tbody></table>
+<h2>已知坑</h2>
+<ul><li>变速段 SFX 钉帧跟<b>输出帧</b>不跟源帧（画面动作在输出时间轴上发生）；</li></ul>
+<p>拟音槽位：定格款配马克笔沙沙声（S4），本卡转正时未配、实战补</p>
+<ul><li>定格标注一支 30s 片 ≤2 次（同 D 式克制原则）</li><li>参数经占位素材调校转正，非实战定稿，首次实战后回验</li></ul>
+<h2>参考实现</h2>
+<p>demos/rhythm/speed-ramp-freeze/</p>
+<p>（FreezeAnnotateReal.tsx / SpeedRampReal.tsx）</p>
+<div class="demo">参考实现：demos/rhythm/speed-ramp-freeze/</div>
+<div class="src">VideoForgeSuite · shotcraft 镜头卡库 · 源仓库 d:/hermes/vsc_repo</div>
+</body></html>

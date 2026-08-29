@@ -1,0 +1,46 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Microsoft YaHei",sans-serif;background:#FCFAF3;color:#26221C;padding:28px 30px;max-width:900px}
+.banner{height:170px;border-radius:14px;background:linear-gradient(120deg,#F5E663,#F0D93B 55%,#E8C82E);margin-bottom:18px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.banner img{width:100%;height:100%;object-fit:cover}
+.fallback{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;height:100%}
+.fb1{font-size:22px;font-family:KaiTi,serif;color:#7A6A14;letter-spacing:6px}
+.fb2{font-size:40px;font-family:KaiTi,serif;font-weight:bold;color:#26221C}
+.tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.tag{font-size:12px;padding:3px 10px;border-radius:20px;border:1.5px solid #26221C;background:#fff}
+.tag.cat{background:#26221C;color:#FCFAF3}
+.tag.energy{color:#fff;border:none}
+h1{font-size:30px;font-family:KaiTi,serif;margin-bottom:10px}
+.oneliner{font-size:17px;line-height:1.6;padding:10px 14px;background:#FFF9D6;border-left:4px solid #E8C82E;border-radius:0 8px 8px 0;margin-bottom:14px}
+.meta{font-size:13px;color:#6B6357;margin-bottom:18px}
+h2{font-size:17px;margin:20px 0 8px;padding-bottom:4px;border-bottom:2px solid #E8C82E;font-family:KaiTi,serif}
+p,li{font-size:14px;line-height:1.75}
+ul{padding-left:20px}
+code{font-family:Consolas,monospace;background:#F0EDE2;padding:1px 5px;border-radius:4px;font-size:13px}
+table{border-collapse:collapse;width:100%;margin:6px 0}
+th,td{border:1px solid #D8D2C0;padding:6px 10px;font-size:13px;text-align:left}
+th{background:#F0EDE2}
+.demo{margin-top:22px;padding:10px 14px;background:#F0EDE2;border-radius:8px;font-size:12.5px;color:#6B6357;font-family:Consolas,monospace;word-break:break-all}
+.src{margin-top:16px;font-size:11px;color:#A39B8B;text-align:center}
+</style></head><body>
+<div class="banner"><div class="fallback"><div class="fb1">交互镜头</div><div class="fb2">type-and-filter</div></div></div>
+<div class="tags"><span class="tag cat">interaction · 交互</span><span class="tag energy" style="background:#A16207">能量 中</span><span class="tag">约 2.5s（118–190f）</span></div>
+<h1>type-and-filter</h1>
+<div class="oneliner">真实 UI 上打字搜索、网格自己收敛成一张卡、点击穿透进详情页</div>
+<div class="meta"><b>适用：</b>功能演示的"操作叙事"段；搜索/筛选/进入详情的任何交互链路；发牌高能段之后的从容一拍</div>
+<h2>意图</h2>
+<p>让观众"跟着做一遍"：看清输入了什么、页面怎么响应、点了哪里。这是全片唯一模拟真人操作的镜头，节奏必须像人手，不能像脚本。</p>
+<h2>动效核心</h2>
+<ul><li>相机上移到搜索框，逐字符打字，光标常亮→闪烁</li><li>打完留一口气，然后非目标卡按阅读序错峰淡出下沉，网格收敛</li><li>目标卡滑到首行槽位，途中浮起 + 阴影变宽</li><li>双圈强调色（模板片为琥珀）ripple 点击确认，相机推进穿透进详情页交棒转场</li></ul>
+<h2>参数表</h2>
+<table><thead><tr><th>参数</th><th>典型值</th><th>调节手感</th></tr></thead><tbody><tr><td>打字速度</td><td>3f/字符（TYPE_START=128，"nano-lab" 8 字符 ≈149 收尾）</td><td>初版嫌快返工后的定稿值（"unhurried"）；交互演示按真人操作速度走（R3）</td></tr><tr><td>呼吸位</td><td>打完到过滤 FILTER_START=160，留 ~11f（0.37s）</td><td>打完立刻过滤读作机器自动，观众跟不上因果</td></tr><tr><td>光标</td><td>打字时常亮，之后 8f 周期闪烁；点击 176f，光标 185f 消失</td><td>打字中闪烁会读作卡顿；常亮→闪烁的切换本身就是"打完了"的信号</td></tr><tr><td>过滤退场</td><td>25 张非目标卡按阅读序 0.4f 间隔错峰，各 5f 淡出+下沉 8px</td><td>同时消失读作页面崩溃；错峰哪怕只差 0.4f 也够</td></tr><tr><td>目标卡滑位</td><td>10f 滑到首行槽位，bezier(0.35,0,0.2,1)，途中 sin 浮起 z 18px、scale +0.02、阴影随浮起变宽</td><td>终点必须是布局真实槽位（Q9），滑到画面中央悬停就假了</td></tr><tr><td>点击确认</td><td>两圈同心强调色 ripple（起点差 3f、各 10f、半径 14→54/78）+ 3px 描边 + 40px 辉光，随后相机 16f 推进 zoom 2.2</td><td>单圈 ripple 太轻看不见；推进交棒给 flash-cut 盖住换页硬切（组件见 assets/lib/FlashCut.tsx，用法：from = 切点 − 5，跨骑硬切两侧各 5f）</td></tr><tr><td>搜索框</td><td>页面底色补丁盖掉纹理里的 placeholder（保留放大镜图标），文字层叠上去打</td><td>直接在截图纹理上叠字会和烤入的 placeholder 重影</td></tr></tbody></table>
+<h2>声音</h2>
+<p>打字段钉 keyboard.mp3 并按 Sequence 截 24f 与动作严格等长（S4）；点击钉 click-camera（全片最响 vol 0.6，S2 响度分层）；网格飞走钉 whoosh-fast。</p>
+<h2>已知坑</h2>
+<ul><li>初版打字+过滤"太快了"被返工（R3）——交互镜头的第一版几乎总是偏快，起稿就按 3f/字符</li><li>过滤后目标卡若不归位到真实槽位、悬浮在网格上方，读作假（Q9，曾因此近乎整文件重写）</li></ul>
+<h2>参考实现</h2>
+<p>demos/interaction/type-and-filter/TypeAndFilter.tsx（原 template/src/aifl/live/SceneFlyIn.tsx 118–190 段）</p>
+<div class="demo">参考实现：demos/interaction/type-and-filter/</div>
+<div class="src">VideoForgeSuite · shotcraft 镜头卡库 · 源仓库 d:/hermes/vsc_repo</div>
+</body></html>

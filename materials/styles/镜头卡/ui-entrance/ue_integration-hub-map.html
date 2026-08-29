@@ -1,0 +1,68 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Microsoft YaHei",sans-serif;background:#FCFAF3;color:#26221C;padding:28px 30px;max-width:900px}
+.banner{height:170px;border-radius:14px;background:linear-gradient(120deg,#F5E663,#F0D93B 55%,#E8C82E);margin-bottom:18px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.banner img{width:100%;height:100%;object-fit:cover}
+.fallback{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;height:100%}
+.fb1{font-size:22px;font-family:KaiTi,serif;color:#7A6A14;letter-spacing:6px}
+.fb2{font-size:40px;font-family:KaiTi,serif;font-weight:bold;color:#26221C}
+.tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.tag{font-size:12px;padding:3px 10px;border-radius:20px;border:1.5px solid #26221C;background:#fff}
+.tag.cat{background:#26221C;color:#FCFAF3}
+.tag.energy{color:#fff;border:none}
+h1{font-size:30px;font-family:KaiTi,serif;margin-bottom:10px}
+.oneliner{font-size:17px;line-height:1.6;padding:10px 14px;background:#FFF9D6;border-left:4px solid #E8C82E;border-radius:0 8px 8px 0;margin-bottom:14px}
+.meta{font-size:13px;color:#6B6357;margin-bottom:18px}
+h2{font-size:17px;margin:20px 0 8px;padding-bottom:4px;border-bottom:2px solid #E8C82E;font-family:KaiTi,serif}
+p,li{font-size:14px;line-height:1.75}
+ul{padding-left:20px}
+code{font-family:Consolas,monospace;background:#F0EDE2;padding:1px 5px;border-radius:4px;font-size:13px}
+table{border-collapse:collapse;width:100%;margin:6px 0}
+th,td{border:1px solid #D8D2C0;padding:6px 10px;font-size:13px;text-align:left}
+th{background:#F0EDE2}
+.demo{margin-top:22px;padding:10px 14px;background:#F0EDE2;border-radius:8px;font-size:12.5px;color:#6B6357;font-family:Consolas,monospace;word-break:break-all}
+.src{margin-top:16px;font-size:11px;color:#A39B8B;text-align:center}
+</style></head><body>
+<div class="banner"><div class="fallback"><div class="fb1">UI入场镜头</div><div class="fb2">integration-hub-map</div></div></div>
+<div class="tags"><span class="tag cat">ui-entrance · UI入场</span><span class="tag energy" style="background:#A16207">能量 中高</span><span class="tag">前摇 ~0.5s + 快翻 ~1.2s + 图标齐现 → 光管齐连两拍 ~0.7s + 输送呼吸 ≥1.5s；全段 4.5–5s</span></div>
+<h1>integration-hub-map</h1>
+<div class="oneliner">旧页面一次性快翻 180°（侧棱瞬间亮闪）落成新中枢页，五个集成 app 图标同帧弹现、随即五条彩虹光管同帧齐连，光管内输送脉冲持续流动——"翻开新一页，生态一齐接入"</div>
+<div class="meta"><b>适用：</b>集成/生态能力段（一个产品连一切）；版本翻新叙事（旧页翻成新页）；暗场霓虹调性的功能高潮；翻面是爆点，输送段是余韵</div>
+<h2>意图</h2>
+<p>翻面是"换时代"：旧文档页整个翻转 180° 得到新中枢页——必须是</p>
+<p>完整翻面不是转个角度（判例），翻的动作<b>快翻+尾段减速</b>、一口气</p>
+<p>完成无分段停顿（"匀速"判例：用户说的匀速=无停顿，不是字面</p>
+<p>linear；90° 侧棱停顿版被裁）。侧棱时刻只"闪一下"（1–3f 脉冲，</p>
+<p>长光晕平台被裁）。接入是<b>两拍制</b>：五图标同帧弹现（第一拍）→</p>
+<p>五管同帧起画齐连（第二拍）——齐，才读作"生态一次到位"；错峰</p>
+<p>逐个连读作逐个谈判（两轮被裁）。连通后光管内亮脉冲沿图标→中枢</p>
+<p>方向持续循环，"输送感"是终态的生命。</p>
+<h2>动效核心</h2>
+<ul><li>翻面：rotateY 0→180°，35f，Easing.out(cubic)（前 41% 时间完成</li></ul>
+<p>80% 角度，尾段长减速缓着陆），双面卡（正面旧页/背面新页）</p>
+<ul><li>侧棱瞬闪：~90° 时刻 2f 脉冲 bloom（0→1→0.25→0，4f 内归零）</li><li>两拍制接入：五图标 tIcon 同帧（翻面落定 +3f）弹现；+10f 五管</li></ul>
+<p>tPipe 同帧起画，9f 齐长全亮</p>
+<ul><li>输送脉冲：光管 dash 亮斑沿图标→中枢方向循环（速度 ~4.6px/f，</li></ul>
+<p>各管相位错开），全连通后中枢页轻呼吸</p>
+<ul><li>背景：暗紫底噪 + 霓虹矩形浮现衬场</li></ul>
+<h2>参数表</h2>
+<table><thead><tr><th>参数</th><th>典型值</th><th>调节手感</th></tr></thead><tbody><tr><td>翻面时长</td><td>35f（曾 70f 被裁"再快1倍"）</td><td><24f 读不出双面；尾段减速比例 ~60% 时间走 20% 角度</td></tr><tr><td>翻面曲线</td><td>ease-out 单调无停顿</td><td>侧棱停顿/分段被裁；严格 linear 起停生硬也被裁——快翻尾缓</td></tr><tr><td>侧棱闪</td><td>2f 脉冲、4f 归零</td><td>长光晕平台被裁"闪一下就行"</td></tr><tr><td>接入节奏</td><td>两拍制：图标同帧 → +10f 光管同帧</td><td>错峰逐连两轮被裁"同时出现，然后同时连接"；两拍间隔 <6f 读作一拍</td></tr><tr><td>光管生长</td><td>9f 齐长</td><td>18f 版偏慢；各管长度不同但同帧到达（按各自 len 归一）</td></tr><tr><td>输送脉冲</td><td>~4.6px/f 循环、相位错开</td><td>静态连线=没有"输送的感觉"（判例）；同相位读作闪烁</td></tr></tbody></table>
+<h2>已知坑</h2>
+<ul><li>demo 在灰阶/占位素材上调校通过——参数是调校起点非实战定稿，</li></ul>
+<p>首次实战须以真实素材回验</p>
+<ul><li>时序判例链完整记录在案：错峰连入 ×2 被裁 → 管齐图标错峰被裁 →</li></ul>
+<p>两拍制过关。"同时"是这张卡的节奏身份</p>
+<ul><li>与 glow-flyline-moves 分工：那张是飞线本身的光效戏；本卡是</li></ul>
+<p>翻面+两拍接入+输送的叙事结构，光管只是元素</p>
+<ul><li>与 canvas-materialize-moves 分工：那张是画布元素实体化；本卡</li></ul>
+<p>核心是"旧页翻成新页"的换代语义</p>
+<ul><li>双面卡实现：水平/垂直线 bbox=0 会使 SVG filter/渐变失效（三管</li></ul>
+<p>消失判例），管线渐变用 userSpaceOnUse 每管独立定义</p>
+<h2>参考实现</h2>
+<p>demos/ui-entrance/integration-hub-map/</p>
+<p>（IntegrationHubMap.tsx）</p>
+<p>原片出处：clickup-30.mp4</p>
+<div class="demo">参考实现：demos/ui-entrance/integration-hub-map/</div>
+<div class="src">VideoForgeSuite · shotcraft 镜头卡库 · 源仓库 d:/hermes/vsc_repo</div>
+</body></html>

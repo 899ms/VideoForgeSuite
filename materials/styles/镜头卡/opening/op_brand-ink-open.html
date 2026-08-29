@@ -1,0 +1,46 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Microsoft YaHei",sans-serif;background:#FCFAF3;color:#26221C;padding:28px 30px;max-width:900px}
+.banner{height:170px;border-radius:14px;background:linear-gradient(120deg,#F5E663,#F0D93B 55%,#E8C82E);margin-bottom:18px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.banner img{width:100%;height:100%;object-fit:cover}
+.fallback{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;height:100%}
+.fb1{font-size:22px;font-family:KaiTi,serif;color:#7A6A14;letter-spacing:6px}
+.fb2{font-size:40px;font-family:KaiTi,serif;font-weight:bold;color:#26221C}
+.tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.tag{font-size:12px;padding:3px 10px;border-radius:20px;border:1.5px solid #26221C;background:#fff}
+.tag.cat{background:#26221C;color:#FCFAF3}
+.tag.energy{color:#fff;border:none}
+h1{font-size:30px;font-family:KaiTi,serif;margin-bottom:10px}
+.oneliner{font-size:17px;line-height:1.6;padding:10px 14px;background:#FFF9D6;border-left:4px solid #E8C82E;border-radius:0 8px 8px 0;margin-bottom:14px}
+.meta{font-size:13px;color:#6B6357;margin-bottom:18px}
+h2{font-size:17px;margin:20px 0 8px;padding-bottom:4px;border-bottom:2px solid #E8C82E;font-family:KaiTi,serif}
+p,li{font-size:14px;line-height:1.75}
+ul{padding-left:20px}
+code{font-family:Consolas,monospace;background:#F0EDE2;padding:1px 5px;border-radius:4px;font-size:13px}
+table{border-collapse:collapse;width:100%;margin:6px 0}
+th,td{border:1px solid #D8D2C0;padding:6px 10px;font-size:13px;text-align:left}
+th{background:#F0EDE2}
+.demo{margin-top:22px;padding:10px 14px;background:#F0EDE2;border-radius:8px;font-size:12.5px;color:#6B6357;font-family:Consolas,monospace;word-break:break-all}
+.src{margin-top:16px;font-size:11px;color:#A39B8B;text-align:center}
+</style></head><body>
+<div class="banner"><div class="fallback"><div class="fb1">开场镜头</div><div class="fb2">brand-ink-open</div></div></div>
+<div class="tags"><span class="tag cat">opening · 开场</span><span class="tag energy" style="background:#3F6212">能量 低</span><span class="tag">约 2.8s（83f）</span></div>
+<h1>brand-ink-open</h1>
+<div class="oneliner">墨线十字准星描画→字标逐字压印→打字机副标→满一秒静止再上浮消散</div>
+<div class="meta"><b>适用：</b>品牌开场；任何"先立名号再进产品"的片头；起步位，为后续镜头留爬升空间</div>
+<h2>意图</h2>
+<p>第一拍先给品牌记忆点：观众在任何产品画面出现之前，先看清并记住名字。安静、纸墨质感、有一个完整的静止时刻。</p>
+<h2>动效核心</h2>
+<ul><li>SVG 十字准星笔画描画（pathLength dashoffset），先竖后横，画完淡出</li><li>字标逐字 letterpress：scale 从大压到 1 + blur→0，字底强调色（模板片为琥珀）glint 短划闪过</li><li>kicker 副标打字机逐字符出现，强调色块光标周期闪烁</li><li>lockup 完整静止满 1 秒，然后整体上浮 + 缩小 + 淡出，交棒 dashboard</li></ul>
+<h2>参数表</h2>
+<table><thead><tr><th>参数</th><th>典型值</th><th>调节手感</th></tr></thead><tbody><tr><td>准星描画</td><td>竖线 0→9f、横线 8→18f，24→34f 淡出</td><td>描画完必须淡出，残留准星会和字标抢焦点</td></tr><tr><td>字标逐字</td><td>第 i 字 delay=10+i·3、12f；scale 1.6→1（origin center bottom）+ blur 6px→0</td><td>"opacity+位移/scale+blur→0"是全片入场三件套定式，缺 blur 会显得硬</td></tr><tr><td>kicker 打字机</td><td>0.7f/字符（28 起 ~43.4 完），光标 2f 周期闪、74f 停闪</td><td>0.7f/字符只适用于装饰性小字；正文交互打字要 3f/字符（对照 type-and-filter，用户嫌快返工过）</td></tr><tr><td>品牌 hold</td><td>46→76 帧整整 1 秒</td><td>硬底线：用户两轮点名"出现后延长停留1秒"（R1）；短于 1s 必返工</td></tr><tr><td>退场</td><td>7f 上浮 40px + 缩 12% + 淡出</td><td>退场快于入场——观众已读完，拖长反而泄气</td></tr></tbody></table>
+<h2>声音</h2>
+<p>品牌落定钉 transition-soft（模板片钉在 f12），brand→dashboard 运镜钉 whoosh-fast（f78）。SFX 逐拍钉帧、声明式表管理（S2）；音色走电影系词汇，不用游戏 UI tap（S1）。</p>
+<h2>已知坑</h2>
+<ul><li>hold 要给的是 wordmark 落定时刻，不是普通字卡/内容卡（R1）——曾把 hold 错加给普通内容卡后很快回滚；指代含糊的"停留"反馈先确认对象再动手（P3）</li><li>开场能量必须低起步：全片能量曲线低开→中段推进→outro 峰值，开场炫技会压死后面的爬升（对照 Q8 的能量曲线要求）</li></ul>
+<h2>参考实现</h2>
+<p>demos/typography/brand-ink-open/BrandInkOpen.tsx（原 template/src/aifl/live/SceneOpen.tsx 帧 0–83 段）</p>
+<div class="demo">参考实现：demos/opening/brand-ink-open/</div>
+<div class="src">VideoForgeSuite · shotcraft 镜头卡库 · 源仓库 d:/hermes/vsc_repo</div>
+</body></html>

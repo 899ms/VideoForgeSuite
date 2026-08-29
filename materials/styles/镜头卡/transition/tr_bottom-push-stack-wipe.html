@@ -1,0 +1,73 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Microsoft YaHei",sans-serif;background:#FCFAF3;color:#26221C;padding:28px 30px;max-width:900px}
+.banner{height:170px;border-radius:14px;background:linear-gradient(120deg,#F5E663,#F0D93B 55%,#E8C82E);margin-bottom:18px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.banner img{width:100%;height:100%;object-fit:cover}
+.fallback{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;height:100%}
+.fb1{font-size:22px;font-family:KaiTi,serif;color:#7A6A14;letter-spacing:6px}
+.fb2{font-size:40px;font-family:KaiTi,serif;font-weight:bold;color:#26221C}
+.tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.tag{font-size:12px;padding:3px 10px;border-radius:20px;border:1.5px solid #26221C;background:#fff}
+.tag.cat{background:#26221C;color:#FCFAF3}
+.tag.energy{color:#fff;border:none}
+h1{font-size:30px;font-family:KaiTi,serif;margin-bottom:10px}
+.oneliner{font-size:17px;line-height:1.6;padding:10px 14px;background:#FFF9D6;border-left:4px solid #E8C82E;border-radius:0 8px 8px 0;margin-bottom:14px}
+.meta{font-size:13px;color:#6B6357;margin-bottom:18px}
+h2{font-size:17px;margin:20px 0 8px;padding-bottom:4px;border-bottom:2px solid #E8C82E;font-family:KaiTi,serif}
+p,li{font-size:14px;line-height:1.75}
+ul{padding-left:20px}
+code{font-family:Consolas,monospace;background:#F0EDE2;padding:1px 5px;border-radius:4px;font-size:13px}
+table{border-collapse:collapse;width:100%;margin:6px 0}
+th,td{border:1px solid #D8D2C0;padding:6px 10px;font-size:13px;text-align:left}
+th{background:#F0EDE2}
+.demo{margin-top:22px;padding:10px 14px;background:#F0EDE2;border-radius:8px;font-size:12.5px;color:#6B6357;font-family:Consolas,monospace;word-break:break-all}
+.src{margin-top:16px;font-size:11px;color:#A39B8B;text-align:center}
+</style></head><body>
+<div class="banner"><img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb//gAQTGF2YzYyLjExLjEwMAD/2wBDAAgMDA4MDhAQEBAQEBMSExQUFBMTExMUFBQVFRUZGRkVFRUUFBUVGBgZGRscGxoaGRocHB4eHiQkIiIqKiszMz7/xACXAAEBAAIDAQAAAAAAAAAAAAAABAIFAQcDBgEBAAMBAQEBAAAAAAAAAAAAAAECAwYHBQQQAQAAAgYGCAYDAQEBAQAAAAABAhEEUwMSFJJR0RUTYaEFMTSyc1KBkfAh4aJxYkEiMrEjghEBAAEBBQQLAAMBAQEAAAAAAAECkVISERNRA3HRFRRi4ZKhMWGxBDIhIgXBQYH/wAARCAFoAoADASIAAhEAAxEA/9oADAMBAAIRAxEAPwDZZSr2UplKvZSrR1OnRcpsh5vjqvTbKLKVeylMpV7KVaGnRcpsgx1XptlFlKvZSmUq9lKtDTouU2QY6r02yiylXspTKVeylWhp0XKbIMdV6bZRZSr2UplKvZSrQ06LlNkGOq9NsospV7KUylXspVoadFymyDHVem2UWUq9lKZSr2Uq0NOi5TZBjqvTbKLKVeylMpV7KVaGnRcpsgx1XptlFlKvZSmUq9lKtDTouU2QY6r1VsospV7KUylXspVoadFymyDHVeqtlFlKvZSmUq9lKtDTouU2QY6r1VsospV7KUylXspVoadFymyDHVeqtlFlKvZSmUq9lKtDTouU2QY6r1VsospV7KUylXspVoadFymyDHVeqtlFlKvZSmUq9lKtDTouU2QY6r1VsospV7KUylXspVoadFymyDHVeqtlFlKvZSmUq9lKtDTouU2QY6r1VsospV7KUylXspVoadFymyDHVeqtlFlKvZSmUq9lKtDTouU2QY6r1VsospV7KUylXspVoadFymyDHVeqtlFlKvZSmUq9lKtDTouU2QY6r1VsospV7KUylXspVoadFymyDHVeqtlFlKvZSmUq9lKtDTouU2QY6r1VsospV7KUylXspVoadFymyDHVeqtlFlKvZSmUq9lKtDTouU2QY6r1VsospV7KUylXspVoadFymyDHVeqtlFlKvZSmUq9lKtDTouU2QY6r1Vso8pV7KUylXspVgadFynwwY6r02yjylXspTKVeylWBp0XKfDBjqvTbKPKVeylMpV7KVYGnRcp8MGOq9Nso8pV7KUylXspVgadFynwwY6r02yjylXspTKVeylWBp0XKfDBjqvTbKPKVeylMpV7KVYGnRcp8MGOq9Nso8pV7KUylXspVgadFynwwY6r02yjylXspTKVeylWBp0XKfDBjqvTbKPKVeylMpV7KVYGnRcp8MGOq9Nso8pV7KUylXspVgadFynwwY6r02yjylXspTKVeylWBp0XKfDBjqvTbKPKVeylMpV7KVYGnRcp8MGOq9Nso8pV7KUylXspVgadFynwwY6r02yANVAAAHNAOBzRHVEojqiJcDmiOqJRHVEHA5ojqiUR1RBwOaI6olEdUQcDmiOqJRHVEHA5ojqiUR1RBwOaI6olEdUQcDmiOqJRHVEHA5ojqiUR1RBwOaI6ogOABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA3MtFEKOxphSqnE1orwZ/wAZt2NLSUs9P3ba3t5t0NLSUmn7mt7ebdDS0lJp+5re3m3Q0tJSafua3t5t0NLSUmn7mt7ebdDS0lJp+5re3m3Q0tJSafua3t5t0NLSUmn7mt7ebdDS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" alt=""></div>
+<div class="tags"><span class="tag cat">transition · 转场</span><span class="tag energy" style="background:#A16207">能量 中</span><span class="tag">单次推入 30f + 章内 hold ~1s；demo 三连推 140f（~4.7s）</span></div>
+<h1>bottom-push-stack-wipe</h1>
+<div class="oneliner">底边上推换章——新场景连底色整屏从底边向上推入，把旧场景物理顶出画外，连推数章各配一种饱和底色，内容钉死在各自色底坐标系里随底色走</div>
+<div class="meta"><b>适用：</b>多章节产品片的换章骨架（每章一个卖点一种底色）；需要"翻页节奏感"贯穿全片的段落切换</div>
+<h2>意图</h2>
+<p>wipe-transitions 是一条边界扫过、新旧页都不动；page-turn 是立方体</p>
+<p>翻转。本卡是第三种物性：<b>新章把旧章顶出去</b>——两屏刚性接触、同速</p>
+<p>同向位移，像自动售货机压栈。命门是"连底色整屏走"：底色+窗口卡+装饰</p>
+<p>条焊成一块整料从底边推入，观众读到"换了个世界"而不是"换了张卡"。</p>
+<p>重 ease-out（快进慢停）给推入一个"哐"的落位感；上缘 40px 接缝阴影</p>
+<p>是两屏物理接触的证据。连推三章且底色饱和度拉满，换章本身就成了全片</p>
+<p>的节拍器——slack 原片全片就靠这一招做骨架。</p>
+<h2>动效核心</h2>
+<ul><li>每章一个整屏层：<code>translateY</code> 从 +1080 推到 0，旧章同步被顶到</li></ul>
+<p>−1080——两层位移严格同步同缓动，任何速差都读作"滑动穿模"</p>
+<ul><li>推入缓动 = 重 ease-out <code>cubic-bezier(0.12, 0.9, 0.2, 1)</code>（快进</li></ul>
+<p>慢停），30f 完成；第 i 章的 y = (1−自己推入进度)×H − 下一章推入</p>
+<p>进度×H，一条式子管进也管出</p>
+<ul><li>新章上缘带 40px 渐变接缝阴影（黑 0.30→透明，压在旧章上），落定</li></ul>
+<p>后归零——"顶出"的物理接触感全靠它</p>
+<ul><li>三章底色绿 #2bac76 / 蓝 #36c5f0 / 粉 #e01e5a（demo 取 slack 系</li></ul>
+<p>饱和色）；每章中央钉一张灰阶窗口卡 + 白色半透明装饰条</p>
+<ul><li>推入间隔 hold ~1s（demo 18/55/92f 起推）；出画的层及时卸载</li></ul>
+<h2>参数表</h2>
+<table><thead><tr><th>参数</th><th>典型值</th><th>调节手感</th></tr></thead><tbody><tr><td>推入时长</td><td>30f，重 ease-out</td><td><20f 读作闪切；线性匀速读作卷帘门，"哐"感全无</td></tr><tr><td>章间 hold</td><td>~37f（1.2s 左右）</td><td>章内是内容表演区，<25f 观众没看清就被顶走</td></tr><tr><td>接缝阴影</td><td>上缘 40px，黑 0.30 渐变</td><td>去掉后两屏像叠影滑动；>80px 读作新章自带黑边</td></tr><tr><td>底色</td><td>每章一种饱和色，相邻章色相拉开</td><td>相邻章同色系则"换章"读作"微调"；灰阶章只能当第 0 章</td></tr><tr><td>内容钉死</td><td>窗口卡/装饰条用章内绝对坐标</td><td>内容若相对视口定位就会"漂"在推入动画上，穿帮</td></tr><tr><td>连推次数</td><td>2–4 章</td><td>1 次不成节奏；>4 次观众开始数底色，疲劳</td></tr></tbody></table>
+<h2>已知坑</h2>
+<ul><li>demo 在灰阶/占位素材上调校通过——参数是调校起点非实战定稿，</li></ul>
+<p>首次实战须以真实素材回验</p>
+<ul><li>与 wipe-transitions 分工：那卡新旧页都不动、一条几何边界扫过交接</li></ul>
+<p>（中性、哪儿都能用）；本卡两页都在动、刚性顶出（有物性、自带章节</p>
+<p>节奏）——单次接缝用那卡，全片骨架用本卡</p>
+<ul><li>与 shot-transitions 六式同层选型：本卡能量中档、方向固定向上，</li></ul>
+<p>需要能量落差大的接缝（如进 outro）让位给流白/黑场</p>
+<ul><li>方向统一是骨架感的来源：全片所有章都从底边推，中途换成左推/顶推</li></ul>
+<p>节拍器就散了——要变方向就别当骨架用</p>
+<ul><li>推入进行中两章同屏，都是满屏层——章内动画（卡片入场等）避开推入</li></ul>
+<p>的 30f 窗口，不然两章都在动，视线没有锚点</p>
+<ul><li>实战底色用品牌色板的饱和档；底色饱和度不足时窗口卡"钉在色底上"</li></ul>
+<p>的从属关系读不出来，会退化成"卡片各自换背景"</p>
+<h2>参考实现</h2>
+<p>demos/transition/bottom-push-stack-wipe/</p>
+<p>（BottomPushStackWipe.tsx）</p>
+<p>原片出处：slack-promo 22–27s</p>
+<div class="demo">参考实现：demos/transition/bottom-push-stack-wipe/</div>
+<div class="src">VideoForgeSuite · shotcraft 镜头卡库 · 源仓库 d:/hermes/vsc_repo</div>
+</body></html>

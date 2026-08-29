@@ -1,0 +1,69 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Microsoft YaHei",sans-serif;background:#FCFAF3;color:#26221C;padding:28px 30px;max-width:900px}
+.banner{height:170px;border-radius:14px;background:linear-gradient(120deg,#F5E663,#F0D93B 55%,#E8C82E);margin-bottom:18px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.banner img{width:100%;height:100%;object-fit:cover}
+.fallback{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;height:100%}
+.fb1{font-size:22px;font-family:KaiTi,serif;color:#7A6A14;letter-spacing:6px}
+.fb2{font-size:40px;font-family:KaiTi,serif;font-weight:bold;color:#26221C}
+.tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.tag{font-size:12px;padding:3px 10px;border-radius:20px;border:1.5px solid #26221C;background:#fff}
+.tag.cat{background:#26221C;color:#FCFAF3}
+.tag.energy{color:#fff;border:none}
+h1{font-size:30px;font-family:KaiTi,serif;margin-bottom:10px}
+.oneliner{font-size:17px;line-height:1.6;padding:10px 14px;background:#FFF9D6;border-left:4px solid #E8C82E;border-radius:0 8px 8px 0;margin-bottom:14px}
+.meta{font-size:13px;color:#6B6357;margin-bottom:18px}
+h2{font-size:17px;margin:20px 0 8px;padding-bottom:4px;border-bottom:2px solid #E8C82E;font-family:KaiTi,serif}
+p,li{font-size:14px;line-height:1.75}
+ul{padding-left:20px}
+code{font-family:Consolas,monospace;background:#F0EDE2;padding:1px 5px;border-radius:4px;font-size:13px}
+table{border-collapse:collapse;width:100%;margin:6px 0}
+th,td{border:1px solid #D8D2C0;padding:6px 10px;font-size:13px;text-align:left}
+th{background:#F0EDE2}
+.demo{margin-top:22px;padding:10px 14px;background:#F0EDE2;border-radius:8px;font-size:12.5px;color:#6B6357;font-family:Consolas,monospace;word-break:break-all}
+.src{margin-top:16px;font-size:11px;color:#A39B8B;text-align:center}
+</style></head><body>
+<div class="banner"><div class="fallback"><div class="fb1">转场镜头</div><div class="fb2">color-block-step-wipe</div></div></div>
+<div class="tags"><span class="tag cat">transition · 转场</span><span class="tag energy" style="background:#A16207">能量 中高</span><span class="tag">A ~2.5s（生长 44f + 徽章 + hold）/ B ~1.5–2s（3 跳 30f + hold）；demo 合计 150f</span></div>
+<h1>color-block-step-wipe</h1>
+<div class="oneliner">离散阶跃色块吞屏两式——A 中央小条按 3–5 步硬跳阶跃扩成全屏（接管后徽章两跳弹出），B 色块从角落斜向 3 步吃屏并携带一张页面卡逐跳前进</div>
+<div class="meta"><b>适用：</b>品牌色转场/章节交接；"硬朗无缓动"的像素游戏手感段落；接管后的纯色场当下一段的舞台；能量来自"跳变"的顿挫而非速度</div>
+<h2>意图</h2>
+<p>库里 wipe 类全是连续扫过——边界匀速或缓动地推过去。本卡反着来：</p>
+<p><b>全程零插值零缓动</b>，色块像老式像素游戏的方块生长，每一跳都是硬切，</p>
+<p>跳与跳之间完全静止。顿挫本身就是节奏：3–5 声"咔、咔、咔"比一次</p>
+<p>平滑扫过更有宣告感。变体 B 再加一层：色块推进时携带一张内容卡同拍</p>
+<p>离散跳位——卡不做补间，读作"整块被搬进来"，色块是运货的不是装饰的。</p>
+<h2>动效核心</h2>
+<ul><li>核心是 stepVal 帧阈值查表：frame 越过阈值瞬间跳到新值，无插值——</li></ul>
+<p>这是本卡的语法宪法，任何一处混进缓动整卡手感就破</p>
+<ul><li>A 式：宽/高两轴分步跳（demo：w 0→280→820→1340→1920 @ 8f 间隔；</li></ul>
+<p>h 先横条后纵向补齐），先长条后铺满——两轴不同步才有"生长"感</p>
+<ul><li>A 收尾徽章也用阶跃模拟过冲：scale 0→0.55→1.12→1 三跳（52/58/63f）</li></ul>
+<p>——同一语法贯穿到底，徽章若用 spring 会显得"来自另一部片"</p>
+<ul><li>B 式：clipPath polygon 对角线推进量 p 分 3 档硬跳（0→42→106→200，</li></ul>
+<p>p=200 全覆盖）；携带卡按同一批阈值查表跳位（画外→3 个停靠点）</p>
+<ul><li>跳位间隔 6–12f 不等距——等距读作 GIF 掉帧，不等距读作"节拍"</li></ul>
+<h2>参数表</h2>
+<table><thead><tr><th>参数</th><th>典型值</th><th>调节手感</th></tr></thead><tbody><tr><td>步数</td><td>A 4–5 跳 / B 3 跳</td><td>≥7 跳读作低帧率滚动而非阶跃；2 跳读作闪切</td></tr><tr><td>跳位间隔</td><td>6–12f</td><td><5f 眼睛跟不上"跳了几步"；>16f 中段静止读作卡死</td></tr><tr><td>徽章过冲</td><td>0.55→1.12→1 三档硬跳</td><td>改成连续 spring 破语法；过冲档 >1.2 读作弹跳动画</td></tr><tr><td>携带卡</td><td>与色块同拍跳位，rotate -4° 定角</td><td>卡若做补间滑动，"整块搬运"手感全失；逐跳换角度读作抖动</td></tr><tr><td>斜角 clip</td><td>polygon 直角三角形从角落长出</td><td>边缘加圆角/羽化即破"硬边"人设</td></tr><tr><td>接管 hold</td><td>铺满后 ≥30f 纯色静置再进下段内容</td><td>刚铺满就上内容，"吞屏"这一拍没呼吸完</td></tr></tbody></table>
+<h2>已知坑</h2>
+<ul><li>demo 在灰阶/占位素材上调校通过——参数是调校起点非实战定稿，</li></ul>
+<p>首次实战须以真实素材回验</p>
+<ul><li>与 wipe-transitions 分工：clock-wipe/blinds 是连续几何边界扫过（顺滑系），</li></ul>
+<p>本卡是离散阶跃（顿挫系）——同片两系并用要隔开段落，紧邻会互相衬得对方像 bug</p>
+<ul><li>与 shot-transitions 的关系：本卡是"转场+接管"复合体（色块留下当新场底色），</li></ul>
+<p>纯交接不留场的接缝用 shot-transitions 选型，别为了转场硬造一个色块</p>
+<ul><li><b>声音强依赖</b>：每跳一声打点（同 cel-flash-stomp 的 kick 逻辑）——</li></ul>
+<p>无声版阶跃容易被观众读作播放器卡顿</p>
+<ul><li>阶跃的"故意感"靠对比成立：同段落其他元素须是顺滑补间，全片到处阶跃</li></ul>
+<p>就没人信这是设计</p>
+<ul><li>实战品牌色：色块用品牌主色，A/B 两式同片可各一次但换色（demo 蓝/红）；</li></ul>
+<p>同色连用两次读作素材复用</p>
+<h2>参考实现</h2>
+<p>demos/transition/color-block-step-wipe/</p>
+<p>（ColorBlockStepWipe.tsx）</p>
+<p>原片出处：notion-ai 1.5–3.5s（A 中央阶跃）+ 26–27s（B 斜角吞屏）</p>
+<div class="demo">参考实现：demos/transition/color-block-step-wipe/</div>
+<div class="src">VideoForgeSuite · shotcraft 镜头卡库 · 源仓库 d:/hermes/vsc_repo</div>
+</body></html>

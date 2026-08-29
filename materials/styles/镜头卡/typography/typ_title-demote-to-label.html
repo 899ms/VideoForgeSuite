@@ -1,0 +1,73 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Microsoft YaHei",sans-serif;background:#FCFAF3;color:#26221C;padding:28px 30px;max-width:900px}
+.banner{height:170px;border-radius:14px;background:linear-gradient(120deg,#F5E663,#F0D93B 55%,#E8C82E);margin-bottom:18px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.banner img{width:100%;height:100%;object-fit:cover}
+.fallback{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;height:100%}
+.fb1{font-size:22px;font-family:KaiTi,serif;color:#7A6A14;letter-spacing:6px}
+.fb2{font-size:40px;font-family:KaiTi,serif;font-weight:bold;color:#26221C}
+.tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.tag{font-size:12px;padding:3px 10px;border-radius:20px;border:1.5px solid #26221C;background:#fff}
+.tag.cat{background:#26221C;color:#FCFAF3}
+.tag.energy{color:#fff;border:none}
+h1{font-size:30px;font-family:KaiTi,serif;margin-bottom:10px}
+.oneliner{font-size:17px;line-height:1.6;padding:10px 14px;background:#FFF9D6;border-left:4px solid #E8C82E;border-radius:0 8px 8px 0;margin-bottom:14px}
+.meta{font-size:13px;color:#6B6357;margin-bottom:18px}
+h2{font-size:17px;margin:20px 0 8px;padding-bottom:4px;border-bottom:2px solid #E8C82E;font-family:KaiTi,serif}
+p,li{font-size:14px;line-height:1.75}
+ul{padding-left:20px}
+code{font-family:Consolas,monospace;background:#F0EDE2;padding:1px 5px;border-radius:4px;font-size:13px}
+table{border-collapse:collapse;width:100%;margin:6px 0}
+th,td{border:1px solid #D8D2C0;padding:6px 10px;font-size:13px;text-align:left}
+th{background:#F0EDE2}
+.demo{margin-top:22px;padding:10px 14px;background:#F0EDE2;border-radius:8px;font-size:12.5px;color:#6B6357;font-family:Consolas,monospace;word-break:break-all}
+.src{margin-top:16px;font-size:11px;color:#A39B8B;text-align:center}
+</style></head><body>
+<div class="banner"><div class="fallback"><div class="fb1">文字镜头</div><div class="fb2">title-demote-to-label</div></div></div>
+<div class="tags"><span class="tag cat">typography · 文字</span><span class="tag energy" style="background:#A16207">能量 低中</span><span class="tag">A ~3s（92f）/ B ~3.5s（104f）；demo 两式串播 196f</span></div>
+<h1>title-demote-to-label</h1>
+<div class="oneliner">大标题降格为节标签两式——A 大标题居中显影站稳一拍后连续缩小 0.3x 平移到左上角落成小节标签、内容区在其下生长；B 同套路但登场时带文本选中态高亮块扫入再撤掉</div>
+<div class="meta"><b>适用：</b>章节开场（标题先当主角再让位给内容）；教程/功能演示片的小节交接；B 式给"文字/编辑"类产品加身份暗示；版式变换型，氛围镜头</div>
+<h2>意图</h2>
+<p>章节标题的常规命运是"出现→消失→内容登场"，标题和内容互不认识。</p>
+<p>本卡让标题<b>降格而不退场</b>：居中大字站稳一拍宣告主题，然后一次连续</p>
+<p>补间缩到 0.3x 飞到左上角，落成这一节的栏目标签——它还在屏幕上，</p>
+<p>只是从主角变成了门牌。观众获得免费的空间记忆：刚才那个大词就是</p>
+<p>现在左上角那个小词，本节讲的就是它。内容骨架在降格进行中就开始</p>
+<p>生长，交接零空档。</p>
+<h2>动效核心</h2>
+<ul><li>降格是<b>单次连续补间</b>，Easing.inOut(cubic) 20f：scale 1→0.3 +</li></ul>
+<p>位置 (960,480)→(150,110) 同一条曲线——分两段（先缩后飞）读作两个动作</p>
+<ul><li>transform-origin 左中；居中修正量 translate(-50%) 随补间同步归零</li></ul>
+<p>（<code>translate(${-(1-dem)*50}%, -50%)</code>）——不归零终点会偏一个半宽</p>
+<ul><li>登场显影：12f blur 12→0 + 淡入，Easing.out(cubic)；显影后必须</li></ul>
+<p>站稳 ≥18f 再降格——没站稳就缩，宣告拍被吃掉</p>
+<ul><li>骨架内容错峰生长：每块宽度 0.35→1 + 上移 28px 淡入，块间 t 错峰</li></ul>
+<p>0.16；生长起点在降格进行到 12f 时（GROW = DEMOTE+12），标题还在</p>
+<p>飞内容已在长——这个重叠是"交接无空档"的来源</p>
+<ul><li>B 式选中高亮：左缘/宽度两个百分比分别补间——扫入时宽度 0→100%</li></ul>
+<p>（盖住），撤掉时左缘 0→100%（从左让开）；高亮撤净后再起降格</p>
+<ul><li>两式串播用 4f 白闪转场</li></ul>
+<h2>参数表</h2>
+<table><thead><tr><th>参数</th><th>典型值</th><th>调节手感</th></tr></thead><tbody><tr><td>降格补间</td><td>20f inOut(cubic)，scale→0.3</td><td><14f 读作标题被弹走；终点 >0.45 标签太大压内容</td></tr><tr><td>站稳拍</td><td>显影后 ≥18f 静置</td><td>省掉这拍，观众没读完标题它就跑了，降格白做</td></tr><tr><td>骨架错峰</td><td>块间 0.16t，宽 0.35→1</td><td>全部同时长出读作页面刷新而非"生长"</td></tr><tr><td>生长起点</td><td>降格开始后 +12f</td><td>等标题完全落位才生长会空 8f 冷场</td></tr><tr><td>选中高亮</td><td>扫入 10f / hold ~8f / 撤 8f，35% 透明蓝</td><td>高亮 hold <5f 读作闪烁 bug；不撤干净就降格，蓝块跟着飞很脏</td></tr><tr><td>白闪转场</td><td>4f opacity 1→0</td><td>仅两式串播用；>6f 读作曝光事故</td></tr></tbody></table>
+<h2>已知坑</h2>
+<ul><li>demo 在灰阶/占位素材上调校通过——参数是调校起点非实战定稿，</li></ul>
+<p>首次实战须以真实素材回验</p>
+<ul><li>与"标题钉进 3D 空间随相机透视变形"的场景锁定拍法（已退役）分工</li></ul>
+<p>（空间型），本卡是 2D 版式层级的连续降格（版式型）——要"标题住进</p>
+<p>产品空间"用那卡，要"标题变栏目名"用本卡，同片选一</p>
+<ul><li>降格路径上不许有其他元素动——标题飞行是全屏唯一焦点，骨架生长</li></ul>
+<p>在它落点下方不抢（起点错开），但弹窗/光标类同帧入场必抢</p>
+<ul><li>多节连用（每节一次降格）时左上角标签要<b>换行不叠放</b>：新标签落位</li></ul>
+<p>旧标签上移让位，否则第二节起左上角变成标签坟场</p>
+<ul><li>B 式的选中高亮是"文字可被选中"的产品暗示，非编辑器/文档类产品</li></ul>
+<p>用了语义空转，别为了好看加</p>
+<ul><li>标题文案 ≤3 个词——降格到 0.3x 后还要当可读标签，长句缩完就是一条灰线</li></ul>
+<h2>参考实现</h2>
+<p>demos/typography/title-demote-to-label/</p>
+<p>（TitleDemoteToLabel.tsx）</p>
+<p>原片出处：perplexity-promo 16–18.5s；B 式变体源自 framer text-selection-title</p>
+<div class="demo">参考实现：demos/typography/title-demote-to-label/</div>
+<div class="src">VideoForgeSuite · shotcraft 镜头卡库 · 源仓库 d:/hermes/vsc_repo</div>
+</body></html>

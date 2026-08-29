@@ -1,0 +1,62 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Microsoft YaHei",sans-serif;background:#FCFAF3;color:#26221C;padding:28px 30px;max-width:900px}
+.banner{height:170px;border-radius:14px;background:linear-gradient(120deg,#F5E663,#F0D93B 55%,#E8C82E);margin-bottom:18px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.banner img{width:100%;height:100%;object-fit:cover}
+.fallback{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;height:100%}
+.fb1{font-size:22px;font-family:KaiTi,serif;color:#7A6A14;letter-spacing:6px}
+.fb2{font-size:40px;font-family:KaiTi,serif;font-weight:bold;color:#26221C}
+.tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.tag{font-size:12px;padding:3px 10px;border-radius:20px;border:1.5px solid #26221C;background:#fff}
+.tag.cat{background:#26221C;color:#FCFAF3}
+.tag.energy{color:#fff;border:none}
+h1{font-size:30px;font-family:KaiTi,serif;margin-bottom:10px}
+.oneliner{font-size:17px;line-height:1.6;padding:10px 14px;background:#FFF9D6;border-left:4px solid #E8C82E;border-radius:0 8px 8px 0;margin-bottom:14px}
+.meta{font-size:13px;color:#6B6357;margin-bottom:18px}
+h2{font-size:17px;margin:20px 0 8px;padding-bottom:4px;border-bottom:2px solid #E8C82E;font-family:KaiTi,serif}
+p,li{font-size:14px;line-height:1.75}
+ul{padding-left:20px}
+code{font-family:Consolas,monospace;background:#F0EDE2;padding:1px 5px;border-radius:4px;font-size:13px}
+table{border-collapse:collapse;width:100%;margin:6px 0}
+th,td{border:1px solid #D8D2C0;padding:6px 10px;font-size:13px;text-align:left}
+th{background:#F0EDE2}
+.demo{margin-top:22px;padding:10px 14px;background:#F0EDE2;border-radius:8px;font-size:12.5px;color:#6B6357;font-family:Consolas,monospace;word-break:break-all}
+.src{margin-top:16px;font-size:11px;color:#A39B8B;text-align:center}
+</style></head><body>
+<div class="banner"><div class="fallback"><div class="fb1">特效镜头</div><div class="fb2">brand-frame-snap</div></div></div>
+<div class="tags"><span class="tag cat">effects · 特效</span><span class="tag energy" style="background:#A16207">能量 中</span><span class="tag">单次翻色 ~4.3s（130f）；画框本身可全片驻场</span></div>
+<h1>brand-frame-snap</h1>
+<div class="oneliner">品牌色画框语法——一圈粗纯色画框先于内容长出包住全屏，录屏窗口落进框内；模式切换时整圈画框同帧硬翻色+窗内布局同帧换，一个 borderColor 干完章节导航/状态提示/品牌露出三件事</div>
+<div class="meta"><b>适用：</b>双模式/双章节产品片的全片包装层（蓝=模式A、绿=模式B 颜色编码）；真实录屏素材的品牌化包裹；翻色瞬间高，其余时间是安静的包装层</div>
+<h2>意图</h2>
+<p>真实录屏直接铺满屏没有品牌存在感，加 logo 水印又廉价。本卡用一圈</p>
+<p>粗品牌色画框把录屏"装裱"起来：画框<b>先于内容出现</b>（先立画框再放</p>
+<p>画，仪式感），之后画框颜色成为全片的语义编码——蓝=Design、绿=Dev</p>
+<p>Mode。章节切换时整圈画框一帧内硬翻色，无渐变，颜色硬切就是"换挡"</p>
+<p>声效的视觉等价物；窗内布局同帧 A→B、角标与徽标同步换字，三处同帧</p>
+<p>共振把"模式切换"砸实。与 theme-switch-moves 分工：那换的是 UI 本体</p>
+<p>肤色（有扫过边界），本卡换的是"画框"这个包装层（同帧无边界），</p>
+<p>语义是模式/章节切换不是主题切换。</p>
+<h2>动效核心</h2>
+<ul><li>画框用 4 条实体色带（非 border 属性），厚度 0→44px ease-out 18f</li></ul>
+<p>长出；翻色 = 同一帧换 background，帧确定</p>
+<ul><li>录屏窗口 spring(damping 16) 从下方 560px + scale 0.82→1 落进框内</li></ul>
+<p>（帧 14 起，画框长出中段——框未成形窗先到会读作框追窗）</p>
+<ul><li>翻色帧三件事同帧：画框换色 + 窗内布局 A→B 硬切 + 框带角标/窗口</li></ul>
+<p>徽标换字（DESIGN→DEV MODE）</p>
+<ul><li>翻色瞬间叠 2 帧白闪脉冲（opacity 0.55 起阶梯衰减）+ 画框厚度阻尼</li></ul>
+<p>弹跳（exp(-0.22t)·cos(0.9t)·10px），给"换挡"打击感</p>
+<h2>参数表</h2>
+<table><thead><tr><th>参数</th><th>典型值</th><th>调节手感</th></tr></thead><tbody><tr><td>画框厚度</td><td>44px（1080p）</td><td>太薄读作描边不读作"装裱"；>60px 开始吃内容区</td></tr><tr><td>画框生长</td><td>18f ease-out，先于窗口 14f</td><td>画框必须先立——内容先到画框后包读作补救</td></tr><tr><td>窗口落位</td><td>spring(damping 16, stiffness 110)，y 560→0 + scale 0.82→1</td><td>落进"框内"是语义关键，落点必须完全在框带内侧</td></tr><tr><td>翻色时刻</td><td>demo 78f；停一拍（窗口落定后 ≥30f）再翻</td><td>落定没坐稳就翻，观众还没建立"蓝=当前模式"的编码</td></tr><tr><td>白闪脉冲</td><td>2–3f，0.55→0.19 阶梯</td><td>帮眼睛登记"这一帧变了"；>4f 抢了 cel-flash 的活</td></tr><tr><td>厚度弹跳</td><td>exp 衰减 cos，初幅 10px</td><td>纯硬切略干；弹跳是"挡位卡进去"的机械回馈</td></tr></tbody></table>
+<h2>已知坑</h2>
+<ul><li>demo 在灰阶/占位素材上调校通过——参数是调校起点非实战定稿，</li></ul>
+<p>首次实战须以真实素材回验</p>
+<ul><li>翻色必须真同帧：画框、窗内布局、角标文字三者错开哪怕 2f，"换挡"就散成三个小动画</li><li>颜色编码要全片守约：蓝框段落里不许出现绿色主 UI 元素，编码被稀释后翻色就只是换色</li><li>画框是包装层不是主角：全片翻色 ≤2 次，翻多了读作霓虹灯（P4 克制原则）</li><li>两个模式的品牌色对比度要够（demo 蓝 #3E7BFA / 绿 #1BC47D）；同明度邻近色翻了等于没翻</li><li>声音：翻色帧钉一声干脆的机械 click/换挡声，白闪与声同帧；画框生长段可静</li></ul>
+<h2>参考实现</h2>
+<p>demos/effects/brand-frame-snap/</p>
+<p>（BrandFrameSnap.tsx）</p>
+<p>原片出处：figma-devmode 0:28–0:32 + 0:43–0:47</p>
+<div class="demo">参考实现：demos/effects/brand-frame-snap/</div>
+<div class="src">VideoForgeSuite · shotcraft 镜头卡库 · 源仓库 d:/hermes/vsc_repo</div>
+</body></html>

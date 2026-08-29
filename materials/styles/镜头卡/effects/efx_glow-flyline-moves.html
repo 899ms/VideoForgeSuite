@@ -1,0 +1,59 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Microsoft YaHei",sans-serif;background:#FCFAF3;color:#26221C;padding:28px 30px;max-width:900px}
+.banner{height:170px;border-radius:14px;background:linear-gradient(120deg,#F5E663,#F0D93B 55%,#E8C82E);margin-bottom:18px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.banner img{width:100%;height:100%;object-fit:cover}
+.fallback{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;height:100%}
+.fb1{font-size:22px;font-family:KaiTi,serif;color:#7A6A14;letter-spacing:6px}
+.fb2{font-size:40px;font-family:KaiTi,serif;font-weight:bold;color:#26221C}
+.tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.tag{font-size:12px;padding:3px 10px;border-radius:20px;border:1.5px solid #26221C;background:#fff}
+.tag.cat{background:#26221C;color:#FCFAF3}
+.tag.energy{color:#fff;border:none}
+h1{font-size:30px;font-family:KaiTi,serif;margin-bottom:10px}
+.oneliner{font-size:17px;line-height:1.6;padding:10px 14px;background:#FFF9D6;border-left:4px solid #E8C82E;border-radius:0 8px 8px 0;margin-bottom:14px}
+.meta{font-size:13px;color:#6B6357;margin-bottom:18px}
+h2{font-size:17px;margin:20px 0 8px;padding-bottom:4px;border-bottom:2px solid #E8C82E;font-family:KaiTi,serif}
+p,li{font-size:14px;line-height:1.75}
+ul{padding-left:20px}
+code{font-family:Consolas,monospace;background:#F0EDE2;padding:1px 5px;border-radius:4px;font-size:13px}
+table{border-collapse:collapse;width:100%;margin:6px 0}
+th,td{border:1px solid #D8D2C0;padding:6px 10px;font-size:13px;text-align:left}
+th{background:#F0EDE2}
+.demo{margin-top:22px;padding:10px 14px;background:#F0EDE2;border-radius:8px;font-size:12.5px;color:#6B6357;font-family:Consolas,monospace;word-break:break-all}
+.src{margin-top:16px;font-size:11px;color:#A39B8B;text-align:center}
+</style></head><body>
+<div class="banner"><div class="fallback"><div class="fb1">特效镜头</div><div class="fb2">glow-flyline-moves</div></div></div>
+<div class="tags"><span class="tag cat">effects · 特效</span><span class="tag energy" style="background:#A16207">能量 A 低</span><span class="tag">A ~5s / B ~4.7s / C ~5.2s</span></div>
+<h1>glow-flyline-moves</h1>
+<div class="oneliner">暗场光斑与飞线三式——glow-orb-ambient 光斑底噪、flyline-arc 飞线连接、orb-flyline-relay 同帧共振组合</div>
+<div class="meta"><b>适用：</b>全片唯一暗场段落的氛围与数据叙事：铺底噪用 A、讲数据流向用 B、要背景给前景搭腔用 C；Linear 官网味；底噪级）/ B 中 / C 中高</div>
+<h2>意图</h2>
+<p>这是库内第一张整卡住在<b>暗场</b>的卡。白底提亮不可见判例反过来读就是：</p>
+<p>要玩光，先去暗场。A 是空间的呼吸——近黑底三团重 blur 光斑有机漂移，</p>
+<p>中央深卡边缘随最近光斑靠近而泛光，背景不再是死的；B 是数据的动词——</p>
+<p>发光弧线从 A 卡"打"到 B 卡，亮点头领跑、渐隐光尾，落点描边脉冲点亮，</p>
+<p>指标关联第一次有了方向；C 是 A+B 的焊接——飞线落点帧邻近光斑同帧</p>
+<p>涨亮一拍，氛围层与事件层<b>同帧共振</b>，互相搭腔而非各演各的（组合命门：</p>
+<p>拆开共振帧就退化成两张卡并置）。</p>
+<h2>三式选型</h2>
+<table><thead><tr><th>式</th><th>做法</th><th>适用</th></tr></thead><tbody><tr><td>A glow-orb-ambient</td><td>三团 500–700px radial 光斑 + blur(100px)，双正弦漂移；卡缘辉光按光斑距离 [180,720]px→[1,0] 加权取 max 驱动</td><td>暗场段落铺底；卡呼吸感</td></tr><tr><td>B flyline-arc</td><td>手写 bezier 100 段采样，22f out-cubic 生长；光头条件挂载领跑，段 opacity 按离头距离渐隐；落点描边脉冲，可接力</td><td>数据流向/指标关联；dashboard 叙事</td></tr><tr><td>C orb-flyline-relay</td><td>A+B 焊接：光斑 surge 与卡脉冲共用落点帧，涨亮 1+1.6×surge、5f 起升 15f 消散</td><td>暗场高光段；三卡接力收束</td></tr></tbody></table>
+<h2>参数表</h2>
+<table><thead><tr><th>参数</th><th>典型值</th><th>调节手感</th></tr></thead><tbody><tr><td>A 光斑</td><td>峰值 opacity 0.32/0.22/0.18；漂移振幅合计 ≥240px、周期 92–134f 交叉不等</td><td>同周期漂移读作整体晃动不是"有机"</td></tr><tr><td>A 卡缘辉光</td><td>box-shadow 0→28px 白 0.25</td><td>无辉光光斑与卡互不认识</td></tr><tr><td>A 收敛</td><td>90–120f out-sine 收敛冻结（起始斜率≈0.94 近似连续），末 30f 真静止</td><td>硬停一帧读作卡死；缓动收敛才有真静止</td></tr><tr><td>B 线体</td><td>白线 4.5px + 9px 深色衬底；暗场版可去衬底</td><td>浅底无衬底白线直接消失（demo 判例）</td></tr><tr><td>B 光头</td><td>白点 9px + halo，仅生长期条件挂载</td><td>opacity 到 0 不算摘罩，永不真静止</td></tr><tr><td>B 脉冲</td><td>描边扩散 out-cubic 6f / 消散线性 12f</td><td>白底禁提亮——用加深罩 0.16 替代</td></tr><tr><td>C 共振</td><td>落点帧同帧起 surge；卡 8f 亮到 1 + 描边脉冲残余 0.3</td><td>错 2f 以上共振读不出"搭腔"</td></tr><tr><td>C 时间轴</td><td>动作 f98 前结束、光斑 f120 冻结，末 35f 真静止</td><td>氛围层最后冻，事件层先收</td></tr></tbody></table>
+<h2>已知坑</h2>
+<ul><li>demo 在灰阶/占位素材上调校通过——参数是调校起点非实战定稿，</li></ul>
+<p>首次实战须以真实素材回验</p>
+<ul><li>暗场段与纸墨浅底主视觉切换成本高——全片暗场段 ≤1 段，进出</li></ul>
+<p>用 shot-transitions 藏切族垫，别生切明暗</p>
+<ul><li>光斑漂移末段<b>必须</b>缓动收敛到静止再冻结——匀速漂移直接 clamp</li></ul>
+<p>是一次可见的急刹（A 式 out-sine 收敛判例）</p>
+<ul><li>实战品牌色版：光斑用品牌色对（如蓝紫），灰阶参数只保证明度关系，</li></ul>
+<p>色相对比要重调</p>
+<ul><li>B 接力线 ≥3 条时改用 C——纯飞线连打读作大屏模板，共振才有作者感</li><li>声音：B/C 每次落点一声轻打点，A 无声（sound-design §4.5）</li></ul>
+<h2>参考实现</h2>
+<p>demos/effects/glow-flyline-moves/</p>
+<p>（FlylineArc.tsx / GlowOrbAmbient.tsx / OrbFlylineRelay.tsx）</p>
+<div class="demo">参考实现：demos/effects/glow-flyline-moves/</div>
+<div class="src">VideoForgeSuite · shotcraft 镜头卡库 · 源仓库 d:/hermes/vsc_repo</div>
+</body></html>

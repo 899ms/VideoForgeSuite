@@ -1,0 +1,72 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Microsoft YaHei",sans-serif;background:#FCFAF3;color:#26221C;padding:28px 30px;max-width:900px}
+.banner{height:170px;border-radius:14px;background:linear-gradient(120deg,#F5E663,#F0D93B 55%,#E8C82E);margin-bottom:18px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.banner img{width:100%;height:100%;object-fit:cover}
+.fallback{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;height:100%}
+.fb1{font-size:22px;font-family:KaiTi,serif;color:#7A6A14;letter-spacing:6px}
+.fb2{font-size:40px;font-family:KaiTi,serif;font-weight:bold;color:#26221C}
+.tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.tag{font-size:12px;padding:3px 10px;border-radius:20px;border:1.5px solid #26221C;background:#fff}
+.tag.cat{background:#26221C;color:#FCFAF3}
+.tag.energy{color:#fff;border:none}
+h1{font-size:30px;font-family:KaiTi,serif;margin-bottom:10px}
+.oneliner{font-size:17px;line-height:1.6;padding:10px 14px;background:#FFF9D6;border-left:4px solid #E8C82E;border-radius:0 8px 8px 0;margin-bottom:14px}
+.meta{font-size:13px;color:#6B6357;margin-bottom:18px}
+h2{font-size:17px;margin:20px 0 8px;padding-bottom:4px;border-bottom:2px solid #E8C82E;font-family:KaiTi,serif}
+p,li{font-size:14px;line-height:1.75}
+ul{padding-left:20px}
+code{font-family:Consolas,monospace;background:#F0EDE2;padding:1px 5px;border-radius:4px;font-size:13px}
+table{border-collapse:collapse;width:100%;margin:6px 0}
+th,td{border:1px solid #D8D2C0;padding:6px 10px;font-size:13px;text-align:left}
+th{background:#F0EDE2}
+.demo{margin-top:22px;padding:10px 14px;background:#F0EDE2;border-radius:8px;font-size:12.5px;color:#6B6357;font-family:Consolas,monospace;word-break:break-all}
+.src{margin-top:16px;font-size:11px;color:#A39B8B;text-align:center}
+</style></head><body>
+<div class="banner"><div class="fallback"><div class="fb1">交互镜头</div><div class="fb2">segmented-thumb-hero</div></div></div>
+<div class="tags"><span class="tag cat">interaction · 交互</span><span class="tag energy" style="background:#A16207">能量 中</span><span class="tag">~3.5s（demo 110f：浮入 18f + 光标 24f + 点击 + 滑动 8f + 图标弹出 + hold）</span></div>
+<h1>segmented-thumb-hero</h1>
+<div class="oneliner">分段控件 thumb 位移当主角特写——超大胶囊 segmented control 弹簧浮入，描边箭头光标画外滑入按下，白 thumb 8f ease-out 滑到另一段，到位瞬间新图标 spring 弹出、旧图标收起</div>
+<div class="meta"><b>适用：</b>"模式切换/二选一"功能的宣告镜头（Ask→Computer、Chat→Agent 式）；一个 UI 微交互撑一整镜的特写拍法；微交互特写，精致不轰</div>
+<h2>意图</h2>
+<p>产品切到新模式，通常拍法是整个界面换掉。本卡反着来：把 segmented</p>
+<p>control 放大到 1080px 宽拍特写，<b>thumb 那 8 帧位移本身就是叙事</b>——</p>
+<p>"我们从 A 走到了 B"。没有任何页面上下文，控件即舞台。因果链完整：</p>
+<p>光标滑入（有人来了）→ 按下+涟漪（做了决定）→ thumb 滑动（世界响应）</p>
+<p>→ 新图标弹出（新身份确立）。四拍缺一不可，缺了光标就是 UI 自己在动，</p>
+<p>缺了图标弹出就是切换没有奖励。</p>
+<h2>动效核心</h2>
+<ul><li>控件特写尺寸 1080×220，从下 200px 弹簧浮入</li></ul>
+<p>（spring damping 14 / stiffness 120），大阴影随落位收小（24→12px）</p>
+<ul><li>光标是超大描边箭头（130px，白底墨描边）：24f Easing.out(cubic)</li></ul>
+<p>从右下画外滑到目标段上；按下 scale 1→0.86→1（3f 下 4f 回）</p>
+<ul><li><b>thumb 严格 8f</b> Easing.out(cubic)（demo 52→60f）——还原原片手感；</li></ul>
+<p>这 8f 是全镜的心跳，前后各拍都在为它服务</p>
+<ul><li>到位瞬间双动作同帧起：新图标 spring(damping 10, stiffness 220)</li></ul>
+<p>过冲弹出；旧图标 6f Easing.in 塌缩且 width 同步归零让文字自然回流</p>
+<ul><li>点击涟漪：4px 描边圆环 12f 从点击点扩散淡出（Easing.out(quad)）</li></ul>
+<p>——涟漪确认"按下"发生过，无涟漪点击读作光标路过</p>
+<h2>参数表</h2>
+<table><thead><tr><th>参数</th><th>典型值</th><th>调节手感</th></tr></thead><tbody><tr><td>控件尺寸</td><td>1080×220，thumb 内缩 16px</td><td>缩到 <600px 宽就不是特写了，thumb 位移读不出重量</td></tr><tr><td>thumb 时长</td><td>8f Easing.out(cubic)</td><td>>14f 读作慢动作演示视频；<5f 读作瞬移，"滑"没了</td></tr><tr><td>光标滑入</td><td>24f 从画外，ease-out</td><td>linear 或 <14f 读作光标被扔进来；起点必须画外</td></tr><tr><td>按下</td><td>scale 0.86 + 涟漪 12f</td><td>无按下直接滑 thumb，因果链断，读作自动播放</td></tr><tr><td>图标弹出</td><td>spring damping 10/stiffness 220</td><td>damping <8 弹三下抢 thumb 的戏；旧图标不收起文字会挤出控件</td></tr><tr><td>收尾 hold</td><td>新态静置 ≥30f</td><td>切换完立刻切镜，"新模式"没被看清</td></tr></tbody></table>
+<h2>已知坑</h2>
+<ul><li>demo 在灰阶/占位素材上调校通过——参数是调校起点非实战定稿，</li></ul>
+<p>首次实战须以真实素材回验</p>
+<ul><li>与 input-trigger-moves 分工：cursor-performance 是光标在完整页面里</li></ul>
+<p>点击推近（有上下文），本卡是控件脱离页面拍无背景特写——同片可共存，</p>
+<p>但同一次点击别既拍页面版又拍特写版</p>
+<ul><li>图标塌缩用 width 归零而不是只 scale——只 scale 会留空位，文字不回流，</li></ul>
+<p>控件内出现"幽灵缝"（demo 里 width 与 scale 同步驱动）</p>
+<ul><li>二段以上（3+ 段）控件慎用：thumb 跨多段滑行 8f 太快读不出停靠，</li></ul>
+<p>拉长又破手感——本卡吃"二选一"最顺</p>
+<ul><li>涟漪圆环要 zIndex 压在 thumb 之上、圆心锁点击点——跟着 thumb 走</li></ul>
+<p>就成了 thumb 的拖尾，语义变错</p>
+<ul><li>实战替换素材：段标签/图标换成真功能名即可，但"新段图标带表情"</li></ul>
+<p>（demo 笑脸 laptop）是奖励感的一半，纯线框图标会淡不少</p>
+<h2>参考实现</h2>
+<p>demos/interaction/segmented-thumb-hero/</p>
+<p>（SegmentedThumbHero.tsx）</p>
+<p>原片出处：perplexity-promo 2.3–5s</p>
+<div class="demo">参考实现：demos/interaction/segmented-thumb-hero/</div>
+<div class="src">VideoForgeSuite · shotcraft 镜头卡库 · 源仓库 d:/hermes/vsc_repo</div>
+</body></html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Microsoft YaHei",sans-serif;background:#FCFAF3;color:#26221C;padding:28px 30px;max-width:900px}
+.banner{height:170px;border-radius:14px;background:linear-gradient(120deg,#F5E663,#F0D93B 55%,#E8C82E);margin-bottom:18px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.banner img{width:100%;height:100%;object-fit:cover}
+.fallback{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;height:100%}
+.fb1{font-size:22px;font-family:KaiTi,serif;color:#7A6A14;letter-spacing:6px}
+.fb2{font-size:40px;font-family:KaiTi,serif;font-weight:bold;color:#26221C}
+.tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.tag{font-size:12px;padding:3px 10px;border-radius:20px;border:1.5px solid #26221C;background:#fff}
+.tag.cat{background:#26221C;color:#FCFAF3}
+.tag.energy{color:#fff;border:none}
+h1{font-size:30px;font-family:KaiTi,serif;margin-bottom:10px}
+.oneliner{font-size:17px;line-height:1.6;padding:10px 14px;background:#FFF9D6;border-left:4px solid #E8C82E;border-radius:0 8px 8px 0;margin-bottom:14px}
+.meta{font-size:13px;color:#6B6357;margin-bottom:18px}
+h2{font-size:17px;margin:20px 0 8px;padding-bottom:4px;border-bottom:2px solid #E8C82E;font-family:KaiTi,serif}
+p,li{font-size:14px;line-height:1.75}
+ul{padding-left:20px}
+code{font-family:Consolas,monospace;background:#F0EDE2;padding:1px 5px;border-radius:4px;font-size:13px}
+table{border-collapse:collapse;width:100%;margin:6px 0}
+th,td{border:1px solid #D8D2C0;padding:6px 10px;font-size:13px;text-align:left}
+th{background:#F0EDE2}
+.demo{margin-top:22px;padding:10px 14px;background:#F0EDE2;border-radius:8px;font-size:12.5px;color:#6B6357;font-family:Consolas,monospace;word-break:break-all}
+.src{margin-top:16px;font-size:11px;color:#A39B8B;text-align:center}
+</style></head><body>
+<div class="banner"><div class="fallback"><div class="fb1">文字镜头</div><div class="fb2">text-column-converge</div></div></div>
+<div class="tags"><span class="tag cat">typography · 文字</span><span class="tag energy" style="background:#A16207">能量 中低</span><span class="tag">轮换 7–16f/词 × 8–9 词 + 合拢 ~36f + 小字后静置；全段约 5–6s</span></div>
+<h1>text-column-converge</h1>
+<div class="oneliner">双词对峙合拢——左"NEW"右特性词钉死在等屏边距两侧硬切轮换、全程零收缩，换到最后一词才唯一一次 ease-in-out 滑到居中咬合成短语，下方小字近乎硬切浮现；收尾揭晓型文字卡</div>
+<div class="meta"><b>适用：</b>特性清单收束到产品名/口号的段落（"NEW × 一串特性 → NEW <产品名>"式）；发布会式 recap、版本号揭晓；机器节奏、小字规格清单气质，不是砸字</div>
+<h2>意图</h2>
+<p>两词分踞左右像目录页对峙，观众以为只是轮换字幕；直到最后一词</p>
+<p>停稳才发现左右其实是同一句话的两半——唯一一次连续合拢把整段</p>
+<p>轮换追认为"悬念铺垫"。命门是<b>钉死</b>：轮换期两词位置一像素不动、</p>
+<p>左右屏边距完全相等（原片实测 412 vs 413@1280），任何渐进收缩都会</p>
+<p>提前剧透合拢、把揭晓稀释成进度条。合拢只许发生一次，且必须在</p>
+<p>最后一词之后——这是收尾揭晓，不是持续动效。</p>
+<h2>动效核心</h2>
+<ul><li>左词左缘、右词右缘各自钉死在等屏边距处（原片实测 412/413px</li></ul>
+<p>@1280，×1.5 → 618/1302@1920）；右词换长换短一律右缘定位</p>
+<ul><li>词轮换纯硬切，停留帧数不均（16/12/9/8/7/8/10/12f，机器节奏</li></ul>
+<p>带人味）；轮换全程间距零收缩（判例：渐进收缩版被用户驳回重做）</p>
+<ul><li><b>唯一一次合拢</b>：末词停稳 ~10f 后，~1.2s（36f）ease-in-out</li></ul>
+<p>（cubic）连续滑动，两词滑到以屏幕中线居中定格</p>
+<ul><li>合拢终点按等宽字体实际步进算（0.6em+letterSpacing × 字符数），</li></ul>
+<p>两词恰好一空格咬合，无重叠无缝隙；无 stamp 缩放、无二次补偿移动</p>
+<ul><li>定格 ~18f 后斜体小字近乎硬切浮现（4f 快淡、零位移），与整行</li></ul>
+<p>同左缘、字号同正文</p>
+<h2>参数表</h2>
+<table><thead><tr><th>参数</th><th>典型值</th><th>调节手感</th></tr></thead><tbody><tr><td>屏边距</td><td>618px@1920（<b>原片实测</b> 412/413@1280 ×1.5）</td><td>左右差 >2px 读作没对齐；边距是本卡身份，别改成黄金分割</td></tr><tr><td>词停留</td><td>7–16f 不均</td><td>均匀停留读作节拍器；<7f 读不完词</td></tr><tr><td>合拢触发</td><td>末词停稳 +10f（原片 32.4→32.7s 实测）</td><td>停稳期太短，观众没意识到"这词不换了"就开始滑</td></tr><tr><td>合拢时长</td><td>36f ease-in-out cubic（<b>原片实测</b> ~1.2s 连续滑动）</td><td><24f 读作弹跳归位；>50f 读作拖</td></tr><tr><td>咬合步进</td><td>0.6em+letterSpacing/字符，等宽字体</td><td>非等宽字体步进不可预测，会重叠或漏缝</td></tr><tr><td>字号</td><td>42@1080p（<b>原片实测</b>字高 ~20/720）</td><td>这段是小字规格清单气质，放大到 60+ 就成了砸字（去用 cel-flash-stomp）</td></tr><tr><td>小字浮现</td><td>定格 +18f，4f 快淡零位移（原片 34.4→34.6s 间直接出现）</td><td>加滑入/长淡入就抢了合拢的戏</td></tr></tbody></table>
+<h2>已知坑</h2>
+<ul><li>demo 在灰阶/占位素材上调校通过——参数是调校起点非实战定稿，</li></ul>
+<p>首次实战须以真实素材回验</p>
+<ul><li>与 type-rhythm-sync（字属性节拍）/beat-cut-moves（硬切节拍）撞</li></ul>
+<p>领域：那两张是"轮换本身即内容"；本卡命门是<b>位置钉死 + 末次合拢</b></p>
+<p>的收尾揭晓，轮换只是铺垫。若段落没有"合拢揭晓"就别用本卡</p>
+<ul><li>合拢只许一次——每切一词收一档的渐进收缩版已被原片对照证伪并</li></ul>
+<p>删除，别复活</p>
+<ul><li>必须等宽字体（demo 用 SF Mono）；比例字体下咬合终点算不准</li><li>与原片残余差距：原片词换瞬间带 1 帧亮度闪烁（打字机换行感），</li></ul>
+<p>demo 是纯硬切；实战可选加回但闪烁 >1f 会读作故障</p>
+<h2>参考实现</h2>
+<p>demos/typography/text-column-converge/</p>
+<p>（TextColumnConverge.tsx）</p>
+<p>原片出处：raycast-teams.mp4 28–36s</p>
+<div class="demo">参考实现：demos/typography/text-column-converge/</div>
+<div class="src">VideoForgeSuite · shotcraft 镜头卡库 · 源仓库 d:/hermes/vsc_repo</div>
+</body></html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Microsoft YaHei",sans-serif;background:#FCFAF3;color:#26221C;padding:28px 30px;max-width:900px}
+.banner{height:170px;border-radius:14px;background:linear-gradient(120deg,#F5E663,#F0D93B 55%,#E8C82E);margin-bottom:18px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.banner img{width:100%;height:100%;object-fit:cover}
+.fallback{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;height:100%}
+.fb1{font-size:22px;font-family:KaiTi,serif;color:#7A6A14;letter-spacing:6px}
+.fb2{font-size:40px;font-family:KaiTi,serif;font-weight:bold;color:#26221C}
+.tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.tag{font-size:12px;padding:3px 10px;border-radius:20px;border:1.5px solid #26221C;background:#fff}
+.tag.cat{background:#26221C;color:#FCFAF3}
+.tag.energy{color:#fff;border:none}
+h1{font-size:30px;font-family:KaiTi,serif;margin-bottom:10px}
+.oneliner{font-size:17px;line-height:1.6;padding:10px 14px;background:#FFF9D6;border-left:4px solid #E8C82E;border-radius:0 8px 8px 0;margin-bottom:14px}
+.meta{font-size:13px;color:#6B6357;margin-bottom:18px}
+h2{font-size:17px;margin:20px 0 8px;padding-bottom:4px;border-bottom:2px solid #E8C82E;font-family:KaiTi,serif}
+p,li{font-size:14px;line-height:1.75}
+ul{padding-left:20px}
+code{font-family:Consolas,monospace;background:#F0EDE2;padding:1px 5px;border-radius:4px;font-size:13px}
+table{border-collapse:collapse;width:100%;margin:6px 0}
+th,td{border:1px solid #D8D2C0;padding:6px 10px;font-size:13px;text-align:left}
+th{background:#F0EDE2}
+.demo{margin-top:22px;padding:10px 14px;background:#F0EDE2;border-radius:8px;font-size:12.5px;color:#6B6357;font-family:Consolas,monospace;word-break:break-all}
+.src{margin-top:16px;font-size:11px;color:#A39B8B;text-align:center}
+</style></head><body>
+<div class="banner"><div class="fallback"><div class="fb1">节奏镜头</div><div class="fb2">spectrum-morph-ui</div></div></div>
+<div class="tags"><span class="tag cat">rhythm · 节奏</span><span class="tag energy" style="background:#A16207">能量 中</span><span class="tag">~4.7s（裂开 8f + 跳动 64f + 收拢 12f + 静止 39f）</span></div>
+<h1>spectrum-morph-ui</h1>
+<div class="oneliner">频谱化 UI——标题下划线裂成一排竖条按频谱跳动两小节，再收拢还原成直线；音乐可视化长在 UI 上</div>
+<div class="meta"><b>适用：</b>有音轨片子的声画同步高光段（BGM 副歌起/鼓点密集段）；标题字卡、章节页的下划线/分隔线构件</div>
+<h2>意图</h2>
+<p>声画同步库内已有 type-rhythm-sync A（字重脉冲）——那是"文字自己动"；</p>
+<p>本卡是"UI 构件变成均衡器"：下划线这个最不起眼的构件被音乐借用两小节，</p>
+<p>裂成 28 根竖条跳出频谱，然后<b>收拢还原、完璧归赵</b>。借用-归还结构是</p>
+<p>全部优雅所在——观众先认出"这是下划线"，再看它变成别的东西，最后</p>
+<p>看它变回来；若一开始就是频谱条，只是又一个音乐可视化。跳完必须还原</p>
+<p>成那条 8px 直线，一像素不差。</p>
+<h2>动效核心</h2>
+<ul><li>28 根条底边锁在原下划线 y 上<b>只向上生长</b>，收拢结束条宽 + gap</li></ul>
+<p>恰好拼回 720px 整线（gap 0↔6px 同步过渡，gap<1 时条宽 +0.5px 防细缝）</p>
+<ul><li>非跳动段条件挂载回整条直线（摘罩式）——像素级静止靠"根本不渲染</li></ul>
+<p>条组"，不是条高归零</p>
+<ul><li>demo 为伪 FFT：|sin(i·0.7+f·0.31)| × 每 4 帧换挡 seed hash 抖动 ×</li></ul>
+<p>低频高/高频矮包络 × ramp 幅度包络，帧确定无随机</p>
+<ul><li><b>实战换真 FFT</b>：@remotion/media-utils 的 visualizeAudio() 取</li></ul>
+<p>频谱映射条高，伪 FFT 只是灰阶占位的节拍替身</p>
+<h2>参数表</h2>
+<table><thead><tr><th>参数</th><th>典型值</th><th>调节手感</th></tr></thead><tbody><tr><td>条数/条宽</td><td>28 根、gap 6px 时 ≈20px 宽</td><td>>40 根读作噪声；<16 根读作柱状图</td></tr><tr><td>峰值幅度</td><td>AMP=92，实测峰值 75–85px</td><td>spec 62 实测只有 ~55px 不够响，已加码 1.5×（可感性判例）</td></tr><tr><td>包络</td><td>左高右矮（低频高/高频矮）</td><td>均匀高度像栅栏不像频谱</td></tr><tr><td>换挡节拍</td><td>seed 每 4 帧换挡</td><td>逐帧换读作电噪；8f 以上读作慢动作</td></tr><tr><td>时间轴</td><td>裂开 8f out-cubic / 跳动 64f（两小节）/ 收拢 12f</td><td>跳动 <1 小节读作故障闪了一下</td></tr><tr><td>收尾</td><td>收线后真静止 ≥39f，像素级 diff 为零</td><td>归还之后再动一下，借用结构就毁了</td></tr></tbody></table>
+<h2>已知坑</h2>
+<ul><li>demo 在灰阶/占位素材上调校通过——参数是调校起点非实战定稿，</li></ul>
+<p>首次实战须以真实素材回验</p>
+<ul><li><b>声音强依赖</b>：跳动段必须真的踩在音乐上——无音轨的频谱跳动读作</li></ul>
+<p>UI 故障；实战必须 visualizeAudio() 对齐 BGM，伪 FFT 不许上片</p>
+<ul><li>全片 ≤1 次，且只借用一个构件——标题下划线在跳、卡片分隔线也在跳，</li></ul>
+<p>均衡器就成了壁纸（P4）</p>
+<ul><li>与 type-rhythm-sync 同为声画同步族，同一段落二选一——文字在脉冲、</li></ul>
+<p>下划线在跳频谱，两个声画主角互相拆台</p>
+<ul><li>收拢帧后的静止段是"归还仪式"的一部分，从重给（≥35f），别急着切</li></ul>
+<h2>参考实现</h2>
+<p>demos/rhythm/spectrum-morph-ui/</p>
+<p>（SpectrumMorphUi.tsx）</p>
+<div class="demo">参考实现：demos/rhythm/spectrum-morph-ui/</div>
+<div class="src">VideoForgeSuite · shotcraft 镜头卡库 · 源仓库 d:/hermes/vsc_repo</div>
+</body></html>

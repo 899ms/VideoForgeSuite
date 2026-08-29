@@ -1,0 +1,66 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Microsoft YaHei",sans-serif;background:#FCFAF3;color:#26221C;padding:28px 30px;max-width:900px}
+.banner{height:170px;border-radius:14px;background:linear-gradient(120deg,#F5E663,#F0D93B 55%,#E8C82E);margin-bottom:18px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.banner img{width:100%;height:100%;object-fit:cover}
+.fallback{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;height:100%}
+.fb1{font-size:22px;font-family:KaiTi,serif;color:#7A6A14;letter-spacing:6px}
+.fb2{font-size:40px;font-family:KaiTi,serif;font-weight:bold;color:#26221C}
+.tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.tag{font-size:12px;padding:3px 10px;border-radius:20px;border:1.5px solid #26221C;background:#fff}
+.tag.cat{background:#26221C;color:#FCFAF3}
+.tag.energy{color:#fff;border:none}
+h1{font-size:30px;font-family:KaiTi,serif;margin-bottom:10px}
+.oneliner{font-size:17px;line-height:1.6;padding:10px 14px;background:#FFF9D6;border-left:4px solid #E8C82E;border-radius:0 8px 8px 0;margin-bottom:14px}
+.meta{font-size:13px;color:#6B6357;margin-bottom:18px}
+h2{font-size:17px;margin:20px 0 8px;padding-bottom:4px;border-bottom:2px solid #E8C82E;font-family:KaiTi,serif}
+p,li{font-size:14px;line-height:1.75}
+ul{padding-left:20px}
+code{font-family:Consolas,monospace;background:#F0EDE2;padding:1px 5px;border-radius:4px;font-size:13px}
+table{border-collapse:collapse;width:100%;margin:6px 0}
+th,td{border:1px solid #D8D2C0;padding:6px 10px;font-size:13px;text-align:left}
+th{background:#F0EDE2}
+.demo{margin-top:22px;padding:10px 14px;background:#F0EDE2;border-radius:8px;font-size:12.5px;color:#6B6357;font-family:Consolas,monospace;word-break:break-all}
+.src{margin-top:16px;font-size:11px;color:#A39B8B;text-align:center}
+</style></head><body>
+<div class="banner"><div class="fallback"><div class="fb1">UI入场镜头</div><div class="fb2">runway-ground-skim</div></div></div>
+<div class="tags"><span class="tag cat">ui-entrance · UI入场</span><span class="tag energy" style="background:#C2410C">能量 高</span><span class="tag">悬空展示 ~0.4s + 贴落 ~1.2s + 立起转正 ~1.8s；全段 4s</span></div>
+<h1>runway-ground-skim</h1>
+<div class="oneliner">低角度掠地机位下 UI 卡片群从空中一阵急雨式快速贴落（起点微错、下落大量重叠并行、着地即停零回弹），落齐后整页立起、视角转正收尾</div>
+<div class="meta"><b>适用：</b>仪表盘/卡片流界面的登场（内容"从天而降完成自己"）；低角度炫技段后的收正；clickup 系悬空贴落语言的"齐落"重型版；掉落感是戏眼，立起转正是收束</div>
+<h2>意图</h2>
+<p>把界面拍成跑道：低角度透视里 UI 卡片悬空在不同高度，随后按界面</p>
+<p>位置顺序（行优先左→右）一阵急雨式贴落——掉落感=干脆利落。</p>
+<p>三个命门：<b>重叠并行</b>（起点只错 1.5f、下落 9f ⇒ 空中恒有 5–6 张</p>
+<p>同时在落，"几乎一起但有涟漪感"；串行等待两轮被裁）、<b>零回弹</b></p>
+<p>（着地即停，弹起被裁）、<b>快</b>（下落 9f，15f 版被裁"快一点"）。</p>
+<p>落齐后页面从躺倒立起（rotateX 66°→0°）、镜头拉远居中，观众从</p>
+<p>"看戏"回到"看界面"。</p>
+<h2>动效核心</h2>
+<ul><li>机位：低角度强透视（rotateX ~66° 起），页面平躺如跑道</li><li>悬空：卡片初始悬浮 560–880px（高度错落），空中卡追光提亮</li></ul>
+<p>~1.35x（判例：被环境压黑带吞掉=悬空不可感）</p>
+<ul><li>贴落：起点 = 6 + i×1.5f + jitter(≤1.2f)（保序），下落 9f 重力</li></ul>
+<p>加速（距离∝t²），着地即停零回弹</p>
+<ul><li>立起：全员落定后 rotateX 66°→0° + 镜头拉远归中（easeRise），</li></ul>
+<p>终态正视整页</p>
+<ul><li>压黑带控制在 ~32%，给空中卡留可见度</li></ul>
+<h2>参数表</h2>
+<table><thead><tr><th>参数</th><th>典型值</th><th>调节手感</th></tr></thead><tbody><tr><td>起点差</td><td>1.5f/张（jitter ≤1.2f 不乱序）</td><td>3f 版被裁"不需要一个落下了再启动第二个"；0 差读作开关（那是 orbit 的同帧语法）</td></tr><tr><td>下落时长</td><td>9f 重力加速</td><td>15f 被裁慢；<6f 读不出下落方向</td></tr><tr><td>回弹</td><td>零（着地即停）</td><td>压弹 4.5% 版被裁"去掉弹起"——掉落感=干脆利落</td></tr><tr><td>悬浮高度</td><td>560–880px 错落</td><td>同高读作阅兵；>1000px 落地时间拉长</td></tr><tr><td>空中提亮</td><td>~1.35x 追光</td><td>不提亮悬空不可感（返工判例）</td></tr><tr><td>立起段</td><td>rotateX 66→0 + 拉远，~56f</td><td>只落不立起=没有收束；立起太快读作弹板</td></tr></tbody></table>
+<h2>已知坑</h2>
+<ul><li>demo 在灰阶/占位素材上调校通过——参数是调校起点非实战定稿，</li></ul>
+<p>首次实战须以真实素材回验</p>
+<ul><li>贴落节奏语义（三卡判例族）：本卡=急雨式重叠错峰；</li></ul>
+<p>graze-face-tour=巡礼错峰；neon-frame-orbit-drop=同帧齐落。</p>
+<p>按镜头语义选，错用即被裁</p>
+<ul><li>与 deck-deal-flyin 分工：那张是卡片飞入列队（水平方向运动）；</li></ul>
+<p>本卡是垂直贴落+页面立起的两段式，掉落感是本体</p>
+<ul><li>立起段原片无对应参考（用户口述新增），终态版式对齐 clickup11</li></ul>
+<p>正视图</p>
+<h2>参考实现</h2>
+<p>demos/ui-entrance/runway-ground-skim/</p>
+<p>（RunwayGroundSkim.tsx）</p>
+<p>原片出处：clickup-30.mp4 ≈46–50s</p>
+<div class="demo">参考实现：demos/ui-entrance/runway-ground-skim/</div>
+<div class="src">VideoForgeSuite · shotcraft 镜头卡库 · 源仓库 d:/hermes/vsc_repo</div>
+</body></html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Microsoft YaHei",sans-serif;background:#FCFAF3;color:#26221C;padding:28px 30px;max-width:900px}
+.banner{height:170px;border-radius:14px;background:linear-gradient(120deg,#F5E663,#F0D93B 55%,#E8C82E);margin-bottom:18px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.banner img{width:100%;height:100%;object-fit:cover}
+.fallback{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;height:100%}
+.fb1{font-size:22px;font-family:KaiTi,serif;color:#7A6A14;letter-spacing:6px}
+.fb2{font-size:40px;font-family:KaiTi,serif;font-weight:bold;color:#26221C}
+.tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.tag{font-size:12px;padding:3px 10px;border-radius:20px;border:1.5px solid #26221C;background:#fff}
+.tag.cat{background:#26221C;color:#FCFAF3}
+.tag.energy{color:#fff;border:none}
+h1{font-size:30px;font-family:KaiTi,serif;margin-bottom:10px}
+.oneliner{font-size:17px;line-height:1.6;padding:10px 14px;background:#FFF9D6;border-left:4px solid #E8C82E;border-radius:0 8px 8px 0;margin-bottom:14px}
+.meta{font-size:13px;color:#6B6357;margin-bottom:18px}
+h2{font-size:17px;margin:20px 0 8px;padding-bottom:4px;border-bottom:2px solid #E8C82E;font-family:KaiTi,serif}
+p,li{font-size:14px;line-height:1.75}
+ul{padding-left:20px}
+code{font-family:Consolas,monospace;background:#F0EDE2;padding:1px 5px;border-radius:4px;font-size:13px}
+table{border-collapse:collapse;width:100%;margin:6px 0}
+th,td{border:1px solid #D8D2C0;padding:6px 10px;font-size:13px;text-align:left}
+th{background:#F0EDE2}
+.demo{margin-top:22px;padding:10px 14px;background:#F0EDE2;border-radius:8px;font-size:12.5px;color:#6B6357;font-family:Consolas,monospace;word-break:break-all}
+.src{margin-top:16px;font-size:11px;color:#A39B8B;text-align:center}
+</style></head><body>
+<div class="banner"><div class="fallback"><div class="fb1">UI入场镜头</div><div class="fb2">neon-frame-forerun</div></div></div>
+<div class="tags"><span class="tag cat">ui-entrance · UI入场</span><span class="tag energy" style="background:#A16207">能量 中高</span><span class="tag">框奔画 ~0.6s + 点亮&贴落 ~2s + 背景熄灭收束 ~0.8s；全段 4–4.5s</span></div>
+<h1>neon-frame-forerun</h1>
+<div class="oneliner">强透视直角霓虹框自左缘两头奔画先行成型，页面在框内由暗转亮，同时框内组件/文字从 3D 上空带同形软影错峰贴落、随页面点亮同步完成贴合，背景霓虹管群终段熄灭让位</div>
+<div class="meta"><b>适用：</b>暗场品牌片里给 UI 面板做"登场仪式"（框先到、内容后落）；功能区首次亮相；霓虹/赛博调性的段落开场；三层动作叠进，但都服务同一次登场</div>
+<h2>意图</h2>
+<p>先立框后填肉：霓虹线框像跑道灯一样两头奔画圈出位置，宣告</p>
+<p>"这里要出现东西"；页面在框内由暗转亮的同时，组件从空中带影</p>
+<p>贴落——观众看见界面被"安放"进框里。三层动作（框奔画/页面点亮/</p>
+<p>组件贴落）必须<b>同步咬合</b>：贴落进程与点亮进程同步推进、稍滞后</p>
+<p>收尾，框光最终并入面板辉光。背景霓虹管群终段熄灭，把亮度让给</p>
+<p>主角完成收束。</p>
+<h2>动效核心</h2>
+<ul><li>霓虹框：强透视直角框（梯形），自左缘中点两头同时奔画（描边</li></ul>
+<p>动画），带辉光亮头；成型后框光渐并入面板辉光</p>
+<ul><li>页面点亮：框内面板由暗灰到亮的显影推进（lit 窗口 ~54f）</li><li>组件贴落：框内全部元素套 FloatWrap（graze-face-tour 同款模式）：</li></ul>
+<p>初始抬高 100–150px、easeFall 加速贴落、同形软影随高度收敛、</p>
+<p>侧栏自上而下/主区自上而下错峰落位；贴落窗口与点亮窗口同步</p>
+<p>推进、稍滞后 ~20f 收尾</p>
+<ul><li>背景：大霓虹管群先亮衬气氛，终段中亮尾熄（先中间后两端熄灭）</li></ul>
+<h2>参数表</h2>
+<table><thead><tr><th>参数</th><th>典型值</th><th>调节手感</th></tr></thead><tbody><tr><td>框奔画</td><td>~18f 两头对奔</td><td>单头描画读作画图；>30f 观众等不及内容</td></tr><tr><td>悬浮高度</td><td>100–150px、影随高度收敛</td><td>判例：高度过小+启动过早=影子不可感（v3 第 1 轮返工加大 1.7x 并延后）</td></tr><tr><td>贴落窗口</td><td>与点亮窗口同步、滞后 ~20f 收尾</td><td>贴落先于点亮完＝黑屋子里落家具；滞后太多读作两段戏</td></tr><tr><td>错峰</td><td>错开起点、下落重叠并行</td><td>串行等待被裁（掉落节奏通用判例）</td></tr><tr><td>背景熄灭</td><td>终段中亮尾熄 ~22f</td><td>不熄灭主角不突出；同帧全熄读作断电</td></tr><tr><td>贴落粒度</td><td>行/卡级（原片为逐 UI 卡片级，更细）</td><td>粒度越细越贵；行级已验证可读</td></tr></tbody></table>
+<h2>已知坑</h2>
+<ul><li>demo 在灰阶/占位素材上调校通过——参数是调校起点非实战定稿，</li></ul>
+<p>首次实战须以真实素材回验</p>
+<ul><li>悬空贴落=clickup 语言核心签名（已验证的口味信号），本卡</li></ul>
+<p>与 graze-face-tour 共用 FloatWrap 模式——影子不可感等于没做</p>
+<ul><li>与 brand-frame-snap 分工：那张是品牌框咔哒定位的</li></ul>
+<p>节拍戏；本卡是框先行+内容贴落的登场仪式，框只是序幕</p>
+<ul><li>衍生方向备忘：视角旋转变体（镜头左→右弧线旋转+同时贴落）</li></ul>
+<p>曾被裁"改改再看"（要求所有组件同时贴落），已收敛进 neon-frame-orbit-drop 卡</p>
+<h2>参考实现</h2>
+<p>demos/ui-entrance/neon-frame-forerun/</p>
+<p>（NeonFrameForerun.tsx）</p>
+<p>原片出处：clickup-30.mp4</p>
+<div class="demo">参考实现：demos/ui-entrance/neon-frame-forerun/</div>
+<div class="src">VideoForgeSuite · shotcraft 镜头卡库 · 源仓库 d:/hermes/vsc_repo</div>
+</body></html>

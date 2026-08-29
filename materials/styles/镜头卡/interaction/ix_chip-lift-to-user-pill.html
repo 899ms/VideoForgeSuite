@@ -1,0 +1,69 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Microsoft YaHei",sans-serif;background:#FCFAF3;color:#26221C;padding:28px 30px;max-width:900px}
+.banner{height:170px;border-radius:14px;background:linear-gradient(120deg,#F5E663,#F0D93B 55%,#E8C82E);margin-bottom:18px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.banner img{width:100%;height:100%;object-fit:cover}
+.fallback{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;height:100%}
+.fb1{font-size:22px;font-family:KaiTi,serif;color:#7A6A14;letter-spacing:6px}
+.fb2{font-size:40px;font-family:KaiTi,serif;font-weight:bold;color:#26221C}
+.tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.tag{font-size:12px;padding:3px 10px;border-radius:20px;border:1.5px solid #26221C;background:#fff}
+.tag.cat{background:#26221C;color:#FCFAF3}
+.tag.energy{color:#fff;border:none}
+h1{font-size:30px;font-family:KaiTi,serif;margin-bottom:10px}
+.oneliner{font-size:17px;line-height:1.6;padding:10px 14px;background:#FFF9D6;border-left:4px solid #E8C82E;border-radius:0 8px 8px 0;margin-bottom:14px}
+.meta{font-size:13px;color:#6B6357;margin-bottom:18px}
+h2{font-size:17px;margin:20px 0 8px;padding-bottom:4px;border-bottom:2px solid #E8C82E;font-family:KaiTi,serif}
+p,li{font-size:14px;line-height:1.75}
+ul{padding-left:20px}
+code{font-family:Consolas,monospace;background:#F0EDE2;padding:1px 5px;border-radius:4px;font-size:13px}
+table{border-collapse:collapse;width:100%;margin:6px 0}
+th,td{border:1px solid #D8D2C0;padding:6px 10px;font-size:13px;text-align:left}
+th{background:#F0EDE2}
+.demo{margin-top:22px;padding:10px 14px;background:#F0EDE2;border-radius:8px;font-size:12.5px;color:#6B6357;font-family:Consolas,monospace;word-break:break-all}
+.src{margin-top:16px;font-size:11px;color:#A39B8B;text-align:center}
+</style></head><body>
+<div class="banner"><img src="data:image/jpeg;base64,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AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAH/9k=" alt=""></div>
+<div class="tags"><span class="tag cat">interaction · 交互</span><span class="tag energy" style="background:#A16207">能量 中</span><span class="tag">约5.0s（150f@30fps）</span></div>
+<h1>chip-lift-to-user-pill</h1>
+<div class="oneliner">网格里的目标 chip 先 3 帧硬切反色成黑底白字，其余 chip 按到它的曼哈顿距离交错淡出缩小；黑 chip 左缘锚定向右生长成药丸，内部逐字打出人名并点亮绿点，再拉一条 1px 连接线接到圆形徽标</div>
+<div class="meta"><b>适用：</b>"从一堆候选里选中并展开这一个"的交互链路；协作/通讯录/收件人类产品的功能演示；选中→详情的转场；选中那一下是硬爆点，之后全是从容的生长与打字</div>
+<h2>意图</h2>
+<p>让"选中"这件事有<b>两段完全不同的质感</b>：选中瞬间是硬的（3 帧台阶化反色，</p>
+<p>像真实 UI 的 <code>:active</code>），选中之后是软的（药丸生长、逐字打字、绿点点亮）。</p>
+<p>其余 chip 按距离交错淡出，是在告诉观众"注意力从这里开始收拢"——</p>
+<p>距离排序比时间排序重要，因为它给出了空间上的因果。</p>
+<h2>动效核心</h2>
+<ul><li>4×3 网格（chip 40×24、间距 10/9），目标位于第 2 列第 2 行，</li></ul>
+<p>选中前先 <code>appendChild</code> 提到最上层</p>
+<ul><li><b>反色硬切</b>：<code>a = seg(0.04→0.085, linear)</code> 再台阶化成</li></ul>
+<p><code>a<0.34 ? 0 : a<0.67 ? 0.5 : 1</code>——只有 3 个取值，得到 3 帧硬切感；</p>
+<p>背景 <code>#fff→INK</code>、描边 <code>LINE→INK</code>、文字 <code>TXT→#fff</code> 同步跳变</p>
+<ul><li><b>距离交错淡出</b>：其余 chip 按曼哈顿距离 <code>|Δcol|+|Δrow|</code>，</li></ul>
+<p><code>d0 = 0.10 + dist*0.022</code>，各 0.075 走完（outQuad），</p>
+<p>opacity 1→0 + <code>scale 1→0.9</code></p>
+<ul><li><b>左缘锚定生长</b>：<code>g = seg(0.26→0.44, outCubic)</code> 驱动 width 40→190px，</li></ul>
+<p><code>left</code> 不变——生长方向单一，读作"展开"而非"移动"</p>
+<ul><li>人名逐字：以 <code>g</code> 为自变量（不是 t），字符 <code>0.18 + i*0.062</code> 起、</li></ul>
+<p>各 0.05 走完，<code>translateY 2→0</code>；原 2 字母标签在 <code>g*5</code> 内先撤掉</p>
+<ul><li>绿点 <code>#35D07F</code> + <code>0 0 8px</code> 辉光，在 <code>g</code> 的 0.85→1 段 outBack 弹出，</li></ul>
+<p><code>left = w − 15</code> 始终吸在药丸右端</p>
+<ul><li>连接线 <code>0.47→0.57</code> outQuad 从 0 拉到 90px → 徽标 <code>0.56→0.63</code></li></ul>
+<p>scale 0.8→1 淡入 → 字幕 <code>0.6→0.66</code> 出现并逐词加深到 0.92</p>
+<h2>参数表</h2>
+<table><thead><tr><th>参数</th><th>典型值</th><th>调节手感</th></tr></thead><tbody><tr><td>反色时长</td><td>t 0.04→0.085，台阶化成 3 档</td><td><b>不要给它缓动</b>：连续插值读作"渐变高亮"，台阶才读作按下</td></tr><tr><td>距离间隔</td><td>0.022 / 曼哈顿距离</td><td>按 index 排序也能错峰，但按距离才有"从选中点扩散"的空间因果</td></tr><tr><td>余项退场</td><td>各 0.075、opacity→0 + scale→0.9</td><td>只淡出不缩小会显得"被擦掉"；缩到 0.9 才像退到后面</td></tr><tr><td>药丸生长</td><td>width 40→190px，t 0.26→0.44 outCubic，左缘锚定</td><td>双向生长（居中扩张）会把它读成弹窗，不是同一个 chip 长大</td></tr><tr><td>逐字打字</td><td>以 g 为自变量，间隔 0.062、各 0.05</td><td>挂在 g 上而不是 t 上：改生长时长时打字节奏自动跟随</td></tr><tr><td>绿点</td><td>7px + 0 0 8px 辉光，g 的 0.85→1 段 outBack</td><td>必须在生长收尾才亮：早了就成了"已在线"，不是"刚接上"</td></tr><tr><td>连接线</td><td>0→90px，t 0.47→0.57 outQuad</td><td>线要在药丸完全定型后才起笔，否则读作药丸在被拽</td></tr><tr><td>徽标</td><td>26px，0.56→0.63 outCubic，scale 0.8→1</td><td>与连接线抵达重叠 0.01，才有"线到即物到"的交棒</td></tr></tbody></table>
+<h2>已知坑</h2>
+<ul><li>目标 chip 必须在动画前提到 DOM 最上层，否则生长时被右侧 chip 盖住</li><li>药丸内的人名容器 <code>left:13px</code> 是按 24px 高的 chip 配的内边距；</li></ul>
+<p>改 chip 高度要同改，否则文字贴边</p>
+<ul><li>绿点的 <code>left = w − 15</code> 每帧重算——写死坐标后一改 PW1 就飞出药丸</li><li>连接线与徽标的坐标全部基于 <code>PX + PW1</code>（药丸终态右缘），</li></ul>
+<p>改生长终值必须同改这两处</p>
+<ul><li>占位内容：12 个双字母标签 + 人名 "Casey Doe" + 字幕</li></ul>
+<p>"Starting with Casey"，落地全部替换；人名字符数变化会改变打字总时长</p>
+<p>（间隔 0.062 × 字符数必须留在 g 的 1.0 以内）</p>
+<h2>参考实现</h2>
+<p>demos/interaction/chip-lift-to-user-pill/</p>
+<p>（ChipLiftToUserPill.tsx）</p>
+<div class="demo">参考实现：demos/interaction/chip-lift-to-user-pill/</div>
+<div class="src">VideoForgeSuite · shotcraft 镜头卡库 · 源仓库 d:/hermes/vsc_repo</div>
+</body></html>

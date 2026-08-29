@@ -1,0 +1,68 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Microsoft YaHei",sans-serif;background:#FCFAF3;color:#26221C;padding:28px 30px;max-width:900px}
+.banner{height:170px;border-radius:14px;background:linear-gradient(120deg,#F5E663,#F0D93B 55%,#E8C82E);margin-bottom:18px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.banner img{width:100%;height:100%;object-fit:cover}
+.fallback{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;height:100%}
+.fb1{font-size:22px;font-family:KaiTi,serif;color:#7A6A14;letter-spacing:6px}
+.fb2{font-size:40px;font-family:KaiTi,serif;font-weight:bold;color:#26221C}
+.tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.tag{font-size:12px;padding:3px 10px;border-radius:20px;border:1.5px solid #26221C;background:#fff}
+.tag.cat{background:#26221C;color:#FCFAF3}
+.tag.energy{color:#fff;border:none}
+h1{font-size:30px;font-family:KaiTi,serif;margin-bottom:10px}
+.oneliner{font-size:17px;line-height:1.6;padding:10px 14px;background:#FFF9D6;border-left:4px solid #E8C82E;border-radius:0 8px 8px 0;margin-bottom:14px}
+.meta{font-size:13px;color:#6B6357;margin-bottom:18px}
+h2{font-size:17px;margin:20px 0 8px;padding-bottom:4px;border-bottom:2px solid #E8C82E;font-family:KaiTi,serif}
+p,li{font-size:14px;line-height:1.75}
+ul{padding-left:20px}
+code{font-family:Consolas,monospace;background:#F0EDE2;padding:1px 5px;border-radius:4px;font-size:13px}
+table{border-collapse:collapse;width:100%;margin:6px 0}
+th,td{border:1px solid #D8D2C0;padding:6px 10px;font-size:13px;text-align:left}
+th{background:#F0EDE2}
+.demo{margin-top:22px;padding:10px 14px;background:#F0EDE2;border-radius:8px;font-size:12.5px;color:#6B6357;font-family:Consolas,monospace;word-break:break-all}
+.src{margin-top:16px;font-size:11px;color:#A39B8B;text-align:center}
+</style></head><body>
+<div class="banner"><div class="fallback"><div class="fb1">运镜镜头</div><div class="fb2">steep-tilt-glide</div></div></div>
+<div class="tags"><span class="tag cat">camera · 运镜</span><span class="tag energy" style="background:#A16207">能量 中高</span><span class="tag">4s（120f）单镜；页面越宽越可拉长</span></div>
+<h1>steep-tilt-glide</h1>
+<div class="oneliner">固定镜头下直立页面以 60° 强透视侧立（右近左远），页面自身沿其 3D 横面方向滑移掠过镜头（物动镜不动），滑移带速度重影、文字组件悬空贴落、由暗揭亮</div>
+<div class="meta"><b>适用：</b>长页面/多区块 UI 的炫技巡览（内容依次滑过固定机位）；暗场霓虹调性；与贴面运镜卡互补的"侧掠"机位；透视炫技+持续运动，但节奏是匀的</div>
+<h2>意图</h2>
+<p>把页面立成一堵斜墙：镜头钉死不动，60° 强透视让右缘贴脸、左缘</p>
+<p>消失在灭点，页面自己沿自身平面横向滑移——内容像列车车厢一样</p>
+<p>依次掠过。命门是<b>物动镜不动</b>：perspective/origin/rotY 全程常数，</p>
+<p>唯一动的量是页面局部 translateX——镜头一动语义就变成运镜炫技，</p>
+<p>这里的戏是"页面在自我展示"。角度经三轮收敛为精确 60°</p>
+<p>（-45°"不对"→-53°"再大一点"→-60°选中）。</p>
+<h2>动效核心</h2>
+<ul><li>镜头常数：perspective 1100、origin 30% 58%、rotateY(-60°)+</li></ul>
+<p>rotateZ(-2°)，transformOrigin left top，全程一个数不变</p>
+<ul><li>页面：超宽面板（6200×2400@内容坐标），沿局部 X 轴 +60→-4100</li></ul>
+<p>滑移，bezier(0.3,0.12,0.72,0.9)——起步柔和后近匀速，尾段斜率</p>
+<p>不归零（不安定停死）</p>
+<ul><li>速度重影：拖尾层=过去时刻（f-2.5/f-5）的局部位置重投影，</li></ul>
+<p>透明度 ∝ 滑移速度（快时重影浓）</p>
+<ul><li>悬空贴落：页面元素 FloatWrap 悬浮 230–280px 带同形软影，随</li></ul>
+<p>滑移进程错峰贴落（巡礼语法）</p>
+<ul><li>揭亮：起始面板压暗 0.7，~1.4s 揭到全亮；左缘额外渐变阴影同退</li></ul>
+<h2>参数表</h2>
+<table><thead><tr><th>参数</th><th>典型值</th><th>调节手感</th></tr></thead><tbody><tr><td>倾斜角</td><td>rotateY <b>-60°</b>（用户精确定值）</td><td>-45° 被裁"角度不对"、-53°"再大一点"；>-70° 内容读不清</td></tr><tr><td>运动模型</td><td>镜头全常数、页面自移</td><td><b>命门</b>——镜头横移版被裁"镜头是固定的，页面本身往其3d空间的横面方向移动"</td></tr><tr><td>滑移曲线</td><td>尾段斜率不归零的 bezier</td><td>中途停死被抓（v4 返工）；全 linear 少了起步呼吸</td></tr><tr><td>重影</td><td>透明度∝速度，双层 f-2.5/f-5</td><td>恒定重影读作重像故障</td></tr><tr><td>页面宽度</td><td>≥3 屏内容</td><td>太窄滑两秒就完，撑不起一镜</td></tr><tr><td>悬空贴落</td><td>错峰（巡礼语法）+ 影随高度</td><td>语义判例见 graze-face-tour/orbit-drop 三卡族</td></tr></tbody></table>
+<h2>已知坑</h2>
+<ul><li>demo 在灰阶/占位素材上调校通过——参数是调校起点非实战定稿，</li></ul>
+<p>首次实战须以真实素材回验</p>
+<ul><li>角度判例：透视角是本卡身份，实战微调范围建议 55–65°，出这个</li></ul>
+<p>区间等于换手法</p>
+<ul><li>与 graze-face-tour 分工：那张镜头动（贴面游走）、页面静；本卡</li></ul>
+<p>镜头静、页面动。同段落二选一</p>
+<ul><li>与 runway-ground-skim 分工：那张是俯角平躺+垂直贴落+立起；</li></ul>
+<p>本卡是侧立+横向滑移，轴向正交</p>
+<ul><li>超宽页面手绘成本高；实战可用真实长截图代替（滑移逻辑不变）</li></ul>
+<h2>参考实现</h2>
+<p>demos/camera/steep-tilt-glide/</p>
+<p>（SteepTiltGlide.tsx）</p>
+<p>原片出处：clickup-30.mp4</p>
+<div class="demo">参考实现：demos/camera/steep-tilt-glide/</div>
+<div class="src">VideoForgeSuite · shotcraft 镜头卡库 · 源仓库 d:/hermes/vsc_repo</div>
+</body></html>

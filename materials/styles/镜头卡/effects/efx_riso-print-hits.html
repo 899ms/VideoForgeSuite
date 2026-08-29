@@ -1,0 +1,63 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Microsoft YaHei",sans-serif;background:#FCFAF3;color:#26221C;padding:28px 30px;max-width:900px}
+.banner{height:170px;border-radius:14px;background:linear-gradient(120deg,#F5E663,#F0D93B 55%,#E8C82E);margin-bottom:18px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.banner img{width:100%;height:100%;object-fit:cover}
+.fallback{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;height:100%}
+.fb1{font-size:22px;font-family:KaiTi,serif;color:#7A6A14;letter-spacing:6px}
+.fb2{font-size:40px;font-family:KaiTi,serif;font-weight:bold;color:#26221C}
+.tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.tag{font-size:12px;padding:3px 10px;border-radius:20px;border:1.5px solid #26221C;background:#fff}
+.tag.cat{background:#26221C;color:#FCFAF3}
+.tag.energy{color:#fff;border:none}
+h1{font-size:30px;font-family:KaiTi,serif;margin-bottom:10px}
+.oneliner{font-size:17px;line-height:1.6;padding:10px 14px;background:#FFF9D6;border-left:4px solid #E8C82E;border-radius:0 8px 8px 0;margin-bottom:14px}
+.meta{font-size:13px;color:#6B6357;margin-bottom:18px}
+h2{font-size:17px;margin:20px 0 8px;padding-bottom:4px;border-bottom:2px solid #E8C82E;font-family:KaiTi,serif}
+p,li{font-size:14px;line-height:1.75}
+ul{padding-left:20px}
+code{font-family:Consolas,monospace;background:#F0EDE2;padding:1px 5px;border-radius:4px;font-size:13px}
+table{border-collapse:collapse;width:100%;margin:6px 0}
+th,td{border:1px solid #D8D2C0;padding:6px 10px;font-size:13px;text-align:left}
+th{background:#F0EDE2}
+.demo{margin-top:22px;padding:10px 14px;background:#F0EDE2;border-radius:8px;font-size:12.5px;color:#6B6357;font-family:Consolas,monospace;word-break:break-all}
+.src{margin-top:16px;font-size:11px;color:#A39B8B;text-align:center}
+</style></head><body>
+<div class="banner"><div class="fallback"><div class="fb1">特效镜头</div><div class="fb2">riso-print-hits</div></div></div>
+<div class="tags"><span class="tag cat">effects · 特效</span><span class="tag energy" style="background:#C2410C">能量 高</span><span class="tag">A 4s（单发）；B 4.7s（四拍）</span></div>
+<h1>riso-print-hits</h1>
+<div class="oneliner">套印错位两式——riso-misregistration-hit 单发冲击帧（撞停裂双色版抖两下套准）与 riso-beat-pump 节拍泵（逐拍跳大+错版逐次加码）</div>
+<div class="meta"><b>适用：</b>标题/卡片的命中强调，纸墨审美版的"故障闪"；A 单发高潮、B 节奏段连打</div>
+<h2>意图</h2>
+<p>RGB 色散故障闪（impact-feedback C 式的一部分）是荧光屏语言，与纸墨</p>
+<p>调性相克。这两式给出印刷版平替：元素裂成浅灰/深墨两份单色印版</p>
+<p>（multiply 油墨感而非 screen 荧光感），像 risograph 没对准版，抖几下</p>
+<p>"啪"地套准——同样的冲击力，介质想象完全换成纸上油墨。A 是单发：</p>
+<p>撞停瞬间裂版、震荡衰减、硬切套准，给一次命中盖章；B 是它的节奏化：</p>
+<p>每个鼓点整画面跳大 8% + 标题裂版，错位逐拍加码，越打越狠——</p>
+<p>卡点段的视觉低音鼓。同技术根（衰减震荡的双版错位），单发/连打二选一。</p>
+<h2>两式选型</h2>
+<table><thead><tr><th>式</th><th>做法</th><th>适用</th></tr></thead><tbody><tr><td>A misregistration-hit 单发</td><td>标题 8f 撞入撞停，裂两版反向错 ~32px，44f 衰减震荡后硬切套准 + scale 脉冲</td><td>全片 1–2 次的命中盖章；标题/大字的到位一瞬</td></tr><tr><td>B beat-pump 节拍泵</td><td>每 24f 一拍：整画面瞬跳 1.08 指数回落 + 标题错版逐拍 8/14/22/32px 加码套准</td><td>音乐卡点段；"越打越狠"的蓄力连打</td></tr></tbody></table>
+<h2>参数表</h2>
+<table><thead><tr><th>参数</th><th>典型值</th><th>调节手感</th></tr></thead><tbody><tr><td>双版</td><td>浅灰版（G.mid）+ 深墨版（G.ink），<code>mix-blend-mode: multiply</code>，位移反向</td><td>multiply 叠出的重影灰阶就是"油墨没对准"；screen 叠加立刻变荧光故障</td></tr><tr><td>A 错位包络</td><td><code>offset = A·cos(2πt/18)·exp(-t/60)</code>，A=(16,7)px 两版反向；帧 72 硬切归零</td><td>命门：套准是<b>硬切跳变</b>不是渐收——衰减到 ~14px 残余时啪地归零才有"啪"；纯渐收读不出套准一拍</td></tr><tr><td>A 撞入</td><td>8f Easing.in(cubic) 从画外撞停，命中帧即裂版</td><td>裂版必须与撞停同帧——晚 2f 就读作两件事</td></tr><tr><td>A 套准脉冲</td><td>归零帧 4f scale 1.03→1</td><td>盖章的一拍；省略则套准无重量</td></tr><tr><td>B 泵</td><td><code>scale = 1 + 0.08·exp(-t/3)</code>（t=0 即满值、一帧到位无渐入），14f 窗口外精确归 1</td><td>瞬跳是"顿推"本体——加渐入就成了普通 zoom 呼吸</td></tr><tr><td>B 错版加码</td><td>AMP 逐拍 4/7/11/16px（单版，双版反向即总分离 8/14/22/32px），<code>AMP·cos(2πt/6)·exp(-t/3)</code> 12f 窗口</td><td>逐次加码是命门（同 hit-counter 判例）：四拍一样大读不出"越打越狠"</td></tr><tr><td>B 作用域</td><td>scale 作用整画面容器，错版只作用标题</td><td>整画面全裂读作故障而非印刷</td></tr><tr><td>B 节拍参照物</td><td>底部节拍刻度点，命中闪深常驻</td><td>静音预览环境的节拍可读性</td></tr><tr><td>收尾</td><td>A 套准后 ≥40f / B 末拍归零后 ≥20f 真静止</td><td>R1</td></tr></tbody></table>
+<h2>已知坑</h2>
+<ul><li>demo 在灰阶/占位素材上调校通过——参数是调校起点非实战定稿，</li></ul>
+<p>首次实战须以真实素材回验</p>
+<ul><li><b>错位幅度可感性判例（本批实渲）</b>：词汇表原案 ±5px 在 1920 宽画面</li></ul>
+<p>正常速度下肉眼几乎不可见——单版 16px/总分离 32px 起步才可感；</p>
+<p>幅度存疑时做极端版给用户看（可感性优先）</p>
+<ul><li>两式与 impact-feedback C（负片冲击帧）语义重叠——纸墨调性片子用本卡、</li></ul>
+<p>游戏/动漫调性用 C 式，同片不并用（P4）</p>
+<ul><li>B 式是声音强依赖：命中帧必须钉鼓点（sound-design §4.5）；无音轨</li></ul>
+<p>段落读作画面抽搐</p>
+<ul><li>A 式错位方向一横一纵混合（x 为主 y 少量）更像没对准版；纯横向读作</li></ul>
+<p>左右晃动</p>
+<ul><li>B 式四拍后必须接足量 hold（≥24f）——连打完不还呼吸，观众的耳朵还</li></ul>
+<p>在等第五拍</p>
+<h2>参考实现</h2>
+<p>demos/effects/riso-print-hits/</p>
+<p>（RisoBeatPump.tsx / RisoMisregistrationHit.tsx）</p>
+<div class="demo">参考实现：demos/effects/riso-print-hits/</div>
+<div class="src">VideoForgeSuite · shotcraft 镜头卡库 · 源仓库 d:/hermes/vsc_repo</div>
+</body></html>

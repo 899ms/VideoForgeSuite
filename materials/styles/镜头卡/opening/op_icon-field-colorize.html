@@ -1,0 +1,67 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Microsoft YaHei",sans-serif;background:#FCFAF3;color:#26221C;padding:28px 30px;max-width:900px}
+.banner{height:170px;border-radius:14px;background:linear-gradient(120deg,#F5E663,#F0D93B 55%,#E8C82E);margin-bottom:18px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.banner img{width:100%;height:100%;object-fit:cover}
+.fallback{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;height:100%}
+.fb1{font-size:22px;font-family:KaiTi,serif;color:#7A6A14;letter-spacing:6px}
+.fb2{font-size:40px;font-family:KaiTi,serif;font-weight:bold;color:#26221C}
+.tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.tag{font-size:12px;padding:3px 10px;border-radius:20px;border:1.5px solid #26221C;background:#fff}
+.tag.cat{background:#26221C;color:#FCFAF3}
+.tag.energy{color:#fff;border:none}
+h1{font-size:30px;font-family:KaiTi,serif;margin-bottom:10px}
+.oneliner{font-size:17px;line-height:1.6;padding:10px 14px;background:#FFF9D6;border-left:4px solid #E8C82E;border-radius:0 8px 8px 0;margin-bottom:14px}
+.meta{font-size:13px;color:#6B6357;margin-bottom:18px}
+h2{font-size:17px;margin:20px 0 8px;padding-bottom:4px;border-bottom:2px solid #E8C82E;font-family:KaiTi,serif}
+p,li{font-size:14px;line-height:1.75}
+ul{padding-left:20px}
+code{font-family:Consolas,monospace;background:#F0EDE2;padding:1px 5px;border-radius:4px;font-size:13px}
+table{border-collapse:collapse;width:100%;margin:6px 0}
+th,td{border:1px solid #D8D2C0;padding:6px 10px;font-size:13px;text-align:left}
+th{background:#F0EDE2}
+.demo{margin-top:22px;padding:10px 14px;background:#F0EDE2;border-radius:8px;font-size:12.5px;color:#6B6357;font-family:Consolas,monospace;word-break:break-all}
+.src{margin-top:16px;font-size:11px;color:#A39B8B;text-align:center}
+</style></head><body>
+<div class="banner"><div class="fallback"><div class="fb1">开场镜头</div><div class="fb2">icon-field-colorize</div></div></div>
+<div class="tags"><span class="tag cat">opening · 开场</span><span class="tag energy" style="background:#A16207">能量 中</span><span class="tag">浮现 ~45f 错峰 + 静置 ~10f + 翻色 12–45f + 终态静置；全段 3–4s</span></div>
+<h1>icon-field-colorize</h1>
+<div class="oneliner">灰阶小图标点阵错峰浮现铺满全屏，停一拍后多道品牌色横带波纹极快向下扫翻全场——"功能全景先摆满，品牌一瞬间点亮"的开场/收束卡</div>
+<div class="meta"><b>适用：</b>开场铺陈产品能力面（图标=功能宇宙）再一举打上品牌色；功能集合页、生态/集成规模展示、片头 logo 前垫场；浮现是铺垫，翻色瞬间是唯一爆点</div>
+<h2>意图</h2>
+<p>先用灰阶把"多"摆足——上百个小图标错峰浮进来铺满画面，灰阶保证</p>
+<p>读作背景纹理不抢戏；停一拍让观众意识到"摆满了"，然后品牌色以</p>
+<p>横带波纹形式极快扫过全场，灰世界一瞬间被点亮。命门在**翻色不是</p>
+<p>同帧硬翻**：原片实测是 ~0.5s 内多道色波依次向下快扫（蓝先覆盖全场，</p>
+<p>橙/绿/红依次覆盖更低行带），终态呈四色横带分层——波纹感让"点亮"</p>
+<p>有方向和速度，硬翻只读作换了张图。</p>
+<h2>动效核心</h2>
+<ul><li>图标场：150–200 个小图标网格排布（行间半格错位），灰阶 3–4 档</li></ul>
+<p>随机；mulberry32 定分组/灰度/形状</p>
+<ul><li>浮现：分 ~10 批错峰淡入（批间 4f + 批内 ≤3f 抖动），每个带</li></ul>
+<p>0.55→1.07→1 微弹（ease-out 入 + 7% 过冲回落）</p>
+<ul><li>静置一拍（~10f）：让"铺满"被读到，翻色前的蓄力</li><li>翻色：多道色波按行推进，行差 ~1.4f + 列微倾 0.25f + 每图标 ≤1.5f</li></ul>
+<p>抖动（斜切波前沿，不是整行同帧）；每道波从自己的起始行向下覆盖，</p>
+<p>后波覆盖更低行带 → 终态多色横带</p>
+<ul><li>翻色瞬间该图标 1.22x pop（正弦鼓包 3f），给波前沿加"啪"的质感</li></ul>
+<h2>参数表</h2>
+<table><thead><tr><th>参数</th><th>典型值</th><th>调节手感</th></tr></thead><tbody><tr><td>图标数</td><td>170（17×10 @1080p，CELL 110px）</td><td><100 读不出"原野"；>250 单个太小翻色 pop 看不见</td></tr><tr><td>浮现总长</td><td>~45f（10 批 × 4f + 尾批淡入 8f）</td><td>太快读作闪现；>60f 观众等不及爆点</td></tr><tr><td>翻色总长</td><td>原片 ~12f 全场完成；demo 45f</td><td>越快越爆；教学/慢节奏场合才拉长</td></tr><tr><td>波数</td><td>4 道（对应终态色带数）</td><td>1 道=单色点亮也成立；波色=品牌色板</td></tr><tr><td>行差</td><td>1.4f/行 + 列 0.25f 微倾</td><td>行差 >3f 波读作逐行扫描仪；0 = 硬翻</td></tr><tr><td>翻色 pop</td><td>1.22x 正弦 3f</td><td>无 pop 波前沿读不出来；>1.4x 图标互相打架</td></tr></tbody></table>
+<h2>已知坑</h2>
+<ul><li>demo 在灰阶/占位素材上调校通过——参数是调校起点非实战定稿，</li></ul>
+<p>首次实战须以真实素材回验</p>
+<ul><li><b>翻色不许同帧硬翻</b>——原片密帧核实为多道波纹快扫（bear-app</li></ul>
+<p>25fps 密帧：蓝→橙/绿/红约 0.5s 内完成），硬翻读作换图无"点亮"感</p>
+<ul><li>图标需可辨认的实心简笔形（心/星/闪电/对勾…）；抽象色块读不出</li></ul>
+<p>"功能宇宙"语义</p>
+<ul><li>与 bubble-swarm-takeover 分工：那张是气泡群涌入接管</li></ul>
+<p>画面的运动戏；本卡运动极克制，戏眼在灰→彩的瞬间翻色</p>
+<ul><li>与 theme-switch-moves 分工：那张是 UI 界面明暗主题切换；本卡</li></ul>
+<p>是装饰性图标场的品牌色点亮，不承载界面语义</p>
+<h2>参考实现</h2>
+<p>demos/opening/icon-field-colorize/</p>
+<p>（IconFieldColorize.tsx）</p>
+<p>原片出处：bear-app.mp4 ≈0.0–3.0s</p>
+<div class="demo">参考实现：demos/opening/icon-field-colorize/</div>
+<div class="src">VideoForgeSuite · shotcraft 镜头卡库 · 源仓库 d:/hermes/vsc_repo</div>
+</body></html>

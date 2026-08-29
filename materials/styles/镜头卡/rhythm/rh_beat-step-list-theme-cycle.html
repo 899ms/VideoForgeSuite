@@ -1,0 +1,73 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Microsoft YaHei",sans-serif;background:#FCFAF3;color:#26221C;padding:28px 30px;max-width:900px}
+.banner{height:170px;border-radius:14px;background:linear-gradient(120deg,#F5E663,#F0D93B 55%,#E8C82E);margin-bottom:18px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.banner img{width:100%;height:100%;object-fit:cover}
+.fallback{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;height:100%}
+.fb1{font-size:22px;font-family:KaiTi,serif;color:#7A6A14;letter-spacing:6px}
+.fb2{font-size:40px;font-family:KaiTi,serif;font-weight:bold;color:#26221C}
+.tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.tag{font-size:12px;padding:3px 10px;border-radius:20px;border:1.5px solid #26221C;background:#fff}
+.tag.cat{background:#26221C;color:#FCFAF3}
+.tag.energy{color:#fff;border:none}
+h1{font-size:30px;font-family:KaiTi,serif;margin-bottom:10px}
+.oneliner{font-size:17px;line-height:1.6;padding:10px 14px;background:#FFF9D6;border-left:4px solid #E8C82E;border-radius:0 8px 8px 0;margin-bottom:14px}
+.meta{font-size:13px;color:#6B6357;margin-bottom:18px}
+h2{font-size:17px;margin:20px 0 8px;padding-bottom:4px;border-bottom:2px solid #E8C82E;font-family:KaiTi,serif}
+p,li{font-size:14px;line-height:1.75}
+ul{padding-left:20px}
+code{font-family:Consolas,monospace;background:#F0EDE2;padding:1px 5px;border-radius:4px;font-size:13px}
+table{border-collapse:collapse;width:100%;margin:6px 0}
+th,td{border:1px solid #D8D2C0;padding:6px 10px;font-size:13px;text-align:left}
+th{background:#F0EDE2}
+.demo{margin-top:22px;padding:10px 14px;background:#F0EDE2;border-radius:8px;font-size:12.5px;color:#6B6357;font-family:Consolas,monospace;word-break:break-all}
+.src{margin-top:16px;font-size:11px;color:#A39B8B;text-align:center}
+</style></head><body>
+<div class="banner"><img src="data:image/jpeg;base64,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" alt=""></div>
+<div class="tags"><span class="tag cat">rhythm · 节奏</span><span class="tag energy" style="background:#C2410C">能量 高</span><span class="tag">铺垫 30f + 每拍 18f × 拍数 + 收尾 hold；3 拍约 3.5s（demo 110f）</span></div>
+<h1>beat-step-list-theme-cycle</h1>
+<div class="oneliner">三通道节拍器——深色场形容词列表逐拍上移一行，视口中央固定胶囊"接住"下一个词并换色，整场底色同拍跟换；行、色、场三通道锁死同一拍点</div>
+<div class="meta"><b>适用：</b>"同一产品多种气质/多主题展示"段落（modern/playful/expressive 式形容词连打）；全片节奏最密的一段；音乐段对拍；0.6s 一拍三通道齐跳，密度型高能</div>
+<h2>意图</h2>
+<p>换一次主题色是功能演示；0.6 秒换一次、连换三次、每次"选中行+胶囊色</p>
+<p>+全场底色"三件事同帧齐跳——就成了节拍器。用最便宜的变量切换做出</p>
+<p>全片最高的节奏密度。命门有二：一是<b>三通道必须锁同一拍点</b>，任何</p>
+<p>一通道慢半拍，"齐跳"退化成三个各自为政的动画；二是<b>跳与滑的分界</b></p>
+<p>——跳变只占拍头 6f，其余 12f 完全静置，拍点要"跳"不要"滑"，</p>
+<p>匀速滚动的列表就只是列表。</p>
+<h2>动效核心</h2>
+<ul><li>胶囊固定在视口中央行<b>不动</b>，列表 translateY 逐拍步进——视觉上</li></ul>
+<p>读作"胶囊跳到下一行接住新词"，实际动的是世界不是胶囊</p>
+<ul><li>拍长 18f（0.6s @30fps ≈ 100BPM），跳变窗仅拍头 6f：</li></ul>
+<p><code>snap(t) = 1-(1-x)^3.2</code>（陡 ease-out），其余帧静置</p>
+<ul><li>三通道同源驱动：同一个 tInBeat 同时喂列表位移、胶囊/底色</li></ul>
+<p>rgb 逐通道 cross-mix、胶囊 squash——一个时钟，不许各挂各的曲线</p>
+<ul><li>主题表逐拍换对（demo：灰白/深棕→绿→紫→红/深藏青），胶囊色与</li></ul>
+<p>底色是配好的深浅对，不是独立随机色</p>
+<ul><li>胶囊落位 squash：scale 1.12→0.97→1 随拍头 6f 走完</li><li>选中词反白、非选中词 34% 白；上下各 300px 底色渐变羽化收视口</li></ul>
+<p>——羽化色必须跟 bgColor 实时同步，写死颜色换场时穿帮</p>
+<ul><li>开拍前 30f 静置铺垫——先让观众看清"这是个列表"，再开始打拍</li></ul>
+<h2>参数表</h2>
+<table><thead><tr><th>参数</th><th>典型值</th><th>调节手感</th></tr></thead><tbody><tr><td>拍长</td><td>18f（BEAT_LEN，改它即改 BPM 对音轨）</td><td><12f 观众来不及读词只见闪色；>26f 拍感散成逐个展示</td></tr><tr><td>跳变窗</td><td>拍头 6f，ease-out 指数 3.2</td><td>窗 >10f 或缓曲线，"跳"变"滑"，节拍器塌成滚动列表</td></tr><tr><td>拍数</td><td>3–4 拍</td><td>5+ 拍观众适应了节奏开始走神；1–2 拍立不起"节拍器"人设</td></tr><tr><td>squash</td><td>1.12→0.97→1</td><td>去掉它胶囊像贴图换色；>1.2 弹跳抢了换色的戏</td></tr><tr><td>底色跨度</td><td>相邻主题底色须同明度不同色相（都深色）</td><td>明度跳变（深→浅）会读作闪屏而非换肤</td></tr><tr><td>铺垫/收尾</td><td>前 30f 静置；末拍后 hold ≥30f</td><td>没铺垫第一拍读作 bug；末拍即切没有"停在最终色"的确认</td></tr></tbody></table>
+<h2>已知坑</h2>
+<ul><li>demo 在灰阶/占位素材上调校通过——参数是调校起点非实战定稿，</li></ul>
+<p>首次实战须以真实素材回验</p>
+<ul><li>与 theme-switch-moves 分工：那卡是单次换肤的仪式（扫场/涟漪，换一次</li></ul>
+<p>讲一次故事），本卡是连续多次换肤当节拍用——讲"深色模式功能"用那卡，</p>
+<p>讲"多气质/多主题体量"用本卡</p>
+<ul><li>与 cel-flash-stomp 同为高密度拍点段，同片二选一或隔远——都是</li></ul>
+<p>"每 0.6s 一记"的手法，紧邻观众会拍疲劳</p>
+<ul><li><b>声音强依赖</b>：拍点对齐鼓点（换 BEAT_LEN 对 BPM），无声版三通道</li></ul>
+<p>齐跳读作界面抽风</p>
+<ul><li>词表长度 ≥ 拍数+2——列表底部要留未选中的词垫着，最后一拍就停在</li></ul>
+<p>列表末行会露出"下面没了"</p>
+<ul><li>反白判定跟 beat 整数走、颜色跟 tInBeat 小数走（demo 即如此）——</li></ul>
+<p>两者都跟小数会出现半白半灰的中间态词</p>
+<h2>参考实现</h2>
+<p>demos/rhythm/beat-step-list-theme-cycle/</p>
+<p>（BeatStepListThemeCycle.tsx）</p>
+<p>原片出处：bear-app 22.3–24.6s</p>
+<div class="demo">参考实现：demos/rhythm/beat-step-list-theme-cycle/</div>
+<div class="src">VideoForgeSuite · shotcraft 镜头卡库 · 源仓库 d:/hermes/vsc_repo</div>
+</body></html>

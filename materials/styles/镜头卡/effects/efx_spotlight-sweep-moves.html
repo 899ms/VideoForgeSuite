@@ -1,0 +1,67 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Microsoft YaHei",sans-serif;background:#FCFAF3;color:#26221C;padding:28px 30px;max-width:900px}
+.banner{height:170px;border-radius:14px;background:linear-gradient(120deg,#F5E663,#F0D93B 55%,#E8C82E);margin-bottom:18px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.banner img{width:100%;height:100%;object-fit:cover}
+.fallback{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;height:100%}
+.fb1{font-size:22px;font-family:KaiTi,serif;color:#7A6A14;letter-spacing:6px}
+.fb2{font-size:40px;font-family:KaiTi,serif;font-weight:bold;color:#26221C}
+.tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.tag{font-size:12px;padding:3px 10px;border-radius:20px;border:1.5px solid #26221C;background:#fff}
+.tag.cat{background:#26221C;color:#FCFAF3}
+.tag.energy{color:#fff;border:none}
+h1{font-size:30px;font-family:KaiTi,serif;margin-bottom:10px}
+.oneliner{font-size:17px;line-height:1.6;padding:10px 14px;background:#FFF9D6;border-left:4px solid #E8C82E;border-radius:0 8px 8px 0;margin-bottom:14px}
+.meta{font-size:13px;color:#6B6357;margin-bottom:18px}
+h2{font-size:17px;margin:20px 0 8px;padding-bottom:4px;border-bottom:2px solid #E8C82E;font-family:KaiTi,serif}
+p,li{font-size:14px;line-height:1.75}
+ul{padding-left:20px}
+code{font-family:Consolas,monospace;background:#F0EDE2;padding:1px 5px;border-radius:4px;font-size:13px}
+table{border-collapse:collapse;width:100%;margin:6px 0}
+th,td{border:1px solid #D8D2C0;padding:6px 10px;font-size:13px;text-align:left}
+th{background:#F0EDE2}
+.demo{margin-top:22px;padding:10px 14px;background:#F0EDE2;border-radius:8px;font-size:12.5px;color:#6B6357;font-family:Consolas,monospace;word-break:break-all}
+.src{margin-top:16px;font-size:11px;color:#A39B8B;text-align:center}
+</style></head><body>
+<div class="banner"><div class="fallback"><div class="fb1">特效镜头</div><div class="fb2">spotlight-sweep-moves</div></div></div>
+<div class="tags"><span class="tag cat">effects · 特效</span><span class="tag energy" style="background:#A16207">能量 中低</span><span class="tag">单式 3.5–4.5s；A/B 可串联成巡礼段</span></div>
+<h1>spotlight-sweep-moves</h1>
+<div class="oneliner">暗场聚光显影三式——A 醒睡扫过（光到即亮光走即暗）、B 贴边泛光横摇（紫光贴 UI 边缘渗入+聚光匀速右移）、C 角落匀速显影（径向聚光从角落匀速扩张点亮全屏）；黑场里"光即叙事"的 UI 展示</div>
+<div class="meta"><b>适用：</b>暗色调品牌片里逐个介绍 UI 面板/功能区；黑场开场把界面"点亮"登场；段落间光转场；克制、神秘感，爆点在"亮起"瞬间</div>
+<h2>意图</h2>
+<p>黑场里观众只能看见光给看的东西——聚光既是照明也是运镜和剪辑：</p>
+<p>光到哪里哪里登场，光走即谢幕。三式共用"贴边紫色辉光光线"这个</p>
+<p>身份元素（光线贴着 UI 边框/logo/顶边走，辉光要亮要糊，是光在</p>
+<p>"抚摸"界面而不是描边动画）。命门是<b>匀速</b>：聚光的移动/扩张</p>
+<p>严格 linear——缓动会让光有"意图"，匀速才读作探照灯的机械扫掠</p>
+<p>（C 式判例：linear 但半径终值过大＝前 1/4 就饱和，观感照样不匀速）。</p>
+<h2>动效核心</h2>
+<p><b>A 醒睡扫过</b>（glow-wake-sleep-panel）：radial 显影罩跟随光头从左</p>
+<p>向右匀速移动，范围外全黑；贴顶边紫色光线三层辉光（blur26 宽糊+</p>
+<p>blur9 中层+亮芯+粉色偏移层）随扫光同步走，经过 logo 时 boxShadow</p>
+<p>描光、到右缘点亮竖直残光；尾段光走面板沉回黑暗——有醒有睡。</p>
+<p><b>B 贴边泛光横摇</b>（slide-spotlight-pan）：光线锚定面板边缘（先绕</p>
+<p>左上角竖缘、转角后沿顶边横走），紫光晕染渗入 UI 顶部内侧（光从</p>
+<p>边缘渗进界面）；聚光头匀速右移显影、面板同时匀速左滑＝相机右摇感。</p>
+<p><b>C 角落匀速显影</b>（corner-spotlight-reveal）：左上角径向聚光半径</p>
+<p>严格 linear 扩张，照到显影照不到沉黑，最终全亮（光即转场）。</p>
+<h2>参数表</h2>
+<table><thead><tr><th>参数</th><th>典型值</th><th>调节手感</th></tr></thead><tbody><tr><td>聚光移动/扩张</td><td>全程 linear、零缓动</td><td><b>匀速是命门</b>——全程零缓动；加 ease 读作光有主观意图</td></tr><tr><td>C 式半径终值</td><td>恰好在片尾覆盖全屏（1300@1080p/100f）</td><td>终值过大＝提前饱和假匀速：亮度采样须全程平滑爬升（实测 8/46/101/…/238）</td></tr><tr><td>贴边光线辉光</td><td>3–4 层（blur26+blur9+亮芯+粉偏移）</td><td>层少读作细线描边；辉光要够亮够糊才是"光"</td></tr><tr><td>光线锚定</td><td>严格贴 UI 边缘/顶边/logo</td><td>光线脱离边缘漂浮＝失去"抚摸界面"语义（A 式返工判例：定位丢失紫光跑到底边）</td></tr><tr><td>显影罩</td><td>radial 渐变硬边略糊（feather ~15%）</td><td>边太硬像圆形遮罩；太糊没有"照到/照不到"的界线</td></tr></tbody></table>
+<h2>已知坑</h2>
+<ul><li>demo 在灰阶/占位素材上调校通过——参数是调校起点非实战定稿，</li></ul>
+<p>首次实战须以真实素材回验</p>
+<ul><li>与 light-play-moves 分工：那张是元素/文字上的</li></ul>
+<p>光泽戏（sheen/辉光呼吸）；本卡光是<b>运镜和剪辑</b>（显影/谢幕/转场），</p>
+<p>光决定观众看什么</p>
+<ul><li>三式重做判例：聚光扫过必须带贴边光线同行（v1 只有显影罩被裁</li></ul>
+<p>"改改再看"——裸聚光没有身份，贴边紫光才是这个手法的签名）</p>
+<ul><li>原片（clickup-30）光线转角有一瞬彩虹色散，demo 未做；实战可</li></ul>
+<p>在转角帧加 1–2f 色散层提质感</p>
+<h2>参考实现</h2>
+<p>demos/effects/spotlight-sweep-moves/</p>
+<p>（CornerSpotlightReveal.tsx / GlowWakeSleepPanel.tsx / SlideSpotlightPan.tsx）</p>
+<p>原片出处：clickup-30.mp4</p>
+<div class="demo">参考实现：demos/effects/spotlight-sweep-moves/</div>
+<div class="src">VideoForgeSuite · shotcraft 镜头卡库 · 源仓库 d:/hermes/vsc_repo</div>
+</body></html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Microsoft YaHei",sans-serif;background:#FCFAF3;color:#26221C;padding:28px 30px;max-width:900px}
+.banner{height:170px;border-radius:14px;background:linear-gradient(120deg,#F5E663,#F0D93B 55%,#E8C82E);margin-bottom:18px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.banner img{width:100%;height:100%;object-fit:cover}
+.fallback{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;height:100%}
+.fb1{font-size:22px;font-family:KaiTi,serif;color:#7A6A14;letter-spacing:6px}
+.fb2{font-size:40px;font-family:KaiTi,serif;font-weight:bold;color:#26221C}
+.tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.tag{font-size:12px;padding:3px 10px;border-radius:20px;border:1.5px solid #26221C;background:#fff}
+.tag.cat{background:#26221C;color:#FCFAF3}
+.tag.energy{color:#fff;border:none}
+h1{font-size:30px;font-family:KaiTi,serif;margin-bottom:10px}
+.oneliner{font-size:17px;line-height:1.6;padding:10px 14px;background:#FFF9D6;border-left:4px solid #E8C82E;border-radius:0 8px 8px 0;margin-bottom:14px}
+.meta{font-size:13px;color:#6B6357;margin-bottom:18px}
+h2{font-size:17px;margin:20px 0 8px;padding-bottom:4px;border-bottom:2px solid #E8C82E;font-family:KaiTi,serif}
+p,li{font-size:14px;line-height:1.75}
+ul{padding-left:20px}
+code{font-family:Consolas,monospace;background:#F0EDE2;padding:1px 5px;border-radius:4px;font-size:13px}
+table{border-collapse:collapse;width:100%;margin:6px 0}
+th,td{border:1px solid #D8D2C0;padding:6px 10px;font-size:13px;text-align:left}
+th{background:#F0EDE2}
+.demo{margin-top:22px;padding:10px 14px;background:#F0EDE2;border-radius:8px;font-size:12.5px;color:#6B6357;font-family:Consolas,monospace;word-break:break-all}
+.src{margin-top:16px;font-size:11px;color:#A39B8B;text-align:center}
+</style></head><body>
+<div class="banner"><div class="fallback"><div class="fb1">转场镜头</div><div class="fb2">card-flip-reveal</div></div></div>
+<div class="tags"><span class="tag cat">transition · 转场</span><span class="tag energy" style="background:#A16207">能量 中高</span><span class="tag">单卡翻转 26f，三卡错峰 10f，全程 ~4.9s（含 hold）</span></div>
+<h1>card-flip-reveal</h1>
+<div class="oneliner">功能卡 3D 翻面揭示——卡片沿 Y 轴翻 180°，正面 UI 翻到侧棱最薄处闪过一道随角度移动的高光带，背面揭出大号结论数字，逐张错峰扫过整排</div>
+<div class="meta"><b>适用：</b>"功能→成果"的成对叙事：一排功能卡逐张翻出各自的指标/结论；元素级转场卡</div>
+<h2>意图</h2>
+<p>库内"翻"字辈已有 wall-reveal-moves B（整墙波浪翻面，讲入场）和</p>
+<p>split-flap（字符翻牌，讲文字）。本卡是<b>语义翻面</b>：一张卡的正反两面</p>
+<p>是一对因果——正面是功能界面，背面是它带来的数字结论。翻面动作本身</p>
+<p>就是"所以呢？"的回答，Apple bento 段落的标准语法。逐张错峰 10f 扫过</p>
+<p>一排，三张卡三个数字节奏读作"成果连报"。</p>
+<h2>动效核心</h2>
+<ul><li>perspective 1200px + transformStyle preserve-3d；双面各自</li></ul>
+<p>backfaceVisibility hidden，背面预转 rotateY(180°)</p>
+<ul><li>翻转 18f Easing.bezier(0.55,0,0.3,1) 冲到 192°（12° 过冲，原案 8°</li></ul>
+<p>不可感已加码），再 8f Easing.out(poly(5)) 回落 180°</p>
+<ul><li><b>侧棱高光</b>：linear-gradient 位置随角度 35°→145° 从卡左外扫到右外，</li></ul>
+<p>强度 sin 包络在 90°（最薄瞬间）达峰 0.32 加深灰——白底用加深不用</p>
+<p>提亮（判例）；高光与角度联动才读作"光扫过转动的面"</p>
+<ul><li>错峰 delay 10f/卡；全部翻完真静止 ≥40f</li></ul>
+<h2>参数表</h2>
+<table><thead><tr><th>参数</th><th>典型值</th><th>调节手感</th></tr></thead><tbody><tr><td>翻转时长</td><td>18f + 8f 回弹</td><td><14f 看不到侧棱瞬间；>28f 读作慢慢转</td></tr><tr><td>过冲</td><td>192°→180°（12°）</td><td>无过冲落定读作生硬停表</td></tr><tr><td>高光峰值</td><td>0.32 加深灰 @90°</td><td>峰值错开 90° 读作贴图错误</td></tr><tr><td>错峰</td><td>10f/卡，≤4 卡</td><td>同时翻读作整墙翻面（那是 wall-reveal B 的活）</td></tr><tr><td>背面内容</td><td>大号数字（90px 级）+ 一行小标签</td><td>背面塞完整 UI 读不完——翻面后只有一拍注意力</td></tr><tr><td>收尾</td><td>末卡落定真静止 ≥40f</td><td>R1</td></tr></tbody></table>
+<h2>已知坑</h2>
+<ul><li>demo 在灰阶/占位素材上调校通过——参数是调校起点非实战定稿，</li></ul>
+<p>首次实战须以真实素材回验</p>
+<ul><li>与 wall-reveal-moves B 式（网格波浪翻面）同技术根不同语义：那是</li></ul>
+<p>入场（背面灰卡→正面 UI），这是揭示（正面 UI→背面结论）——同片</p>
+<p>两者都用时翻转方向要区分（入场 rotateX、揭示 rotateY）</p>
+<ul><li>正反两面必须语义成对（界面→它的成果）；翻出无关内容，翻面就</li></ul>
+<p>只是花哨的换图</p>
+<ul><li>真实素材正面用截图时注意 backface 渲染开销，三卡以上分 Sequence</li><li>声音候选位：每卡翻停帧一声轻"啪"（sound-design §4.5），三连啪</li></ul>
+<p>节奏感翻倍</p>
+<h2>参考实现</h2>
+<p>demos/transition/card-flip-reveal/</p>
+<p>（CardFlipReveal.tsx）</p>
+<div class="demo">参考实现：demos/transition/card-flip-reveal/</div>
+<div class="src">VideoForgeSuite · shotcraft 镜头卡库 · 源仓库 d:/hermes/vsc_repo</div>
+</body></html>

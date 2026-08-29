@@ -1,0 +1,57 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Microsoft YaHei",sans-serif;background:#FCFAF3;color:#26221C;padding:28px 30px;max-width:900px}
+.banner{height:170px;border-radius:14px;background:linear-gradient(120deg,#F5E663,#F0D93B 55%,#E8C82E);margin-bottom:18px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.banner img{width:100%;height:100%;object-fit:cover}
+.fallback{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;height:100%}
+.fb1{font-size:22px;font-family:KaiTi,serif;color:#7A6A14;letter-spacing:6px}
+.fb2{font-size:40px;font-family:KaiTi,serif;font-weight:bold;color:#26221C}
+.tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.tag{font-size:12px;padding:3px 10px;border-radius:20px;border:1.5px solid #26221C;background:#fff}
+.tag.cat{background:#26221C;color:#FCFAF3}
+.tag.energy{color:#fff;border:none}
+h1{font-size:30px;font-family:KaiTi,serif;margin-bottom:10px}
+.oneliner{font-size:17px;line-height:1.6;padding:10px 14px;background:#FFF9D6;border-left:4px solid #E8C82E;border-radius:0 8px 8px 0;margin-bottom:14px}
+.meta{font-size:13px;color:#6B6357;margin-bottom:18px}
+h2{font-size:17px;margin:20px 0 8px;padding-bottom:4px;border-bottom:2px solid #E8C82E;font-family:KaiTi,serif}
+p,li{font-size:14px;line-height:1.75}
+ul{padding-left:20px}
+code{font-family:Consolas,monospace;background:#F0EDE2;padding:1px 5px;border-radius:4px;font-size:13px}
+table{border-collapse:collapse;width:100%;margin:6px 0}
+th,td{border:1px solid #D8D2C0;padding:6px 10px;font-size:13px;text-align:left}
+th{background:#F0EDE2}
+.demo{margin-top:22px;padding:10px 14px;background:#F0EDE2;border-radius:8px;font-size:12.5px;color:#6B6357;font-family:Consolas,monospace;word-break:break-all}
+.src{margin-top:16px;font-size:11px;color:#A39B8B;text-align:center}
+</style></head><body>
+<div class="banner"><div class="fallback"><div class="fb1">转场镜头</div><div class="fb2">wipe-transitions</div></div></div>
+<div class="tags"><span class="tag cat">transition · 转场</span><span class="tag energy" style="background:#A16207">能量 中</span><span class="tag">单式 前态 ≥20f + 擦除 32–60f + 收尾 ≥40f，约 5s（150f）</span></div>
+<h1>wipe-transitions</h1>
+<div class="oneliner">几何擦除转场两式——clock-wipe 时钟扫描（雷达指针扫一圈换页）与 blinds-slice 百叶窗切条（12 竖条错峰翻换成波）</div>
+<div class="meta"><b>适用：</b>新旧页都不动、一条几何边界扫过完成交接的通用转场；不依赖构图里有合适元素，哪儿都能用</div>
+<h2>意图</h2>
+<p>转场库已有三族：穿越系（钻进去）、藏切系（遮住切）、体块系（页面是</p>
+<p>实体）。本卡是第四族<b>几何擦除系</b>——新旧页都不动，一条几何边界扫过</p>
+<p>完成交接，擦除的形状即语义：A 圆扫是"仪表盘刷新了一屏数据"，B 条扫</p>
+<p>是"百叶窗逐叶翻面换页"。与 shot-transitions F 元素遮罩擦除的区别：</p>
+<p>F 用页面内真实元素当遮罩（依赖构图），本卡是纯几何形——通用性即定位。</p>
+<p>按语义选：数据刷新用 A，横向推进翻页用 B。</p>
+<h2>两式选型</h2>
+<table><thead><tr><th>式</th><th>做法</th><th>适用</th></tr></thead><tbody><tr><td>A clock-wipe</td><td>B 页上层套扇形 clip-path polygon，指针从屏心 12 点顺时针匀速扫 360°，扫过处露 B；扫描沿带多层亮线</td><td>数据/状态刷新语义；仪表盘类页面</td></tr><tr><td>B blinds-slice</td><td>12 根 160px 竖条 overflow hidden + 内层整页负 margin 对位；条内 A scaleX(1-p) 左缘收缩、B scaleX(p) 右缘展开，错峰 delay 成波，缝上亮线随波扫</td><td>翻页/推进语义；横向阅读动线页面</td></tr></tbody></table>
+<h2>参数表</h2>
+<table><thead><tr><th>参数</th><th>典型值</th><th>调节手感</th></tr></thead><tbody><tr><td>A 扇形</td><td>中心屏心(960,540)、半径 1400 盖满四角，固定 73 顶点(SEGS=72)</td><td>顶点数恒定且够密（40+）防锯齿跳变——命门</td></tr><tr><td>A 扫速</td><td>30–90f 指针 0→360° 纯 linear，双向 clamp</td><td>雷达要匀速；加缓动就不是雷达是钟摆</td></tr><tr><td>A 亮线</td><td>四层 SVG line：26px 白 0.35 柔光 + 13px 白 0.60 + 9px 黑 0.55 暗描边 + 4px 白核</td><td>白底判例：纯提亮不可见，必须加暗描边；首渲 3px 白线太弱，加码 1.5x 才过</td></tr><tr><td>B 波</td><td>20–52f：delay=列号×2f，每条 10f Easing.in(cubic)</td><td>交接点恒为 x+160(1-p)，数学上无露底</td></tr><tr><td>B 缝亮线</td><td>三层 SVG：16px 白 0.45 柔光 + 6px 黑 0.55 暗描边 + 3px 白核，进出各 2f 淡入淡出</td><td>同 A 白底判例</td></tr><tr><td>摘罩</td><td>A 96f / B 52f 起条件卸载全部擦除结构，B 页直出</td><td>opacity 0 不算摘，残留 clip-path 毁真静止</td></tr><tr><td>收尾</td><td>A 54f / B 98f 真静止（≥40f）</td><td>R1</td></tr></tbody></table>
+<h2>已知坑</h2>
+<ul><li>demo 在灰阶/占位素材上调校通过——参数是调校起点非实战定稿，</li></ul>
+<p>首次实战须以真实素材回验</p>
+<ul><li>擦除边界必须带亮线/高光——无亮线的 wipe 读作 PPT 转场，命门；</li></ul>
+<p>亮线在浅色区靠黑描边、深色区靠白核，两侧都要可读</p>
+<ul><li>A 与 circle-match-iris 的区别：iris 是从锚点炸开的圆（半径在长），</li></ul>
+<p>clock 是角度在扫（半径恒定）——别因为都是圆混用</p>
+<ul><li>几何擦除全片 ≤2 次，且 A/B 别同片连用（两次"边界扫过"读作模板感）</li><li>亮线淡出与摘罩必须同帧衔接（A 90–96f 淡出、96f 卸载），</li></ul>
+<p>差一帧就是残线穿帮</p>
+<h2>参考实现</h2>
+<p>demos/transition/wipe-transitions/</p>
+<p>（BlindsSlice.tsx / ClockWipe.tsx）</p>
+<div class="demo">参考实现：demos/transition/wipe-transitions/</div>
+<div class="src">VideoForgeSuite · shotcraft 镜头卡库 · 源仓库 d:/hermes/vsc_repo</div>
+</body></html>

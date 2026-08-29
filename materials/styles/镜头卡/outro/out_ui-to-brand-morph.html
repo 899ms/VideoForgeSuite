@@ -1,0 +1,55 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Microsoft YaHei",sans-serif;background:#FCFAF3;color:#26221C;padding:28px 30px;max-width:900px}
+.banner{height:170px;border-radius:14px;background:linear-gradient(120deg,#F5E663,#F0D93B 55%,#E8C82E);margin-bottom:18px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.banner img{width:100%;height:100%;object-fit:cover}
+.fallback{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;height:100%}
+.fb1{font-size:22px;font-family:KaiTi,serif;color:#7A6A14;letter-spacing:6px}
+.fb2{font-size:40px;font-family:KaiTi,serif;font-weight:bold;color:#26221C}
+.tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.tag{font-size:12px;padding:3px 10px;border-radius:20px;border:1.5px solid #26221C;background:#fff}
+.tag.cat{background:#26221C;color:#FCFAF3}
+.tag.energy{color:#fff;border:none}
+h1{font-size:30px;font-family:KaiTi,serif;margin-bottom:10px}
+.oneliner{font-size:17px;line-height:1.6;padding:10px 14px;background:#FFF9D6;border-left:4px solid #E8C82E;border-radius:0 8px 8px 0;margin-bottom:14px}
+.meta{font-size:13px;color:#6B6357;margin-bottom:18px}
+h2{font-size:17px;margin:20px 0 8px;padding-bottom:4px;border-bottom:2px solid #E8C82E;font-family:KaiTi,serif}
+p,li{font-size:14px;line-height:1.75}
+ul{padding-left:20px}
+code{font-family:Consolas,monospace;background:#F0EDE2;padding:1px 5px;border-radius:4px;font-size:13px}
+table{border-collapse:collapse;width:100%;margin:6px 0}
+th,td{border:1px solid #D8D2C0;padding:6px 10px;font-size:13px;text-align:left}
+th{background:#F0EDE2}
+.demo{margin-top:22px;padding:10px 14px;background:#F0EDE2;border-radius:8px;font-size:12.5px;color:#6B6357;font-family:Consolas,monospace;word-break:break-all}
+.src{margin-top:16px;font-size:11px;color:#A39B8B;text-align:center}
+</style></head><body>
+<div class="banner"><div class="fallback"><div class="fb1">收尾镜头</div><div class="fb2">ui-to-brand-morph</div></div></div>
+<div class="tags"><span class="tag cat">outro · 收尾</span><span class="tag energy" style="background:#A16207">能量 中高</span><span class="tag">A ~4.3s（130f）/ B ~4.7s（140f）</span></div>
+<h1>ui-to-brand-morph</h1>
+<div class="oneliner">UI 变品牌两式——icon-flip-bloom 图标 Y 轴翻扁成竖线绽放成花形 mark + wordmark 逐字落定，与 input-morph-assemble 输入框收缩成胶囊、三粒图元落下集结成 logo 单瓣</div>
+<div class="meta"><b>适用：</b>品牌收尾/outro 前最后一拍；"你每天用的那个 UI 就是这个品牌"的视觉论证；收尾点睛，一次完整变形讲完</div>
+<h2>意图</h2>
+<p>品牌收尾库里已有三条路：brand-ink-open 是开场描画压印、</p>
+<p>morph-from-primitive 是图元→UI 容器（方向相反）、</p>
+<p>outro-group-photo-launch 是元素围拢合影（聚而不变）。本卡补第四条：</p>
+<p><b>产品 UI 元素自己变形成品牌符号</b>——A 式是图标翻一个身变成 logo</p>
+<p>（同位实体交换），B 式是全片反复出现的输入框在最后一次发送后集结成</p>
+<p>logo 单瓣（多元素落位拼装）。观众看到的不是"logo 出现了"，而是</p>
+<p>"刚才用的东西原来就是它"，因果链本身就是品牌论证。</p>
+<h2>两式选型</h2>
+<table><thead><tr><th>式</th><th>做法</th><th>适用</th></tr></thead><tbody><tr><td>A icon-flip-bloom</td><td>图标 anticipation 晃两下→Y 轴 scaleX 压扁成竖线（双层拖影+blur）→最薄处实体交换、spring 绽放成 5 瓣花形 mark→mark 左移让位、wordmark 逐字落定</td><td>单图标产品；图标与 logo 形态差异大、需要"翻过去变身"的魔术感</td></tr><tr><td>B input-morph-assemble</td><td>光标点发送→文字飞走→输入框 x/y/w/h/r 五量 spring 插值成圆角胶囊→三粒图元错峰从画外落下拼成抽象单瓣→整组呼吸</td><td>输入框/卡片等矩形 UI 是全片主角的片子；logo 可拆解为几何图元组合</td></tr></tbody></table>
+<h2>参数表</h2>
+<table><thead><tr><th>参数</th><th>典型值</th><th>调节手感</th></tr></thead><tbody><tr><td>A anticipation</td><td>12–34f 倾斜 -12°/+14°/-18°→0°，inOut(sin)，transformOrigin 钉底部 78%</td><td>幅度递增才读作"蓄力"；只晃一下读不出预备动作</td></tr><tr><td>A 翻扁</td><td>12f Easing.in(cubic)，scaleX 1→0.04；两层残影 opacity 0.22/0.14 + blur 6px 滞后 0.12/0.24</td><td>加速入是"甩"的关键；匀速翻读作 flip 卡片。0.04 是最薄处，实体交换在这帧做</td></tr><tr><td>A 绽放</td><td>spring(damping 11, stiffness 130)；5 瓣 ellipse 角度从 -90°（全竖直重叠）张到均匀分布，长 20→38、宽 3→15 同步生长</td><td>花瓣从闭合竖线张开才接得住"翻过最薄处"；直接 scale 整朵会断因果</td></tr><tr><td>A wordmark</td><td>mark 16f 左移 -420px 让位；逐字 2.2f 错峰、每字 10f</td><td><b>wordmark 落定应对照原片：各字母由大变小落位，大的时候模糊、落位时清晰（scale+blur 联动逐字落定），不是横向扫出</b>；demo 的 translateX -70→0 + blur 16→0 横扫是待改项</td></tr><tr><td>B 发送反馈</td><td>光标 22f 移入按下 scale 0.82 + 按钮闪白 6f；文字 12f Easing.in 加速右上飞出（+700,-380）+ rotate -10° + 淡出</td><td>飞走必须加速——匀速飞读作平移不读作"发出去了"</td></tr><tr><td>B morph</td><td>34f 起 spring(damping 13, stiffness 90)，860×120 r26 → 300×108 r54 五量同步；白描边随进度填成实心</td><td>五量必须同一个 spring 驱动，分开插值会中途散架</td></tr><tr><td>B 三粒落下</td><td>56/70/84f 错峰 14f，各自 spring(damping 12) 从画外 -260px 落到预排位</td><td>错峰是"集结"的节奏感；齐落读作下雨</td></tr><tr><td>B 落定呼吸</td><td>108f 起整组 scale 1±0.03 正弦（0.18 rad/f），transformOrigin 钉瓣心</td><td>呼吸给"活的 logo"收尾；没有呼吸落定即死帧</td></tr></tbody></table>
+<h2>已知坑</h2>
+<ul><li>demo 在灰阶/占位素材上调校通过——参数是调校起点非实战定稿，</li></ul>
+<p>首次实战须以真实素材回验</p>
+<ul><li>A 式实体交换必须发生在 scaleX ≤0.05 的最薄帧——提前换观众看见两个图形叠影，魔术穿帮</li><li>A 式 wordmark 按上表改逐字 scale+blur 落定后，错峰间隔可能要拉大（每字有独立的"由大变小"动作，2.2f 可能读不清），改完按可感性判例正常速度看片</li><li>B 式拼的是抽象单瓣（泪滴+胶囊组合）不是真 Slack logo——实战换成自家 logo 的图元分解，图元数 3–4 粒为宜，多了读作粒子不读作拼装</li><li>变形中途别叠其他动画（morph-from-primitive 同判例）：morph 本身是全部信息</li><li>与 outro-group-photo-launch 分工：那是全片元素飞来围住字标合影（聚），本卡是 UI 元素自己变成品牌符号（变）；同片收尾二选一</li><li>声音：A 翻扁一声"唰"、绽放落定"嗒"；B 发送一声 send、每粒落位一声 pop、呼吸段静</li></ul>
+<h2>参考实现</h2>
+<p>demos/outro/ui-to-brand-morph/</p>
+<p>（IconFlipBloomLogo.tsx / InputMorphsIntoLogo.tsx）</p>
+<p>原片出处：A perplexity-promo 88–91.5s / B slack-promo 40–41s</p>
+<p>实现状态：两式均有参考实现与 Gallery 动态样片。</p>
+<div class="demo">参考实现：demos/outro/ui-to-brand-morph/</div>
+<div class="src">VideoForgeSuite · shotcraft 镜头卡库 · 源仓库 d:/hermes/vsc_repo</div>
+</body></html>

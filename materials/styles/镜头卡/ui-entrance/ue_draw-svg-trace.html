@@ -1,0 +1,66 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Microsoft YaHei",sans-serif;background:#FCFAF3;color:#26221C;padding:28px 30px;max-width:900px}
+.banner{height:170px;border-radius:14px;background:linear-gradient(120deg,#F5E663,#F0D93B 55%,#E8C82E);margin-bottom:18px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.banner img{width:100%;height:100%;object-fit:cover}
+.fallback{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;height:100%}
+.fb1{font-size:22px;font-family:KaiTi,serif;color:#7A6A14;letter-spacing:6px}
+.fb2{font-size:40px;font-family:KaiTi,serif;font-weight:bold;color:#26221C}
+.tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.tag{font-size:12px;padding:3px 10px;border-radius:20px;border:1.5px solid #26221C;background:#fff}
+.tag.cat{background:#26221C;color:#FCFAF3}
+.tag.energy{color:#fff;border:none}
+h1{font-size:30px;font-family:KaiTi,serif;margin-bottom:10px}
+.oneliner{font-size:17px;line-height:1.6;padding:10px 14px;background:#FFF9D6;border-left:4px solid #E8C82E;border-radius:0 8px 8px 0;margin-bottom:14px}
+.meta{font-size:13px;color:#6B6357;margin-bottom:18px}
+h2{font-size:17px;margin:20px 0 8px;padding-bottom:4px;border-bottom:2px solid #E8C82E;font-family:KaiTi,serif}
+p,li{font-size:14px;line-height:1.75}
+ul{padding-left:20px}
+code{font-family:Consolas,monospace;background:#F0EDE2;padding:1px 5px;border-radius:4px;font-size:13px}
+table{border-collapse:collapse;width:100%;margin:6px 0}
+th,td{border:1px solid #D8D2C0;padding:6px 10px;font-size:13px;text-align:left}
+th{background:#F0EDE2}
+.demo{margin-top:22px;padding:10px 14px;background:#F0EDE2;border-radius:8px;font-size:12.5px;color:#6B6357;font-family:Consolas,monospace;word-break:break-all}
+.src{margin-top:16px;font-size:11px;color:#A39B8B;text-align:center}
+</style></head><body>
+<div class="banner"><div class="fallback"><div class="fb1">UI入场镜头</div><div class="fb2">draw-svg-trace</div></div></div>
+<div class="tags"><span class="tag cat">ui-entrance · UI入场</span><span class="tag energy" style="background:#A16207">能量 中</span><span class="tag">描边 40f + 闪黑交棒 16f + hold ≥35f，约 3–4s</span></div>
+<h1>draw-svg-trace</h1>
+<div class="oneliner">描边生长圈注——一条带笔头的墨线沿元素轮廓跑一圈把它"画"出来，闭合瞬间闪黑交棒、内容淡入；同套路可给标题画下划线</div>
+<div class="meta"><b>适用：</b>单个卡片/图表/标题的被点名入场；元素级手法（整页级蓝图描线归 wall-reveal-moves C 式）</div>
+<h2>意图</h2>
+<p>"画出来"是纸墨审美里最顺手的入场隐喻：元素不是飞进来也不是淡进来，</p>
+<p>而是被一支看不见的笔当场描出来。库内 wall-reveal-moves C 式已有整页</p>
+<p>蓝图版（全屏线框逐段画+区域点亮），本卡是它的<b>元素级特写版</b>——</p>
+<p>一条线、一个主体、一次闭合，笔头可见、方向可读，适合"接下来讲它"</p>
+<p>的点名时刻。第二用法是标题下划线生长：同一套路 18f 短版，给重点词</p>
+<p>一笔手绘强调，与马克笔审美 token 天然同族。</p>
+<h2>动效核心</h2>
+<ul><li><b>免测周长</b>：SVG rect/path 设 <code>pathLength={1}</code>，strokeDasharray="1"，</li></ul>
+<p>dashoffset 1→0（40f Easing.inOut(cubic)）——不用 getTotalLength</p>
+<ul><li><b>笔头</b>：同一路径再叠一层更粗（4→7px）的短 dash</li></ul>
+<p>（dasharray "0.045 0.955"），dashoffset = 笔头相位 − p，天然跑在最前；</p>
+<p>没有笔头就只是"边框在变长"，有笔头才是"有人在画"</p>
+<ul><li>闭合闪：48–50f 描边冲纯黑 + 4→8px 加粗，50–56f out quad 回落</li></ul>
+<p>——白底上加深加粗，不用发光（判例）</p>
+<ul><li>交棒：54–64f 描边层淡出、元素自身 border 淡入，同窗内容 8f 淡入</li></ul>
+<p>——闭合即"画完了"，内容跟着"上色"</p>
+<h2>参数表</h2>
+<table><thead><tr><th>参数</th><th>典型值</th><th>调节手感</th></tr></thead><tbody><tr><td>描边速度</td><td>一整圈 40f（inOut cubic 起收有呼吸）</td><td><28f 读不出"在画"，>60f 读作加载中</td></tr><tr><td>笔头</td><td>7px、dash 长 0.045</td><td>笔头≤主线粗细就消失在主线里</td></tr><tr><td>闭合闪</td><td>2f 冲黑+加粗，6f 回落</td><td>没有这一下，"画完"没有句号</td></tr><tr><td>下划线版</td><td>18f out cubic 单向生长，画完常驻</td><td>用在单个重点词；一屏 ≥2 条读作装饰线</td></tr><tr><td>收尾</td><td>交棒完成真静止 ≥35f</td><td>R1</td></tr></tbody></table>
+<h2>已知坑</h2>
+<ul><li>demo 在灰阶/占位素材上调校通过——参数是调校起点非实战定稿，</li></ul>
+<p>首次实战须以真实素材回验</p>
+<ul><li>与 wall-reveal-moves C 式（整页蓝图描线）同族互斥：同片二选一，</li></ul>
+<p>都上读作重复报幕</p>
+<ul><li>描边路径必须与元素真实轮廓吻合（圆角 rx 一致）——线画的是 14px</li></ul>
+<p>圆角、元素是 8px，交棒瞬间错型穿帮</p>
+<ul><li>真实素材上内容淡入别抢在闭合前：线还没画完内容先出来，"画"的</li></ul>
+<p>因果就断了</p>
+<ul><li>一次点名画一个主体；同屏多元素排队各画一圈读作加载动画</li></ul>
+<h2>参考实现</h2>
+<p>demos/ui-entrance/draw-svg-trace/</p>
+<p>（DrawSvgTrace.tsx）</p>
+<div class="demo">参考实现：demos/ui-entrance/draw-svg-trace/</div>
+<div class="src">VideoForgeSuite · shotcraft 镜头卡库 · 源仓库 d:/hermes/vsc_repo</div>
+</body></html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Microsoft YaHei",sans-serif;background:#FCFAF3;color:#26221C;padding:28px 30px;max-width:900px}
+.banner{height:170px;border-radius:14px;background:linear-gradient(120deg,#F5E663,#F0D93B 55%,#E8C82E);margin-bottom:18px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.banner img{width:100%;height:100%;object-fit:cover}
+.fallback{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;height:100%}
+.fb1{font-size:22px;font-family:KaiTi,serif;color:#7A6A14;letter-spacing:6px}
+.fb2{font-size:40px;font-family:KaiTi,serif;font-weight:bold;color:#26221C}
+.tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.tag{font-size:12px;padding:3px 10px;border-radius:20px;border:1.5px solid #26221C;background:#fff}
+.tag.cat{background:#26221C;color:#FCFAF3}
+.tag.energy{color:#fff;border:none}
+h1{font-size:30px;font-family:KaiTi,serif;margin-bottom:10px}
+.oneliner{font-size:17px;line-height:1.6;padding:10px 14px;background:#FFF9D6;border-left:4px solid #E8C82E;border-radius:0 8px 8px 0;margin-bottom:14px}
+.meta{font-size:13px;color:#6B6357;margin-bottom:18px}
+h2{font-size:17px;margin:20px 0 8px;padding-bottom:4px;border-bottom:2px solid #E8C82E;font-family:KaiTi,serif}
+p,li{font-size:14px;line-height:1.75}
+ul{padding-left:20px}
+code{font-family:Consolas,monospace;background:#F0EDE2;padding:1px 5px;border-radius:4px;font-size:13px}
+table{border-collapse:collapse;width:100%;margin:6px 0}
+th,td{border:1px solid #D8D2C0;padding:6px 10px;font-size:13px;text-align:left}
+th{background:#F0EDE2}
+.demo{margin-top:22px;padding:10px 14px;background:#F0EDE2;border-radius:8px;font-size:12.5px;color:#6B6357;font-family:Consolas,monospace;word-break:break-all}
+.src{margin-top:16px;font-size:11px;color:#A39B8B;text-align:center}
+</style></head><body>
+<div class="banner"><div class="fallback"><div class="fb1">数据镜头</div><div class="fb2">chart-live-moves</div></div></div>
+<div class="tags"><span class="tag cat">data · 数据</span><span class="tag energy" style="background:#A16207">能量 中高</span><span class="tag">各 4–6s</span></div>
+<h1>chart-live-moves</h1>
+<div class="oneliner">活体图表三式——oscilloscope-stream 示波流线（曲线右端实时写入+突发尖峰）、unit-dot-swarm-regroup 点阵重组（点群三幕迁徙聚成数字）、axis-rescale-shock 轴爆表重标（新值冲出画框逼 y 轴重标）</div>
+<div class="meta"><b>适用：</b>数据叙事段落；分别讲"实时性"、"每个数字是一个人"、"增长装不下"；数据即剧情</div>
+<h2>意图</h2>
+<p>图表不是插图是剧情。三式共同前提（实测判例）：<b>必须真图表语境</b></p>
+<p>——真轴标/真数据/真文案，灰阶占位条测不出数据叙事的表达力。</p>
+<p>A 示波流线：曲线写入点钉在右端上下起伏，旧数据左流出画，中途一次</p>
+<p>突发尖峰（振幅 2.2×、读数跳大变强调色）——"实时"不用说出口，还有事件；</p>
+<p>B 点阵重组：320 个点（每点≈40 customers）散布→聚三簇（浮 Free/Pro/</p>
+<p>Enterprise 真标签）→列队成柱（真轴标）→聚成点阵大数字 "12,847"——</p>
+<p>同一批点，观众能跟着某一颗看它归队；</p>
+<p>C 轴爆表：折线正常爬升，新值顶破图表上沿冲出卡片 220px（强调色粗线</p>
+<p>插进标题区），停半拍，y 轴"哗"地重标（旧刻度飞出/新刻度滑入/网格</p>
+<p>加密/旧线压扁成地平线），新值落回+弹真值标签——用"坐标轴装不下"演增长。</p>
+<h2>三式选型</h2>
+<table><thead><tr><th>式</th><th>核心动作</th><th>适用</th></tr></thead><tbody><tr><td>A oscilloscope-stream</td><td>采样窗平移 8px/f + 余弦包络尖峰 + 刹停真静止</td><td>监控/实时类产品："活着"的系统</td></tr><tr><td>B unit-dot-swarm-regroup</td><td>三幕 spring 错峰迁徙（stiffness 150、错峰 8f），终幕点阵拼数字</td><td>用户量/构成叙事："每个点是一个人"</td></tr><tr><td>C axis-rescale-shock</td><td>冲出框 220px + 重标三联动（刻度换/网格密/旧线压扁）+ 震 8px</td><td>增长曲线高光："off the charts" 字面化</td></tr></tbody></table>
+<h2>参数表</h2>
+<table><thead><tr><th>参数</th><th>典型值</th><th>调节手感</th></tr></thead><tbody><tr><td>真语境</td><td>真标题/真轴标/真单位/真读数</td><td><b>入库前提</b>：灰阶版三条全数被裁，换真语境后全过</td></tr><tr><td>主角色</td><td>强调色（模板片为琥珀）标事件/主角（尖峰读数、Pro 簇、爆表段）</td><td>全灰读不出"哪里是重点"</td></tr><tr><td>A 流速</td><td>8px/f</td><td>5.5 已可感，8 更明确；波形纯函数禁随机</td></tr><tr><td>B 点数/点径</td><td>320 / 9px</td><td>点太少拼不出数字，太小看不见个体</td></tr><tr><td>C 冲出幅度</td><td>卡顶外 220px</td><td>80px 版不够"爆"；真的插进标题区才是事故感</td></tr><tr><td>收尾</td><td>三式都要 ≥36f 真静止</td><td>数据图表尾漂读作还没播完</td></tr></tbody></table>
+<h2>已知坑</h2>
+<ul><li>demo 在灰阶/占位素材上调校通过——参数是调校起点非实战定稿，</li></ul>
+<p>首次实战须以真实素材回验</p>
+<ul><li>三式是三种独立手法不是套餐——同片用两式以上时各 ≤1 次且错开段落</li><li>A 的尖峰事件、C 的重标只能发生一次；重复即廉价</li><li>B 终幕数字位图字形要预先手算（点数=位点数用满才整齐）</li><li>与 dataviz-landscape-open（抽象数据地景开场）分工：那是开场氛围，</li></ul>
+<p>这三式是段落内的具体数据论证</p>
+<ul><li>声音：A 尖峰一声警示 tick；B 每幕迁徙一声 whoosh；C 冲出框</li></ul>
+<p>一声 riser、重标一声"哗啦"</p>
+<h2>参考实现</h2>
+<p>demos/data/chart-live-moves/</p>
+<p>（AxisRescaleShockV2.tsx / OscilloscopeStreamV2.tsx / UnitDotSwarmRegroupV2.tsx）</p>
+<div class="demo">参考实现：demos/data/chart-live-moves/</div>
+<div class="src">VideoForgeSuite · shotcraft 镜头卡库 · 源仓库 d:/hermes/vsc_repo</div>
+</body></html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Microsoft YaHei",sans-serif;background:#FCFAF3;color:#26221C;padding:28px 30px;max-width:900px}
+.banner{height:170px;border-radius:14px;background:linear-gradient(120deg,#F5E663,#F0D93B 55%,#E8C82E);margin-bottom:18px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.banner img{width:100%;height:100%;object-fit:cover}
+.fallback{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;height:100%}
+.fb1{font-size:22px;font-family:KaiTi,serif;color:#7A6A14;letter-spacing:6px}
+.fb2{font-size:40px;font-family:KaiTi,serif;font-weight:bold;color:#26221C}
+.tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.tag{font-size:12px;padding:3px 10px;border-radius:20px;border:1.5px solid #26221C;background:#fff}
+.tag.cat{background:#26221C;color:#FCFAF3}
+.tag.energy{color:#fff;border:none}
+h1{font-size:30px;font-family:KaiTi,serif;margin-bottom:10px}
+.oneliner{font-size:17px;line-height:1.6;padding:10px 14px;background:#FFF9D6;border-left:4px solid #E8C82E;border-radius:0 8px 8px 0;margin-bottom:14px}
+.meta{font-size:13px;color:#6B6357;margin-bottom:18px}
+h2{font-size:17px;margin:20px 0 8px;padding-bottom:4px;border-bottom:2px solid #E8C82E;font-family:KaiTi,serif}
+p,li{font-size:14px;line-height:1.75}
+ul{padding-left:20px}
+code{font-family:Consolas,monospace;background:#F0EDE2;padding:1px 5px;border-radius:4px;font-size:13px}
+table{border-collapse:collapse;width:100%;margin:6px 0}
+th,td{border:1px solid #D8D2C0;padding:6px 10px;font-size:13px;text-align:left}
+th{background:#F0EDE2}
+.demo{margin-top:22px;padding:10px 14px;background:#F0EDE2;border-radius:8px;font-size:12.5px;color:#6B6357;font-family:Consolas,monospace;word-break:break-all}
+.src{margin-top:16px;font-size:11px;color:#A39B8B;text-align:center}
+</style></head><body>
+<div class="banner"><div class="fallback"><div class="fb1">运镜镜头</div><div class="fb2">tension-camera-moves</div></div></div>
+<div class="tags"><span class="tag cat">camera · 运镜</span><span class="tag energy" style="background:#A16207">能量 A 高 / B 中 / C 低压升 / D 低收</span><span class="tag">单式 4–5s；全片合计 ≤2 式（各 ≤1 次）</span></div>
+<h1>tension-camera-moves</h1>
+<div class="oneliner">情绪运镜四式——bullet-time 冻结环绕、dutch-roll 斜角滚正、slow-push 慢推压迫、pull-back 拉远孤立，相机替观众"感受"而非"看"</div>
+<div class="meta"><b>适用：</b>情绪节点（震撼/纠偏/积压/收束）的运镜语言；与 space-camera-moves 的"炫技大动作"互补——这四式动作小、情绪重</div>
+<h2>意图</h2>
+<p>space-camera-moves 三式是"把页面当 3D 实体拍"的高光炫技；这四式相反——</p>
+<p>动作本身克制，全部劲道在情绪语义上：A 说"这一刻值得停下时间看"</p>
+<p>（运动中的元素被冻住、相机绕行审视）；B 说"问题解决了，世界被扶正"</p>
+<p>（斜角悬着的难受感在节拍上滚回水平）；C 说"有什么要发生了"（慢到</p>
+<p>不自觉的推近积压张力，顶点硬切释放）；D 说"最后只剩这一件事"</p>
+<p>（后拉中周围逐层熄灭，孤悬一点收束全片）。四式各占一个情绪格，</p>
+<p>是分镜阶段"这一段观众该感到什么"的直接词汇。</p>
+<h2>四式选型</h2>
+<table><thead><tr><th>式</th><th>做法</th><th>适用</th></tr></thead><tbody><tr><td>A bullet-time-freeze-orbit 冻结环绕</td><td>图表生长到一半全冻住，相机绕悬停的 UI 平面 rotateY 扫 55° 再回，时间恢复接着长完</td><td>核心数据/图表的加冕时刻；"值得停表看"的一格</td></tr><tr><td>B dutch-roll-to-level 斜角滚正</td><td>痛点段整帧 -10° 斜角悬着（叠微漂移），解决方案一拍带单次过冲滚回水平</td><td>痛点→方案的翻转节拍；纠偏语义</td></tr><tr><td>C slow-push-in 慢推压迫</td><td>4s 匀加速推近 1.00→1.14 + 暗角渐深，张力顶点无过渡硬切亮场</td><td>大数字/宣言前的蓄力；暗→亮的章节爆点</td></tr><tr><td>D pull-back-isolation 拉远孤立</td><td>从发光主卡特写后拉，兄弟卡按距离错峰熄灭、背景沉黑，孤卡悬在暗场中央</td><td>结尾收束；"全片只为这一个数字"的谢幕</td></tr></tbody></table>
+<h2>参数表</h2>
+<table><thead><tr><th>参数</th><th>典型值</th><th>调节手感</th></tr></thead><tbody><tr><td>A 双时钟</td><td>内容动画用 <code>effFrame = f<F1 ? f : f<F2 ? F1 : F1+(f-F2)</code> 驱动，相机用真实 f 驱动</td><td>命门：冻结期内容必须肉眼可见地完全静止，相机却在动——两个时钟各管各的</td></tr><tr><td>A 环绕</td><td>perspective 1600 下 rotateY 0→55°→0（两段 inOut cubic，顶点悬停 ~10f）+ scale 1→1.12→1</td><td>55° 是"绕到侧面看"的下限；>70° 面板变纸片穿帮</td></tr><tr><td>B 斜置</td><td>rotate -10° + ±0.8° 长周期正弦漂移 + 2px 纵漂；scale 1.15 防露边</td><td>漂移是"悬着难受"的活感，纯静止斜角读作构图错误</td></tr><tr><td>B 滚正</td><td>14f ease-out 冲过 0 到 +1.2° → 10f 收回 0（单次过冲不振荡）；scale 同步 1.15→1.08</td><td>过冲即"扶正的手劲"；振荡两次以上读作弹簧玩具</td></tr><tr><td>C 推近</td><td><code>scale [0,120f]→[1.00,1.14] Easing.in(quad)</code> + 暗角 opacity 0→0.5 同曲线</td><td>加速曲线是本体——匀速推读作普通 zoom；幅度 >1.2 变成普通推镜头</td></tr><tr><td>C 硬切</td><td>顶点帧零过渡直切下一景；暗景 A→亮景 B 反差要大</td><td>切的一拍才是释放；加任何过渡等于把弓拉满又慢慢松掉</td></tr><tr><td>D 后拉</td><td>scale 2.2→0.62 / 110f Easing.out(cubic)，origin 锁主卡中心</td><td>前 20f 主卡仍占满画面，开场即特写不需要另加 hold</td></tr><tr><td>D 熄灭</td><td>兄弟卡按 hypot 距离排序，帧 30 起每 8f 一张，16f 内 opacity→0 + brightness→0.3；背景 60–110f 沉入 #141414</td><td>由近到远熄灭 = "世界向外塌暗"；乱序熄灭读作故障</td></tr><tr><td>D 光晕</td><td>主卡双层白 box-shadow 60–100f 淡入</td><td>光晕是"只剩它"的视觉证词，与沉黑同步才成立</td></tr><tr><td>收尾</td><td>四式动作完毕真静止 ≥30f</td><td>R1；D 式是全片句号，静止给足 40f+</td></tr></tbody></table>
+<h2>已知坑</h2>
+<ul><li>demo 在灰阶/占位素材上调校通过——参数是调校起点非实战定稿，</li></ul>
+<p>首次实战须以真实素材回验</p>
+<ul><li>C 式"前 2 秒不可察"是设计意图不是缺陷——裁决/验收看完整播放，抽帧</li></ul>
+<p>diff 前段变化极小属正常（已确认成立）</p>
+<ul><li>A 式与 speed-ramp-freeze/impact-feedback 同为时间操纵，同一镜头别叠用</li></ul>
+<p>（帧 remap 互相打架）；A 的冻结是"停给你看"+相机动，speed-ramp 的</p>
+<p>定格是"停下来标注"——选语义不选形似</p>
+<ul><li>B 式斜角只压"痛点"段——全片常态斜角是 MV 语言，产品片里读作镜头没扶稳</li><li>C 式硬切后的亮景必须信息完整可读（它承接全部积压的注意力）；</li></ul>
+<p>切进另一个铺垫段等于白蓄力</p>
+<ul><li>D 式放结尾时后接 outro-group-photo-launch 会打架（一收一放），二选一</li></ul>
+<h2>参考实现</h2>
+<p>demos/camera/tension-camera-moves/</p>
+<p>（BulletTimeFreezeOrbit.tsx / DutchRollToLevel.tsx / PullBackIsolation.tsx / SlowPushIn.tsx）</p>
+<div class="demo">参考实现：demos/camera/tension-camera-moves/</div>
+<div class="src">VideoForgeSuite · shotcraft 镜头卡库 · 源仓库 d:/hermes/vsc_repo</div>
+</body></html>

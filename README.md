@@ -113,7 +113,9 @@ VideoForgeSuite/
 ## 🙏 致谢
 
 素材库收录与改编了来自开源社区的优秀动效：
-[Aceternity UI](https://ui.aceternity.com/) · [React Bits](https://reactbits.dev/) · [UIverse](https://uiverse.io/) · [animate.css](https://animate.style/) · GSAP · 以及各类开源 CodePen 实验。推理侧基于 [DiffSynth-Studio](https://github.com/modelscope/DiffSynth-Studio) 与 [MiniMax H3](https://github.com/MiniMax-AI) 模型，感谢开源。
+[Aceternity UI](https://ui.aceternity.com/) · [React Bits](https://reactbits.dev/) · [UIverse](https://uiverse.io/) · [animate.css](https://animate.style/) · GSAP · 以及各类开源 CodePen 实验。
+镜头语言卡库（`shotcraft/`）参考并收录自 [video-shotcraft](https://github.com/Vincentwei1021/video-shotcraft)（详见其 [ATTRIBUTION.md](shotcraft/references/shots/ATTRIBUTION.md)）。
+推理侧基于 [DiffSynth-Studio](https://github.com/modelscope/DiffSynth-Studio) 与 [MiniMax H3](https://github.com/MiniMax-AI) 模型，感谢开源。
 
 ---
 

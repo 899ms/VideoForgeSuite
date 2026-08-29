@@ -1,0 +1,63 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Microsoft YaHei",sans-serif;background:#FCFAF3;color:#26221C;padding:28px 30px;max-width:900px}
+.banner{height:170px;border-radius:14px;background:linear-gradient(120deg,#F5E663,#F0D93B 55%,#E8C82E);margin-bottom:18px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.banner img{width:100%;height:100%;object-fit:cover}
+.fallback{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;height:100%}
+.fb1{font-size:22px;font-family:KaiTi,serif;color:#7A6A14;letter-spacing:6px}
+.fb2{font-size:40px;font-family:KaiTi,serif;font-weight:bold;color:#26221C}
+.tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.tag{font-size:12px;padding:3px 10px;border-radius:20px;border:1.5px solid #26221C;background:#fff}
+.tag.cat{background:#26221C;color:#FCFAF3}
+.tag.energy{color:#fff;border:none}
+h1{font-size:30px;font-family:KaiTi,serif;margin-bottom:10px}
+.oneliner{font-size:17px;line-height:1.6;padding:10px 14px;background:#FFF9D6;border-left:4px solid #E8C82E;border-radius:0 8px 8px 0;margin-bottom:14px}
+.meta{font-size:13px;color:#6B6357;margin-bottom:18px}
+h2{font-size:17px;margin:20px 0 8px;padding-bottom:4px;border-bottom:2px solid #E8C82E;font-family:KaiTi,serif}
+p,li{font-size:14px;line-height:1.75}
+ul{padding-left:20px}
+code{font-family:Consolas,monospace;background:#F0EDE2;padding:1px 5px;border-radius:4px;font-size:13px}
+table{border-collapse:collapse;width:100%;margin:6px 0}
+th,td{border:1px solid #D8D2C0;padding:6px 10px;font-size:13px;text-align:left}
+th{background:#F0EDE2}
+.demo{margin-top:22px;padding:10px 14px;background:#F0EDE2;border-radius:8px;font-size:12.5px;color:#6B6357;font-family:Consolas,monospace;word-break:break-all}
+.src{margin-top:16px;font-size:11px;color:#A39B8B;text-align:center}
+</style></head><body>
+<div class="banner"><div class="fallback"><div class="fb1">开场镜头</div><div class="fb2">crane-rise-reveal</div></div></div>
+<div class="tags"><span class="tag cat">opening · 开场</span><span class="tag energy" style="background:#A16207">能量 中高</span><span class="tag">5s（特写 hold 20f + 拉升 100f + 满幅静止 30f）</span></div>
+<h1>crane-rise-reveal</h1>
+<div class="oneliner">升降臂拉升揭示——开场怼在一行数据特写，相机沿 Y 轴减速升起后拉，行行涌入直到整面 dashboard 铺满全幅</div>
+<div class="meta"><b>适用：</b>"从细节到全局"的开场定场；与 drone-dive-landing（全局→单点俯冲）互为反向；持续单向运动，无冲击拍</div>
+<h2>意图</h2>
+<p>开场定场库内已有 drone-dive-landing——从上帝视角砸进 hero 特写，</p>
+<p>"全局→焦点"。本卡是它的镜像："焦点→全局"——先怼在一行真实数据上</p>
+<p>让观众看清"这是什么"，再升降臂式拉升后退，一排排内容涌入画面，</p>
+<p>最后整面产品铺满——"你看到的这一行，只是这一面墙的一格"。</p>
+<p>适合以产品体量/内容丰富度为卖点的开场；两卡同片只用一个方向。</p>
+<h2>动效核心</h2>
+<ul><li>transform-origin 固定左上，联动公式 <code>translate = 屏幕中心 − 对准点×scale</code>；</li></ul>
+<p>对准点沿 (底行中心)→(页面中心) 与 scale 3.2→1.0 **共用同一条</p>
+<p>Easing.out(quad) 进度**——一条 p = 一台相机一次机动（同 C 式判例）</p>
+<ul><li>减速曲线（先快后慢）是"升降臂"的手感：起步有劲、临顶缓停</li><li>逐行脉冲：相机可见区上缘 <code>visTop = fy − 540/s</code> 首次越过某行顶边时，</li></ul>
+<p>该行深灰脉冲一拍（4f 起 18f 落，G.ink 叠层 opacity 0→0.22→0）——</p>
+<p>"涌入"的可读性来源；触发帧逐帧解出，与运镜严格同步</p>
+<ul><li>白底上"提亮"不可见，<b>加深才可感</b>（本批实渲判例：brightness 提亮</li></ul>
+<p>在白卡上等于没做，改深色叠层脉冲）</p>
+<h2>参数表</h2>
+<table><thead><tr><th>参数</th><th>典型值</th><th>调节手感</th></tr></thead><tbody><tr><td>起点特写</td><td>scale 3.2，对准最底行（一行占满画幅）</td><td>hold ≥20f 让"这是一行数据"可读再起飞</td></tr><tr><td>拉升</td><td>100f Easing.out(quad)，scale 3.2→1.0</td><td>快于 80f 行脉冲追不上；慢于 130f 中段拖</td></tr><tr><td>行脉冲</td><td>越线触发，0→0.22→0 深色叠层 22f</td><td>脉冲跟不上相机（固定间隔触发）立刻穿帮</td></tr><tr><td>收尾</td><td>满幅后真静止 ≥30f</td><td>R1；满幅帧即标准构图，不再补推</td></tr></tbody></table>
+<h2>已知坑</h2>
+<ul><li>demo 在灰阶/占位素材上调校通过——参数是调校起点非实战定稿，</li></ul>
+<p>首次实战须以真实素材回验</p>
+<ul><li>起点特写 = 一行内容被放大 3.2 倍盯着看，真实素材先过</li></ul>
+<p>审美准则 Q2 的高分辨率栅格化技法，低倍截图开场即糊</p>
+<ul><li>快速拉升段可包 CameraMotionBlur（参数见 deck-deal-flyin 运动模糊行），</li></ul>
+<p>但只包前半程快速段——临顶慢速段包了会抹软文字（轮 #8 判例）</p>
+<ul><li>与 drone-dive-landing 同片不并用（一升一降互为镜像，观众读作同一招）；</li></ul>
+<p>与 crane 语义最近的 tilt-reveal 未入库，别混称</p>
+<h2>参考实现</h2>
+<p>demos/opening/crane-rise-reveal/</p>
+<p>（CraneRiseReveal.tsx）</p>
+<div class="demo">参考实现：demos/opening/crane-rise-reveal/</div>
+<div class="src">VideoForgeSuite · shotcraft 镜头卡库 · 源仓库 d:/hermes/vsc_repo</div>
+</body></html>

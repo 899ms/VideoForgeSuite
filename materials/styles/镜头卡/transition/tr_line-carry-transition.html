@@ -1,0 +1,66 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Microsoft YaHei",sans-serif;background:#FCFAF3;color:#26221C;padding:28px 30px;max-width:900px}
+.banner{height:170px;border-radius:14px;background:linear-gradient(120deg,#F5E663,#F0D93B 55%,#E8C82E);margin-bottom:18px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.banner img{width:100%;height:100%;object-fit:cover}
+.fallback{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;height:100%}
+.fb1{font-size:22px;font-family:KaiTi,serif;color:#7A6A14;letter-spacing:6px}
+.fb2{font-size:40px;font-family:KaiTi,serif;font-weight:bold;color:#26221C}
+.tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.tag{font-size:12px;padding:3px 10px;border-radius:20px;border:1.5px solid #26221C;background:#fff}
+.tag.cat{background:#26221C;color:#FCFAF3}
+.tag.energy{color:#fff;border:none}
+h1{font-size:30px;font-family:KaiTi,serif;margin-bottom:10px}
+.oneliner{font-size:17px;line-height:1.6;padding:10px 14px;background:#FFF9D6;border-left:4px solid #E8C82E;border-radius:0 8px 8px 0;margin-bottom:14px}
+.meta{font-size:13px;color:#6B6357;margin-bottom:18px}
+h2{font-size:17px;margin:20px 0 8px;padding-bottom:4px;border-bottom:2px solid #E8C82E;font-family:KaiTi,serif}
+p,li{font-size:14px;line-height:1.75}
+ul{padding-left:20px}
+code{font-family:Consolas,monospace;background:#F0EDE2;padding:1px 5px;border-radius:4px;font-size:13px}
+table{border-collapse:collapse;width:100%;margin:6px 0}
+th,td{border:1px solid #D8D2C0;padding:6px 10px;font-size:13px;text-align:left}
+th{background:#F0EDE2}
+.demo{margin-top:22px;padding:10px 14px;background:#F0EDE2;border-radius:8px;font-size:12.5px;color:#6B6357;font-family:Consolas,monospace;word-break:break-all}
+.src{margin-top:16px;font-size:11px;color:#A39B8B;text-align:center}
+</style></head><body>
+<div class="banner"><div class="fallback"><div class="fb1">转场镜头</div><div class="fb2">line-carry-transition</div></div></div>
+<div class="tags"><span class="tag cat">transition · 转场</span><span class="tag energy" style="background:#A16207">能量 中</span><span class="tag">~5.3s（进度条走满 + 横移 60f + 围框 + 内容淡入 + 静止 36f）</span></div>
+<h1>line-carry-transition</h1>
+<div class="oneliner">线条接力横移转场——场景 A 的进度条延伸出画，镜头跟线横移，线在移动中拐角围出场景 B 的卡框，全程无剪切</div>
+<div class="meta"><b>适用：</b>两个有图形亲缘的场景之间（进度条→卡框、下划线→图表轴）；一支片子的招牌转场位，Catch Me If You Can 片头的图形接力</div>
+<h2>意图</h2>
+<p>转场库三大族（穿越/藏切/体块）都在回答"场景怎么换"；本卡的回答是</p>
+<p><b>根本不换——一条线牵着你走过去</b>。进度条走满后末端延伸成长线冲出</p>
+<p>卡缘，镜头跟着线横移 1920px 进入新世界，线在移动中拐直角围出 B 场景</p>
+<p>的卡框，框闭合、内容淡入，从头到尾观众的眼睛没离开过这条线。图形</p>
+<p>连续性本身就是转场。与 match-cut 的区别：那是切点两侧形状对位——</p>
+<p>终究还是切；这是连续绘制——<b>没有切</b>。线的身份要有叙事逻辑（进度条</p>
+<p>"走完了"所以延伸出去），无来由的线只是装饰。</p>
+<h2>动效核心</h2>
+<ul><li>3840 宽世界容器 translateX 当镜头，34–94f 移 1920px，</li></ul>
+<p>Easing.inOut(cubic)</p>
+<ul><li>一条手写折线 path（进度条 560 + 冲出段 + 直角 + 560×330 矩形框，</li></ul>
+<p>总长 3980）全程 dasharray/dashoffset evolve，分段驱动 drawn 长度</p>
+<ul><li><b>命门：横移段 drawn = 1100 + cam，线生长与镜头位移同速</b>——笔头</li></ul>
+<p>钉在画面 x≈1500 偏右，永不出画也永不落后；一旦失速，观众跟丢线</p>
+<p>就等于跟丢了转场</p>
+<ul><li>笔头 r=11 墨点随线走，框闭合后 112–118f 线性消散并条件卸载</li></ul>
+<p>（摘罩判例）；B 内容 124f 前淡入完，124–160f 真静止 36f</p>
+<h2>参数表</h2>
+<table><thead><tr><th>参数</th><th>典型值</th><th>调节手感</th></tr></thead><tbody><tr><td>线体</td><td>6px ink 实线</td><td>太细横移中读丢；虚线读作未完成态</td></tr><tr><td>横移配比</td><td>1920px / 60f（32px/f）</td><td>更远的横移等比拉长时长，别提速——>40px/f 笔头开始拖影跟丢</td></tr><tr><td>笔头位置</td><td>画面 x≈1500（约 78% 处偏右）</td><td>居中读作"线追镜头"；贴边一颤就出画</td></tr><tr><td>拐角</td><td>直角硬拐，不倒圆</td><td>圆角软拐丢掉制图感，Saul Bass 味就没了</td></tr><tr><td>框闭合</td><td>闭合帧起 B 内容再淡入</td><td>框没闭合内容先出，线的悬念白搭</td></tr><tr><td>收尾</td><td>淡入完 ≥36f 真静止</td><td>笔头墨点必须条件卸载，残留即毁静止</td></tr></tbody></table>
+<h2>已知坑</h2>
+<ul><li>demo 在灰阶/占位素材上调校通过——参数是调校起点非实战定稿，</li></ul>
+<p>首次实战须以真实素材回验</p>
+<ul><li>与 draw-svg-trace 的关系：那是元素级描边点名（线属于元素），这是</li></ul>
+<p>场景级线条接力（线属于镜头）——同片可共存，但线的语义要一致：</p>
+<p>同为 ink 6px 手绘感，或同为几何硬线，混用读作两套美术</p>
+<ul><li>全片 ≤1 次——这是招牌转场不是常规转场，第二次出现魔法就穿帮</li><li>起点必须是已有图形构件的自然延伸（进度条走满、下划线画完），</li></ul>
+<p>凭空起线读作屏保</p>
+<ul><li>声音：线生长一声持续笔擦、框闭合一声轻叩（sound-design §4.5）</li></ul>
+<h2>参考实现</h2>
+<p>demos/transition/line-carry-transition/</p>
+<p>（LineCarryTransition.tsx）</p>
+<div class="demo">参考实现：demos/transition/line-carry-transition/</div>
+<div class="src">VideoForgeSuite · shotcraft 镜头卡库 · 源仓库 d:/hermes/vsc_repo</div>
+</body></html>

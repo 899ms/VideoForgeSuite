@@ -1,0 +1,56 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Microsoft YaHei",sans-serif;background:#FCFAF3;color:#26221C;padding:28px 30px;max-width:900px}
+.banner{height:170px;border-radius:14px;background:linear-gradient(120deg,#F5E663,#F0D93B 55%,#E8C82E);margin-bottom:18px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.banner img{width:100%;height:100%;object-fit:cover}
+.fallback{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;height:100%}
+.fb1{font-size:22px;font-family:KaiTi,serif;color:#7A6A14;letter-spacing:6px}
+.fb2{font-size:40px;font-family:KaiTi,serif;font-weight:bold;color:#26221C}
+.tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.tag{font-size:12px;padding:3px 10px;border-radius:20px;border:1.5px solid #26221C;background:#fff}
+.tag.cat{background:#26221C;color:#FCFAF3}
+.tag.energy{color:#fff;border:none}
+h1{font-size:30px;font-family:KaiTi,serif;margin-bottom:10px}
+.oneliner{font-size:17px;line-height:1.6;padding:10px 14px;background:#FFF9D6;border-left:4px solid #E8C82E;border-radius:0 8px 8px 0;margin-bottom:14px}
+.meta{font-size:13px;color:#6B6357;margin-bottom:18px}
+h2{font-size:17px;margin:20px 0 8px;padding-bottom:4px;border-bottom:2px solid #E8C82E;font-family:KaiTi,serif}
+p,li{font-size:14px;line-height:1.75}
+ul{padding-left:20px}
+code{font-family:Consolas,monospace;background:#F0EDE2;padding:1px 5px;border-radius:4px;font-size:13px}
+table{border-collapse:collapse;width:100%;margin:6px 0}
+th,td{border:1px solid #D8D2C0;padding:6px 10px;font-size:13px;text-align:left}
+th{background:#F0EDE2}
+.demo{margin-top:22px;padding:10px 14px;background:#F0EDE2;border-radius:8px;font-size:12.5px;color:#6B6357;font-family:Consolas,monospace;word-break:break-all}
+.src{margin-top:16px;font-size:11px;color:#A39B8B;text-align:center}
+</style></head><body>
+<div class="banner"><div class="fallback"><div class="fb1">特效镜头</div><div class="fb2">icon-performance-moves</div></div></div>
+<div class="tags"><span class="tag cat">effects · 特效</span><span class="tag energy" style="background:#A16207">能量 A 高潮点缀 / B 蓄势引入</span><span class="tag">A 3–4s / B 4–5s</span></div>
+<h1>icon-performance-moves</h1>
+<div class="oneliner">图标表演两式——pop-burst-confirm 爆花确认（对勾蓄力弹大+炸粒子+扩散环）与 attention-bounce 求关注弹跳（图标连跳递增+落地压扁+镜头被吸引）</div>
+<div class="meta"><b>适用：</b>半屏级 icon 特写段落；A "完成/成功"的标点符号，B 新功能引出</div>
+<h2>意图</h2>
+<p>库内图标动画品类首批入库：icon 是镜头怼着拍的表演者，不是 UI 角落的</p>
+<p>微交互。A 是确认时刻的三连爆——大对勾先缩 0.6x 蓄力 3f、弹 1.35x 过冲</p>
+<p>落回，同帧中心射出 10 根短线粒子+一圈描边环从边缘扩到 2.5 倍直径淡出，</p>
+<p>"部署成功"不是画出来的是炸出来的；B 是 macOS Dock 语汇——app 图标</p>
+<p>原地连跳 4 次一次比一次高（0.5→1.2 倍 icon 高），每次落地压扁</p>
+<p>（宽 1.2x 高 0.8x）+溅尘点，跳最高那下镜头向它轻推 8%（被吸引），</p>
+<p>落定后弹开功能面板——把"用户注意力"剪进叙事。</p>
+<h2>两式选型</h2>
+<table><thead><tr><th>式</th><th>做法</th><th>适用</th></tr></thead><tbody><tr><td>A pop-burst-confirm</td><td>scale 蓄力-过冲-落回 spring + N 条径向 line translate + 圆环 scale/opacity，全程 ~20f，随后标签弹出</td><td>任务完成/部署成功/打勾时刻，卡点音效</td></tr><tr><td>B attention-bounce</td><td>translateY 弹跳缓动递增 + 落地帧 scaleX/Y 挤压 + 尘点，峰值帧镜头 scale 1.08 推近，落定触发面板卡弹出</td><td>新功能引出："看我"→镜头看它→它开面板</td></tr></tbody></table>
+<h2>参数表</h2>
+<table><thead><tr><th>参数</th><th>典型值</th><th>调节手感</th></tr></thead><tbody><tr><td>icon 尺寸</td><td>400–500px 高（半屏特写）</td><td>角落小图标做表演没人看见——表演者必须占 C 位</td></tr><tr><td>A 蓄力</td><td>缩 0.6x 停 3f</td><td>anticipation：无蓄力的弹出没有"爆"感</td></tr><tr><td>A 粒子/环</td><td>10 根短线飞 40–60px + 环扩 2.5 倍</td><td>三件套同帧齐发是"爆花"成立条件</td></tr><tr><td>B 递增弹跳</td><td>4 跳 0.5→1.2 倍 icon 高</td><td>等高连跳读作 loading；递增才是"越喊越大声"</td></tr><tr><td>B 落地挤压</td><td>宽 1.2x 高 0.8x（1–2f）</td><td>squash 缺席=没有重量</td></tr><tr><td>B 镜头推近</td><td>峰值帧 8%</td><td>镜头动作把"被吸引"的观众视角演出来</td></tr></tbody></table>
+<h2>已知坑</h2>
+<ul><li>demo 在灰阶/占位素材上调校通过——参数是调校起点非实战定稿，</li></ul>
+<p>首次实战须以真实素材回验</p>
+<ul><li>同批 bell-swing-alert（铃铛甩摆）淘汰无附言——挂点摆动型 icon</li></ul>
+<p>表演相性存疑，做新 icon 表演优先弹跳/爆发型</p>
+<ul><li>A 与 particle-celebrate-hits 同属爆发点缀，同一段落二选一</li><li>B 首版曾出画框（末跳最高点顶出），弹跳高度与画面上留白先算像素</li><li>声音：A 蓄力静默→爆发帧"pop"+粒子细响；B 每次落地一声"duk"</li></ul>
+<p>音调递升，面板弹出一声轻"叮"</p>
+<h2>参考实现</h2>
+<p>demos/effects/icon-performance-moves/</p>
+<p>（AttentionBounce.tsx / PopBurstConfirm.tsx）</p>
+<div class="demo">参考实现：demos/effects/icon-performance-moves/</div>
+<div class="src">VideoForgeSuite · shotcraft 镜头卡库 · 源仓库 d:/hermes/vsc_repo</div>
+</body></html>

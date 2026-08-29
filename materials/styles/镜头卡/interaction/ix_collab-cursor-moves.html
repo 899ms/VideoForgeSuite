@@ -1,0 +1,54 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Microsoft YaHei",sans-serif;background:#FCFAF3;color:#26221C;padding:28px 30px;max-width:900px}
+.banner{height:170px;border-radius:14px;background:linear-gradient(120deg,#F5E663,#F0D93B 55%,#E8C82E);margin-bottom:18px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.banner img{width:100%;height:100%;object-fit:cover}
+.fallback{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;height:100%}
+.fb1{font-size:22px;font-family:KaiTi,serif;color:#7A6A14;letter-spacing:6px}
+.fb2{font-size:40px;font-family:KaiTi,serif;font-weight:bold;color:#26221C}
+.tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.tag{font-size:12px;padding:3px 10px;border-radius:20px;border:1.5px solid #26221C;background:#fff}
+.tag.cat{background:#26221C;color:#FCFAF3}
+.tag.energy{color:#fff;border:none}
+h1{font-size:30px;font-family:KaiTi,serif;margin-bottom:10px}
+.oneliner{font-size:17px;line-height:1.6;padding:10px 14px;background:#FFF9D6;border-left:4px solid #E8C82E;border-radius:0 8px 8px 0;margin-bottom:14px}
+.meta{font-size:13px;color:#6B6357;margin-bottom:18px}
+h2{font-size:17px;margin:20px 0 8px;padding-bottom:4px;border-bottom:2px solid #E8C82E;font-family:KaiTi,serif}
+p,li{font-size:14px;line-height:1.75}
+ul{padding-left:20px}
+code{font-family:Consolas,monospace;background:#F0EDE2;padding:1px 5px;border-radius:4px;font-size:13px}
+table{border-collapse:collapse;width:100%;margin:6px 0}
+th,td{border:1px solid #D8D2C0;padding:6px 10px;font-size:13px;text-align:left}
+th{background:#F0EDE2}
+.demo{margin-top:22px;padding:10px 14px;background:#F0EDE2;border-radius:8px;font-size:12.5px;color:#6B6357;font-family:Consolas,monospace;word-break:break-all}
+.src{margin-top:16px;font-size:11px;color:#A39B8B;text-align:center}
+</style></head><body>
+<div class="banner"><div class="fallback"><div class="fb1">交互镜头</div><div class="fb2">collab-cursor-moves</div></div></div>
+<div class="tags"><span class="tag cat">interaction · 交互</span><span class="tag energy" style="background:#A16207">能量 A 中</span><span class="tag">A ~4.7s（140f）/ B ~4.7s（140f）</span></div>
+<h1>collab-cursor-moves</h1>
+<div class="oneliner">协作光标当演员的两式——dialogue-duet 双光标暗场对话双人舞（靠近/绕位/灯光交接/放大成转场），与 cast-ensemble 五光标群演氛围层（错峰飞入+正弦漂移+打字 cameo+聚拢围观）</div>
+<div class="meta"><b>适用：</b>协作/多人/交接主题的叙事段；A 撑起无 UI 的纯叙事拍，B 给画布场景铺"团队在场"体温；叙事密度高）/ B 低中（氛围层，可垫任何时长</div>
+<h2>意图</h2>
+<p>库内光标一直是"操作工具"（input-trigger-moves 的 cursor-performance</p>
+<p>是单光标点击表演）。本卡把带身份名牌的协作光标升格成<b>演员</b>：</p>
+<p>A 式两枚具名光标在纯暗场用位移编排讲"设计-开发交接"——没有一个 UI</p>
+<p>元素，观众照样看懂了剧情，光标位置关系就是台词；B 式五枚光标错峰</p>
+<p>入场后持续漂移当氛围粒子，"团队在场"感全靠它，其中一枚还能停下来</p>
+<p>打字（cameo 戏份）。SVG 光标+名牌 chip 成本极低、叙事密度极高，</p>
+<p>是"协作"主题最便宜的视觉论证。</p>
+<h2>两式选型</h2>
+<table><thead><tr><th>式</th><th>做法</th><th>适用</th></tr></thead><tbody><tr><td>A dialogue-duet</td><td>蓝/绿两枚具名光标：贝塞尔入场→相互靠近对话（脉冲呼吸）→上下弧线绕位交换→名牌一亮一暗灯光交接→绿光标 easeIn 放大数十倍成巨箭头当转场遮挡</td><td>双角色交接叙事（设计→开发、你→AI）；需要一段无 UI 的纯叙事呼吸拍</td></tr><tr><td>B cast-ensemble</td><td>5 枚具名彩色光标错峰 spring 飞入灰阶画布→双频正弦漂移驻场→一枚在便签上打字机补全一行→结尾全员 easeInOut 聚拢围观</td><td>画布/白板类产品全片氛围层；主内容之外需要"别人也在"的背景活性</td></tr></tbody></table>
+<h2>参数表</h2>
+<table><thead><tr><th>参数</th><th>典型值</th><th>调节手感</th></tr></thead><tbody><tr><td>A 位移</td><td>全部三次贝塞尔：入场 easeOut 24f / 靠近 easeInOut 30f / 绕位 easeInOut 38f / 甩出 easeIn 24f，无 linear</td><td>直线+linear 立即读作"程序在挪图标"；曲线+缓动才是"人在动"</td></tr><tr><td>A 绕位</td><td>两枚各走半圆弧（上弧 180°→360° vs 下弧 0°→180°）同步交换左右位，R≈270px</td><td>同弧同向会相撞感；上下分弧是"礼让"的身体语言</td></tr><tr><td>A 灯光交接</td><td>名牌 opacity 0.28+0.72·lit、saturate 0.35+0.65·lit、lit>0.6 加辉光；交接在绕位中段 70–84f easeInOut 完成</td><td>一亮一暗是"话语权移交"；两个都亮读不出主从</td></tr><tr><td>A 转场放大</td><td>100–134f easeIn，scale 2.8→68 冲向画外角落，名牌同步淡出</td><td>easeIn 加速是甩出的关键；巨箭头即前景遮挡物，接 transition-hidden-cut 语法</td></tr><tr><td>B 入场</td><td>5 枚 delay 0/5/9/13/17f 错峰，spring(damping 15)；名牌晚 12f 淡入+上浮 10px</td><td>名牌跟光标同帧出现读作贴纸；随减速淡入才是"人到了自报家门"</td></tr><tr><td>B 漂移</td><td>双频正弦叠加（0.055/0.021 rad/f，每枚相位不同），幅度 ±46/30px</td><td>单频正弦读作钟摆；双频不同相才是"人手的随机"</td></tr><tr><td>B 打字 cameo</td><td>落位后 60f 线性吐字 + 光标条 8f 周期闪</td><td>装饰性打字可 1f/字符级；正文交互打字回 typewriter-moves 节奏</td></tr><tr><td>B 聚拢</td><td>92f 起 26f easeInOut 到围观位，漂移幅度衰减到 25% 保留</td><td>聚拢后漂移不能归零——完全静止的光标群读作死机</td></tr></tbody></table>
+<h2>已知坑</h2>
+<ul><li>demo 在灰阶/占位素材上调校通过——参数是调校起点非实战定稿，</li></ul>
+<p>首次实战须以真实素材回验</p>
+<ul><li>名牌颜色=身份编码，全片必须一致（蓝=Designer 就一直蓝）；中途换色观众会以为换了人</li><li>A 式是全片一段的"戏"，≤1 次（P4）；B 式是可全片驻场的氛围层，两式同片可共存但 A 的两枚主角要从 B 的群演里出（同名同色），否则读作两拨人</li><li>B 式漂移光标永远不许盖住正在阅读的主内容——氛围层要让戏，漂移范围避开主体安全区</li><li>与 input-trigger-moves 分工：那是光标"操作 UI"（点击有 payload），本卡光标"表演给你看"（位移即剧情）；光标要点东西时回那张卡</li><li>声音：A 绕位配轻 whoosh、交接一声柔和 chime、放大甩出一声重 whoosh；B 入场每枚一声极轻 pop，漂移段静，打字段 keyboard 轻声</li></ul>
+<h2>参考实现</h2>
+<p>demos/interaction/collab-cursor-moves/</p>
+<p>（CursorCastEnsemble.tsx / CursorDialogueDuet.tsx）</p>
+<p>原片出处：A figma-devmode 0:16–0:20 / B figma-devmode 0:05 + miro-promo 全片 + pitch-app 82–90s 打字 cameo</p>
+<div class="demo">参考实现：demos/interaction/collab-cursor-moves/</div>
+<div class="src">VideoForgeSuite · shotcraft 镜头卡库 · 源仓库 d:/hermes/vsc_repo</div>
+</body></html>

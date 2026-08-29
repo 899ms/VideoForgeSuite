@@ -1,0 +1,57 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Microsoft YaHei",sans-serif;background:#FCFAF3;color:#26221C;padding:28px 30px;max-width:900px}
+.banner{height:170px;border-radius:14px;background:linear-gradient(120deg,#F5E663,#F0D93B 55%,#E8C82E);margin-bottom:18px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.banner img{width:100%;height:100%;object-fit:cover}
+.fallback{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;height:100%}
+.fb1{font-size:22px;font-family:KaiTi,serif;color:#7A6A14;letter-spacing:6px}
+.fb2{font-size:40px;font-family:KaiTi,serif;font-weight:bold;color:#26221C}
+.tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.tag{font-size:12px;padding:3px 10px;border-radius:20px;border:1.5px solid #26221C;background:#fff}
+.tag.cat{background:#26221C;color:#FCFAF3}
+.tag.energy{color:#fff;border:none}
+h1{font-size:30px;font-family:KaiTi,serif;margin-bottom:10px}
+.oneliner{font-size:17px;line-height:1.6;padding:10px 14px;background:#FFF9D6;border-left:4px solid #E8C82E;border-radius:0 8px 8px 0;margin-bottom:14px}
+.meta{font-size:13px;color:#6B6357;margin-bottom:18px}
+h2{font-size:17px;margin:20px 0 8px;padding-bottom:4px;border-bottom:2px solid #E8C82E;font-family:KaiTi,serif}
+p,li{font-size:14px;line-height:1.75}
+ul{padding-left:20px}
+code{font-family:Consolas,monospace;background:#F0EDE2;padding:1px 5px;border-radius:4px;font-size:13px}
+table{border-collapse:collapse;width:100%;margin:6px 0}
+th,td{border:1px solid #D8D2C0;padding:6px 10px;font-size:13px;text-align:left}
+th{background:#F0EDE2}
+.demo{margin-top:22px;padding:10px 14px;background:#F0EDE2;border-radius:8px;font-size:12.5px;color:#6B6357;font-family:Consolas,monospace;word-break:break-all}
+.src{margin-top:16px;font-size:11px;color:#A39B8B;text-align:center}
+</style></head><body>
+<div class="banner"><div class="fallback"><div class="fb1">转场镜头</div><div class="fb2">tear-streak-transitions</div></div></div>
+<div class="tags"><span class="tag cat">transition · 转场</span><span class="tag energy" style="background:#C2410C">能量 高</span><span class="tag">前态 ≥40f + 撕裂 17–24f + 收尾 ≥40f，约 4.5s（135–140f）</span></div>
+<h1>tear-streak-transitions</h1>
+<div class="oneliner">撕裂转场——glitch-displace 噪声撕裂（16 横条错位抖动中硬切），数字故障语义的条带级撕裂</div>
+<div class="meta"><b>适用：</b>高能换页：数字故障/断裂语义；页面完整性不破、能量拉满的条带级撕裂</div>
+<h2>意图</h2>
+<p>本卡管<b>条带级撕裂</b>——页面被切成横条高速运动，但每条内容完整。</p>
+<p>这是反复裁决划出的品味分界：碎块系转场三连否（doom-melt 竖条坠落、</p>
+<p>pixel-dissolve 方块翻黑、facade-block 砖块翻飞全部淘汰），条带系过关。碎块读作"页面被破坏"，条带读作"页面在高速</p>
+<p>运动"——完整性不破、能量却拉满。横向撕：条带左右错位抖动 +</p>
+<p>明暗重影，数字故障的灰阶降维（RGB split 改明暗双重影）。</p>
+<p>适用系统故障/瞬间跳变语义。</p>
+<h2>单式选型</h2>
+<table><thead><tr><th>式</th><th>做法</th><th>适用</th></tr></thead><tbody><tr><td>A glitch-displace</td><td>16 条水平条带（外层裁剪+内层整页 translateY 对位），每条 translateX 由库标 h(i*31+f*7) 驱动 ±70px 抖动，叠明暗错位重影；58f 抖动衰减中硬切 B 页再抖 4f 归位</td><td>故障/断裂语义；高潮前的暴力换页</td></tr></tbody></table>
+<h2>参数表</h2>
+<table><thead><tr><th>参数</th><th>典型值</th><th>调节手感</th></tr></thead><tbody><tr><td>抖幅</td><td>±70px（spec 加码档），底层垫完整页防露底缝</td><td>峰值帧条带错位必须肉眼明显——±12px 级读不出撕裂</td></tr><tr><td>包络</td><td>45–48f out-cubic 冲起 → 平台 → 56–62f 线性消散</td><td>冲击判例：扩散 out-cubic、消散线性</td></tr><tr><td>重影</td><td>±12px 明暗双重影（brightness 0.45 / invert）</td><td>RGB 分离的灰阶降维；无重影只是抖不是 glitch</td></tr><tr><td>摘罩</td><td>62f 起条带、重影、filter 全部条件卸载直出裸 B</td><td>opacity 0 不算摘；滤镜残留毁真静止</td></tr><tr><td>收尾</td><td>73f 真静止（≥40f）</td><td>R1</td></tr></tbody></table>
+<h2>已知坑</h2>
+<ul><li>demo 在灰阶/占位素材上调校通过——参数是调校起点非实战定稿，</li></ul>
+<p>首次实战须以真实素材回验</p>
+<ul><li><b>条带不碎块</b>——后续同类手法一律做条带：横条各自完整，</li></ul>
+<p>绝不裂成方块/砖块/独立坠落物（三连否判例，见意图）</p>
+<ul><li>高能转场，与 whip-pan/crash 系同片注意能量预算——</li></ul>
+<p>高能转场挤在一起互相稀释</p>
+<ul><li>硬切藏在抖动衰减中（58f 切、62f 归位）——切点暴露在静止帧上</li></ul>
+<p>就失去了 glitch 的掩护</p>
+<h2>参考实现</h2>
+<p>demos/transition/tear-streak-transitions/</p>
+<p>（GlitchDisplace.tsx）</p>
+<div class="demo">参考实现：demos/transition/tear-streak-transitions/</div>
+<div class="src">VideoForgeSuite · shotcraft 镜头卡库 · 源仓库 d:/hermes/vsc_repo</div>
+</body></html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Microsoft YaHei",sans-serif;background:#FCFAF3;color:#26221C;padding:28px 30px;max-width:900px}
+.banner{height:170px;border-radius:14px;background:linear-gradient(120deg,#F5E663,#F0D93B 55%,#E8C82E);margin-bottom:18px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.banner img{width:100%;height:100%;object-fit:cover}
+.fallback{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;height:100%}
+.fb1{font-size:22px;font-family:KaiTi,serif;color:#7A6A14;letter-spacing:6px}
+.fb2{font-size:40px;font-family:KaiTi,serif;font-weight:bold;color:#26221C}
+.tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.tag{font-size:12px;padding:3px 10px;border-radius:20px;border:1.5px solid #26221C;background:#fff}
+.tag.cat{background:#26221C;color:#FCFAF3}
+.tag.energy{color:#fff;border:none}
+h1{font-size:30px;font-family:KaiTi,serif;margin-bottom:10px}
+.oneliner{font-size:17px;line-height:1.6;padding:10px 14px;background:#FFF9D6;border-left:4px solid #E8C82E;border-radius:0 8px 8px 0;margin-bottom:14px}
+.meta{font-size:13px;color:#6B6357;margin-bottom:18px}
+h2{font-size:17px;margin:20px 0 8px;padding-bottom:4px;border-bottom:2px solid #E8C82E;font-family:KaiTi,serif}
+p,li{font-size:14px;line-height:1.75}
+ul{padding-left:20px}
+code{font-family:Consolas,monospace;background:#F0EDE2;padding:1px 5px;border-radius:4px;font-size:13px}
+table{border-collapse:collapse;width:100%;margin:6px 0}
+th,td{border:1px solid #D8D2C0;padding:6px 10px;font-size:13px;text-align:left}
+th{background:#F0EDE2}
+.demo{margin-top:22px;padding:10px 14px;background:#F0EDE2;border-radius:8px;font-size:12.5px;color:#6B6357;font-family:Consolas,monospace;word-break:break-all}
+.src{margin-top:16px;font-size:11px;color:#A39B8B;text-align:center}
+</style></head><body>
+<div class="banner"><div class="fallback"><div class="fb1">节奏镜头</div><div class="fb2">rhythm-interrupt-moves</div></div></div>
+<div class="tags"><span class="tag cat">rhythm · 节奏</span><span class="tag energy" style="background:#A16207">能量 B 中 / C 高</span><span class="tag">B ~4.5s / C ~4.5s</span></div>
+<h1>rhythm-interrupt-moves</h1>
+<div class="oneliner">打断节奏两式——jump-cut-punch-in 三级跳切推近、strobe-black-frames 频闪黑帧</div>
+<div class="meta"><b>适用：</b>用"打断连续性"本身当节奏器：顿挫推近（B）、窒息逼近（C）；与 beat-cut-moves（切点排布）、montage-rhythm（段落呼吸）互补</div>
+<h2>意图</h2>
+<p>库内节奏卡管的都是"怎么切、切多密"；这两式管<b>怎么断</b>——观众预期</p>
+<p>连续，你偏打断，打断方式即表达：B 是空间断——同构图三次无补间跳大</p>
+<p>（1x→1.6x→2.6x），戈达尔跳切的顿挫，比连续推近更有"看这里、再近点、</p>
+<p>就是它"的指令感；C 是存在断——画面与纯黑交替频闪且间隔收紧，</p>
+<p>高潮前的窒息倒数。选型：强制聚焦指标用 B，高潮前蓄压用 C。</p>
+<h2>两式选型</h2>
+<table><thead><tr><th>式</th><th>做法</th><th>适用</th></tr></thead><tbody><tr><td>B jump-cut-punch-in</td><td>transform-origin 钉目标中心，三档 scale 阶梯跳变（零补间），每跳 2f 加深脉冲当 tick</td><td>逐级逼近核心指标；纪录片式盯住</td></tr><tr><td>C strobe-black-frames</td><td>全屏黑帧按写死帧号表闪现（每次 2f，间隔 8f→3f 收敛），末闪掀开即硬切放大落定</td><td>全片最高潮前的倒数蓄压</td></tr></tbody></table>
+<h2>参数表</h2>
+<table><thead><tr><th>参数</th><th>典型值</th><th>调节手感</th></tr></thead><tbody><tr><td>B 跳挡</td><td>1.0→1.6→2.6，各 hold ≥35f</td><td>挡差 <1.5× 读作画面抖了一下</td></tr><tr><td>B tick</td><td>跳变帧起 2f brightness 0.92 全画面脉冲</td><td>无 tick 的跳切读作丢帧</td></tr><tr><td>C 帧号表</td><td>[40,48,55,61,66,70,73,76,79] 各 2f 纯黑</td><td>间隔必须收敛；等距频闪只是闪没有"逼近"</td></tr><tr><td>C 落锤</td><td>末闪掀开一帧到位 scale 1.35 + 2f 加深脉冲</td><td>掀开后还在原构图，频闪就白憋了</td></tr><tr><td>收尾</td><td>B 末挡 ≥45f / C 硬切后 ≥50f 真静止</td><td>打断系事后 hold 从重给</td></tr></tbody></table>
+<h2>已知坑</h2>
+<ul><li>demo 在灰阶/占位素材上调校通过——参数是调校起点非实战定稿，</li></ul>
+<p>首次实战须以真实素材回验</p>
+<ul><li>两式与 speed-ramp-freeze 都动"时间轴"，同一镜头只能有一个时间</li></ul>
+<p>操纵者</p>
+<ul><li>C 式<b>光敏警示</b>：频闪画面需注意光敏性癫痫观众提示；且必须配乐</li></ul>
+<p>渐强同步（无声频闪读作信号故障），全片 ≤1 次</p>
+<ul><li>B 式三挡构图必须同 origin（钉死目标中心）——每挡重新构图就是</li></ul>
+<p>三个镜头，不是跳切</p>
+<ul><li>声音强依赖：B 每跳一声 tick、C 每闪一声打点（sound-design §4.5）</li></ul>
+<h2>参考实现</h2>
+<p>demos/rhythm/rhythm-interrupt-moves/</p>
+<p>（JumpCutPunchIn.tsx / StrobeBlackFrames.tsx）</p>
+<div class="demo">参考实现：demos/rhythm/rhythm-interrupt-moves/</div>
+<div class="src">VideoForgeSuite · shotcraft 镜头卡库 · 源仓库 d:/hermes/vsc_repo</div>
+</body></html>

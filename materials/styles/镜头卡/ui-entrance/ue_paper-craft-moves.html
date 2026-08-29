@@ -1,0 +1,59 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Microsoft YaHei",sans-serif;background:#FCFAF3;color:#26221C;padding:28px 30px;max-width:900px}
+.banner{height:170px;border-radius:14px;background:linear-gradient(120deg,#F5E663,#F0D93B 55%,#E8C82E);margin-bottom:18px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.banner img{width:100%;height:100%;object-fit:cover}
+.fallback{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;height:100%}
+.fb1{font-size:22px;font-family:KaiTi,serif;color:#7A6A14;letter-spacing:6px}
+.fb2{font-size:40px;font-family:KaiTi,serif;font-weight:bold;color:#26221C}
+.tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.tag{font-size:12px;padding:3px 10px;border-radius:20px;border:1.5px solid #26221C;background:#fff}
+.tag.cat{background:#26221C;color:#FCFAF3}
+.tag.energy{color:#fff;border:none}
+h1{font-size:30px;font-family:KaiTi,serif;margin-bottom:10px}
+.oneliner{font-size:17px;line-height:1.6;padding:10px 14px;background:#FFF9D6;border-left:4px solid #E8C82E;border-radius:0 8px 8px 0;margin-bottom:14px}
+.meta{font-size:13px;color:#6B6357;margin-bottom:18px}
+h2{font-size:17px;margin:20px 0 8px;padding-bottom:4px;border-bottom:2px solid #E8C82E;font-family:KaiTi,serif}
+p,li{font-size:14px;line-height:1.75}
+ul{padding-left:20px}
+code{font-family:Consolas,monospace;background:#F0EDE2;padding:1px 5px;border-radius:4px;font-size:13px}
+table{border-collapse:collapse;width:100%;margin:6px 0}
+th,td{border:1px solid #D8D2C0;padding:6px 10px;font-size:13px;text-align:left}
+th{background:#F0EDE2}
+.demo{margin-top:22px;padding:10px 14px;background:#F0EDE2;border-radius:8px;font-size:12.5px;color:#6B6357;font-family:Consolas,monospace;word-break:break-all}
+.src{margin-top:16px;font-size:11px;color:#A39B8B;text-align:center}
+</style></head><body>
+<div class="banner"><div class="fallback"><div class="fb1">UI入场镜头</div><div class="fb2">paper-craft-moves</div></div></div>
+<div class="tags"><span class="tag cat">ui-entrance · UI入场</span><span class="tag energy" style="background:#A16207">能量 A 中</span><span class="tag">A 3–4s / B 4–5.5s</span></div>
+<h1>paper-craft-moves</h1>
+<div class="oneliner">纸艺两式——masking-tape-slap 纸胶带拍定（悬浮微晃被"啪啪"按死）与 popup-book-rise 立体书立起（卡片沿底边错峰立墙）</div>
+<div class="meta"><b>适用：</b>纸墨主视觉片的实体材料语言：单卡定妆入场用 A、整版 dashboard 开场建立用 B；与纸墨+强调色的主视觉（模板片为纸/墨/琥珀）天然同源；两拍打击）/ B 中高（立墙有纵深冲击</div>
+<h2>意图</h2>
+<p>Wes Anderson 手账美术与立体书纸艺的 UI 翻译。A：卡片轻飘入位后</p>
+<p>悬着微晃（未固定的纸），两条撕边半透明胶带"啪、啪"先后拍在对角，</p>
+<p>第二条拍下<b>同帧</b>卡片停晃、投影变薄、整卡下沉——"按死"的定妆</p>
+<p>一瞬是主角，两声"啪"是天然音效点。B：整页平躺如摊开书页（俯视），</p>
+<p>卡片像贴在页上的纸片沿各自底边错峰立起成墙，立到 95° 回弹 90°</p>
+<p>（纸的韧性），根部投影随立起收窄。</p>
+<h2>两式选型</h2>
+<table><thead><tr><th>式</th><th>做法</th><th>适用</th></tr></thead><tbody><tr><td>A masking-tape-slap</td><td>晃动=幅度包络×正弦（rot ±1.5°/bob ±5px）；胶带扑入 6f：scale 1.45→1 + rotate 欠 16°→过冲 7°→回正 + 落帧 scaleY 0.72 一帧压扁；撕边 14 点 clipPath 锯齿</td><td>单卡/徽章的定妆入场；文案重音对齐</td></tr><tr><td>B popup-book-rise</td><td>双层 3D：场景 rotateX 75° 俯视（persp 2600），每卡 rotateX 0→-90° spring（damping 11 过冲 -95°），origin 底边，preserve-3d 贯通；远排先近排后错峰 7f</td><td>整版 dashboard 开场；"系统被搭建起来"</td></tr></tbody></table>
+<h2>参数表</h2>
+<table><thead><tr><th>参数</th><th>典型值</th><th>调节手感</th></tr></thead><tbody><tr><td>A 按死三件套</td><td>同帧：晃动 2f 归零 + 投影 34px→8px + 全卡下沉 2px</td><td>三件拆帧就没有"按死"感；第一条胶带只把包络衰到 0.45（半死）</td></tr><tr><td>A 胶带质感</td><td>半透明 + 锯齿撕边 + 落点故意歪 2–3°</td><td>歪斜是设计的手工感；直挺挺读作 UI 元素</td></tr><tr><td>B 立起方向</td><td>rotateX 0→<b>-90°</b>（向观众立起）</td><td>demo 判例：方向写反卡片往画面里倒被底板裁切</td></tr><tr><td>B 根部投影</td><td>blur 矩形不随卡立起，高 104→14px、透明度 0.26→0.1 随角度插值</td><td>无投影纸片浮空；投影跟着立起来穿帮</td></tr><tr><td>B 收尾</td><td>全部站定后场景 75°→68° 轻回正（in-out cubic）</td><td>直接定住少一口呼吸</td></tr></tbody></table>
+<h2>已知坑</h2>
+<ul><li>demo 在灰阶/占位素材上调校通过——参数是调校起点非实战定稿，</li></ul>
+<p>首次实战须以真实素材回验</p>
+<ul><li>A 的晃动是"未固定"的叙事铺垫不是手持抖动（Q3 边界）：</li></ul>
+<p>振幅包络必须最终归零，全片只在被按死前存在</p>
+<ul><li>B 与 tilt-reveal 分工：tilt 是<b>机位</b>抬头看静止页面，</li></ul>
+<p>本卡机位基本不动、<b>构件自己</b>站起来</p>
+<ul><li>B 立墙后卡片呈 90° 侧立态，文字不可读——立墙是构图动作，</li></ul>
+<p>信息交给立起后的正视段落（Q6 同源）</p>
+<ul><li>声音：A 两声"啪"（纸拍击拟音）；B 每排立起一声轻纸响，</li></ul>
+<p>错峰对齐（S2/S4 同源）</p>
+<h2>参考实现</h2>
+<p>demos/ui-entrance/paper-craft-moves/</p>
+<p>（MaskingTapeSlap.tsx / PopupBookRise.tsx）</p>
+<div class="demo">参考实现：demos/ui-entrance/paper-craft-moves/</div>
+<div class="src">VideoForgeSuite · shotcraft 镜头卡库 · 源仓库 d:/hermes/vsc_repo</div>
+</body></html>

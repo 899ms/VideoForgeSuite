@@ -1,0 +1,66 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Microsoft YaHei",sans-serif;background:#FCFAF3;color:#26221C;padding:28px 30px;max-width:900px}
+.banner{height:170px;border-radius:14px;background:linear-gradient(120deg,#F5E663,#F0D93B 55%,#E8C82E);margin-bottom:18px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.banner img{width:100%;height:100%;object-fit:cover}
+.fallback{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;height:100%}
+.fb1{font-size:22px;font-family:KaiTi,serif;color:#7A6A14;letter-spacing:6px}
+.fb2{font-size:40px;font-family:KaiTi,serif;font-weight:bold;color:#26221C}
+.tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.tag{font-size:12px;padding:3px 10px;border-radius:20px;border:1.5px solid #26221C;background:#fff}
+.tag.cat{background:#26221C;color:#FCFAF3}
+.tag.energy{color:#fff;border:none}
+h1{font-size:30px;font-family:KaiTi,serif;margin-bottom:10px}
+.oneliner{font-size:17px;line-height:1.6;padding:10px 14px;background:#FFF9D6;border-left:4px solid #E8C82E;border-radius:0 8px 8px 0;margin-bottom:14px}
+.meta{font-size:13px;color:#6B6357;margin-bottom:18px}
+h2{font-size:17px;margin:20px 0 8px;padding-bottom:4px;border-bottom:2px solid #E8C82E;font-family:KaiTi,serif}
+p,li{font-size:14px;line-height:1.75}
+ul{padding-left:20px}
+code{font-family:Consolas,monospace;background:#F0EDE2;padding:1px 5px;border-radius:4px;font-size:13px}
+table{border-collapse:collapse;width:100%;margin:6px 0}
+th,td{border:1px solid #D8D2C0;padding:6px 10px;font-size:13px;text-align:left}
+th{background:#F0EDE2}
+.demo{margin-top:22px;padding:10px 14px;background:#F0EDE2;border-radius:8px;font-size:12.5px;color:#6B6357;font-family:Consolas,monospace;word-break:break-all}
+.src{margin-top:16px;font-size:11px;color:#A39B8B;text-align:center}
+</style></head><body>
+<div class="banner"><div class="fallback"><div class="fb1">UI入场镜头</div><div class="fb2">page-waterfall-wall</div></div></div>
+<div class="tags"><span class="tag cat">ui-entrance · UI入场</span><span class="tag energy" style="background:#A16207">能量 中</span><span class="tag">4–6s（无限循环体，时长由段落需要裁）</span></div>
+<h1>page-waterfall-wall</h1>
+<div class="oneliner">页面瀑布墙——真实页面截图切成 3–4 列在 3D 后仰墙面上差速反向无限滚动，视差 + 镜头缓推做"内容多到流不完"的一览</div>
+<div class="meta"><b>适用：</b>"多页面/多功能/多模板"体量感段落；montage 中段铺陈或 intro 后的产品广度镜头；流动陈列型</div>
+<h2>意图</h2>
+<p>流动式一览：让观众在几秒内"看到很多页面流过"，读感是体量而非细节。</p>
+<p>与 outro-group-photo-launch 分工：那是<b>聚拢式</b>一览（元素飞来围住</p>
+<p>字标定格合影，语义"属于同一产品"），本卡是<b>流动式</b>一览（内容持续</p>
+<p>流过不定格，语义"还有很多没给你看完"）。与 odometer-digit-roll 分工：</p>
+<p>那是有终值的机械滚轮（逐位停稳读数字），本卡无终值无限循环。</p>
+<p>与 wall-reveal-moves 分工：那是整墙<b>入场动作</b>，本卡是墙的<b>持续状态</b>，</p>
+<p>可用那卡入场后交棒本卡续流。</p>
+<h2>动效核心</h2>
+<ul><li>lib 组件 <code>assets/lib/VerticalTicker.tsx</code>：父层 perspective(1000px)</li></ul>
+<p>rotateX(20°) scale(1.2) 后仰成墙；每列 [...items,...items] 翻倍 +</p>
+<p>progress 取模 translateY 0→-50% 无缝循环；上下渐变遮罩收边</p>
+<ul><li>差速反向是视差命门：3 列 loop 时长错开（如 12/9/14s），中列反向——</li></ul>
+<p>等速同向读作一张大图在滚，差速反向才读出"独立的列"</p>
+<ul><li>镜头缓推寄生在外层（scale 1→1.06 线性铺满全镜），墙自身循环、</li></ul>
+<p>镜头单向，两个运动源方向不同不打架</p>
+<ul><li>素材：真实页面截图切片（Q1 脱敏后），卡片级切块比整页长图好——</li></ul>
+<p>整页切片滚动时观众来不及读，卡片块有完整轮廓可辨识</p>
+<h2>参数表</h2>
+<table><thead><tr><th>参数</th><th>典型值</th><th>调节手感</th></tr></thead><tbody><tr><td>列数</td><td>3（1080p）/ 4（超宽）</td><td>2 列读不出"墙"，5 列单列过窄纹理糊</td></tr><tr><td>loop 时长</td><td>相邻列差 ≥25%（12/9/14s）</td><td>差速太小视差读不出；最快列 <7s 开始读作"刷屏"</td></tr><tr><td>方向</td><td>中列反向（-1,1,-1 或交替）</td><td>全同向=一张大图；反向列是"独立列"的最强证据</td></tr><tr><td>倾角/透视</td><td>rotateX 20° / perspective 1000px</td><td>>25° 顶部行文字透视压糊（Q2）；<12° 读不出墙面后仰</td></tr><tr><td>scale</td><td>1.2 基础 + 缓推至 ~1.26</td><td>1.2 是补透视收缩的底值，低于它四角露底</td></tr><tr><td>遮罩高度</td><td>200px</td><td>太矮行硬进硬出；太高可视区剩不下 2 行</td></tr><tr><td>循环周期</td><td>-50% 位移必须恰等于单副本周期（内容高+n·gap）</td><td>lib 已用 marginBottom 保证；自写实现用 flex gap 会差 gap/2 跳帧</td></tr></tbody></table>
+<h2>已知坑</h2>
+<ul><li>**参数借鉴自外部实现（remotion-3d-ticker），非实战定稿；</li></ul>
+<p>首次实战须以真实素材回验**</p>
+<ul><li>每列 items 总高必须 ≥ 视口有效高（否则同屏见同一切片两次，穿帮）；</li></ul>
+<p>列间切片不要复用同一张图，同图同时出现在两列读作素材穷</p>
+<ul><li>本卡是氛围/铺陈镜头不是信息镜头：切片上文字只求"看得出是真页面"</li></ul>
+<p>不求读完；想让观众读某一块，交棒 spotlight-hero-card 单主角处理</p>
+<ul><li>P4 去重：与 outro 合影同片共存没问题（一流动一聚拢），但全片</li></ul>
+<p>瀑布墙只出现一次，二次出现读作凑时长</p>
+<h2>参考实现</h2>
+<p>assets/lib/VerticalTicker.tsx（核心组件）；</p>
+<p>demo 见 demos/ui-entrance/page-waterfall-wall/（PageWaterfallWall.tsx / VerticalTicker.tsx）。</p>
+<div class="demo">参考实现：demos/ui-entrance/page-waterfall-wall/</div>
+<div class="src">VideoForgeSuite · shotcraft 镜头卡库 · 源仓库 d:/hermes/vsc_repo</div>
+</body></html>

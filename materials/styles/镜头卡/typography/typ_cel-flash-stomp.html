@@ -1,0 +1,69 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Microsoft YaHei",sans-serif;background:#FCFAF3;color:#26221C;padding:28px 30px;max-width:900px}
+.banner{height:170px;border-radius:14px;background:linear-gradient(120deg,#F5E663,#F0D93B 55%,#E8C82E);margin-bottom:18px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.banner img{width:100%;height:100%;object-fit:cover}
+.fallback{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;height:100%}
+.fb1{font-size:22px;font-family:KaiTi,serif;color:#7A6A14;letter-spacing:6px}
+.fb2{font-size:40px;font-family:KaiTi,serif;font-weight:bold;color:#26221C}
+.tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.tag{font-size:12px;padding:3px 10px;border-radius:20px;border:1.5px solid #26221C;background:#fff}
+.tag.cat{background:#26221C;color:#FCFAF3}
+.tag.energy{color:#fff;border:none}
+h1{font-size:30px;font-family:KaiTi,serif;margin-bottom:10px}
+.oneliner{font-size:17px;line-height:1.6;padding:10px 14px;background:#FFF9D6;border-left:4px solid #E8C82E;border-radius:0 8px 8px 0;margin-bottom:14px}
+.meta{font-size:13px;color:#6B6357;margin-bottom:18px}
+h2{font-size:17px;margin:20px 0 8px;padding-bottom:4px;border-bottom:2px solid #E8C82E;font-family:KaiTi,serif}
+p,li{font-size:14px;line-height:1.75}
+ul{padding-left:20px}
+code{font-family:Consolas,monospace;background:#F0EDE2;padding:1px 5px;border-radius:4px;font-size:13px}
+table{border-collapse:collapse;width:100%;margin:6px 0}
+th,td{border:1px solid #D8D2C0;padding:6px 10px;font-size:13px;text-align:left}
+th{background:#F0EDE2}
+.demo{margin-top:22px;padding:10px 14px;background:#F0EDE2;border-radius:8px;font-size:12.5px;color:#6B6357;font-family:Consolas,monospace;word-break:break-all}
+.src{margin-top:16px;font-size:11px;color:#A39B8B;text-align:center}
+</style></head><body>
+<div class="banner"><div class="fallback"><div class="fb1">文字镜头</div><div class="fb2">cel-flash-stomp</div></div></div>
+<div class="tags"><span class="tag cat">typography · 文字</span><span class="tag energy" style="background:#C2410C">能量 高</span><span class="tag">每词 ~30f × 词数 + 收尾 ≥45f；三词约 4.8s</span></div>
+<h1>cel-flash-stomp</h1>
+<div class="oneliner">底色闪砸字——大词逐拍像图章歪着砸满屏，每词落定瞬间背景层在两个纯色间频闪数帧而文字纹丝不动；动漫必杀技字卡的 UI 翻译</div>
+<div class="meta"><b>适用：</b>口号/三连词的高能段落（"SHIP / FASTER / TODAY"式）；文字节奏卡，与 type-rhythm-sync 互补（那是字属性动，这是字砸+底闪）</div>
+<h2>意图</h2>
+<p>逐词砸字（stomp typography）单用只有重量；背景纯色闪（动漫背景</p>
+<p>フラッシュ——必杀技名出现时底色交替闪）单用只是闪。焊在一起互补</p>
+<p>成立：词砸下的落定帧正是底闪的起爆帧，<b>主体稳、背景闪</b>——观众</p>
+<p>盯着字，眼角余光里整个世界在震颤，打击感来自周边视野而不来自主体</p>
+<p>抖动。这是与震屏完全相反的路线：震屏晃主体，本卡晃世界。三词逐拍</p>
+<p>递进，末词闪加倍+标签条收束，一句口号剪成三记盖章。</p>
+<h2>动效核心</h2>
+<ul><li>每词 ~30f 硬切无过渡；入场 6f scale 1.18→0.98→1</li></ul>
+<p>（Easing.out(poly(5))，2% 过冲）+ rotate 交替 +2.5°/−2.5°/0°</p>
+<p>——歪角是"图章"的一半，全正读作幻灯片</p>
+<ul><li><b>底闪与文字分层是命门</b>：落定帧起背景色在 G.bg(#ececea) 与</li></ul>
+<p>加深灰 #cfcfca 间每 2f 交替共 6f，文字独立上层纹丝不动</p>
+<p>——白底上闪加深灰不闪白（判例）</p>
+<ul><li>末词加倍：闪 8f + 暗色拉大到 #c4c4c0 + 同帧底部标签条 14f 淡入</li></ul>
+<p>——最后一击必须比前两击响</p>
+<ul><li>词间零 crossfade；全程帧确定</li></ul>
+<h2>参数表</h2>
+<table><thead><tr><th>参数</th><th>典型值</th><th>调节手感</th></tr></thead><tbody><tr><td>词时长</td><td>~30f/词，3–4 词</td><td><22f 读不完词；5+ 词读作 rap 字幕（那去用 karaoke）</td></tr><tr><td>砸落</td><td>6f scale 1.18→1 + 2% 过冲</td><td>幅度 >1.3 起步会先读到"缩小动画"再读到"砸"</td></tr><tr><td>歪角</td><td>±2.5° 交替，末词归 0°</td><td>同方向连歪读作版式错误</td></tr><tr><td>底闪</td><td>2f 交替 × 6f；末词 8f + 对比拉大</td><td>闪 >10f 读作背景故障；1f 交替在 30fps 下读不出色差</td></tr><tr><td>标签条</td><td>末词闪结束同帧起 14f 淡入</td><td>早于末闪出现会被闪没</td></tr><tr><td>收尾</td><td>末词落定真静止 ≥45f</td><td>R1；重拳双倍 hold</td></tr></tbody></table>
+<h2>已知坑</h2>
+<ul><li>demo 在灰阶/占位素材上调校通过——参数是调校起点非实战定稿，</li></ul>
+<p>首次实战须以真实素材回验</p>
+<ul><li><b>声音强依赖</b>：每词砸落一声 kick、底闪对齐鼓点（sound-design</li></ul>
+<p>§4.5）——无声版读作 PPT 快翻；这卡就是给音乐段写的</p>
+<ul><li>底闪层里不许有任何内容元素（logo/纹理都不行）——闪的必须是</li></ul>
+<p>"空气"，有物在闪就变成内容故障（同 drop-blackout"黑场无物"判例）</p>
+<ul><li>与 background-cel-flash 单用（关键词驻场只闪底）的区别：本卡词</li></ul>
+<p>在换、拍在推进；驻场强调版是它的静态子集，不另立卡</p>
+<ul><li>与 beat-cut-moves A（递进硬切串）能量档相同且都是"切+拍"，</li></ul>
+<p>同片二选一；全片本卡 ≤1 段（P4）</p>
+<ul><li>实战品牌色版：底闪两色用品牌色对（如强调色×深墨），对比度须 ≥</li></ul>
+<p>demo 的 #ececea/#cfcfca 灰差，不然白闪一场</p>
+<h2>参考实现</h2>
+<p>demos/typography/cel-flash-stomp/</p>
+<p>（CelFlashStomp.tsx）</p>
+<div class="demo">参考实现：demos/typography/cel-flash-stomp/</div>
+<div class="src">VideoForgeSuite · shotcraft 镜头卡库 · 源仓库 d:/hermes/vsc_repo</div>
+</body></html>

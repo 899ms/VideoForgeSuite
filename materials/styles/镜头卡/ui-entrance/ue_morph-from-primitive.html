@@ -1,0 +1,65 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Microsoft YaHei",sans-serif;background:#FCFAF3;color:#26221C;padding:28px 30px;max-width:900px}
+.banner{height:170px;border-radius:14px;background:linear-gradient(120deg,#F5E663,#F0D93B 55%,#E8C82E);margin-bottom:18px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.banner img{width:100%;height:100%;object-fit:cover}
+.fallback{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;height:100%}
+.fb1{font-size:22px;font-family:KaiTi,serif;color:#7A6A14;letter-spacing:6px}
+.fb2{font-size:40px;font-family:KaiTi,serif;font-weight:bold;color:#26221C}
+.tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.tag{font-size:12px;padding:3px 10px;border-radius:20px;border:1.5px solid #26221C;background:#fff}
+.tag.cat{background:#26221C;color:#FCFAF3}
+.tag.energy{color:#fff;border:none}
+h1{font-size:30px;font-family:KaiTi,serif;margin-bottom:10px}
+.oneliner{font-size:17px;line-height:1.6;padding:10px 14px;background:#FFF9D6;border-left:4px solid #E8C82E;border-radius:0 8px 8px 0;margin-bottom:14px}
+.meta{font-size:13px;color:#6B6357;margin-bottom:18px}
+h2{font-size:17px;margin:20px 0 8px;padding-bottom:4px;border-bottom:2px solid #E8C82E;font-family:KaiTi,serif}
+p,li{font-size:14px;line-height:1.75}
+ul{padding-left:20px}
+code{font-family:Consolas,monospace;background:#F0EDE2;padding:1px 5px;border-radius:4px;font-size:13px}
+table{border-collapse:collapse;width:100%;margin:6px 0}
+th,td{border:1px solid #D8D2C0;padding:6px 10px;font-size:13px;text-align:left}
+th{background:#F0EDE2}
+.demo{margin-top:22px;padding:10px 14px;background:#F0EDE2;border-radius:8px;font-size:12.5px;color:#6B6357;font-family:Consolas,monospace;word-break:break-all}
+.src{margin-top:16px;font-size:11px;color:#A39B8B;text-align:center}
+</style></head><body>
+<div class="banner"><div class="fallback"><div class="fb1">UI入场镜头</div><div class="fb2">morph-from-primitive</div></div></div>
+<div class="tags"><span class="tag cat">ui-entrance · UI入场</span><span class="tag energy" style="background:#A16207">能量 中低</span><span class="tag">~4.7s（呼吸 20f + 变形 24f + 内容淡入 12f）</span></div>
+<h1>morph-from-primitive</h1>
+<div class="oneliner">原型变形——正圆呼吸一拍（anticipation）后 SVG path 插值 24f 长成圆角卡轮廓，内容淡入</div>
+<div class="meta"><b>适用：</b>图形/图标/卡轮廓类主体的入场；logo→UI 容器的经典原语</div>
+<h2>意图</h2>
+<p>入场库全是"从外面进来"——飞入、砸落、翻面，主体都预先存在于画外；</p>
+<p>本卡是<b>就地长出来</b>：画面中心一个描边正圆先鼓一口气（scale</p>
+<p>1→1.12→1），随即轮廓连续变形为圆角矩形卡片，内容再淡入。原型</p>
+<p>停留加呼吸这一拍就是预备动作——迪士尼 anticipation 的图形学翻译：</p>
+<p>圆先"吸气"，观众就知道它要变，变形本身因此不需要任何解释。</p>
+<p>仅适用图形/图标/卡轮廓类主体——位图截图不能 morph。</p>
+<h2>动效核心</h2>
+<ul><li><b>圆与圆角矩形写成同构 path</b>：M + 8 段 cubic（4 直边段三等分点</li></ul>
+<p>做退化 cubic + 4 圆角段 kappa 公式 k=4/3·tan(Δθ/4)），逐命令</p>
+<p>数值 lerp 生成 d 字符串，帧驱动全确定性</p>
+<ul><li>圆锚点取矩形锚点同方位角，保证 t=0 是标准正圆、中途无自交</li><li>呼吸拍 scale 1→1.12→1（spec 1.06 看不清，加码后可感——可感性</li></ul>
+<p>判例同族）；呼吸与变形都用 Easing.inOut(cubic)，interpolate 全 clamp</p>
+<ul><li>内容是 HTML 层叠在 SVG 上，变形完成后 12f 淡入，不做 path 内嵌</li><li>时间轴 140f：0–10 静置｜10–30 呼吸｜30–54 变形｜56–68 内容</li></ul>
+<p>淡入｜68–140 真静止 72f</p>
+<h2>参数表</h2>
+<table><thead><tr><th>参数</th><th>典型值</th><th>调节手感</th></tr></thead><tbody><tr><td>呼吸幅度</td><td>1→1.12→1，20f inOut cubic</td><td><1.1 读不出"吸气"；>1.2 像要爆炸不是要变形</td></tr><tr><td>原型停留</td><td>静置 10f + 呼吸 20f，合计 30f 才起变形</td><td>停留 <15f 读不出"预备"，变形显得突兀</td></tr><tr><td>变形时长</td><td>24f</td><td>太快像切换、太慢像融化；24f 是"生长"的速度</td></tr><tr><td>目标形态</td><td>520×300 圆角矩形卡（demo 值）</td><td>圆角越大与圆同构性越好、中段越顺</td></tr><tr><td>内容淡入</td><td>变形落定后 2f 起，12f 淡入</td><td>变形没完就进内容 = 内容跟着轮廓扭</td></tr></tbody></table>
+<h2>已知坑</h2>
+<ul><li>demo 在灰阶/占位素材上调校通过——参数是调校起点非实战定稿，</li></ul>
+<p>首次实战须以真实素材回验</p>
+<ul><li><b>变形中途别叠其他动画</b>——morph 本身就是全部信息，同时飞入/</li></ul>
+<p>变色/晃动会把"长出来"稀释成"乱动"</p>
+<ul><li>位图截图不能 morph：本卡只对矢量轮廓成立，页面截图请回</li></ul>
+<p>入场库常规手法</p>
+<ul><li>path 插值两端命令数必须严格同构（同为 M+8C），命令数不齐</li></ul>
+<p>中途会闪跳；改目标形状时先对齐锚点数再调参</p>
+<ul><li>变形中段呈"桶形"过渡是正常形态（QA 判例），不是穿帮；</li></ul>
+<p>出现自交/尖刺才是锚点方位角没对齐</p>
+<h2>参考实现</h2>
+<p>demos/ui-entrance/morph-from-primitive/</p>
+<p>（MorphFromPrimitive.tsx）</p>
+<div class="demo">参考实现：demos/ui-entrance/morph-from-primitive/</div>
+<div class="src">VideoForgeSuite · shotcraft 镜头卡库 · 源仓库 d:/hermes/vsc_repo</div>
+</body></html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Microsoft YaHei",sans-serif;background:#FCFAF3;color:#26221C;padding:28px 30px;max-width:900px}
+.banner{height:170px;border-radius:14px;background:linear-gradient(120deg,#F5E663,#F0D93B 55%,#E8C82E);margin-bottom:18px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.banner img{width:100%;height:100%;object-fit:cover}
+.fallback{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;height:100%}
+.fb1{font-size:22px;font-family:KaiTi,serif;color:#7A6A14;letter-spacing:6px}
+.fb2{font-size:40px;font-family:KaiTi,serif;font-weight:bold;color:#26221C}
+.tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.tag{font-size:12px;padding:3px 10px;border-radius:20px;border:1.5px solid #26221C;background:#fff}
+.tag.cat{background:#26221C;color:#FCFAF3}
+.tag.energy{color:#fff;border:none}
+h1{font-size:30px;font-family:KaiTi,serif;margin-bottom:10px}
+.oneliner{font-size:17px;line-height:1.6;padding:10px 14px;background:#FFF9D6;border-left:4px solid #E8C82E;border-radius:0 8px 8px 0;margin-bottom:14px}
+.meta{font-size:13px;color:#6B6357;margin-bottom:18px}
+h2{font-size:17px;margin:20px 0 8px;padding-bottom:4px;border-bottom:2px solid #E8C82E;font-family:KaiTi,serif}
+p,li{font-size:14px;line-height:1.75}
+ul{padding-left:20px}
+code{font-family:Consolas,monospace;background:#F0EDE2;padding:1px 5px;border-radius:4px;font-size:13px}
+table{border-collapse:collapse;width:100%;margin:6px 0}
+th,td{border:1px solid #D8D2C0;padding:6px 10px;font-size:13px;text-align:left}
+th{background:#F0EDE2}
+.demo{margin-top:22px;padding:10px 14px;background:#F0EDE2;border-radius:8px;font-size:12.5px;color:#6B6357;font-family:Consolas,monospace;word-break:break-all}
+.src{margin-top:16px;font-size:11px;color:#A39B8B;text-align:center}
+</style></head><body>
+<div class="banner"><div class="fallback"><div class="fb1">转场镜头</div><div class="fb2">transition-travel</div></div></div>
+<div class="tags"><span class="tag cat">transition · 转场</span><span class="tag energy" style="background:#A16207">能量 n/a</span><span class="tag">n/a（技法卡；各式动作段 25–60f，前后 hold 另计，帧数从相邻镜头预算里划）</span></div>
+<h1>transition-travel</h1>
+<div class="oneliner">穿越式转场两式——共享元素归位、字腔穿越，镜头钻进画面里的真实元素完成换景</div>
+<div class="meta"><b>适用：</b>前后两镜存在"元素/容器"级空间关系的接缝（技法卡，与 shot-transitions 六式互补选用）；技法卡，不占能量位</div>
+<h2>意图</h2>
+<p>shot-transitions 六式是"交棒"型——前镜收尾、后镜入场，接缝靠白闪/暗场/</p>
+<p>焦点/黑场/糊帧/窗口盖住换页瞬间。本卡两式是"穿越"型——后景在前景画面里</p>
+<p>以真实元素存在（网格槽位/字形洞），镜头一条连续空间运动钻进去，</p>
+<p>观众从头到尾跟着同一个物体，没有交棒瞬间。选型口径：后景能在前景里"预先</p>
+<p>在场"→穿越；两景只是先后关系、无空间嵌套→交棒。两式内部再按语义分——</p>
+<p>A 是"把这张卡放回去"（详情→总览，F 式穿窗的逆向）；C 是"标题即是门"</p>
+<p>（章节字卡与转场二合一）。</p>
+<h2>两式选型表</h2>
+<table><thead><tr><th>式</th><th>做法</th><th>适用接缝</th></tr></thead><tbody><tr><td>A 共享元素归位 shared-element-morph</td><td>全屏特写卡收缩+位移+长出圆角，严丝合缝飞落进 dashboard 网格所属槽位，3% 过冲落座</td><td>详情→总览的"归位"语义；与 F 式穿窗成对使用（进窗/回位）</td></tr><tr><td>C 字腔穿越 letterform-zoom</td><td>巨型标题字腔（SVG mask 挖洞）透出新页，指数推进穿洞，洞撑满瞬间接管、残余笔画甩出画外</td><td>章节标题→正文；替代 D 式黑场字卡的高能量款</td></tr></tbody></table>
+<h2>参数表</h2>
+<table><thead><tr><th>参数</th><th>典型值</th><th>调节手感</th></tr></thead><tbody><tr><td>A morph 主曲线</td><td>25f bezier(0.4,0,0.2,1) 冲到 1.03 过冲 + 10f Easing.out(cubic) 弹回 1；位置/尺寸/圆角共用同一条进度 p</td><td>三属性各走各的曲线立刻读作"变形"而非"同一物体"；过冲 >5% 读作果冻</td></tr><tr><td>A 同一物体感</td><td>内容按槽位尺寸渲染、随容器等比缩放（scale 3.66→1，origin 左上）；投影随 p 从 0/36/110/0.32 收敛到 0/2/8/0.06</td><td>内容重排版=换了张卡，穿越感断；投影不收敛则卡永远悬空、落不了座</td></tr><tr><td>A 落座仪式</td><td>背景 dashboard 0.9 透明度待命，落座瞬间 5f 提到 1</td><td>背景全程满亮则飞落没有"到家"的一拍；提亮窗口跨骑落座帧前后</td></tr><tr><td>C 穿腔主推</td><td>盖板 SVG mask（白底+黑字 900 字重）挖洞，transform-origin 对准腔心（demo："DASH" A 腔 ≈773,508）；scale=28^t，t 60f bezier(0.6,0,0.85,0.5) 慢起陡收</td><td>ZOOM_MAX 按"洞撑满画面"配，字腔越小倍数越大；慢起段留给观众看清"洞里有东西"</td></tr><tr><td>C 撤场与呼应</td><td>scale∈[15,24] 盖板 opacity 1→0（残余笔画边飞边撤）；期望模糊量 0→16px 除以 scale 写进 blur 补偿；洞内 B 层微 dolly 1→1.1、接管后 25f 落回 1</td><td>blur 不除 scale 会被 transform 放大成糊墙；B 不跟着 dolly 则洞里是张死图，"穿进活页面"的感知断掉</td></tr></tbody></table>
+<h2>已知坑</h2>
+<ul><li>demo 在灰阶/占位素材上调校通过——参数是调校起点非实战定稿，</li></ul>
+<p>首次实战须以真实素材回验；灰阶测不出纹理级缺陷（轮 A 判例），真实素材</p>
+<p>上先出静帧自检</p>
+<ul><li>C 式腔心坐标是字体度量估算（字宽 em 值手推），换字体/换词/渲染器字距</li></ul>
+<p>不同都会漂——渲后看第一帧推进方向，洞不居中就微调 origin，别信算出来的数</p>
+<ul><li>A 式槽位坐标必须精确到像素（demo 里从 fixtures 布局逐项推算 808,590,</li></ul>
+<p>524x454,r14）——差几像素落座后再对齐，观众读作"飞到附近再吸附"，</p>
+<p>"归位"的严丝合缝感全无</p>
+<ul><li>穿越两式与交棒六式同一接缝不叠加，一缝一式；穿越式已自带高能量，</li></ul>
+<p>再包白闪/震屏读作穿帮（规矩同 shot-transitions）</p>
+<h2>参考实现</h2>
+<p>demos/transition/transition-travel/</p>
+<p>（LetterformZoom.tsx / SharedElementMorph.tsx）</p>
+<div class="demo">参考实现：demos/transition/transition-travel/</div>
+<div class="src">VideoForgeSuite · shotcraft 镜头卡库 · 源仓库 d:/hermes/vsc_repo</div>
+</body></html>

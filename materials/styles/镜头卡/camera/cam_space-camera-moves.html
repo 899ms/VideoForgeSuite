@@ -1,0 +1,54 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Microsoft YaHei",sans-serif;background:#FCFAF3;color:#26221C;padding:28px 30px;max-width:900px}
+.banner{height:170px;border-radius:14px;background:linear-gradient(120deg,#F5E663,#F0D93B 55%,#E8C82E);margin-bottom:18px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.banner img{width:100%;height:100%;object-fit:cover}
+.fallback{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;height:100%}
+.fb1{font-size:22px;font-family:KaiTi,serif;color:#7A6A14;letter-spacing:6px}
+.fb2{font-size:40px;font-family:KaiTi,serif;font-weight:bold;color:#26221C}
+.tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.tag{font-size:12px;padding:3px 10px;border-radius:20px;border:1.5px solid #26221C;background:#fff}
+.tag.cat{background:#26221C;color:#FCFAF3}
+.tag.energy{color:#fff;border:none}
+h1{font-size:30px;font-family:KaiTi,serif;margin-bottom:10px}
+.oneliner{font-size:17px;line-height:1.6;padding:10px 14px;background:#FFF9D6;border-left:4px solid #E8C82E;border-radius:0 8px 8px 0;margin-bottom:14px}
+.meta{font-size:13px;color:#6B6357;margin-bottom:18px}
+h2{font-size:17px;margin:20px 0 8px;padding-bottom:4px;border-bottom:2px solid #E8C82E;font-family:KaiTi,serif}
+p,li{font-size:14px;line-height:1.75}
+ul{padding-left:20px}
+code{font-family:Consolas,monospace;background:#F0EDE2;padding:1px 5px;border-radius:4px;font-size:13px}
+table{border-collapse:collapse;width:100%;margin:6px 0}
+th,td{border:1px solid #D8D2C0;padding:6px 10px;font-size:13px;text-align:left}
+th{background:#F0EDE2}
+.demo{margin-top:22px;padding:10px 14px;background:#F0EDE2;border-radius:8px;font-size:12.5px;color:#6B6357;font-family:Consolas,monospace;word-break:break-all}
+.src{margin-top:16px;font-size:11px;color:#A39B8B;text-align:center}
+</style></head><body>
+<div class="banner"><div class="fallback"><div class="fb1">运镜镜头</div><div class="fb2">space-camera-moves</div></div></div>
+<div class="tags"><span class="tag cat">camera · 运镜</span><span class="tag energy" style="background:#C2410C">能量 高</span><span class="tag">A 5s（炸开-悬停-合体全程）；C 3–5s 单向俯冲</span></div>
+<h1>space-camera-moves</h1>
+<div class="oneliner">3D 空间化运镜两式——exploded-view 爆炸分解（构件沿 Z 炸开再合体）、drone-dive-landing 无人机俯冲降落</div>
+<div class="meta"><b>适用：</b>把平面页面当 3D 实体拍的高光段落；两式都是"大动作"，一支片合计 ≤2 次</div>
+<h2>意图</h2>
+<p>depth-layer 卡是给平移加纵深——层在动、页面还是页面。这两式更进一步：</p>
+<p>整页被当成一个 3D 实体，相机（或世界）绕着它做实拍级机动。两式叙事</p>
+<p>语义各占一格：A 说"看看它由什么组成"（拆解展示，Apple 发布片语言）；</p>
+<p>C 说"从全局俯瞰砸到主角"（上帝视角一头扎进 hero 特写，全景→焦点）。</p>
+<h2>两式选型</h2>
+<table><thead><tr><th>式</th><th>做法</th><th>适用段落</th></tr></thead><tbody><tr><td>A exploded-view</td><td>整页 3D 倾斜后构件沿 Z 轴错峰炸开悬停，一拍后逆序合体震屏收口</td><td>架构/组成展示："这个产品里有什么"；模块总览段</td></tr><tr><td>C drone-dive-landing</td><td>近垂直俯角悬停 → 猛扎俯冲 → 气垫减速停在 hero 卡特写</td><td>开场定场→入题；全局地图砸进单点的章节启动</td></tr></tbody></table>
+<h2>参数表</h2>
+<table><thead><tr><th>参数</th><th>典型值</th><th>调节手感</th></tr></thead><tbody><tr><td>A 空间基座</td><td>perspective 1600 + 整组 scale 0.76 + rotateX 18° rotateY -12° + preserve-3d</td><td>倾角是空间感来源；正视炸开读不出深度</td></tr><tr><td>A 炸开</td><td>各构件 translateZ 60–320px 错落分布，错峰 3f，每层 14f ease-out-back(1.7)</td><td>back 回弹给"咔"一声的机械感；深度全同读作整页浮起</td></tr><tr><td>A 合体</td><td>逆序 ease-in 12f，归位帧 2f 指数衰减震屏（幅 ~13px）</td><td>震屏是落锤——没有它合体读作软趴趴的淡入</td></tr><tr><td>A 深度锚</td><td>投影随 z·p 下移变虚 + 底板压暗 22% + 远层 brightness ↓28%</td><td>三个线索缺一层间关系就糊</td></tr><tr><td>C 行程</td><td>同一条 p 驱动 rotateX 72°→0 + scale 0.42→1.35 + translate 收拢；origin 钉死 hero 卡中心（如 518,335）</td><td>一条 p = 一台相机一次机动；分开驱动读作三个动画打架</td></tr><tr><td>C 速度曲线</td><td>主俯冲 25f Easing.in(cubic) 吃 82% 行程 → 气垫 20f Easing.out(poly(5)) 走 18%</td><td>切换帧速度骤降 = 气垫顶住的体感；82/18 比例比帧数更关键</td></tr><tr><td>C 氛围</td><td>全场包 CameraMotionBlur(shutterAngle 220, samples 9)；俯视期页面下方椭圆软影随落地收干</td><td>软影卖"悬空高度"；blur 卖速度，缺一维就假</td></tr></tbody></table>
+<h2>已知坑</h2>
+<ul><li>demo 在灰阶/占位素材上调校通过——参数是调校起点非实战定稿，</li></ul>
+<p>首次实战须以真实素材回验</p>
+<ul><li>两式都吃真实截图分层/高清纹理：A 需页面按构件切块截图（顶栏/侧栏/</li></ul>
+<p>卡各自独立成图，整页一张图炸不开）；C 终点是特写，素材先按</p>
+<p>审美准则 Q2 的高分辨率栅格化技法处理</p>
+<ul><li>C 式易错：Remotion 无 Easing.quint，写 Easing.poly(5)（本批实渲踩坑）</li><li>A 式构件布局要绝对定位复刻原页面网格（demo 里 8 层复刻 FakeDashboard</li></ul>
+<p>A），流式布局做不了 per-构件 translateZ</p>
+<h2>参考实现</h2>
+<p>demos/camera/space-camera-moves/</p>
+<p>（DroneDiveLanding.tsx / ExplodedView.tsx）</p>
+<div class="demo">参考实现：demos/camera/space-camera-moves/</div>
+<div class="src">VideoForgeSuite · shotcraft 镜头卡库 · 源仓库 d:/hermes/vsc_repo</div>
+</body></html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Microsoft YaHei",sans-serif;background:#FCFAF3;color:#26221C;padding:28px 30px;max-width:900px}
+.banner{height:170px;border-radius:14px;background:linear-gradient(120deg,#F5E663,#F0D93B 55%,#E8C82E);margin-bottom:18px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.banner img{width:100%;height:100%;object-fit:cover}
+.fallback{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;height:100%}
+.fb1{font-size:22px;font-family:KaiTi,serif;color:#7A6A14;letter-spacing:6px}
+.fb2{font-size:40px;font-family:KaiTi,serif;font-weight:bold;color:#26221C}
+.tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.tag{font-size:12px;padding:3px 10px;border-radius:20px;border:1.5px solid #26221C;background:#fff}
+.tag.cat{background:#26221C;color:#FCFAF3}
+.tag.energy{color:#fff;border:none}
+h1{font-size:30px;font-family:KaiTi,serif;margin-bottom:10px}
+.oneliner{font-size:17px;line-height:1.6;padding:10px 14px;background:#FFF9D6;border-left:4px solid #E8C82E;border-radius:0 8px 8px 0;margin-bottom:14px}
+.meta{font-size:13px;color:#6B6357;margin-bottom:18px}
+h2{font-size:17px;margin:20px 0 8px;padding-bottom:4px;border-bottom:2px solid #E8C82E;font-family:KaiTi,serif}
+p,li{font-size:14px;line-height:1.75}
+ul{padding-left:20px}
+code{font-family:Consolas,monospace;background:#F0EDE2;padding:1px 5px;border-radius:4px;font-size:13px}
+table{border-collapse:collapse;width:100%;margin:6px 0}
+th,td{border:1px solid #D8D2C0;padding:6px 10px;font-size:13px;text-align:left}
+th{background:#F0EDE2}
+.demo{margin-top:22px;padding:10px 14px;background:#F0EDE2;border-radius:8px;font-size:12.5px;color:#6B6357;font-family:Consolas,monospace;word-break:break-all}
+.src{margin-top:16px;font-size:11px;color:#A39B8B;text-align:center}
+</style></head><body>
+<div class="banner"><div class="fallback"><div class="fb1">交互镜头</div><div class="fb2">voice-waveform-live</div></div></div>
+<div class="tags"><span class="tag cat">interaction · 交互</span><span class="tag energy" style="background:#A16207">能量 中</span><span class="tag">~5s（150f：入场 12f + 说 1.4s + 停 0.8s + 说 1.4s + 提交塌缩 0.8s）</span></div>
+<h1>voice-waveform-live</h1>
+<div class="oneliner">录音胶囊实时声纹——64 根细竖条随"说话"起伏，说话时中部高耸、停顿缩成点线，波形从右往左滚动；说→停→说→提交塌缩的完整表演</div>
+<div class="meta"><b>适用：</b>语音输入/AI 助手"正在听你说"的功能镜头；无 UI 内容可展示但需要持续活性撑画面的段落；功能性活性，不是炫技</div>
+<h2>意图</h2>
+<p>库里唯一的波形是 spectrum-morph-ui——那是标题下划线裂成频谱条的</p>
+<p><b>装饰性</b>音乐可视化。本卡是<b>功能性</b>声纹："正在听你说"的实时</p>
+<p>回执。区别在因果：spectrum 跟 BGM 跳、是包装；本卡跟"用户说话"</p>
+<p>跳、是产品功能本身。说话时波形高耸、停顿时缩成一排点线、历史向左</p>
+<p>滚出——观众从波形的起伏读出"它真的在听"，一段 6s+ 的画面全靠这份</p>
+<p>活性撑住，不需要任何别的内容。与 gauge-readout-moves 分工：仪表是</p>
+<p>"报一个数值"的机械仪式，本卡是"持续监听"的生命体征，没有终值。</p>
+<h2>动效核心</h2>
+<ul><li><b>帧确定的伪随机是命门</b>：mulberry32 按整数采样点取值 + smoothstep</li></ul>
+<p>相邻插值（值噪声），无 Math.random——渲染可复现且相邻帧连续</p>
+<ul><li>滚动感：第 i 条采样时刻 = f - (N-1-i)·1.6，最右条是"现在"，</li></ul>
+<p>历史向左流；不是条在平移，是每条在读不同时刻的信号</p>
+<ul><li>条高 = 说话包络（梯形 seg 说/停两档 + 音节噪声 0.55+0.45·noise）</li></ul>
+<p>× 中部空间权重 sin^0.8 × 逐条 jitter（0.35+0.65·noise）；</p>
+<p>静默钳到 5px 点线</p>
+<ul><li>提交：按钮 3f 压缩 scale 1→0.82→1 回弹，波形 12f Easing.in 塌缩</li></ul>
+<p>到 0.06，麦克风辉光随包络亮灭</p>
+<h2>参数表</h2>
+<table><thead><tr><th>参数</th><th>典型值</th><th>调节手感</th></tr></thead><tbody><tr><td>条数/间隙</td><td>64 条，gap 6px（1320px 宽胶囊）</td><td>少于 40 条读作均衡器；密过 90 条单条读不出起伏</td></tr><tr><td>滚动速率</td><td>1.6 帧/采样点</td><td>快了历史刷太快像故障；慢了"滚动感"消失变成原地抖</td></tr><tr><td>说停包络</td><td>seg 梯形 rise 5f / fall 7f；demo 说 15–57f、停 80–124f</td><td>停顿段必须真的塌成点线——没有"停"的对比，"说"就不成立</td></tr><tr><td>音节噪声</td><td>0.55+0.45·noiseAt(t/4.5)</td><td>去掉音节层波形是平滑山丘，读不出"一句话的顿挫"</td></tr><tr><td>中部权重</td><td>sin^0.8 空间包络</td><td>无权重全场等高像均衡器；指数 >1.5 中间独秀像单根跳</td></tr><tr><td>静默钳位</td><td>max 5px 点线</td><td>钳 0 波形消失读作断线；点线是"在听但你没说"</td></tr><tr><td>提交塌缩</td><td>12f Easing.in 到 0.06 + 按钮压缩回弹 3f</td><td>塌缩是"这段话被收走了"；淡出读不出提交语义</td></tr></tbody></table>
+<h2>已知坑</h2>
+<ul><li>demo 在灰阶/占位素材上调校通过——参数是调校起点非实战定稿，</li></ul>
+<p>首次实战须以真实素材回验</p>
+<ul><li><b>有音轨时波形必须跟人声走</b>：片子若配了真旁白/人声，包络的说停段要对齐音轨的说停，错位一秒就穿帮；无人声配乐片才可用纯合成包络</li><li>与 spectrum-morph-ui 同片可共存（一个是功能一个是装饰），但别用同一种条形视觉——高度/颜色/圆角至少差一档，否则观众读作同一个东西乱入</li><li>demo 的玻璃拟态胶囊（backdropFilter blur 24px）是 raycast 暗场风格，亮色片子换成实底胶囊即可，声纹参数不变</li><li>麦克风用的 emoji 加 grayscale 滤镜是占位——实战换 SVG 图标</li><li>声音：本卡画面就是"声音的形状"，配人声最顺；提交钮一声轻 pop + 塌缩配短促下滑音</li></ul>
+<h2>参考实现</h2>
+<p>demos/interaction/voice-waveform-live/</p>
+<p>（VoiceWaveformLive.tsx）</p>
+<p>原片出处：raycast-teams 19.5–26.0s</p>
+<div class="demo">参考实现：demos/interaction/voice-waveform-live/</div>
+<div class="src">VideoForgeSuite · shotcraft 镜头卡库 · 源仓库 d:/hermes/vsc_repo</div>
+</body></html>

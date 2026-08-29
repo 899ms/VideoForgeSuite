@@ -1,0 +1,84 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Microsoft YaHei",sans-serif;background:#FCFAF3;color:#26221C;padding:28px 30px;max-width:900px}
+.banner{height:170px;border-radius:14px;background:linear-gradient(120deg,#F5E663,#F0D93B 55%,#E8C82E);margin-bottom:18px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.banner img{width:100%;height:100%;object-fit:cover}
+.fallback{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;height:100%}
+.fb1{font-size:22px;font-family:KaiTi,serif;color:#7A6A14;letter-spacing:6px}
+.fb2{font-size:40px;font-family:KaiTi,serif;font-weight:bold;color:#26221C}
+.tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.tag{font-size:12px;padding:3px 10px;border-radius:20px;border:1.5px solid #26221C;background:#fff}
+.tag.cat{background:#26221C;color:#FCFAF3}
+.tag.energy{color:#fff;border:none}
+h1{font-size:30px;font-family:KaiTi,serif;margin-bottom:10px}
+.oneliner{font-size:17px;line-height:1.6;padding:10px 14px;background:#FFF9D6;border-left:4px solid #E8C82E;border-radius:0 8px 8px 0;margin-bottom:14px}
+.meta{font-size:13px;color:#6B6357;margin-bottom:18px}
+h2{font-size:17px;margin:20px 0 8px;padding-bottom:4px;border-bottom:2px solid #E8C82E;font-family:KaiTi,serif}
+p,li{font-size:14px;line-height:1.75}
+ul{padding-left:20px}
+code{font-family:Consolas,monospace;background:#F0EDE2;padding:1px 5px;border-radius:4px;font-size:13px}
+table{border-collapse:collapse;width:100%;margin:6px 0}
+th,td{border:1px solid #D8D2C0;padding:6px 10px;font-size:13px;text-align:left}
+th{background:#F0EDE2}
+.demo{margin-top:22px;padding:10px 14px;background:#F0EDE2;border-radius:8px;font-size:12.5px;color:#6B6357;font-family:Consolas,monospace;word-break:break-all}
+.src{margin-top:16px;font-size:11px;color:#A39B8B;text-align:center}
+</style></head><body>
+<div class="banner"><img src="data:image/jpeg;base64,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" alt=""></div>
+<div class="tags"><span class="tag cat">typography · 文字</span><span class="tag energy" style="background:#C2410C">能量 高</span><span class="tag">约 2.5s（75f@30fps，短促单拍）</span></div>
+<h1>outline-word-fill</h1>
+<div class="oneliner">空心词（1px 灰描边、500 字重）从 3.2 倍急缓收缩落位，虚线大圆随后从 2.8 倍收到字周围并缓慢自转，左右水平虚线从画框边缘内伸；描边先微微增亮，实心白在 0.6 帧内瞬间点亮，一闪辉光即定格</div>
+<div class="meta"><b>适用：</b>单词式利益点/口号的重锤一拍；节奏卡点上的"钉子"镜；深底品牌片的强调帧；3.2 倍收缩 + 瞬时点亮，短时高冲击</div>
+<h2>意图</h2>
+<p>一个词要打成钉子，靠的不是慢慢淡入而是<b>两次落定</b>：先是巨大空心字</p>
+<p>急速收缩到位（这是尺寸的落定），再是描边在一帧内变实心白（这是质感的</p>
+<p>落定）。中间那 1.5s 的虚线圆收缩与水平虚线内伸是"瞄准"过程——技术</p>
+<p>制图语汇，让点亮那一下读作"确认"。填充<b>必须是瞬时</b>的：慢扫填充会把</p>
+<p>钉子变成缓慢的美化动画。</p>
+<h2>动效核心</h2>
+<ul><li>空心字急缓收缩：<code>zoom = seg(t, 0.05, 0.19, E.outCubic)</code>（约 4f→14f，</li></ul>
+<p>仅 10f），<code>scale(lerp(zoom, 3.2, 1))</code>；同期 <code>born = seg(t, 0.05, 0.14)</code></p>
+<p>淡入——<b>收缩窗只 10f</b>，快到几乎是一次冲击</p>
+<ul><li>双层字：<code>outline</code>（<code>color:transparent</code> + <code>-webkit-text-stroke:1px #565b63</code>）</li></ul>
+<p>与 <code>solid</code>（纯白，初始 opacity 0）叠放，48px / <b>500 字重</b></p>
+<p>（中等字重，不是标题的 800——空心字太粗会糊成块）</p>
+<ul><li>虚线大圆（SVG r=88、<code>dasharray:6 8</code>）：出现 <code>cin = seg(0.16, 0.3)</code>，</li></ul>
+<p>收缩 <code>shrink = seg(0.16, 0.76, E.outCubic)</code> 从 2.8 倍收到 1——</p>
+<p><b>收缩窗 45f，横跨大半片</b>，是全片最慢的一条曲线；同时 <code>rotate(t·18)</code></p>
+<p>全程缓慢自转</p>
+<ul><li>左右水平虚线（<code>dasharray:5 7</code>）：<code>ext = seg(0.5, 0.72, E.outCubic)</code>，x2 从</li></ul>
+<p>±240 向内推进 144（画框边缘 → 圆边），透明度同步等于 ext；随后</p>
+<p><b>瞬时填充</b> <code>pop = seg(t, 0.742, 0.762)</code>——窗仅 0.02（约 0.6 帧），</p>
+<p>solid 与 outline 透明度硬交叉，视觉上是硬切</p>
+<ul><li>一闪即逝的辉光：<code>flash = pop · (1 - seg(0.762, 0.86, E.outQuad))</code>，</li></ul>
+<p><code>0 0 flash·16px rgba(255,255,255,.45)</code>，约 7f 内衰完后定格纯白</p>
+<ul><li>描边预热：<code>bright = seg(0.66, 0.73, E.outQuad)</code>，灰度 86→145 —— 点亮前</li></ul>
+<p>先亮一档，给那 0.6 帧的硬切一个"充能"前奏；底层 14 颗静态微尘</p>
+<p>（不动，随机位置 + 0.06–0.2 透明度）</p>
+<h2>参数表</h2>
+<table><thead><tr><th>参数</th><th>典型值</th><th>调节手感</th></tr></thead><tbody><tr><td>收缩</td><td><code>scale 3.2 → 1</code>，窗 10f，outCubic</td><td>3.2 倍是"从脸前退开"的量；<2 倍读作普通缩放；窗 >20f 就成了缓慢 zoom，冲击全失</td></tr><tr><td>字重字号</td><td>48px / <b>500</b> / <code>letter-spacing:.5px</code>，占画宽约三成</td><td>空心字上 700+ 会让 1px 描边包住一大块空白，读作气球字；500 是空心字的甜点</td></tr><tr><td>描边</td><td><code>1px #565b63</code>，点亮前预热到灰度 145</td><td>1px 细描边是"制图"语汇；2px+ 变涂鸦；预热那一档删了硬切显得没由来</td></tr><tr><td>虚线圆</td><td>r=88、<code>dash 6 8</code>、scale 2.8→1（45f）、自转 <code>t·18</code>°</td><td>45f 慢收缩是全片的"呼吸"，与 10f 的字收缩形成快慢对比；窗压到 20f 两者撞在一起</td></tr><tr><td>水平虚线</td><td><code>dash 5 7</code>，从 ±240 内伸 144，窗 0.5→0.72</td><td>内伸终点要停在圆边（不进圆内）；伸满全宽读作十字准星，过头了</td></tr><tr><td>瞬时填充</td><td><code>seg(0.742, 0.762)</code>（≈0.6f）</td><td><b>这一下是全卡的目的</b>：任何形式的慢扫（>3f）都会把钉子降级成美化动画</td></tr><tr><td>辉光</td><td>峰值 16px，<code>rgba(255,255,255,.45)</code>，7f 衰完</td><td>一闪即逝才像"点亮"；持续辉光读作发光字体，质感立刻廉价</td></tr><tr><td>微尘</td><td>14 颗，静态不动</td><td>静态是对的（本卡只 2.5s，动尘会抢戏）；数量 >25 底噪太脏</td></tr></tbody></table>
+<h2>已知坑</h2>
+<ul><li>demo 在灰阶/占位素材上调校通过——参数是调校起点非实战定稿，</li></ul>
+<p>首次实战须以真实素材回验</p>
+<ul><li><b>只适合单个短词（demo <code>Faster</code>，6 字母）</b>：字号与虚线圆半径是写死的</li></ul>
+<p>一组坐标，字一长就顶穿圆、水平虚线内伸终点也会压到字上——换成</p>
+<p>两个词或中文四字须同步调 <code>font-size</code> / <code>r</code> / 内伸距离三处</p>
+<ul><li><code>-webkit-text-stroke</code> 是前缀属性，Chromium/WebKit 才生效；Firefox 下</li></ul>
+<p>outline 层是全透明（词直到 0.742 才突然出现）。Remotion 走 Chromium 无碍</p>
+<ul><li>瞬时填充窗 <code>0.02</code> 在 75f 片长下不足一帧：这是<b>故意的</b>（要的就是硬切），</li></ul>
+<p>但如果把本卡拉长到 150f+，这 0.02 会变成 3 帧的可见渐变——拉长时长</p>
+<p>必须把窗按比例压回去</p>
+<ul><li>时间窗注释里的秒数（4.83→5.15s 等）是原片时间轴的残留，与本卡</li></ul>
+<p>0–2.5s 的 t 无关，读代码时别被误导</p>
+<ul><li>深底专用：<code>#050505</code> 底 + 白描边 + 辉光是效果的全部；浅底上空心字</li></ul>
+<p>几乎不可见，需整套重配</p>
+<ul><li>声音强依赖：点亮那一帧必须有一记短促重音（金属/开关/低频撞击），</li></ul>
+<p>这是本卡"钉子"感的一半，配法纪律见 sound-design.md；与</p>
+<p>word-relay-geometry 分工：那卡是三词接力（本卡是它第一段的独立化 +</p>
+<p>升级版），同片二者不并置</p>
+<h2>参考实现</h2>
+<p>demos/typography/outline-word-fill/</p>
+<p>（OutlineWordFill.tsx）</p>
+<div class="demo">参考实现：demos/typography/outline-word-fill/</div>
+<div class="src">VideoForgeSuite · shotcraft 镜头卡库 · 源仓库 d:/hermes/vsc_repo</div>
+</body></html>

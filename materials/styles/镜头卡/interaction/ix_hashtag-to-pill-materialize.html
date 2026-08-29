@@ -1,0 +1,72 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Microsoft YaHei",sans-serif;background:#FCFAF3;color:#26221C;padding:28px 30px;max-width:900px}
+.banner{height:170px;border-radius:14px;background:linear-gradient(120deg,#F5E663,#F0D93B 55%,#E8C82E);margin-bottom:18px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.banner img{width:100%;height:100%;object-fit:cover}
+.fallback{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;height:100%}
+.fb1{font-size:22px;font-family:KaiTi,serif;color:#7A6A14;letter-spacing:6px}
+.fb2{font-size:40px;font-family:KaiTi,serif;font-weight:bold;color:#26221C}
+.tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.tag{font-size:12px;padding:3px 10px;border-radius:20px;border:1.5px solid #26221C;background:#fff}
+.tag.cat{background:#26221C;color:#FCFAF3}
+.tag.energy{color:#fff;border:none}
+h1{font-size:30px;font-family:KaiTi,serif;margin-bottom:10px}
+.oneliner{font-size:17px;line-height:1.6;padding:10px 14px;background:#FFF9D6;border-left:4px solid #E8C82E;border-radius:0 8px 8px 0;margin-bottom:14px}
+.meta{font-size:13px;color:#6B6357;margin-bottom:18px}
+h2{font-size:17px;margin:20px 0 8px;padding-bottom:4px;border-bottom:2px solid #E8C82E;font-family:KaiTi,serif}
+p,li{font-size:14px;line-height:1.75}
+ul{padding-left:20px}
+code{font-family:Consolas,monospace;background:#F0EDE2;padding:1px 5px;border-radius:4px;font-size:13px}
+table{border-collapse:collapse;width:100%;margin:6px 0}
+th,td{border:1px solid #D8D2C0;padding:6px 10px;font-size:13px;text-align:left}
+th{background:#F0EDE2}
+.demo{margin-top:22px;padding:10px 14px;background:#F0EDE2;border-radius:8px;font-size:12.5px;color:#6B6357;font-family:Consolas,monospace;word-break:break-all}
+.src{margin-top:16px;font-size:11px;color:#A39B8B;text-align:center}
+</style></head><body>
+<div class="banner"><div class="fallback"><div class="fb1">交互镜头</div><div class="fb2">hashtag-to-pill-materialize</div></div></div>
+<div class="tags"><span class="tag cat">interaction · 交互</span><span class="tag energy" style="background:#A16207">能量 中</span><span class="tag">打字 ~40f + 硬切胶囊 hold ~18f + 缩移 ~14f + 硬切揭示后静置；全段约 3.5s（原片 18–21.5s）</span></div>
+<h1>hashtag-to-pill-materialize</h1>
+<div class="oneliner">话题词打字实体化——居中打出 "#word"（红实心光标恒亮），1 帧硬切变成宽大胶囊标签，hold 后缩小左移落到页面标签位，再 1 帧硬切揭示成品页；"两次硬切一次滑动"的节奏骨架</div>
+<div class="meta"><b>适用：</b>标签/分类/关键词功能的演示段（笔记 app 打 tag、话题聚合）；"输入 → 变成 UI 实体 → 归位到成品"的三段式叙事；干脆利落，靠硬切给劲，不靠弹跳</div>
+<h2>意图</h2>
+<p>文字变实体的常规做法是渐变/morph/展开，原片帧级拆解证明 Bear 反着</p>
+<p>来：<b>实体化是 1 帧硬切</b>——上一帧还是文字+光标，下一帧就是完整</p>
+<p>胶囊，无展开无 cross-fade 无回弹。硬切给的是"啪、成了"的确定感，</p>
+<p>任何渐变都会把"实体"软化成"特效"。全段骨架是**两次硬切夹一次</p>
+<p>滑动**：硬切实体化 → 平滑缩移归位 → 硬切揭示成品页。唯一的连续</p>
+<p>运动（缩移）被两记硬切框住，才显得又快又稳。这个节奏骨架是命门，</p>
+<p>三段挪动任何一段的性质（把硬切改渐变、把滑动改硬切）整卡就塌。</p>
+<h2>动效核心</h2>
+<ul><li>打字段：几何无衬线（Futura 气质）居中打 "#word"，**红实心光标</li></ul>
+<p>恒亮不闪**（原片实测，别加 blink）；人手节奏 4–6f/字带确定性抖动</p>
+<ul><li><b>实体化 = 1 帧硬切</b>：文字+光标整层消失，同帧出现无描边浅灰</li></ul>
+<p>胶囊 + 图标 + 词（字号不变、原位等大，# 被图标替换）；仅允许</p>
+<p>3f 1.03→1 微落定防死板</p>
+<ul><li>胶囊 hold ~0.6s → 一段 bezier easeInOut 缩小左移（~0.55x、</li></ul>
+<p>~14f）落到页面标签位，位置/缩放同曲线同起止，中途不分段</p>
+<ul><li>落位后<b>再 1 帧硬切</b>揭示成品页：底色/标题/正文/胶囊配色同帧</li></ul>
+<p>全变，之后真静止收尾</p>
+<ul><li>实现要点：胶囊按大字号绘制、整体 transform 缩放，且</li></ul>
+<p>transformOrigin 必须 0 0 + translate 先行，否则落位中心漂移</p>
+<h2>参数表</h2>
+<table><thead><tr><th>参数</th><th>典型值</th><th>调节手感</th></tr></thead><tbody><tr><td>打字节奏</td><td>4–6f/字（原片 ~6 字/秒），mulberry32 抖动</td><td>均匀间隔读作机打；光标必须恒亮（<b>原片实测</b>不闪烁）</td></tr><tr><td>实体化</td><td><b>1 帧硬切</b>（原片帧级实测无任何过渡）+ 3f 1.03→1 微落定</td><td>加淡入/展开立刻降级成普通 morph；微落定 >4f 读作弹跳</td></tr><tr><td>胶囊几何</td><td>740×236@1920（<b>原片实测</b> 493×157@720p ×1.5），无描边</td><td>胶囊要"宽大过头"才有实体感；加描边读作按钮</td></tr><tr><td>hold</td><td>~18f（0.6s，<b>原片实测</b>）</td><td><12f 观众没看清胶囊长啥样就飞了</td></tr><tr><td>缩移</td><td>~0.55x（<b>原片实测</b> 273/493）、14f、bezier(0.5,0,0.25,1)</td><td>缩放与位移必须同曲线；分开调会读作两个动画</td></tr><tr><td>揭示</td><td>落位 +3f 再 1 帧硬切全页</td><td>揭示若做转场，第二记硬切没了，骨架塌一半</td></tr></tbody></table>
+<h2>已知坑</h2>
+<ul><li>demo 在灰阶/占位素材上调校通过——参数是调校起点非实战定稿，</li></ul>
+<p>首次实战须以真实素材回验</p>
+<ul><li>与 typewriter-moves/ai-stream-response（打字呈现）、</li></ul>
+<p>morph-from-primitive（图元渐变成形）撞领域：本卡命门是**硬切</p>
+<p>实体化非渐变变形**——只要你想加过渡，就该去用那几张卡而不是改这张</p>
+<ul><li>早期版本曾杜撰"胶囊飞入下方滑入笔记卡"段，原片对照证伪已砍；</li></ul>
+<p>别复活飞行段</p>
+<ul><li>transformOrigin 默认 50% 50% 会让缩放落位中心漂移 (1−s)×半宽，</li></ul>
+<p>必须 origin 0 0 + translate 到目标中心再 scale（demo 内注释）</p>
+<ul><li>与原片残余差距：音符图标手绘 SVG 曲线、Futura 回退字重、揭示帧</li></ul>
+<p>正文间距 ~10px 级别偏差；节奏与硬切时点已密帧对齐</p>
+<h2>参考实现</h2>
+<p>demos/interaction/hashtag-to-pill-materialize/</p>
+<p>（HashtagToPillMaterialize.tsx）</p>
+<p>原片出处：bear-app.mp4 18–21.5s</p>
+<div class="demo">参考实现：demos/interaction/hashtag-to-pill-materialize/</div>
+<div class="src">VideoForgeSuite · shotcraft 镜头卡库 · 源仓库 d:/hermes/vsc_repo</div>
+</body></html>

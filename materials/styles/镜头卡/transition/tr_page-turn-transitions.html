@@ -1,0 +1,59 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Microsoft YaHei",sans-serif;background:#FCFAF3;color:#26221C;padding:28px 30px;max-width:900px}
+.banner{height:170px;border-radius:14px;background:linear-gradient(120deg,#F5E663,#F0D93B 55%,#E8C82E);margin-bottom:18px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.banner img{width:100%;height:100%;object-fit:cover}
+.fallback{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;height:100%}
+.fb1{font-size:22px;font-family:KaiTi,serif;color:#7A6A14;letter-spacing:6px}
+.fb2{font-size:40px;font-family:KaiTi,serif;font-weight:bold;color:#26221C}
+.tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.tag{font-size:12px;padding:3px 10px;border-radius:20px;border:1.5px solid #26221C;background:#fff}
+.tag.cat{background:#26221C;color:#FCFAF3}
+.tag.energy{color:#fff;border:none}
+h1{font-size:30px;font-family:KaiTi,serif;margin-bottom:10px}
+.oneliner{font-size:17px;line-height:1.6;padding:10px 14px;background:#FFF9D6;border-left:4px solid #E8C82E;border-radius:0 8px 8px 0;margin-bottom:14px}
+.meta{font-size:13px;color:#6B6357;margin-bottom:18px}
+h2{font-size:17px;margin:20px 0 8px;padding-bottom:4px;border-bottom:2px solid #E8C82E;font-family:KaiTi,serif}
+p,li{font-size:14px;line-height:1.75}
+ul{padding-left:20px}
+code{font-family:Consolas,monospace;background:#F0EDE2;padding:1px 5px;border-radius:4px;font-size:13px}
+table{border-collapse:collapse;width:100%;margin:6px 0}
+th,td{border:1px solid #D8D2C0;padding:6px 10px;font-size:13px;text-align:left}
+th{background:#F0EDE2}
+.demo{margin-top:22px;padding:10px 14px;background:#F0EDE2;border-radius:8px;font-size:12.5px;color:#6B6357;font-family:Consolas,monospace;word-break:break-all}
+.src{margin-top:16px;font-size:11px;color:#A39B8B;text-align:center}
+</style></head><body>
+<div class="banner"><div class="fallback"><div class="fb1">转场镜头</div><div class="fb2">page-turn-transitions</div></div></div>
+<div class="tags"><span class="tag cat">transition · 转场</span><span class="tag energy" style="background:#A16207">能量 中高</span><span class="tag">单式 前态建立 30f + 转场 20–38f + 收尾 ≥40f，约 4.4–4.7s</span></div>
+<h1>page-turn-transitions</h1>
+<div class="oneliner">整页体块转场两式——cube-rotate 立方体翻转（两页贴盒子相邻面转 90°）与 barn-door-split 对开门裂幕（旧页裂两半滑出、新页迎上）</div>
+<div class="meta"><b>适用：</b>章节级换页：两个并列大段落之间的"翻篇"仪式；与 shot-transitions 系（镜头交棒）分工——那是"航拍机移过去"，这是"页面自己是实体"</div>
+<h2>意图</h2>
+<p>shot-transitions 六式和 transition-travel/hidden-cut 都把页面当"场景"</p>
+<p>——相机在场景间移动。本卡把页面当<b>实体</b>：它有厚度、有重量、会翻面</p>
+<p>会裂开。体块隐喻的仪式感更强，适合章节级大换页（功能 A 讲完→功能 B）</p>
+<p>而非镜头级小交棒。A 立方体是"空间上并列"——两页是盒子的两面，</p>
+<p>暗示同级关系；B 对开门是"旧的让位"——旧页从正中撕开滑走、新页</p>
+<p>从底下迎上来，暗示取代关系。按语义选：并列翻篇用 A，新旧交替用 B。</p>
+<h2>两式选型</h2>
+<table><thead><tr><th>式</th><th>做法</th><th>适用</th></tr></thead><tbody><tr><td>A cube-rotate</td><td>两页贴立方体相邻面（rotateY 0/90° + translateZ W/2），场景层转 -90°；旧面转出压暗、新面转进变亮，45° 时两面夹一条暗棱</td><td>并列章节翻篇；产品两大功能区切换</td></tr><tr><td>B barn-door-split</td><td>旧页两个 960px overflow 容器对位拼合，同时向外 Easing.in(cubic) 滑出画外；裂缝内边缘亮线+投影，新页底层 scale 1.06→1 迎上</td><td>新旧交替：改版前后、方案 A→方案 B</td></tr></tbody></table>
+<h2>参数表</h2>
+<table><thead><tr><th>参数</th><th>典型值</th><th>调节手感</th></tr></thead><tbody><tr><td>A 结构命门</td><td>场景层 <code>translateZ(−W/2) rotateY(θ)</code> 把正面拉回 z=0</td><td>少了这层 hold 段页面尺度不对（被 perspective 推远）</td></tr><tr><td>A 转速</td><td>θ 0→−90° / 38f inOut cubic；中段叠 blur 1.5px 落定摘</td><td><28f 读不出体块感；>50f 读作慢慢挪</td></tr><tr><td>A 亮度对切</td><td>旧面 1→0.55、新面 0.55→1 + 接缝竖向渐变阴影 sin(pπ)</td><td>无明暗对切两面读作同一张图在转</td></tr><tr><td>B 预告</td><td>裂前中缝 2px 细线闪现两次（18–22/25–29f）</td><td>直接裂开观众没看到裂点在哪</td></tr><tr><td>B 滑出</td><td>各 translateX ∓980px / 20f Easing.in(cubic) 加速</td><td>ease-out 滑出是"被推走"，ease-in 才是"让位"</td></tr><tr><td>B 撕裂边</td><td>内边缘 3px G.ink 亮线 + 8px 投影</td><td>无边线两半读作普通左右擦除</td></tr><tr><td>收尾</td><td>新页落定真静止 ≥40f</td><td>R1</td></tr></tbody></table>
+<h2>已知坑</h2>
+<ul><li>demo 在灰阶/占位素材上调校通过——参数是调校起点非实战定稿，</li></ul>
+<p>首次实战须以真实素材回验</p>
+<ul><li>一缝一式规矩同 shot-transitions；体块转场比镜头交棒更重，</li></ul>
+<p><b>全片 ≤2 次</b>，连续两缝都用体块读作 PPT 翻页</p>
+<ul><li>A 式官方 <code>@remotion/transitions</code> cube() 是付费件——本卡是 CSS 自实现，</li></ul>
+<p>backlog 已有"评估官方转场原语"待选项，若引入官方件可对照</p>
+<ul><li>B 式两半必须<b>对位拼合无缝</b>（右半内层 translateX(−960px)）——</li></ul>
+<p>静止时看出接缝就穿帮；真实截图注意奇数宽度取整</p>
+<ul><li>转场前后两页都要有 ≥30f 静止建立/收尾——两端都在动，体块感被</li></ul>
+<p>运动淹没</p>
+<h2>参考实现</h2>
+<p>demos/transition/page-turn-transitions/</p>
+<p>（BarnDoorSplit.tsx / CubeRotate.tsx）</p>
+<div class="demo">参考实现：demos/transition/page-turn-transitions/</div>
+<div class="src">VideoForgeSuite · shotcraft 镜头卡库 · 源仓库 d:/hermes/vsc_repo</div>
+</body></html>

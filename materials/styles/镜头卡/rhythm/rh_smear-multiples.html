@@ -1,0 +1,65 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Microsoft YaHei",sans-serif;background:#FCFAF3;color:#26221C;padding:28px 30px;max-width:900px}
+.banner{height:170px;border-radius:14px;background:linear-gradient(120deg,#F5E663,#F0D93B 55%,#E8C82E);margin-bottom:18px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.banner img{width:100%;height:100%;object-fit:cover}
+.fallback{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;height:100%}
+.fb1{font-size:22px;font-family:KaiTi,serif;color:#7A6A14;letter-spacing:6px}
+.fb2{font-size:40px;font-family:KaiTi,serif;font-weight:bold;color:#26221C}
+.tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.tag{font-size:12px;padding:3px 10px;border-radius:20px;border:1.5px solid #26221C;background:#fff}
+.tag.cat{background:#26221C;color:#FCFAF3}
+.tag.energy{color:#fff;border:none}
+h1{font-size:30px;font-family:KaiTi,serif;margin-bottom:10px}
+.oneliner{font-size:17px;line-height:1.6;padding:10px 14px;background:#FFF9D6;border-left:4px solid #E8C82E;border-radius:0 8px 8px 0;margin-bottom:14px}
+.meta{font-size:13px;color:#6B6357;margin-bottom:18px}
+h2{font-size:17px;margin:20px 0 8px;padding-bottom:4px;border-bottom:2px solid #E8C82E;font-family:KaiTi,serif}
+p,li{font-size:14px;line-height:1.75}
+ul{padding-left:20px}
+code{font-family:Consolas,monospace;background:#F0EDE2;padding:1px 5px;border-radius:4px;font-size:13px}
+table{border-collapse:collapse;width:100%;margin:6px 0}
+th,td{border:1px solid #D8D2C0;padding:6px 10px;font-size:13px;text-align:left}
+th{background:#F0EDE2}
+.demo{margin-top:22px;padding:10px 14px;background:#F0EDE2;border-radius:8px;font-size:12.5px;color:#6B6357;font-family:Consolas,monospace;word-break:break-all}
+.src{margin-top:16px;font-size:11px;color:#A39B8B;text-align:center}
+</style></head><body>
+<div class="banner"><div class="fallback"><div class="fb1">节奏镜头</div><div class="fb2">smear-multiples</div></div></div>
+<div class="tags"><span class="tag cat">rhythm · 节奏</span><span class="tag energy" style="background:#A16207">能量 中高</span><span class="tag">元素级技法（移动 12f + 合拢回弹 8f，寄生在位移动作上）</span></div>
+<h1>smear-multiples</h1>
+<div class="oneliner">残像分身——卡片高速横移时拖 4 个清晰可数的半透明分身副本，落位瞬间收拢合一；motion blur 的动画式平替</div>
+<div class="meta"><b>适用：</b>元素高速位移段想要"漫画式速度感"而非"摄影式模糊"时；与 CameraMotionBlur 二选一</div>
+<h2>意图</h2>
+<p>快速位移的速度感库内标准答案是 CameraMotionBlur（摄影隐喻：快门拖影，</p>
+<p>连续的糊）。本卡给第二个答案，动漫演出的 smear frame 传统：残像是</p>
+<p><b>离散、清晰、可数的</b>完整副本——观众能数出 4 张卡，读作"快到留下</p>
+<p>分身"而非"快到糊掉"。两者气质完全不同：blur 是实拍级质感，分身是</p>
+<p>漫画级趣味；同一次位移二选一，叠用读作渲染错误。分身式还有一个</p>
+<p>实用优势：残像里内容仍可辨，适合"移动的东西本身是信息"的场景。</p>
+<h2>动效核心</h2>
+<ul><li>位置写成纯函数 <code>posAt(f)</code>（如 12f inOut cubic 到过冲点 + 6f 回弹）；</li></ul>
+<p>第 k 个分身直接求 <code>posAt(frame − k·2)</code>——同一条插值换帧号求值，</p>
+<p>天然帧独立可算（disney 延迟采样拖拽层级的同一模式；模式已沉为</p>
+<p>assets/lib/helpers/motion.ts velocityAt/lagged）</p>
+<ul><li>分身 opacity 0.45/0.30/0.18/0.09 递减，是完整元素副本（不拉伸不变形）</li><li>速度门限：<code>v = posAt(f) − posAt(f−1)</code>，v>25px/f 才渲染分身，</li></ul>
+<p>用 [25,60] 线性渐入避免分身瞬间跳出——低速段无残像是"快才有分身"</p>
+<p>的语义完整性</p>
+<ul><li>落位合拢：cv∈[0,1]（3f），分身延迟乘 (1−cv) 收缩到 0 + opacity 压零</li></ul>
+<p>——分身们"追上"本体的一瞬即落位重音，配合 3% 过冲回弹</p>
+<h2>参数表</h2>
+<table><thead><tr><th>参数</th><th>典型值</th><th>调节手感</th></tr></thead><tbody><tr><td>分身数/间隔</td><td>4 个 / 各差 2f</td><td>>5 个读作队伍；间隔 >3f 断成跳帧</td></tr><tr><td>移动速度</td><td>~900px/12f（峰值 ~100px/f）</td><td>慢移动不配分身（门限管住）；快过 3f/程分身来不及被看见</td></tr><tr><td>合拢窗口</td><td>落位前 3f 内收干</td><td>分身残留到落位后读作重影故障</td></tr><tr><td>收尾</td><td>落位回弹后真静止 ≥20f</td><td>R1</td></tr></tbody></table>
+<h2>已知坑</h2>
+<ul><li>demo 在灰阶/占位素材上调校通过——参数是调校起点非实战定稿，</li></ul>
+<p>首次实战须以真实素材回验</p>
+<ul><li>与 CameraMotionBlur 同一次位移<b>互斥</b>；同片不同镜头可以各用（一次</li></ul>
+<p>漫画式一次摄影式反而立体），但同类位移统一用一种（P4 一致性）</p>
+<ul><li>分身是"清晰完整副本"——加 blur、拉伸、变形都会滑向另一个手法</li></ul>
+<p>（轴向拉伸在词汇表另案），保持可数是本卡的身份</p>
+<ul><li>深底浅卡对比度下分身层次才读得开；同色系底上 0.09 那档会消失，</li></ul>
+<p>可减为 3 个分身重配 0.5/0.3/0.15</p>
+<h2>参考实现</h2>
+<p>demos/rhythm/smear-multiples/</p>
+<p>（SmearMultiples.tsx）</p>
+<div class="demo">参考实现：demos/rhythm/smear-multiples/</div>
+<div class="src">VideoForgeSuite · shotcraft 镜头卡库 · 源仓库 d:/hermes/vsc_repo</div>
+</body></html>

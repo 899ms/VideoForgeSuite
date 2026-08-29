@@ -1,0 +1,59 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Microsoft YaHei",sans-serif;background:#FCFAF3;color:#26221C;padding:28px 30px;max-width:900px}
+.banner{height:170px;border-radius:14px;background:linear-gradient(120deg,#F5E663,#F0D93B 55%,#E8C82E);margin-bottom:18px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.banner img{width:100%;height:100%;object-fit:cover}
+.fallback{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;height:100%}
+.fb1{font-size:22px;font-family:KaiTi,serif;color:#7A6A14;letter-spacing:6px}
+.fb2{font-size:40px;font-family:KaiTi,serif;font-weight:bold;color:#26221C}
+.tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.tag{font-size:12px;padding:3px 10px;border-radius:20px;border:1.5px solid #26221C;background:#fff}
+.tag.cat{background:#26221C;color:#FCFAF3}
+.tag.energy{color:#fff;border:none}
+h1{font-size:30px;font-family:KaiTi,serif;margin-bottom:10px}
+.oneliner{font-size:17px;line-height:1.6;padding:10px 14px;background:#FFF9D6;border-left:4px solid #E8C82E;border-radius:0 8px 8px 0;margin-bottom:14px}
+.meta{font-size:13px;color:#6B6357;margin-bottom:18px}
+h2{font-size:17px;margin:20px 0 8px;padding-bottom:4px;border-bottom:2px solid #E8C82E;font-family:KaiTi,serif}
+p,li{font-size:14px;line-height:1.75}
+ul{padding-left:20px}
+code{font-family:Consolas,monospace;background:#F0EDE2;padding:1px 5px;border-radius:4px;font-size:13px}
+table{border-collapse:collapse;width:100%;margin:6px 0}
+th,td{border:1px solid #D8D2C0;padding:6px 10px;font-size:13px;text-align:left}
+th{background:#F0EDE2}
+.demo{margin-top:22px;padding:10px 14px;background:#F0EDE2;border-radius:8px;font-size:12.5px;color:#6B6357;font-family:Consolas,monospace;word-break:break-all}
+.src{margin-top:16px;font-size:11px;color:#A39B8B;text-align:center}
+</style></head><body>
+<div class="banner"><div class="fallback"><div class="fb1">节奏镜头</div><div class="fb2">panel-grid-moves</div></div></div>
+<div class="tags"><span class="tag cat">rhythm · 节奏</span><span class="tag energy" style="background:#A16207">能量 A 高 / B 中 / C 中高</span><span class="tag">A ~4.7s / B ~4.8s / C ~5s</span></div>
+<h1>panel-grid-moves</h1>
+<div class="oneliner">分格节奏三式——grid-flash-mosaic 九宫格闪切填墙吞屏、flip-grid-reflow 网格集体重排、comic-panel-split 漫画斜格三机位并列</div>
+<div class="meta"><b>适用：</b>把"格子"当节奏器：逐格踩拍亮相（A）、节拍点集体换位（B）、同主体多机位定格并列（C）；三式都吃拍点</div>
+<h2>意图</h2>
+<p>与 wall-reveal-moves 的区别是本卡的定位锚：那是"整墙怎么入场"</p>
+<p>（一次性揭示），这是"格子怎么当节奏器"——分格、重排、并列都发生</p>
+<p>在节拍上，格变即鼓点。A 是填：3×3 格按十六分音符乱序逐格啪啪硬入，</p>
+<p>填满停一拍，中心格放大吞掉全屏——功能矩阵一秒全亮相；B 是移：6 张卡</p>
+<p>在节拍点集体直线换位（横排→3×2 网格），半秒落定 + 加深脉冲收束——</p>
+<p>布局重排本身当一个鼓点；C 是并：画面咔咔切成 3 个斜线分格，同一产品</p>
+<p>三种机位同时定格，停半拍后一格斜边扩张吃掉全屏——Scott Pilgrim 的</p>
+<p>分屏语言。按需选：多功能亮相用 A，布局叙事用 B，单品多视角用 C。</p>
+<h2>三式选型</h2>
+<table><thead><tr><th>式</th><th>做法</th><th>适用</th></tr></thead><tbody><tr><td>A grid-flash-mosaic</td><td>3×3 格每 2f 一格按 h(i) 乱序条件挂载硬入（入格 3f scale 1.18→1 + 2f 加深脉冲），满墙呼吸一拍，中心格 14f Easing.in(cubic) 放大 3.28x 吞屏</td><td>功能矩阵一秒全亮相；高潮前铺排</td></tr><tr><td>B flip-grid-reflow</td><td>预写两套坐标表（横排/3×2 网格），每卡 delay=i×1.5f、16f inOut cubic 直线飞行 + scale 1→1.28 带 1.02 过冲；落定后 6f brightness 0.78 全画面脉冲</td><td>布局叙事：并列→分组的语义换挡</td></tr><tr><td>C comic-panel-split</td><td>三格各一份整页 clip-path 12° 斜边裁切 + translate/scale 摆机位（1x/1.9x/2.6x），逐格 2f 间隔弹入；定格 18f 各格缓推保活，末格斜边 12f out-cubic 扩张吃屏</td><td>同一主体多视角并列；漫画感段落</td></tr></tbody></table>
+<h2>参数表</h2>
+<table><thead><tr><th>参数</th><th>典型值</th><th>调节手感</th></tr></thead><tbody><tr><td>A 硬入</td><td>未到拍点直接不渲染（条件挂载），零淡化</td><td>逐格硬入无淡化——命门；淡入就不是"啪"</td></tr><tr><td>A 描边</td><td>每格 3px 深色描边（border-box）</td><td>白底提亮不可见判例的反向应用：白卡靠描边分格</td></tr><tr><td>A 吞屏</td><td>中心格塞 0.3125x 整页，放大 3.28（>3.2）让描边滑出画外</td><td>描边残在收尾满屏上就穿帮</td></tr><tr><td>B 坐标</td><td>两套表预写（行 y=330 / 网格列 571.6/960/1348.4、行 416.2/663.8），纯 transform</td><td>免真 FLIP 量测；帧确定无随机</td></tr><tr><td>B 交错</td><td>偶数索引上排、奇数下排，轨迹互不对穿</td><td>乱排轨迹会恶性穿帮</td></tr><tr><td>B 脉冲</td><td>f58–64 brightness 0.78，filter 仅窗口内条件挂载</td><td>摘罩判例；窗口外挂 filter 毁真静止</td></tr><tr><td>C 斜缝</td><td>SVG 双线：16px 墨 #2f2f2f 底 + 10px 白核，12° 斜角</td><td>斜缝白线是漫画感命门；直缝读作分屏工具</td></tr><tr><td>C 保活</td><td>定格 18f 各格 scale 缓推 +3%/+5.5%/+8%</td><td>三格全静读作截图拼贴</td></tr><tr><td>收尾</td><td>A 68f / B 81f / C 93f 真静止（≥40f）</td><td>R1；C 摘罩帧与扩张终值对齐防跳变</td></tr></tbody></table>
+<h2>已知坑</h2>
+<ul><li>demo 在灰阶/占位素材上调校通过——参数是调校起点非实战定稿，</li></ul>
+<p>首次实战须以真实素材回验</p>
+<ul><li>C 三格必须是<b>同一主体的不同机位</b>——三格塞不同内容读作 bento</li></ul>
+<p>排版不是漫画分格，语义就散了</p>
+<ul><li>三式都吃拍点、声音强依赖：A 逐格一声啪、B 起飞与脉冲各一声、</li></ul>
+<p>C 逐格咔咔三声（sound-design §4.5）；不踩拍的分格只是布局动画</p>
+<ul><li>同片分格系 ≤1 段——格子语言辨识度太强，两段就撞</li><li>A 与 wall-reveal-moves 别同片连用（都是"墙"，观众分不出</li></ul>
+<p>入场还是节奏器）</p>
+<h2>参考实现</h2>
+<p>demos/rhythm/panel-grid-moves/</p>
+<p>（ComicPanelSplit.tsx / FlipGridReflow.tsx / GridFlashMosaic.tsx）</p>
+<div class="demo">参考实现：demos/rhythm/panel-grid-moves/</div>
+<div class="src">VideoForgeSuite · shotcraft 镜头卡库 · 源仓库 d:/hermes/vsc_repo</div>
+</body></html>

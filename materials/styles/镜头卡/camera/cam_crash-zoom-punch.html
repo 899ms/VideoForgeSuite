@@ -1,0 +1,52 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Microsoft YaHei",sans-serif;background:#FCFAF3;color:#26221C;padding:28px 30px;max-width:900px}
+.banner{height:170px;border-radius:14px;background:linear-gradient(120deg,#F5E663,#F0D93B 55%,#E8C82E);margin-bottom:18px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.banner img{width:100%;height:100%;object-fit:cover}
+.fallback{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;height:100%}
+.fb1{font-size:22px;font-family:KaiTi,serif;color:#7A6A14;letter-spacing:6px}
+.fb2{font-size:40px;font-family:KaiTi,serif;font-weight:bold;color:#26221C}
+.tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.tag{font-size:12px;padding:3px 10px;border-radius:20px;border:1.5px solid #26221C;background:#fff}
+.tag.cat{background:#26221C;color:#FCFAF3}
+.tag.energy{color:#fff;border:none}
+h1{font-size:30px;font-family:KaiTi,serif;margin-bottom:10px}
+.oneliner{font-size:17px;line-height:1.6;padding:10px 14px;background:#FFF9D6;border-left:4px solid #E8C82E;border-radius:0 8px 8px 0;margin-bottom:14px}
+.meta{font-size:13px;color:#6B6357;margin-bottom:18px}
+h2{font-size:17px;margin:20px 0 8px;padding-bottom:4px;border-bottom:2px solid #E8C82E;font-family:KaiTi,serif}
+p,li{font-size:14px;line-height:1.75}
+ul{padding-left:20px}
+code{font-family:Consolas,monospace;background:#F0EDE2;padding:1px 5px;border-radius:4px;font-size:13px}
+table{border-collapse:collapse;width:100%;margin:6px 0}
+th,td{border:1px solid #D8D2C0;padding:6px 10px;font-size:13px;text-align:left}
+th{background:#F0EDE2}
+.demo{margin-top:22px;padding:10px 14px;background:#F0EDE2;border-radius:8px;font-size:12.5px;color:#6B6357;font-family:Consolas,monospace;word-break:break-all}
+.src{margin-top:16px;font-size:11px;color:#A39B8B;text-align:center}
+</style></head><body>
+<div class="banner"><div class="fallback"><div class="fb1">运镜镜头</div><div class="fb2">crash-zoom-punch</div></div></div>
+<div class="tags"><span class="tag cat">camera · 运镜</span><span class="tag energy" style="background:#C2410C">能量 高</span><span class="tag">约 0.5s 动作 + 前后 hold（动作 6–11f，前 hold ≥30f 建立全景、后 hold ≥45f 读特写）</span></div>
+<h1>crash-zoom-punch</h1>
+<div class="oneliner">全景一拍急推到目标特写（6f），落位二选一——过冲回弹（弹性）或撞停震屏（重量）</div>
+<div class="meta"><b>适用：</b>功能段"点名"镜头——把观众视线一拍按到目标卡/模块上；强调级用撞停；瞬时冲击，非持续高能</div>
+<h2>意图</h2>
+<p>慢推近（spotlight-hero-card）是"请看"，急推是"看这个！"——一拍之内</p>
+<p>从全景砸到特写，视线没有选择余地。落位质感分两款：回弹是弹性</p>
+<p>（"看这个"），撞停震屏是重量（"就是它"），按强调级选。</p>
+<h2>动效核心</h2>
+<ul><li>zoom 6f ease-in 急加速（如 1→2.6），cx/cy 同步 ease-in 收敛到目标中心</li><li>回弹款：zoom 过冲后 5f 回收 3–6%（2.6→2.45）</li><li>撞停款：到位帧起机位高频抖 + 指数衰减（amp 14px、τ≈1.8f、6f 收干），</li></ul>
+<p>不回弹</p>
+<ul><li><code><CameraMotionBlur shutterAngle={200} samples={20}></code> <b>只包急推段</b></li></ul>
+<p>（撞停震屏段保持清晰抖动）；采样按"回波间距 ≤ 字高"配（轮 A 判例）</p>
+<h2>参数表</h2>
+<table><thead><tr><th>参数</th><th>典型值</th><th>调节手感</th></tr></thead><tbody><tr><td>急推时长</td><td>6f（4–8f）</td><td>>10f 读作普通推近，冲击感消失</td></tr><tr><td>目标 zoom</td><td>2.4–2.8</td><td>终点构图以目标卡占画面 60–75% 为准</td></tr><tr><td>回弹幅度</td><td>zoom 的 3–6%</td><td>过大读作弹簧玩具</td></tr><tr><td>震屏包络</td><td>14px·e^(−t/1.8)</td><td>幅度须过肉眼阈值（可感性判例），>20px 读作故障</td></tr></tbody></table>
+<h2>已知坑</h2>
+<ul><li>终点必须是高清纹理槽位（card4-hires 级）——急推后全程特写它，</li></ul>
+<p>低倍截图糊字（Q2）；终点先按 Q2 的高分辨率栅格化技法处理</p>
+<ul><li>两款别混用：回弹后再震屏读作穿帮；一支片急推 ≤2 次（P4 手法去重精神）</li><li>参数经占位素材调校转正，非实战定稿，首次实战后回验</li></ul>
+<h2>参考实现</h2>
+<p>demos/camera/crash-zoom-punch/</p>
+<p>（CrashImpactReal.tsx / CrashZoomReal.tsx）</p>
+<div class="demo">参考实现：demos/camera/crash-zoom-punch/</div>
+<div class="src">VideoForgeSuite · shotcraft 镜头卡库 · 源仓库 d:/hermes/vsc_repo</div>
+</body></html>

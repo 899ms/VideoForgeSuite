@@ -1,0 +1,55 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Microsoft YaHei",sans-serif;background:#FCFAF3;color:#26221C;padding:28px 30px;max-width:900px}
+.banner{height:170px;border-radius:14px;background:linear-gradient(120deg,#F5E663,#F0D93B 55%,#E8C82E);margin-bottom:18px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.banner img{width:100%;height:100%;object-fit:cover}
+.fallback{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;height:100%}
+.fb1{font-size:22px;font-family:KaiTi,serif;color:#7A6A14;letter-spacing:6px}
+.fb2{font-size:40px;font-family:KaiTi,serif;font-weight:bold;color:#26221C}
+.tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.tag{font-size:12px;padding:3px 10px;border-radius:20px;border:1.5px solid #26221C;background:#fff}
+.tag.cat{background:#26221C;color:#FCFAF3}
+.tag.energy{color:#fff;border:none}
+h1{font-size:30px;font-family:KaiTi,serif;margin-bottom:10px}
+.oneliner{font-size:17px;line-height:1.6;padding:10px 14px;background:#FFF9D6;border-left:4px solid #E8C82E;border-radius:0 8px 8px 0;margin-bottom:14px}
+.meta{font-size:13px;color:#6B6357;margin-bottom:18px}
+h2{font-size:17px;margin:20px 0 8px;padding-bottom:4px;border-bottom:2px solid #E8C82E;font-family:KaiTi,serif}
+p,li{font-size:14px;line-height:1.75}
+ul{padding-left:20px}
+code{font-family:Consolas,monospace;background:#F0EDE2;padding:1px 5px;border-radius:4px;font-size:13px}
+table{border-collapse:collapse;width:100%;margin:6px 0}
+th,td{border:1px solid #D8D2C0;padding:6px 10px;font-size:13px;text-align:left}
+th{background:#F0EDE2}
+.demo{margin-top:22px;padding:10px 14px;background:#F0EDE2;border-radius:8px;font-size:12.5px;color:#6B6357;font-family:Consolas,monospace;word-break:break-all}
+.src{margin-top:16px;font-size:11px;color:#A39B8B;text-align:center}
+</style></head><body>
+<div class="banner"><div class="fallback"><div class="fb1">运镜镜头</div><div class="fb2">depth-layer-moves</div></div></div>
+<div class="tags"><span class="tag cat">camera · 运镜</span><span class="tag energy" style="background:#A16207">能量 视差=中</span><span class="tag">视差滑轨 4–5s 持续；dolly-zoom 3–4s 单向行程</span></div>
+<h1>depth-layer-moves</h1>
+<div class="oneliner">分层深度两款运镜——多层视差滑轨（3 层速度梯度横移出纵深）与伪 dolly-zoom（主体钉死、背景膨胀压来）</div>
+<div class="meta"><b>适用：</b>平面截图要"有厚度"的段落；戏剧性蓄力时刻用 dolly-zoom（一支片 ≤1 次）；质感型）；dolly-zoom=中高（压迫感渐强</div>
+<h2>意图</h2>
+<p>整页平移是"看页面"，分层深度是"在页面的空间里"。视差滑轨给横移</p>
+<p>加纵深（迪士尼多平面摄影机原理，Linear 片同款质感）；伪 dolly-zoom</p>
+<p>反过来——主角纹丝不动、全世界压过来，给戏剧性时刻蓄力。</p>
+<h2>动效核心</h2>
+<ul><li><b>视差滑轨（3 层）</b>：背景整页（系数 0.35 + blur 2px + 降饱和</li></ul>
+<p>0.92 + opacity 0.85，退成环境）、中景真实卡切片（系数 0.7，</p>
+<p>主阅读层，无 blur）、前景浮块（系数 1.4 + blur 3px，掠过镜头）。</p>
+<p>同一条 drive 位移乘各层系数</p>
+<ul><li><b>伪 dolly-zoom</b>：主体高清卡固定 px 钉屏中（不参与任何变换）；</li></ul>
+<p>背景层（整页 + 卡群一体）scale 1→2.25 从画面中心膨胀 + blur 0→3.5px</p>
+<p>渐深；主体落影随进程加深（12→28px offset）强化"钉住感"</p>
+<ul><li>两款都不拆真实页面排版：整页作为一体成层，独立元素用切片另起层</li></ul>
+<p>——层间关系是"景深"，不是"页面被撕开"</p>
+<h2>参数表</h2>
+<table><thead><tr><th>参数</th><th>典型值</th><th>调节手感</th></tr></thead><tbody><tr><td>视差层系数</td><td>0.35 / 0.7 / 1.4</td><td>梯度 ≥2 倍层间才可辨；层数 ≤4 防过载</td></tr><tr><td>层次锚</td><td>前后景 blur + 背景降饱和</td><td>没有 blur/饱和锚，读作"贴片乱飞"</td></tr><tr><td>dolly 膨胀行程</td><td>scale 1→2.0–2.5</td><td>行程小了压迫感不足；背景 opacity ≤0.6 防读作故障</td></tr></tbody></table>
+<h2>已知坑</h2>
+<ul><li>主阅读层/主体必须高清纹理且无 blur——观众在读它</li><li>视差与 PageCam rot 3D 的组合（斜拍视差）未验证，实战先渲 still 确认</li><li>dolly-zoom 是"戏剧调料"：一支片 ≤1 次，日常段落用视差滑轨</li><li>参数经占位素材调校转正，非实战定稿，首次实战后回验</li></ul>
+<h2>参考实现</h2>
+<p>demos/camera/depth-layer-moves/</p>
+<p>（DollyZoomReal.tsx / MultiplaneReal.tsx）</p>
+<div class="demo">参考实现：demos/camera/depth-layer-moves/</div>
+<div class="src">VideoForgeSuite · shotcraft 镜头卡库 · 源仓库 d:/hermes/vsc_repo</div>
+</body></html>

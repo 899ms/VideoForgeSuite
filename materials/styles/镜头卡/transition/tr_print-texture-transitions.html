@@ -1,0 +1,55 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="utf-8">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Microsoft YaHei",sans-serif;background:#FCFAF3;color:#26221C;padding:28px 30px;max-width:900px}
+.banner{height:170px;border-radius:14px;background:linear-gradient(120deg,#F5E663,#F0D93B 55%,#E8C82E);margin-bottom:18px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.banner img{width:100%;height:100%;object-fit:cover}
+.fallback{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;height:100%}
+.fb1{font-size:22px;font-family:KaiTi,serif;color:#7A6A14;letter-spacing:6px}
+.fb2{font-size:40px;font-family:KaiTi,serif;font-weight:bold;color:#26221C}
+.tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.tag{font-size:12px;padding:3px 10px;border-radius:20px;border:1.5px solid #26221C;background:#fff}
+.tag.cat{background:#26221C;color:#FCFAF3}
+.tag.energy{color:#fff;border:none}
+h1{font-size:30px;font-family:KaiTi,serif;margin-bottom:10px}
+.oneliner{font-size:17px;line-height:1.6;padding:10px 14px;background:#FFF9D6;border-left:4px solid #E8C82E;border-radius:0 8px 8px 0;margin-bottom:14px}
+.meta{font-size:13px;color:#6B6357;margin-bottom:18px}
+h2{font-size:17px;margin:20px 0 8px;padding-bottom:4px;border-bottom:2px solid #E8C82E;font-family:KaiTi,serif}
+p,li{font-size:14px;line-height:1.75}
+ul{padding-left:20px}
+code{font-family:Consolas,monospace;background:#F0EDE2;padding:1px 5px;border-radius:4px;font-size:13px}
+table{border-collapse:collapse;width:100%;margin:6px 0}
+th,td{border:1px solid #D8D2C0;padding:6px 10px;font-size:13px;text-align:left}
+th{background:#F0EDE2}
+.demo{margin-top:22px;padding:10px 14px;background:#F0EDE2;border-radius:8px;font-size:12.5px;color:#6B6357;font-family:Consolas,monospace;word-break:break-all}
+.src{margin-top:16px;font-size:11px;color:#A39B8B;text-align:center}
+</style></head><body>
+<div class="banner"><div class="fallback"><div class="fb1">转场镜头</div><div class="fb2">print-texture-transitions</div></div></div>
+<div class="tags"><span class="tag cat">transition · 转场</span><span class="tag energy" style="background:#A16207">能量 中</span><span class="tag">4–4.5s（洇开段 55–80f + 静止收尾 ≥30f）</span></div>
+<h1>print-texture-transitions</h1>
+<div class="oneliner">印刷质感转场——ink-bleed-reveal 墨渗揭示（须状渗边洇开吃掉旧景）</div>
+<div class="meta"><b>适用：</b>换景接缝的纸墨审美款；与交棒六式/穿越三式并列的第三族——"介质显影"型转场；渐进显形，无冲击拍</div>
+<h2>意图</h2>
+<p>转场语言已有交棒（shot-transitions 六式）和穿越（transition-travel）</p>
+<p>，都是空间/光学隐喻。本式开第三族：<b>介质隐喻</b>——新画面不是"到来"</p>
+<p>而是"印染"出来的，直接调用库内纸墨审美的物理想象：像一滴墨落在</p>
+<p>宣纸上洇开吃掉旧景，有机、书写感。天然亲和 paper/ink 调性的片子，</p>
+<p>是 light-leak-burn（强调色漏光）之外的另一个"介质系"接缝选择。</p>
+<h2>单式选型</h2>
+<table><thead><tr><th>式</th><th>做法</th><th>适用</th></tr></thead><tbody><tr><td>B ink-bleed-reveal 墨渗揭示</td><td>新页透过须状渗边的有机圆形遮罩从落墨点洇开，快慢不匀吃掉旧景</td><td>旧景→新景替换；书写感、叙事调性</td></tr></tbody></table>
+<h2>参数表</h2>
+<table><thead><tr><th>参数</th><th>典型值</th><th>调节手感</th></tr></thead><tbody><tr><td>渗边</td><td>SVG mask 白圆挂 <code>feTurbulence(fractalNoise, baseFrequency 0.02, octaves 3, seed 固定)</code> + <code>feDisplacementMap scale 60→160 随帧涨</code></td><td>filter 只揉遮罩形状、内容始终清晰；seed 必须写死（确定性）</td></tr><tr><td>洇开</td><td>半径 [20,98f]→[0,1450px] Easing.out(quad)，乘 <code>1+0.08·sin(0.32f)·env</code> 快慢不匀扰动（env 末 20f 衰减归零）</td><td>匀速圆扩张读作普通 iris——扰动即"墨的脾气"</td></tr><tr><td>收尾摘罩</td><td>洇满后（帧 ~100）摘掉 SVG mask 直接铺新景</td><td>feTurbulence 有亚像素抖动，不摘则结尾永不真静止（本批实渲判例）</td></tr><tr><td>收尾</td><td>新景就位后真静止 ≥30f</td><td>R1</td></tr></tbody></table>
+<h2>已知坑</h2>
+<ul><li>demo 在灰阶/占位素材上调校通过——参数是调校起点非实战定稿，</li></ul>
+<p>首次实战须以真实素材回验</p>
+<ul><li>一缝一式规矩同 shot-transitions：介质转场不与白闪/震屏叠加；</li></ul>
+<p>本式与 light-leak-burn 介质系同片合计 ≤2 次，多了片子读作印刷厂宣传</p>
+<ul><li>洇开中段旧景内容会透过噪声孔洞碎片式短暂露出——读作墨渍肌理</li></ul>
+<p>属可接受有机效果，但旧景若是人脸/logo 等高辨识元素会读作故障，避开</p>
+<ul><li>慢转场（55–80f 动作段），高节奏连打段落别用——那里去 E 式甩镜</li></ul>
+<h2>参考实现</h2>
+<p>demos/transition/print-texture-transitions/</p>
+<p>（InkBleedReveal.tsx）</p>
+<div class="demo">参考实现：demos/transition/print-texture-transitions/</div>
+<div class="src">VideoForgeSuite · shotcraft 镜头卡库 · 源仓库 d:/hermes/vsc_repo</div>
+</body></html>
